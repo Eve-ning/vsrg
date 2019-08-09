@@ -1,8 +1,6 @@
 #pragma once
 #include "HitObject.h"
 
-typedef std::shared_ptr<HitObject> SPtrHitObject;
-
 // Creates a Long/Held Note with 2 Hit Objects
 class LongNote
 {
