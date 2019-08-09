@@ -2,6 +2,9 @@
 #include <vector>
 #include "HitObject.h"
 #include "TimedObject.h"
+
+typedef std::vector<std::shared_ptr<HitObject>> HOV;
+typedef std::vector<std::shared_ptr<TimedObject>> TPV;
 class VsrgMap
 {
 public:
@@ -9,7 +12,7 @@ public:
 	~VsrgMap();
 
 private:
-	std::vector<std::shared_ptr<HitObject>> ho_v_;
-	std::vector<std::shared_ptr<TimedObject>> to_v_;
+	HOV ho_v_;
+	TPV to_v_;
 };
 
