@@ -43,6 +43,16 @@ namespace HitObject_
 			Assert::IsFalse(ln_1 == ln_2);
 		}
 
+		TEST_METHOD(LongNote_copy)
+		{
+			LongNote ln_0 = ln_1;
+			SPtrHitObject ho_0 = ln_0.getStartNote();
+
+			Assert::IsFalse(&ln_0 == &ln_1); // Addresses should be different
+			Assert::IsTrue(ho_0.get() == ln_0.getStartNote().get()); // Extracted HO should have different addresses
+			Assert::IsTrue(ln_0 == ln_1); // Element wise it should be the same
+		}
+
 		TEST_METHOD(LongNote_validation)
 		{
 			Assert::IsTrue(bool(ln_1));
