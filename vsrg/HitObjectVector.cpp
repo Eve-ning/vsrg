@@ -1,0 +1,50 @@
+#include "stdafx.h"
+#include "HitObjectVector.h"
+
+HitObjectVector::HitObjectVector(const std::vector<HitObject>& ho_v) {
+	for (const HitObject& ho : ho_v) {
+		ho_v_.push_back(std::make_shared<HitObject>(ho));
+	}
+}
+
+HitObjectVector::~HitObjectVector()
+{
+}
+
+HitObjectVector::HitObjectVector(HitObjectVector & ho_v) {
+	for (const SPtrHitObject & ho : ho_v) {
+		ho_v_.push_back(std::make_shared<HitObject>(*ho));
+	}
+}
+
+std::vector<SPtrHitObject>::iterator HitObjectVector::begin() {
+	return ho_v_.begin();
+}
+
+std::vector<SPtrHitObject>::iterator HitObjectVector::end() {
+	return ho_v_.end();
+}
+SPtrHitObject HitObjectVector::operator[](unsigned int index) const {
+	return getHitObject(index);
+}
+
+HitObjectVector HitObjectVector::operator=(HitObjectVector ho_v)
+{
+	ho_v_.clear();
+	for (const SPtrHitObject & ho : ho_v) {
+		ho_v_.push_back(std::make_shared<HitObject>(*ho));
+	}
+	return *this;
+}
+
+std::vector<SPtrHitObject> HitObjectVector::getHitObjectVector() const {
+	return ho_v_;
+}
+
+void HitObjectVector::setHitObjectVector(const std::vector<SPtrHitObject>& ho_v) {
+	ho_v_ = ho_v;
+}
+
+SPtrHitObject HitObjectVector::getHitObject(unsigned int index) const {
+	return ho_v_.at(index);
+}
