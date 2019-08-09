@@ -22,6 +22,9 @@
     <Filter Include="Timed Objects\Event Objects">
       <UniqueIdentifier>{081f19b4-9713-4c1b-8ffb-91bb17037421}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Wrapper Objects">
+      <UniqueIdentifier>{7c124d07-02fe-43ba-b81b-868a54bf37f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -52,7 +55,10 @@
       <Filter>Timed Objects\Event Objects</Filter>
     </ClInclude>
     <ClInclude Include="VsrgMap.h">
-      <Filter>Header Files</Filter>
+      <Filter>Wrapper Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="HitObjectVector.h">
+      <Filter>Wrapper Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -87,7 +93,10 @@
       <Filter>Timed Objects\Event Objects</Filter>
     </ClCompile>
     <ClCompile Include="VsrgMap.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Wrapper Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="HitObjectVector.cpp">
+      <Filter>Wrapper Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
