@@ -2,7 +2,7 @@
 #include "HitObjectVector.h"
 
 HitObjectVector::HitObjectVector(const std::vector<HitObject>& ho_v) {
-	for (const HitObject& ho : ho_v) {
+	for (const HitObject & ho : ho_v) {
 		ho_v_.push_back(std::make_shared<HitObject>(ho));
 	}
 }
