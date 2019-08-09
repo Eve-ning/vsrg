@@ -6,6 +6,7 @@ class HitObjectVector
 {
 public:
 	HitObjectVector(const std::vector<HitObject> & ho_v);
+	HitObjectVector();
 	~HitObjectVector();
 	HitObjectVector(HitObjectVector & ho_v);
 
@@ -13,6 +14,10 @@ public:
 	std::vector<SPtrHitObject>::iterator end();
 	SPtrHitObject operator[](unsigned int index) const;
 	HitObjectVector operator=(HitObjectVector ho_v);
+	void push_back(SPtrHitObject ho);
+	void pop_back();
+	void clear();
+	size_t size() const;
 	
 	/// Gets the whole HitObjectVector
 	std::vector<SPtrHitObject> getHitObjectVector() const;	
