@@ -47,3 +47,4 @@ private:
 	int column_;
 };
 
+typedef std::shared_ptr<HitObject> SPtrHitObject;

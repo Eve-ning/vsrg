@@ -53,3 +53,5 @@ private:
 	/// Stored value in milliseconds
 	double offset_m_sec_;
 };
+
+typedef std::shared_ptr<TimedObject> SPtrTimedObject;
