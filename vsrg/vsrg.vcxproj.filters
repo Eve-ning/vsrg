@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Timed Objects">
+      <UniqueIdentifier>{1f2918ef-88e3-4479-8d80-a8862248551d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Timed Objects\Hit Objects">
+      <UniqueIdentifier>{06716b84-8f98-4695-9d42-7d3f39a8d8cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Timed Objects\Event Objects">
+      <UniqueIdentifier>{081f19b4-9713-4c1b-8ffb-91bb17037421}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HitObject.h">
+      <Filter>Timed Objects\Hit Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="LongNote.h">
+      <Filter>Timed Objects\Hit Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalNote.h">
+      <Filter>Timed Objects\Hit Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="EventObject.h">
+      <Filter>Timed Objects\Event Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="TimingPoint.h">
+      <Filter>Timed Objects\Event Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="TimedObject.h">
+      <Filter>Timed Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ScrollPoint.h">
+      <Filter>Timed Objects\Event Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="VsrgMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vsrg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EventObject.cpp">
+      <Filter>Timed Objects\Event Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="HitObject.cpp">
+      <Filter>Timed Objects\Hit Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="LongNote.cpp">
+      <Filter>Timed Objects\Hit Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalNote.cpp">
+      <Filter>Timed Objects\Hit Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="TimingPoint.cpp">
+      <Filter>Timed Objects\Event Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="TimedObject.cpp">
+      <Filter>Timed Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollPoint.cpp">
+      <Filter>Timed Objects\Event Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="VsrgMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
