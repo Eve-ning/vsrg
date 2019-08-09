@@ -8,10 +8,18 @@ public:
 	/**
 	 * @brief Construct a new Long Note object
 	 * 
-	 * @param start_ho The start Hit Object
-	 * @param end_ho The end Hit Object
+	 * @param start_ho The start Hit Object as a shared pointer
+	 * @param end_ho The end Hit Object as a shared pointer
 	 */
 	LongNote(SPtrHitObject start_ho, SPtrHitObject end_ho);
+	/**
+	 * @brief Construct a new Long Note object
+	 *
+	 * @param start_ho The start Hit Object as a copy
+	 * @param end_ho The end Hit Object as a copy
+	 */
+	LongNote(HitObject start_ho, HitObject end_ho);
+	LongNote(const LongNote & ln);
 	~LongNote();
 
 	/// Gets a copied shared_ptr of the Start Hit Object
@@ -45,6 +53,7 @@ public:
 	virtual operator std::string() const; // Calls getInfo
 
 	virtual bool operator==(const LongNote & ln) const;
+	LongNote & operator=(const LongNote & ln);
 
 private:
 	SPtrHitObject start_ho_;

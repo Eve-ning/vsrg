@@ -4,6 +4,16 @@
 LongNote::LongNote(SPtrHitObject start_ho, SPtrHitObject end_ho) :
 	start_ho_(start_ho), end_ho_(end_ho) {}
 
+LongNote::LongNote(HitObject start_ho, HitObject end_ho) {
+	start_ho_ = std::make_shared<HitObject>(start_ho);
+	end_ho_ = std::make_shared<HitObject>(end_ho);
+}
+
+LongNote::LongNote(const LongNote & ln) {
+	start_ho_ = std::make_shared<HitObject>(*ln.getStartNote());
+	end_ho_ = std::make_shared<HitObject>(*ln.getEndNote());
+}
+
 LongNote::~LongNote()
 { // Do not delete SPtr explicitly!
 }
@@ -72,4 +82,12 @@ bool LongNote::operator==(const LongNote & ln) const
 	// Equivalent of comparing the HitObjects of the lns
 	return (getStartNote()->operator==(*ln.getStartNote())) &&
 		(getEndNote()->operator==(*ln.getEndNote()));
+}
+
+LongNote & LongNote::operator=(const LongNote & ln)
+{
+	setStartNote(std::make_shared<HitObject>(*ln.getStartNote()));
+	setEndNote(std::make_shared<HitObject>(*ln.getEndNote()));
+
+	return *this;
 }
