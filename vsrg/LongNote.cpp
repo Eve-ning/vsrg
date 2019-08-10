@@ -5,9 +5,9 @@ LongNote::LongNote(SPtrHitObject start_ho, SPtrHitObject end_ho) :
 	start_ho_(start_ho), end_ho_(end_ho) {}
 
 LongNote::LongNote(const LongNote & ln) {
-	// Dynamic Pointer cast to promote from TimedObject to HitObject
-	start_ho_ = std::dynamic_pointer_cast<HitObject>(ln.getStartNote()->Clone());
-	end_ho_ = std::dynamic_pointer_cast<HitObject>(ln.getEndNote()->Clone());
+	// Static Pointer cast to promote from TimedObject to HitObject
+	start_ho_ = std::static_pointer_cast<HitObject>(ln.getStartNote()->Clone());
+	end_ho_ = std::static_pointer_cast<HitObject>(ln.getEndNote()->Clone());
 }
 
 LongNote::~LongNote()
@@ -82,9 +82,9 @@ bool LongNote::operator==(const LongNote & ln) const
 
 LongNote & LongNote::operator=(const LongNote & ln)
 {
-	// Dynamic Pointer cast to promote from TimedObject to HitObject
-	setStartNote(std::dynamic_pointer_cast<HitObject>(ln.getStartNote()->Clone()));
-	setEndNote(std::dynamic_pointer_cast<HitObject>(ln.getEndNote()->Clone()));
+	// Static Pointer cast to promote from TimedObject to HitObject
+	setStartNote(std::static_pointer_cast<HitObject>(ln.getStartNote()->Clone()));
+	setEndNote(std::static_pointer_cast<HitObject>(ln.getEndNote()->Clone()));
 
 	return *this;
 }
