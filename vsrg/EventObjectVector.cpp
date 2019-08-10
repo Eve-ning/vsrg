@@ -2,10 +2,8 @@
 #include "EventObjectVector.h"
 
 
-EventObjectVector::EventObjectVector()
-{
-}
 
+EventObjectVector::EventObjectVector() : TimedObjectVector() {}
 
 EventObjectVector::~EventObjectVector()
 {

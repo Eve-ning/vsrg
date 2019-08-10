@@ -4,7 +4,7 @@
 class EventObjectVector : public TimedObjectVector
 {
 public:
-	EventObjectVector() : eo_v_({}) {}
+	EventObjectVector();
 
 	~EventObjectVector();
 
