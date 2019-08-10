@@ -1,8 +1,14 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
+
 #include <LongNote.h>
 #include <NormalNote.h>
 #include <HitObjectVector.h>
+
+#include <ScrollPoint.h>
+#include <TimingPoint.h>
+#include <EventObjectVector.h>
+
 #include <iostream>
 #include <vector>
 
@@ -21,6 +27,14 @@ namespace WrapperObjct_
 		LongNote ln_2 = LongNote(std::make_shared<NormalNote>(NormalNote(200.0, 6)),
 								 std::make_shared<NormalNote>(NormalNote(400.0, 7)));
 		HitObjectVector ho_v_1 = HitObjectVector();
+
+		ScrollPoint sp_1 = ScrollPoint(100.0, 1.0);
+		ScrollPoint sp_2 = ScrollPoint(200.0, 2.0);
+
+		TimingPoint tp_1 = TimingPoint(100.0, 120.0, 4.0, 4.0);
+		TimingPoint tp_2 = TimingPoint(200.0, 250.0, 6.5, 4.0);
+		EventObjectVector eo_v_1 = EventObjectVector();
+		
 		TEST_METHOD(HitObjectVector_vec_ops)
 		{
 			ho_v_1.push_back(std::make_shared<NormalNote>(nn_1));
@@ -43,7 +57,27 @@ namespace WrapperObjct_
 
 			Assert::AreEqual(size_t(0), ho_v_1.size());
 		}
+		TEST_METHOD(EventObjectVector_vec_ops)
+		{
+			eo_v_1.push_back(std::make_shared<ScrollPoint>(sp_1));
+			eo_v_1.push_back(std::make_shared<ScrollPoint>(sp_2));
 
+			Assert::AreEqual(size_t(2), eo_v_1.size());
+
+			eo_v_1.pop_back();
+
+			Assert::AreEqual(size_t(1), eo_v_1.size());
+
+			eo_v_1.push_back(std::make_shared<TimingPoint>(tp_1));
+
+			// Check for polymorphism
+			Assert::AreEqual(size_t(2), eo_v_1.size());
+
+			eo_v_1.clear();
+
+			Assert::AreEqual(size_t(0), eo_v_1.size());
+		}
+		
 	};
 
 }
