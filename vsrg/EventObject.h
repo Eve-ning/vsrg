@@ -14,3 +14,4 @@ public:
 	virtual std::shared_ptr<TimedObject> Clone() const override = 0;
 };
 
+typedef std::shared_ptr<EventObject> SPtrEventObject;
