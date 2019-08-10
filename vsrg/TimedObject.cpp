@@ -62,3 +62,28 @@ bool TimedObject::operator==(const TimedObject & obj) const
 {
 	return getOffsetMSec() == obj.getOffsetMSec();
 }
+
+SPtrTimedObject TimedObject::operator*(double by_ms) const {
+	SPtrTimedObject to = Clone(); to->setOffsetMSec(to->getOffsetMSec() * by_ms); return to;
+}
+SPtrTimedObject TimedObject::operator/(double by_ms) const {
+	SPtrTimedObject to = Clone(); to->setOffsetMSec(to->getOffsetMSec() / by_ms); return to;
+}
+SPtrTimedObject TimedObject::operator+(double by_ms) const {
+	SPtrTimedObject to = Clone(); to->setOffsetMSec(to->getOffsetMSec() + by_ms); return to;
+}
+SPtrTimedObject TimedObject::operator-(double by_ms) const {
+	SPtrTimedObject to = Clone(); to->setOffsetMSec(to->getOffsetMSec() - by_ms); return to;
+}
+void TimedObject::operator*=(double by_ms) {
+	setOffsetMSec(getOffsetMSec() * by_ms);
+}
+void TimedObject::operator/=(double by_ms) {
+	setOffsetMSec(getOffsetMSec() / by_ms);
+}
+void TimedObject::operator+=(double by_ms) {
+	setOffsetMSec(getOffsetMSec() + by_ms);
+}
+void TimedObject::operator-=(double by_ms) {
+	setOffsetMSec(getOffsetMSec() - by_ms);
+}
