@@ -29,10 +29,13 @@
     <ClCompile Include="HitObjectTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TimedObjectTest.cpp">
+    <ClCompile Include="WrapperObjectTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WrapperObjectTest.cpp">
+    <ClCompile Include="EventObjectTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TimedObjectTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
