@@ -56,19 +56,23 @@ void TimedObjectVector::setTimedObjectVector(const std::vector<SPtrTimedObject>&
 }
 
 void TimedObjectVector::multiplyOffsetMSec(double offset_m_sec) {
-	std::transform(begin(), end(), begin(), [offset_m_sec](SPtrTimedObject & to) { to->operator*=(offset_m_sec); });
+	std::transform(begin(), end(), begin(),
+		[offset_m_sec](SPtrTimedObject & to) -> SPtrTimedObject { to->operator*=(offset_m_sec); return to; });
 }
 
 void TimedObjectVector::divideOffsetMSec(double offset_m_sec) {
-	std::transform(begin(), end(), begin(), [offset_m_sec](SPtrTimedObject & to) { to->operator/=(offset_m_sec); });
+	std::transform(begin(), end(), begin(),
+		[offset_m_sec](SPtrTimedObject & to) -> SPtrTimedObject { to->operator/=(offset_m_sec); return to; });
 }
 
 void TimedObjectVector::addOffsetMSec(double offset_m_sec) {
-	std::transform(begin(), end(), begin(), [offset_m_sec](SPtrTimedObject & to) { to->operator+=(offset_m_sec); });
+	std::transform(begin(), end(), begin(),
+		[offset_m_sec](SPtrTimedObject & to) -> SPtrTimedObject { to->operator+=(offset_m_sec); return to; });
 }
 
 void TimedObjectVector::subtractOffsetMSec(double offset_m_sec) {
-	std::transform(begin(), end(), begin(), [offset_m_sec](SPtrTimedObject & to) { to->operator-=(offset_m_sec); });
+	std::transform(begin(), end(), begin(),
+		[offset_m_sec](SPtrTimedObject & to) -> SPtrTimedObject { to->operator-=(offset_m_sec); return to; });
 }
 
 void TimedObjectVector::operator*=(double offset_m_sec) { multiplyOffsetMSec(offset_m_sec); }
