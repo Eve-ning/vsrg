@@ -18,5 +18,8 @@ public:
 	NormalNote(const double & offset_m_sec, const int & column, const int & starts_from = 0);
 	~NormalNote();
 	std::shared_ptr<TimedObject> Clone() const override;
+	
+	bool operator==(const NormalNote & nn) const;
+	bool isOverlapping(const NormalNote & nn) const;
 };
 

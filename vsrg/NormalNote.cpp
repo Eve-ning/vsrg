@@ -17,3 +17,13 @@ NormalNote::~NormalNote()
 std::shared_ptr<TimedObject> NormalNote::Clone() const {
 	return std::make_shared<NormalNote>(*this);
 }
+
+bool NormalNote::operator==(const NormalNote & nn) const
+{
+	return (getOffsetMSec() == nn.getOffsetMSec()) &&
+		(getColumn() == nn.getColumn());
+}
+
+bool NormalNote::isOverlapping(const NormalNote & nn) const {
+	return operator==(nn);
+}
