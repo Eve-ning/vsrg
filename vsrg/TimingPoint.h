@@ -23,18 +23,12 @@ public:
 	TimingPoint(double offset_m_sec, double bpm, double time_sig_numerator, double time_sig_denominator);
 	~TimingPoint();
 
-	/// Gets BPM
 	double getBpm() const;
-	/// Gets Time Signature Numerator
 	double getTimeSigNumerator() const;
-	/// Gets Time Signature Denominator
 	double getTimeSigDenominator() const;
 
-	/// Sets BPM
 	void setBpm(double bpm);
-	/// Sets Time Signature Numerator
 	void setTimeSigNumerator(double time_sig_numerator);
-	/// Sets Time Signature Denominator
 	void setTimeSigDenominator(double time_sig_denominator);
 
 	/**
@@ -50,14 +44,18 @@ public:
 	/**
 	 * @brief Get the Measure Duration in Milliseconds
 	 *
-	 *  Use getBeatDurationMSec for measures
+	 * Use getBeatDurationMSec for measures
 	 *
 	 * @param scale Defines the multiplier on the return value.
 	 * @return double Returns the measure duration with respect to the scale
 	 */
 	double getMeasureDurationMSec(double scale = 1.0);
 
-	/// Checks if Time Signature is valid.
+	/** 
+	 * @brief Checks if Time Signature is valid.
+	 * 
+	 * Checks if its a valid fraction or if it equates to 0
+	 */
 	virtual bool isTimeSigValid() const;
 
 	/// Validates the object being realistic
