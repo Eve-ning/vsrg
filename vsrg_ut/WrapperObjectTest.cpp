@@ -23,8 +23,8 @@ namespace WrapperObjct_
 		HitObjectVector ho_v_1 = HitObjectVector();
 		TEST_METHOD(HitObjectVector_vec_ops)
 		{
-			ho_v_1.push_back(std::make_shared<HitObject>(nn_1));
-			ho_v_1.push_back(std::make_shared<HitObject>(nn_2));
+			ho_v_1.push_back(std::make_shared<NormalNote>(nn_1));
+			ho_v_1.push_back(std::make_shared<NormalNote>(nn_2));
 
 			Assert::AreEqual(size_t(2), ho_v_1.size());
 
