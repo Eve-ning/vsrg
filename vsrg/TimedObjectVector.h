@@ -2,7 +2,6 @@
 #include <vector>
 #include <algorithm>
 #include "TimedObject.h"
-#include "ScrollPoint.h" // TEMP CODE FOR INTELLISENSE
 
 /**
  * @brief A class that wraps multiple TimedObjects for unique operations
