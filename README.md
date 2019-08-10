@@ -1,25 +1,11 @@
-# A static vsrg library
-I'm hoping this could be a universal vsrg library that other engines could extend from
+# Vertical Scrolling Rhythm Game Library
+I'm hoping this could be a universal vsrg library that other engines could extend from.
 
 ## Goal
-Extensibility on a rich library
+Extensibility on a rich library that covers new and old formats
 
-## Main Features expected
+### Extensibility
+You can view how you can extend from this repository by looking at my [Examples](examples.md)
 
-**conversion from all games**
-- [ ] osu!mania
-- [ ] bms
-- [ ] sm
-- [ ] o2jam
- 
-**data mangling**
-- [ ] TimingPoint functions
-- [ ] HitObject functions
-- [ ] OtherNoteTypes (extends HitObject) function
-
-**fully documented with doxygen**
-- [ ] Ported to github wiki
-
-### Expected to be easily extendable
-All class are made such that it's easy to inherit from with the necessary virtual functions in place.
-
+## Main Features
+Everything is documented in [Road Map](roadmap.md). I will list everything that will be implemented and possibly more over time.
