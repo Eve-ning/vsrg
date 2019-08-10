@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TimedObject.h"
 
-const double TimedObject::hour_to_m_sec = 360000.0;
+const double TimedObject::hour_to_m_sec = 3600000.0;
 const double TimedObject::min_to_m_sec = 60000.0;
 const double TimedObject::sec_to_m_sec = 1000.0;
 
