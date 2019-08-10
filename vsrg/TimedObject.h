@@ -5,7 +5,6 @@
 // Note that it stores the offset in ms, so any function that requires it in another format will call an additional function
 class TimedObject
 {
-	
 public:
 	/**
 	 * @brief Construct a new Timed Object
@@ -15,7 +14,7 @@ public:
 	TimedObject(double offset_m_sec);
 	virtual ~TimedObject() = 0;
 
-	virtual SPtrTimedObject Clone() const = 0;
+	virtual std::shared_ptr<TimedObject> Clone() const = 0;
 
 	/// Gets Offset in milliseconds
 	double getOffsetMSec() const; 
@@ -44,10 +43,10 @@ public:
 	virtual operator std::string() const final; // Calls getInfo
 
 	virtual bool operator==(const TimedObject & obj) const;
-	virtual SPtrTimedObject operator*(double by_ms) const;
-	virtual SPtrTimedObject operator/(double by_ms) const;
-	virtual SPtrTimedObject operator+(double by_ms) const;
-	virtual SPtrTimedObject operator-(double by_ms) const;
+	std::shared_ptr<TimedObject> operator*(double by_ms) const;
+	std::shared_ptr<TimedObject> operator/(double by_ms) const;
+	std::shared_ptr<TimedObject> operator+(double by_ms) const;
+	std::shared_ptr<TimedObject> operator-(double by_ms) const;
 	virtual void operator*=(double by_ms);
 	virtual void operator/=(double by_ms);
 	virtual void operator+=(double by_ms);
@@ -61,7 +60,6 @@ public:
 	static const double sec_to_m_sec;
 
 private:
-	typedef std::shared_ptr<TimedObject> SPtrTimedObject;
 	/// Stored value in milliseconds
 	double offset_m_sec_;
 };
