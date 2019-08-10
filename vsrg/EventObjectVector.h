@@ -5,11 +5,7 @@ class EventObjectVector : public TimedObjectVector
 {
 public:
 	EventObjectVector();
-
 	~EventObjectVector();
 
-	std::vector<SPtrEventObject> getEventObjectVector() const;
-	void setEventObjectVector(std::vector<SPtrEventObject> eo_v);
-private:
-	std::vector<SPtrEventObject> eo_v_;
+	
 };
