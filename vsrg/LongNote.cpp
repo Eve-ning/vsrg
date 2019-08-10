@@ -76,8 +76,8 @@ LongNote::operator std::string() const
 bool LongNote::operator==(const LongNote & ln) const
 {
 	// Equivalent of comparing the HitObjects of the lns
-	return (getStartNote() == ln.getStartNote()) &&
-		   (getEndNote() == ln.getEndNote());
+	return (getStartNote()->isOverlapping(ln.getStartNote())) &&
+		   (getEndNote()->isOverlapping(ln.getEndNote()));
 }
 
 LongNote & LongNote::operator=(const LongNote & ln)
