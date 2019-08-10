@@ -17,27 +17,13 @@ public:
 	ScrollPoint(double offset_m_sec, double scroll_speed_mult = 1.0);
 	~ScrollPoint();
 
-	/// Gets the Scroll Speed Multiplier
 	double getScrollSpeedMult() const;
-	/// Sets the Scroll Speed Multiplier
 	void setScrollSpeedMult(double scroll_speed_mult);
 		
-	/**
-	 * @brief Checks if the scroll speed is negative
-	 * 
-	 * @param include0 To include 0 or not
-	 * @return true Value is negative. May also be 0 if include0 == true
-	 * @return false Value is positive. Not 0 if include0 == true
-	 */
+	/// Checks if multiplier is negative, include0 determines if 0 is included
 	bool isNegative(bool include0 = false) const;
 
-	/**
-	 * @brief Checks if the scroll speed is positive
-	 * 
-	 * @param include0 To include 0 or not
-	 * @return true Value is positive. May also be 0 if include0 == true
-	 * @return false Value is negative. Not 0 if include0 == true
-	 */
+	/// Checks if multiplier is positive, include0 determines if 0 is included
 	bool isPositive(bool include0 = false) const;
 	
 	/**
