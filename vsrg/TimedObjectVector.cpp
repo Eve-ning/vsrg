@@ -5,6 +5,8 @@ TimedObjectVector::~TimedObjectVector() {}
 
 std::vector<SPtrTimedObject>::iterator TimedObjectVector::begin() { return to_v_.begin(); }
 std::vector<SPtrTimedObject>::iterator TimedObjectVector::end()   { return to_v_.end();   }
+std::vector<SPtrTimedObject>::const_iterator TimedObjectVector::cbegin() { return to_v_.cbegin(); }
+std::vector<SPtrTimedObject>::const_iterator TimedObjectVector::cend() { return to_v_.cend(); }
 
 SPtrTimedObject TimedObjectVector::getTimedObject(unsigned int index) const {
 	return to_v_.at(index);

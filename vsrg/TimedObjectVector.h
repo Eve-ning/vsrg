@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "TimedObject.h"
+#include "ScrollPoint.h" // TEMP CODE FOR INTELLISENSE
 
 /**
  * @brief A class that wraps multiple TimedObjects for unique operations
@@ -15,6 +16,8 @@ public:
 
 	std::vector<SPtrTimedObject>::iterator begin();
 	std::vector<SPtrTimedObject>::iterator end();
+	std::vector<SPtrTimedObject>::const_iterator cbegin() { return to_v_.cbegin(); }
+	std::vector<SPtrTimedObject>::const_iterator cend() { return to_v_.cend(); }
 
 	// Vector ops
 	/// Alias to operator[]
@@ -31,6 +34,14 @@ public:
 	std::vector<double> getOffsetSecVector(bool sort = false) const;
 	std::vector<double> getOffsetMSecVector(bool sort = false) const;
 	
+	template<class T>
+	T getClassOnly() const {
+		std::vector<T> filtered = {};
+		std::transform(begin(), end(), filtered.begin(),
+			[](const SPtrTimedObject) -> T {
+
+		})
+	}
 	std::vector<SPtrTimedObject> getTimedObjectVector() const;	
 	void setTimedObjectVector(const std::vector<SPtrTimedObject> & to_v);
 
