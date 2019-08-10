@@ -3,9 +3,9 @@
 
 
 NormalNote::NormalNote(const double & offset_m_sec,
-					   const int & column,
+					   const int & index,
 					   const int & starts_from) :
-	HitObject(offset_m_sec, column, starts_from)
+	HitObject(offset_m_sec, index, starts_from)
 {
 }
 
@@ -21,7 +21,7 @@ std::shared_ptr<TimedObject> NormalNote::Clone() const {
 bool NormalNote::operator==(const NormalNote & nn) const
 {
 	return (getOffsetMSec() == nn.getOffsetMSec()) &&
-		(getColumn() == nn.getColumn());
+		(getIndex() == nn.getIndex());
 }
 
 bool NormalNote::isOverlapping(const NormalNote & nn) const {

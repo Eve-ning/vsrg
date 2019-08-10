@@ -49,9 +49,9 @@ bool LongNote::isValid() const {
 	if (bool(start_ho_) && bool(end_ho_)) { // Both must be valid separately
 		// Start must be earlier than End
 		bool valid_offset = start_ho_->getOffsetMSec() < end_ho_->getOffsetMSec();
-		// Both must be on the same column
-		bool valid_column = start_ho_->getColumn() == end_ho_->getColumn();
-		return (valid_offset && valid_column);
+		// Both must be on the same index
+		bool valid_index = start_ho_->getIndex() == end_ho_->getIndex();
+		return (valid_offset && valid_index);
 	}
 	else {
 		return false;
