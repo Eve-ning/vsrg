@@ -57,7 +57,7 @@
     <ClInclude Include="VsrgMap.h">
       <Filter>Wrapper Objects</Filter>
     </ClInclude>
-    <ClInclude Include="HitObjectVector.h">
+    <ClInclude Include="TimedObjectVector.h">
       <Filter>Wrapper Objects</Filter>
     </ClInclude>
   </ItemGroup>
@@ -95,7 +95,7 @@
     <ClCompile Include="VsrgMap.cpp">
       <Filter>Wrapper Objects</Filter>
     </ClCompile>
-    <ClCompile Include="HitObjectVector.cpp">
+    <ClCompile Include="TimedObjectVector.cpp">
       <Filter>Wrapper Objects</Filter>
     </ClCompile>
   </ItemGroup>
