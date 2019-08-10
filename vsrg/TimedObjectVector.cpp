@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "TimedObjectVector.h"
 
-
 TimedObjectVector::~TimedObjectVector() {}
 
 std::vector<SPtrTimedObject>::iterator TimedObjectVector::begin() { return to_v_.begin(); }

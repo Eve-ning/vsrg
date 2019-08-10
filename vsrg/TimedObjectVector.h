@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include "TimedObject.h"
-#include <algorithm> /// MOVE TO CPP
 
 /**
  * @brief A class that wraps multiple TimedObjects for unique operations
