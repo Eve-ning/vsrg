@@ -15,12 +15,6 @@ std::string HitObject::getInfo() const {
 		"Column " + std::to_string(column_) + '\n';
 }
 
-bool HitObject::operator==(const std::shared_ptr<HitObject>& ho) const
-{
-	return (getOffsetMSec() == ho->getOffsetMSec()) &&
-		(getColumn() == ho->getColumn());
-}
-
 bool HitObject::isValid() const {
 	// Put in column validation if required.
 	return TimedObject::isValid() && column_ > 0;
@@ -36,5 +30,6 @@ void HitObject::setColumn(const int & column, const int & starts_from) {
 
 bool HitObject::isOverlapping(const std::shared_ptr<HitObject>& ho) const
 {
-	return operator==(ho);
+	return (getOffsetMSec() == ho->getOffsetMSec()) &&
+		(getColumn() == ho->getColumn());
 }

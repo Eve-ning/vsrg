@@ -24,7 +24,6 @@ public:
 	void setColumn(const int & column, const int & starts_from = 0);
 
 	/// Checks if 2 objects are overlapping. An alias to operator==
-	//virtual bool isOverlapping(const HitObject & ho) const;
 	virtual bool isOverlapping(const std::shared_ptr<HitObject> & ho) const;
 
 	/// Validates the object being realistic
@@ -32,8 +31,6 @@ public:
 
 	/// Gets info of the important object members
 	virtual std::string getInfo() const override;
-
-	virtual bool operator==(const std::shared_ptr<HitObject> & ho) const;
 
 private:
 	int column_;
