@@ -8,6 +8,10 @@ ScrollPoint::~ScrollPoint()
 {
 }
 
+std::shared_ptr<TimedObject> ScrollPoint::Clone() const {
+	return std::make_shared<ScrollPoint>(*this);
+}
+
 double ScrollPoint::getScrollSpeedMult() const {
 	return scroll_speed_mult_;
 }

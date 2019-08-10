@@ -14,7 +14,7 @@ public:
 	TimedObject(double offset_m_sec);
 	virtual ~TimedObject() = 0;
 
-	virtual std::shared_ptr<TimedObject> clone() const = 0;
+	virtual std::shared_ptr<TimedObject> Clone() const = 0;
 
 	/// Gets Offset in milliseconds
 	double getOffsetMSec() const; 

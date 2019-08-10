@@ -12,13 +12,6 @@ public:
 	 * @param end_ho The end Hit Object as a shared pointer
 	 */
 	LongNote(SPtrHitObject start_ho, SPtrHitObject end_ho);
-	/**
-	 * @brief Construct a new Long Note object
-	 *
-	 * @param start_ho The start Hit Object as a copy
-	 * @param end_ho The end Hit Object as a copy
-	 */
-	LongNote(HitObject start_ho, HitObject end_ho);
 	LongNote(const LongNote & ln);
 	~LongNote();
 

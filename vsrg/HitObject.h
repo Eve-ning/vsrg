@@ -15,8 +15,8 @@ public:
 	 * @param starts_from Specify from what index the column starts from
 	 */
 	HitObject(const double & offset_m_sec, const int & column, const int & starts_from = 0);
-	~HitObject(); // TODO: Make this virtual and move tests to separate categories
-
+	~HitObject() = 0;
+	virtual std::shared_ptr<TimedObject> Clone() const override = 0;
 	/// Gets the column, specify starts_from to offset it to the correct index
 	int getColumn(const int & starts_from = 0) const;
 
@@ -24,7 +24,8 @@ public:
 	void setColumn(const int & column, const int & starts_from = 0);
 
 	/// Checks if 2 objects are overlapping. An alias to operator==
-	virtual bool isOverlapping(const HitObject & ho) const;
+	//virtual bool isOverlapping(const HitObject & ho) const;
+	virtual bool isOverlapping(const std::shared_ptr<HitObject> & ho) const;
 
 	/// Validates the object being realistic
 	virtual bool isValid() const override;
@@ -32,7 +33,7 @@ public:
 	/// Gets info of the important object members
 	virtual std::string getInfo() const override;
 
-	virtual bool operator==(const HitObject & ho) const;
+	virtual bool operator==(const std::shared_ptr<HitObject> & ho) const;
 
 private:
 	int column_;
