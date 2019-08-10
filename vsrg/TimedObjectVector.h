@@ -11,16 +11,10 @@
 class TimedObjectVector
 {
 public:
-	/// Initializes a blank TOV
-	TimedObjectVector();
-	~TimedObjectVector();
-	/// Objects must be coerced to std::shared_ptr of TimedObject.
-	TimedObjectVector(TimedObjectVector & to_v);
+	virtual ~TimedObjectVector() = 0;
 
 	std::vector<SPtrTimedObject>::iterator begin();
 	std::vector<SPtrTimedObject>::iterator end();
-	
-	TimedObjectVector operator=(TimedObjectVector to_v);
 
 	// Vector ops
 	/// Alias to operator[]
