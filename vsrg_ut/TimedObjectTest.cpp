@@ -8,8 +8,8 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace HitObject_
 {		
 	// Initialize objects here
-	NormalNote nn_1 = NormalNote(100.0, 3);
-	NormalNote nn_2 = NormalNote(200.0, 4);
+	NormalNote ho_nn_1 = NormalNote(100.0, 3);
+	NormalNote ho_nn_2 = NormalNote(200.0, 4);
 
 
 	TEST_CLASS(TimedObject_)
@@ -18,19 +18,19 @@ namespace HitObject_
 		TEST_METHOD(TimedObject_arithmetic)
 		{
 			// The non-assignment operation needs a sptr
-			auto nn_a = std::make_shared<TimedObject>(nn_1);
+			auto nn_a = ho_nn_1.Clone();
 			Assert::AreEqual(100.0, nn_a->getOffsetMSec());
 			auto nn_b = nn_a->operator+(10.0);
 			Assert::AreEqual(110.0, nn_b->getOffsetMSec());
 
 			// The assignment operation doesn't need conversion
-			nn_1 += 20.0;
-			Assert::AreEqual(120.0, nn_1.getOffsetMSec());
+			ho_nn_1 += 20.0;
+			Assert::AreEqual(120.0, ho_nn_1.getOffsetMSec());
 		}
 
 		TEST_METHOD(TimedObject_setGet)
 		{
-			auto nn_0 = nn_1;
+			auto nn_0 = ho_nn_1;
 			
 			// Check setters
 			nn_0.setOffsetHour(1.0);
