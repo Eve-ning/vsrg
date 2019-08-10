@@ -16,7 +16,7 @@ public:
 	 */
 	HitObject(const double & offset_m_sec, const int & column, const int & starts_from = 0);
 	~HitObject() = 0;
-	virtual std::shared_ptr<TimedObject> Clone() const override = 0;
+	virtual SPtrTimedObject Clone() const override = 0;
 	/// Gets the column, specify starts_from to offset it to the correct index
 	int getColumn(const int & starts_from = 0) const;
 
