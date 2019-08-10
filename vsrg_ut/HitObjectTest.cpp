@@ -7,18 +7,13 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace HitObject_
 {		
-	// Initialize objects here
-	NormalNote nn_1 = NormalNote(100.0, 3);
-	NormalNote nn_2 = NormalNote(200.0, 4);
-
-	LongNote ln_1 = LongNote(std::make_shared<NormalNote>(NormalNote(100.0, 5)),
-							 std::make_shared<NormalNote>(NormalNote(300.0, 5)));
-	LongNote ln_2 = LongNote(std::make_shared<NormalNote>(NormalNote(200.0, 6)),
-							 std::make_shared<NormalNote>(NormalNote(400.0, 7)));
-
 	TEST_CLASS(NormalNote_)
 	{
 	public:
+		// Initialize objects here
+		NormalNote nn_1 = NormalNote(100.0, 3);
+		NormalNote nn_2 = NormalNote(200.0, 4);
+
 		TEST_METHOD(NormalNote_validation)
 		{
 			Assert::IsFalse(bool(NormalNote(100.0, -10)));
@@ -37,6 +32,10 @@ namespace HitObject_
 	TEST_CLASS(LongNote_)
 	{
 	public:
+		LongNote ln_1 = LongNote(std::make_shared<NormalNote>(NormalNote(100.0, 5)),
+			std::make_shared<NormalNote>(NormalNote(300.0, 5)));
+		LongNote ln_2 = LongNote(std::make_shared<NormalNote>(NormalNote(200.0, 6)),
+			std::make_shared<NormalNote>(NormalNote(400.0, 7)));
 		TEST_METHOD(LongNote_equals)
 		{
 			Assert::IsTrue(ln_1 == ln_1);

@@ -7,14 +7,12 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace HitObject_
 {		
-	// Initialize objects here
-	NormalNote ho_nn_1 = NormalNote(100.0, 3);
-	NormalNote ho_nn_2 = NormalNote(200.0, 4);
-
-
 	TEST_CLASS(TimedObject_)
 	{
 	public:
+		// Initialize objects here
+		NormalNote ho_nn_1 = NormalNote(100.0, 3);
+		NormalNote ho_nn_2 = NormalNote(200.0, 4);
 		TEST_METHOD(TimedObject_arithmetic)
 		{
 			// The non-assignment operation needs a sptr
