@@ -1,40 +1,40 @@
 #pragma once
 #include <vector>
-#include "HitObject.h"
+#include "TimedObject.h"
 
 /**
- * @brief A class that wraps multiple HitObjects for unique operations
+ * @brief A class that wraps multiple TimedObjects for unique operations
  * 
  * Note that this can be treated largely as a std::vector, with similar functions
  * Iterators included
  */
-class HitObjectVector
+class TimedObjectVector
 {
 public:
-	/// Initializes a blank HOV
-	HitObjectVector();
-	~HitObjectVector();
-	/// Objects must be coerced to std::shared_ptr of HitObject.
-	HitObjectVector(HitObjectVector & ho_v);
+	/// Initializes a blank TOV
+	TimedObjectVector();
+	~TimedObjectVector();
+	/// Objects must be coerced to std::shared_ptr of TimedObject.
+	TimedObjectVector(TimedObjectVector & to_v);
 
-	std::vector<SPtrHitObject>::iterator begin();
-	std::vector<SPtrHitObject>::iterator end();
+	std::vector<SPtrTimedObject>::iterator begin();
+	std::vector<SPtrTimedObject>::iterator end();
 	
-	HitObjectVector operator=(HitObjectVector ho_v);
+	TimedObjectVector operator=(TimedObjectVector to_v);
 
 	// Vector ops
 	/// Alias to operator[]
-	SPtrHitObject getHitObject(unsigned int index) const;
-	SPtrHitObject operator[](unsigned int index) const;
-	void push_back(SPtrHitObject ho);
+	SPtrTimedObject getTimedObject(unsigned int index) const;
+	SPtrTimedObject operator[](unsigned int index) const;
+	void push_back(SPtrTimedObject to);
 	void pop_back();
 	void clear();
 	size_t size() const;
 	
-	std::vector<SPtrHitObject> getHitObjectVector() const;	
-	void setHitObjectVector(const std::vector<SPtrHitObject> & ho_v);
+	std::vector<SPtrTimedObject> getTimedObjectVector() const;	
+	void setTimedObjectVector(const std::vector<SPtrTimedObject> & to_v);
 	
 private:
-	std::vector<SPtrHitObject> ho_v_;
+	std::vector<SPtrTimedObject> to_v_;
 };
 
