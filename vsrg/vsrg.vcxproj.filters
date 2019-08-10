@@ -28,14 +28,11 @@
     <Filter Include="Wrapper Objects\Timed Objects">
       <UniqueIdentifier>{5b03d687-e92f-495c-96bb-3a045a7dbc9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Exporting Helpers">
+      <UniqueIdentifier>{5e7f1667-7146-4fcc-b567-ce4bfb65b40e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="HitObject.h">
       <Filter>Timed Objects\Hit Objects</Filter>
     </ClInclude>
@@ -66,17 +63,17 @@
     <ClInclude Include="ScrollPoint.h">
       <Filter>Timed Objects\Event Objects</Filter>
     </ClInclude>
+    <ClInclude Include="EventObjectVector.h">
+      <Filter>Wrapper Objects\Timed Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Exporting Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Exporting Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vsrg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="HitObject.cpp">
       <Filter>Timed Objects\Hit Objects</Filter>
     </ClCompile>
@@ -106,6 +103,18 @@
     </ClCompile>
     <ClCompile Include="ScrollPoint.cpp">
       <Filter>Timed Objects\Event Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="EventObjectVector.cpp">
+      <Filter>Wrapper Objects\Timed Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Exporting Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Exporting Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="vsrg.cpp">
+      <Filter>Exporting Helpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
