@@ -61,9 +61,12 @@ std::vector<double> TimedObjectVector::getOffsetXVector(bool sort, double scale)
 	// We use a high level comparison check to avoid checking every loop if scale == 1.0
 	if (scale == 1.0) {
 		for (const SPtrTimedObject & to : to_v_) { offset_v.push_back(to->getOffsetMSec()); }
-	} else {
+	}
+	else {
 		for (const SPtrTimedObject & to : to_v_) { offset_v.push_back(to->getOffsetMSec() / scale); }
 	}
+	
+	if (sort) { std::sort(offset_v.begin(), offset_v.end()); } 
 
 	return offset_v;
 }
