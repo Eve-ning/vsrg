@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <algorithm>
 #include "TimedObject.h"
 #include "ScrollPoint.h" // TEMP CODE FOR INTELLISENSE
 
@@ -16,8 +17,8 @@ public:
 
 	std::vector<SPtrTimedObject>::iterator begin();
 	std::vector<SPtrTimedObject>::iterator end();
-	std::vector<SPtrTimedObject>::const_iterator cbegin() { return to_v_.cbegin(); }
-	std::vector<SPtrTimedObject>::const_iterator cend() { return to_v_.cend(); }
+	std::vector<SPtrTimedObject>::const_iterator cbegin() const;
+	std::vector<SPtrTimedObject>::const_iterator cend() const;
 
 	// Vector ops
 	/// Alias to operator[]
@@ -34,14 +35,18 @@ public:
 	std::vector<double> getOffsetSecVector(bool sort = false) const;
 	std::vector<double> getOffsetMSecVector(bool sort = false) const;
 	
+	/// Runs a cast check on the vector and returns a vector of matches of class specified
 	template<class T>
-	T getClassOnly() const {
+	std::shared_ptr<std::vector<T>> getClassOnly() const {
 		std::vector<T> filtered = {};
-		std::transform(begin(), end(), filtered.begin(),
-			[](const SPtrTimedObject) -> T {
+		std::for_each(cbegin(), cend(), [&filtered](const SPtrTimedObject & to) -> void {
+			std::shared_ptr<T> casted = std::dynamic_pointer_cast<T>(to->Clone());
+			if (casted) { filtered.push_back(*casted); }
+		});
 
-		})
+		return std::make_shared<std::vector<T>>(filtered);;
 	}
+	
 	std::vector<SPtrTimedObject> getTimedObjectVector() const;	
 	void setTimedObjectVector(const std::vector<SPtrTimedObject> & to_v);
 
@@ -61,4 +66,3 @@ private:
 	std::vector<double> getOffsetXVector(bool sort = false, double scale = 1.0) const;
 	std::vector<SPtrTimedObject> to_v_;
 };
-
