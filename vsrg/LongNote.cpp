@@ -34,14 +34,14 @@ double LongNote::getLength() {
 	return end_ho_->getOffsetMSec() - start_ho_->getOffsetMSec();
 }
 
-bool LongNote::isBetween(double offset_ms, bool include_ends) const {
+bool LongNote::isBetween(double offset_m_sec, bool include_ends) const {
 	if (include_ends) {
-		return (offset_ms >= start_ho_->getOffsetMSec()) &&
-			(offset_ms <= end_ho_->getOffsetMSec());
+		return (offset_m_sec >= start_ho_->getOffsetMSec()) &&
+			(offset_m_sec <= end_ho_->getOffsetMSec());
 	}
 	else {
-		return (offset_ms > start_ho_->getOffsetMSec()) &&
-			(offset_ms < end_ho_->getOffsetMSec());
+		return (offset_m_sec > start_ho_->getOffsetMSec()) &&
+			(offset_m_sec < end_ho_->getOffsetMSec());
 	}
 }
 

@@ -30,12 +30,12 @@ public:
 	/**
 	 * @brief Checks if the object is between the 2 Hit Objects
 	 * 
-	 * @param offset_ms The offset to check if it's in between
+	 * @param offset_m_sec The offset to check if it's in between
 	 * @param include_ends To include the end points in the range
 	 * @return true Offset is in between the Long Note ends
 	 * @return false Offset is not in between the Long Note ends
 	 */
-	virtual bool isBetween(double offset_ms, bool include_ends = false) const;
+	virtual bool isBetween(double offset_m_sec, bool include_ends = false) const;
 
 	/// Validates the object being realistic
 	virtual bool isValid() const;

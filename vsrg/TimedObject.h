@@ -43,14 +43,14 @@ public:
 	virtual operator std::string() const final; // Calls getInfo
 
 	virtual bool operator==(const TimedObject & obj) const;
-	std::shared_ptr<TimedObject> operator*(double by_ms) const;
-	std::shared_ptr<TimedObject> operator/(double by_ms) const;
-	std::shared_ptr<TimedObject> operator+(double by_ms) const;
-	std::shared_ptr<TimedObject> operator-(double by_ms) const;
-	virtual void operator*=(double by_ms);
-	virtual void operator/=(double by_ms);
-	virtual void operator+=(double by_ms);
-	virtual void operator-=(double by_ms);
+	std::shared_ptr<TimedObject> operator*(double by_m_sec) const;
+	std::shared_ptr<TimedObject> operator/(double by_m_sec) const;
+	std::shared_ptr<TimedObject> operator+(double by_m_sec) const;
+	std::shared_ptr<TimedObject> operator-(double by_m_sec) const;
+	virtual void operator*=(double by_m_sec);
+	virtual void operator/=(double by_m_sec);
+	virtual void operator+=(double by_m_sec);
+	virtual void operator-=(double by_m_sec);
 
 	/// Value of ratio of Hour:Millisecond
 	static const double hour_to_m_sec;
