@@ -55,6 +55,22 @@ void TimedObjectVector::setTimedObjectVector(const std::vector<SPtrTimedObject>&
 	to_v_ = to_v;
 }
 
+void TimedObjectVector::multiplyOffsetMSec(double offset_m_sec) {
+	std::transform(begin(), end(), begin(), [offset_m_sec](SPtrTimedObject & to) { to->operator*=(offset_m_sec); });
+}
+
+void TimedObjectVector::divideOffsetMSec(double offset_m_sec) {
+	std::transform(begin(), end(), begin(), [offset_m_sec](SPtrTimedObject & to) { to->operator/=(offset_m_sec); });
+}
+
+void TimedObjectVector::addOffsetMSec(double offset_m_sec) {
+	std::transform(begin(), end(), begin(), [offset_m_sec](SPtrTimedObject & to) { to->operator+=(offset_m_sec); });
+}
+
+void TimedObjectVector::subtractOffsetMSec(double offset_m_sec) {
+	std::transform(begin(), end(), begin(), [offset_m_sec](SPtrTimedObject & to) { to->operator-=(offset_m_sec); });
+}
+
 std::vector<double> TimedObjectVector::getOffsetXVector(bool sort, double scale) const {
 	std::vector<double> offset_v = {};
 

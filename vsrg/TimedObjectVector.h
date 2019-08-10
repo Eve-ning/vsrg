@@ -33,12 +33,21 @@ public:
 	
 	std::vector<SPtrTimedObject> getTimedObjectVector() const;	
 	void setTimedObjectVector(const std::vector<SPtrTimedObject> & to_v);
-	
+
+	void multiplyOffsetMSec(double offset_m_sec);
+	void divideOffsetMSec(double offset_m_sec);
+	void addOffsetMSec(double offset_m_sec);
+	void subtractOffsetMSec(double offset_m_sec);
+
+	void operator*=(double offset_m_sec);
+	void operator/=(double offset_m_sec);
+	void operator+=(double offset_m_sec);
+	void operator-=(double offset_m_sec);
+
 private:
 
 	/// Helper function for getOffset___Vector Variants. Scale scales the offset
 	std::vector<double> getOffsetXVector(bool sort = false, double scale = 1.0) const;
-
 	std::vector<SPtrTimedObject> to_v_;
 };
 
