@@ -86,6 +86,16 @@ namespace WrapperObjct_
 			expected = { 100.0, 100.0, 200.0 };
 			Assert::IsTrue(expected == eo_v_1.getOffsetMSecVector(true));
 		}
+		TEST_METHOD(TimedObjectVector_getClassOnly) {
+			eo_v_1.push_back(sp_1.Clone());
+			eo_v_1.push_back(sp_2.Clone());
+			eo_v_1.push_back(tp_1.Clone());
+			// Filters out all Scroll Points
+			std::vector<ScrollPoint> eo_v_2 = *eo_v_1.getClassOnly<ScrollPoint>();
+			std::vector<TimingPoint> eo_v_3 = *eo_v_1.getClassOnly<TimingPoint>();
+			Assert::AreEqual(size_t(2), eo_v_2.size());
+			Assert::AreEqual(size_t(1), eo_v_3.size());
+		}
 		
 	};
 
