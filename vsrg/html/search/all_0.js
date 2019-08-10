@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['dllmain',['DllMain',['../dllmain_8cpp.html#a26e64fb39b69bcd9d1274d279f1561b9',1,'dllmain.cpp']]],
-  ['dllmain_2ecpp',['dllmain.cpp',['../dllmain_8cpp.html',1,'']]]
+  ['addoffsetmsec',['addOffsetMSec',['../class_timed_object_vector.html#ae2576b105bc1d17a7defed99d99b21e1',1,'TimedObjectVector']]]
 ];

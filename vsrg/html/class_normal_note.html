@@ -69,7 +69,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="class_normal_note.html" title="NormalNote doesn&#39;t have any special implementation for now, it just extends from HitObject We won&#39;t u...">NormalNote</a> doesn't have any special implementation for now, it just extends from <a class="el" href="class_hit_object.html" title="A basic &quot;Hittable&quot; Object used for secondary classes.">HitObject</a> We won't use <a class="el" href="class_hit_object.html" title="A basic &quot;Hittable&quot; Object used for secondary classes.">HitObject</a> as an actual Normal Note so as to allow flexibility in the future.  
+<p><a class="el" href="class_normal_note.html" title="NormalNote doesn&#39;t have any special implementation for now, it just extends from HitObject We won&#39;t u...">NormalNote</a> doesn't have any special implementation for now, it just extends from <a class="el" href="class_hit_object.html" title="A basic &quot;Hittable&quot; Abtract class used for secondary classes.">HitObject</a> We won't use <a class="el" href="class_hit_object.html" title="A basic &quot;Hittable&quot; Abtract class used for secondary classes.">HitObject</a> as an actual Normal Note so as to allow flexibility in the future.  
  <a href="class_normal_note.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_normal_note_8h_source.html">NormalNote.h</a>&gt;</code></p>
@@ -79,7 +79,7 @@ Inheritance diagram for NormalNote:</div>
  <div class="center">
   <img src="class_normal_note.png" usemap="#NormalNote_map" alt=""/>
   <map id="NormalNote_map" name="NormalNote_map">
-<area href="class_hit_object.html" title="A basic &quot;Hittable&quot; Object used for secondary classes." alt="HitObject" shape="rect" coords="0,56,82,80"/>
+<area href="class_hit_object.html" title="A basic &quot;Hittable&quot; Abtract class used for secondary classes." alt="HitObject" shape="rect" coords="0,56,82,80"/>
 <area href="class_timed_object.html" alt="TimedObject" shape="rect" coords="0,0,82,24"/>
   </map>
 </div></div>
@@ -91,29 +91,33 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a797023c15e023d6b18bc1c1ff8e2ea01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a990d287af5f32b4fea8241ac1c690b24"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_normal_note.html#a990d287af5f32b4fea8241ac1c690b24">~NormalNote</a> ()</td></tr>
 <tr class="separator:a990d287af5f32b4fea8241ac1c690b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86553d48a1140878306b75559a172064"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_timed_object.html">TimedObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_normal_note.html#a86553d48a1140878306b75559a172064">Clone</a> () const override</td></tr>
+<tr class="separator:a86553d48a1140878306b75559a172064"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ff7b85235f9cc8c240818b26374e1f3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_normal_note.html#a3ff7b85235f9cc8c240818b26374e1f3">operator==</a> (const <a class="el" href="class_normal_note.html">NormalNote</a> &amp;nn) const</td></tr>
+<tr class="separator:a3ff7b85235f9cc8c240818b26374e1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f5e13b3a46954c3e28e89877409a61b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_normal_note.html#a0f5e13b3a46954c3e28e89877409a61b">isOverlapping</a> (const <a class="el" href="class_normal_note.html">NormalNote</a> &amp;nn) const</td></tr>
+<tr class="separator:a0f5e13b3a46954c3e28e89877409a61b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_hit_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_hit_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_hit_object.html">HitObject</a></td></tr>
 <tr class="memitem:a7b4c17a40356cc4b0743ecb36968e162 inherit pub_methods_class_hit_object"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hit_object.html#a7b4c17a40356cc4b0743ecb36968e162">HitObject</a> (const double &amp;offset_m_sec, const int &amp;column, const int &amp;starts_from=0)</td></tr>
 <tr class="memdesc:a7b4c17a40356cc4b0743ecb36968e162 inherit pub_methods_class_hit_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Hit Object.  <a href="class_hit_object.html#a7b4c17a40356cc4b0743ecb36968e162">More...</a><br /></td></tr>
 <tr class="separator:a7b4c17a40356cc4b0743ecb36968e162 inherit pub_methods_class_hit_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa65a6176d8d636d51c247c74e2d8f36 inherit pub_methods_class_hit_object"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hit_object.html#aaa65a6176d8d636d51c247c74e2d8f36">~HitObject</a> ()</td></tr>
-<tr class="separator:aaa65a6176d8d636d51c247c74e2d8f36 inherit pub_methods_class_hit_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ef5a594e8bb45a5b387cfec12080e22 inherit pub_methods_class_hit_object"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hit_object.html#a7ef5a594e8bb45a5b387cfec12080e22">~HitObject</a> ()=0</td></tr>
+<tr class="separator:a7ef5a594e8bb45a5b387cfec12080e22 inherit pub_methods_class_hit_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af307adfdc6e32707b02169c1dbf83dd3 inherit pub_methods_class_hit_object"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hit_object.html#af307adfdc6e32707b02169c1dbf83dd3">getColumn</a> (const int &amp;starts_from=0) const</td></tr>
 <tr class="memdesc:af307adfdc6e32707b02169c1dbf83dd3 inherit pub_methods_class_hit_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the column, specify starts_from to offset it to the correct index.  <a href="class_hit_object.html#af307adfdc6e32707b02169c1dbf83dd3">More...</a><br /></td></tr>
 <tr class="separator:af307adfdc6e32707b02169c1dbf83dd3 inherit pub_methods_class_hit_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c264675e679ab7e06965fdb7f090e8f inherit pub_methods_class_hit_object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hit_object.html#a9c264675e679ab7e06965fdb7f090e8f">setColumn</a> (const int &amp;column, const int &amp;starts_from=0)</td></tr>
 <tr class="memdesc:a9c264675e679ab7e06965fdb7f090e8f inherit pub_methods_class_hit_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the column, specify starts_from to offset it to the correct index.  <a href="class_hit_object.html#a9c264675e679ab7e06965fdb7f090e8f">More...</a><br /></td></tr>
 <tr class="separator:a9c264675e679ab7e06965fdb7f090e8f inherit pub_methods_class_hit_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f239a0554adbdd0bc7a6d2d9b190fb2 inherit pub_methods_class_hit_object"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hit_object.html#a8f239a0554adbdd0bc7a6d2d9b190fb2">isOverlapping</a> (const <a class="el" href="class_hit_object.html">HitObject</a> &amp;ho) const</td></tr>
-<tr class="memdesc:a8f239a0554adbdd0bc7a6d2d9b190fb2 inherit pub_methods_class_hit_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if 2 objects are overlapping. An alias to <a class="el" href="class_hit_object.html#a6b6bb9bd77a96762a0921494ab736553">operator==()</a>  <a href="class_hit_object.html#a8f239a0554adbdd0bc7a6d2d9b190fb2">More...</a><br /></td></tr>
-<tr class="separator:a8f239a0554adbdd0bc7a6d2d9b190fb2 inherit pub_methods_class_hit_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a800139d5ed1a4d0c2f1c984010aeb0e9 inherit pub_methods_class_hit_object"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hit_object.html#a800139d5ed1a4d0c2f1c984010aeb0e9">isOverlapping</a> (const std::shared_ptr&lt; <a class="el" href="class_hit_object.html">HitObject</a> &gt; &amp;ho) const</td></tr>
+<tr class="memdesc:a800139d5ed1a4d0c2f1c984010aeb0e9 inherit pub_methods_class_hit_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if 2 objects are overlapping. An alias to operator==.  <a href="class_hit_object.html#a800139d5ed1a4d0c2f1c984010aeb0e9">More...</a><br /></td></tr>
+<tr class="separator:a800139d5ed1a4d0c2f1c984010aeb0e9 inherit pub_methods_class_hit_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ec108744559bb8fcd2bdb8dbe6960e6 inherit pub_methods_class_hit_object"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hit_object.html#a2ec108744559bb8fcd2bdb8dbe6960e6">isValid</a> () const override</td></tr>
 <tr class="memdesc:a2ec108744559bb8fcd2bdb8dbe6960e6 inherit pub_methods_class_hit_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates the object being realistic.  <a href="class_hit_object.html#a2ec108744559bb8fcd2bdb8dbe6960e6">More...</a><br /></td></tr>
 <tr class="separator:a2ec108744559bb8fcd2bdb8dbe6960e6 inherit pub_methods_class_hit_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fcbf1272288217d695549afdbc6e558 inherit pub_methods_class_hit_object"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hit_object.html#a6fcbf1272288217d695549afdbc6e558">getInfo</a> () const override</td></tr>
 <tr class="memdesc:a6fcbf1272288217d695549afdbc6e558 inherit pub_methods_class_hit_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets info of the important object members.  <a href="class_hit_object.html#a6fcbf1272288217d695549afdbc6e558">More...</a><br /></td></tr>
 <tr class="separator:a6fcbf1272288217d695549afdbc6e558 inherit pub_methods_class_hit_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b6bb9bd77a96762a0921494ab736553 inherit pub_methods_class_hit_object"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hit_object.html#a6b6bb9bd77a96762a0921494ab736553">operator==</a> (const <a class="el" href="class_hit_object.html">HitObject</a> &amp;ho) const</td></tr>
-<tr class="separator:a6b6bb9bd77a96762a0921494ab736553 inherit pub_methods_class_hit_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_timed_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_timed_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_timed_object.html">TimedObject</a></td></tr>
 <tr class="memitem:a0846aa70939d5ab096fa192c75a4bf6c inherit pub_methods_class_timed_object"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a0846aa70939d5ab096fa192c75a4bf6c">TimedObject</a> (double offset_m_sec)</td></tr>
 <tr class="memdesc:a0846aa70939d5ab096fa192c75a4bf6c inherit pub_methods_class_timed_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Timed Object.  <a href="class_timed_object.html#a0846aa70939d5ab096fa192c75a4bf6c">More...</a><br /></td></tr>
@@ -150,11 +154,27 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac9b3ba027a029cd4995d92e456d4b242 inherit pub_methods_class_timed_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39823209ac4c66e78b63f2e8d4bc5d19 inherit pub_methods_class_timed_object"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a39823209ac4c66e78b63f2e8d4bc5d19">operator==</a> (const <a class="el" href="class_timed_object.html">TimedObject</a> &amp;obj) const</td></tr>
 <tr class="separator:a39823209ac4c66e78b63f2e8d4bc5d19 inherit pub_methods_class_timed_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9b894486fa28c42afbedbad59fe7269 inherit pub_methods_class_timed_object"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_timed_object.html">TimedObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#af9b894486fa28c42afbedbad59fe7269">operator *</a> (double by_m_sec) const</td></tr>
+<tr class="separator:af9b894486fa28c42afbedbad59fe7269 inherit pub_methods_class_timed_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba15a86c6268f39184d81ff3f7e1b914 inherit pub_methods_class_timed_object"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_timed_object.html">TimedObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#aba15a86c6268f39184d81ff3f7e1b914">operator/</a> (double by_m_sec) const</td></tr>
+<tr class="separator:aba15a86c6268f39184d81ff3f7e1b914 inherit pub_methods_class_timed_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7aa047132cd491f8abf7408c07c8ba9 inherit pub_methods_class_timed_object"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_timed_object.html">TimedObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#ad7aa047132cd491f8abf7408c07c8ba9">operator+</a> (double by_m_sec) const</td></tr>
+<tr class="separator:ad7aa047132cd491f8abf7408c07c8ba9 inherit pub_methods_class_timed_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a306909ead4b4cc96c612970f574d9915 inherit pub_methods_class_timed_object"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_timed_object.html">TimedObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a306909ead4b4cc96c612970f574d9915">operator-</a> (double by_m_sec) const</td></tr>
+<tr class="separator:a306909ead4b4cc96c612970f574d9915 inherit pub_methods_class_timed_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d8046c82ff900b26eca954810c5d12d inherit pub_methods_class_timed_object"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a1d8046c82ff900b26eca954810c5d12d">operator *=</a> (double by_m_sec)</td></tr>
+<tr class="separator:a1d8046c82ff900b26eca954810c5d12d inherit pub_methods_class_timed_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11c6197b205ac31f33dc39f1506f926a inherit pub_methods_class_timed_object"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a11c6197b205ac31f33dc39f1506f926a">operator/=</a> (double by_m_sec)</td></tr>
+<tr class="separator:a11c6197b205ac31f33dc39f1506f926a inherit pub_methods_class_timed_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6184156880c9a1c76d369373430e03a inherit pub_methods_class_timed_object"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#ab6184156880c9a1c76d369373430e03a">operator+=</a> (double by_m_sec)</td></tr>
+<tr class="separator:ab6184156880c9a1c76d369373430e03a inherit pub_methods_class_timed_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af77558198d2ce882a977b974b18b3982 inherit pub_methods_class_timed_object"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#af77558198d2ce882a977b974b18b3982">operator-=</a> (double by_m_sec)</td></tr>
+<tr class="separator:af77558198d2ce882a977b974b18b3982 inherit pub_methods_class_timed_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_static_attribs_class_timed_object"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_class_timed_object')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="class_timed_object.html">TimedObject</a></td></tr>
-<tr class="memitem:a3b272c726161e1cd3eed4354e08e30aa inherit pub_static_attribs_class_timed_object"><td class="memItemLeft" align="right" valign="top">static const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a3b272c726161e1cd3eed4354e08e30aa">hour_to_m_sec</a> = 360000.0</td></tr>
+<tr class="memitem:a3b272c726161e1cd3eed4354e08e30aa inherit pub_static_attribs_class_timed_object"><td class="memItemLeft" align="right" valign="top">static const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a3b272c726161e1cd3eed4354e08e30aa">hour_to_m_sec</a> = 3600000.0</td></tr>
 <tr class="memdesc:a3b272c726161e1cd3eed4354e08e30aa inherit pub_static_attribs_class_timed_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of ratio of Hour:Millisecond.  <a href="class_timed_object.html#a3b272c726161e1cd3eed4354e08e30aa">More...</a><br /></td></tr>
 <tr class="separator:a3b272c726161e1cd3eed4354e08e30aa inherit pub_static_attribs_class_timed_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53afe8c132626fcc1288049f6387cd77 inherit pub_static_attribs_class_timed_object"><td class="memItemLeft" align="right" valign="top">static const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a53afe8c132626fcc1288049f6387cd77">min_to_m_sec</a> = 60000.0</td></tr>
@@ -165,7 +185,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:ac2cb73b6a334266879c0a1f670ac1e38 inherit pub_static_attribs_class_timed_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_normal_note.html" title="NormalNote doesn&#39;t have any special implementation for now, it just extends from HitObject We won&#39;t u...">NormalNote</a> doesn't have any special implementation for now, it just extends from <a class="el" href="class_hit_object.html" title="A basic &quot;Hittable&quot; Object used for secondary classes.">HitObject</a> We won't use <a class="el" href="class_hit_object.html" title="A basic &quot;Hittable&quot; Object used for secondary classes.">HitObject</a> as an actual Normal Note so as to allow flexibility in the future. </p>
+<div class="textblock"><p><a class="el" href="class_normal_note.html" title="NormalNote doesn&#39;t have any special implementation for now, it just extends from HitObject We won&#39;t u...">NormalNote</a> doesn't have any special implementation for now, it just extends from <a class="el" href="class_hit_object.html" title="A basic &quot;Hittable&quot; Abtract class used for secondary classes.">HitObject</a> We won't use <a class="el" href="class_hit_object.html" title="A basic &quot;Hittable&quot; Abtract class used for secondary classes.">HitObject</a> as an actual Normal Note so as to allow flexibility in the future. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a797023c15e023d6b18bc1c1ff8e2ea01"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a797023c15e023d6b18bc1c1ff8e2ea01">&#9670;&nbsp;</a></span>NormalNote()</h2>
@@ -222,6 +242,70 @@ Additional Inherited Members</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a86553d48a1140878306b75559a172064"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86553d48a1140878306b75559a172064">&#9670;&nbsp;</a></span>Clone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="class_timed_object.html">TimedObject</a> &gt; NormalNote::Clone </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_hit_object.html#aab9eca34282c73833ed6ae7abc981244">HitObject</a>.</p>
+
+</div>
+</div>
+<a id="a0f5e13b3a46954c3e28e89877409a61b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f5e13b3a46954c3e28e89877409a61b">&#9670;&nbsp;</a></span>isOverlapping()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool NormalNote::isOverlapping </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_normal_note.html">NormalNote</a> &amp;&#160;</td>
+          <td class="paramname"><em>nn</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3ff7b85235f9cc8c240818b26374e1f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ff7b85235f9cc8c240818b26374e1f3">&#9670;&nbsp;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool NormalNote::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_normal_note.html">NormalNote</a> &amp;&#160;</td>
+          <td class="paramname"><em>nn</em></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">

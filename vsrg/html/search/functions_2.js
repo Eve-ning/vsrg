@@ -1,16 +1,7 @@
 var searchData=
 [
-  ['getbeatdurationmsec',['getBeatDurationMSec',['../class_timing_point.html#a7965de0071e692677871bc20bf6ffd52',1,'TimingPoint']]],
-  ['getbpm',['getBpm',['../class_timing_point.html#a8a39a48a72450e8523328424857700f2',1,'TimingPoint']]],
-  ['getcolumn',['getColumn',['../class_hit_object.html#af307adfdc6e32707b02169c1dbf83dd3',1,'HitObject']]],
-  ['getendnote',['getEndNote',['../class_long_note.html#ae054f1d9d4a7c6b7963bdef9e88dbe75',1,'LongNote']]],
-  ['getinfo',['getInfo',['../class_hit_object.html#a6fcbf1272288217d695549afdbc6e558',1,'HitObject::getInfo()'],['../class_long_note.html#a9c7e7e20a5ecee39945906619f179009',1,'LongNote::getInfo()'],['../class_timed_object.html#aec24170c1ae7768bc4000c17a1dbc504',1,'TimedObject::getInfo()']]],
-  ['getlength',['getLength',['../class_long_note.html#a86938b79ea0bbb339dded2d878582a3c',1,'LongNote']]],
-  ['getoffsethour',['getOffsetHour',['../class_timed_object.html#a6eb1cdf1d64ef804dd7934964f55e93d',1,'TimedObject']]],
-  ['getoffsetmin',['getOffsetMin',['../class_timed_object.html#a02a41c577ef54ddf0f118262ef6657d8',1,'TimedObject']]],
-  ['getoffsetmsec',['getOffsetMSec',['../class_timed_object.html#a8c1680201c750c3542c92bb973b7dc1d',1,'TimedObject']]],
-  ['getoffsetsec',['getOffsetSec',['../class_timed_object.html#a7fb1c2f14c1b31807a3b6f4d3f2cb46a',1,'TimedObject']]],
-  ['getstartnote',['getStartNote',['../class_long_note.html#a0bed769e00f3472aca2ea7d48d37f21b',1,'LongNote']]],
-  ['gettimesigdenominator',['getTimeSigDenominator',['../class_timing_point.html#aae1faa33fc1a0cee2adf4386a3167920',1,'TimingPoint']]],
-  ['gettimesignumerator',['getTimeSigNumerator',['../class_timing_point.html#adfe75eb34988a82e0d0a1ac7cfcd6fc6',1,'TimingPoint']]]
+  ['cbegin',['cbegin',['../class_timed_object_vector.html#a0537989ac8706e10711e382be1627dae',1,'TimedObjectVector']]],
+  ['cend',['cend',['../class_timed_object_vector.html#a27e5eb9541faa61329a8ccb699bec125',1,'TimedObjectVector']]],
+  ['clear',['clear',['../class_timed_object_vector.html#abd8d0572aaae6177452ac9dca9dd2bb1',1,'TimedObjectVector']]],
+  ['clone',['Clone',['../class_event_object.html#a709f8b2727dbc84d4da30cc250e14b7d',1,'EventObject::Clone()'],['../class_hit_object.html#aab9eca34282c73833ed6ae7abc981244',1,'HitObject::Clone()'],['../class_normal_note.html#a86553d48a1140878306b75559a172064',1,'NormalNote::Clone()'],['../class_scroll_point.html#a648e2f15f4cf8a0f738803c121308050',1,'ScrollPoint::Clone()'],['../class_timed_object.html#a798f80c4db286c444c0dbf5417f15c89',1,'TimedObject::Clone()'],['../class_timing_point.html#ad4ec82fa715a26a7cf26a3905e45a73c',1,'TimingPoint::Clone()']]]
 ];

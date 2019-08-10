@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['timedobject',['TimedObject',['../class_timed_object.html',1,'']]],
-  ['timingpoint',['TimingPoint',['../class_timing_point.html',1,'']]]
+  ['scrollpoint',['ScrollPoint',['../class_scroll_point.html',1,'']]]
 ];

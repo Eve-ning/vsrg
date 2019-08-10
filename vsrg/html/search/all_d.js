@@ -1,9 +1,26 @@
 var searchData=
 [
-  ['_7eeventobject',['~EventObject',['../class_event_object.html#a90489f88635449fb2f6e296473d61674',1,'EventObject']]],
-  ['_7ehitobject',['~HitObject',['../class_hit_object.html#aaa65a6176d8d636d51c247c74e2d8f36',1,'HitObject']]],
-  ['_7elongnote',['~LongNote',['../class_long_note.html#a1bf7c00a997c324f1bfb01379fe89cf0',1,'LongNote']]],
-  ['_7enormalnote',['~NormalNote',['../class_normal_note.html#a990d287af5f32b4fea8241ac1c690b24',1,'NormalNote']]],
-  ['_7etimedobject',['~TimedObject',['../class_timed_object.html#a41dd23bc16e56d81c33f526185f16284',1,'TimedObject']]],
-  ['_7etimingpoint',['~TimingPoint',['../class_timing_point.html#af4d509eafd8f91db3dfcf73cde8b9451',1,'TimingPoint']]]
+  ['scrollpoint',['ScrollPoint',['../class_scroll_point.html',1,'ScrollPoint'],['../class_scroll_point.html#a1da3e847f4123afe5d82409001855f73',1,'ScrollPoint::ScrollPoint()']]],
+  ['scrollpoint_2ecpp',['ScrollPoint.cpp',['../_scroll_point_8cpp.html',1,'']]],
+  ['scrollpoint_2eh',['ScrollPoint.h',['../_scroll_point_8h.html',1,'']]],
+  ['sec_5fto_5fm_5fsec',['sec_to_m_sec',['../class_timed_object.html#ac2cb73b6a334266879c0a1f670ac1e38',1,'TimedObject']]],
+  ['setbpm',['setBpm',['../class_timing_point.html#a778d39751161201f009a64c47dd39d65',1,'TimingPoint']]],
+  ['setcolumn',['setColumn',['../class_hit_object.html#a9c264675e679ab7e06965fdb7f090e8f',1,'HitObject']]],
+  ['setendnote',['setEndNote',['../class_long_note.html#a63568db9b41e40cd46d364e35f4f1b98',1,'LongNote']]],
+  ['setoffsethour',['setOffsetHour',['../class_timed_object.html#ab08cc86d417aca1fcd80da53df4f46c7',1,'TimedObject']]],
+  ['setoffsetmin',['setOffsetMin',['../class_timed_object.html#ad3ebaf42990802697ba4b9f69f864fa3',1,'TimedObject']]],
+  ['setoffsetmsec',['setOffsetMSec',['../class_timed_object.html#a3d0ea4fffa6670151f559e329d9ad06e',1,'TimedObject']]],
+  ['setoffsetsec',['setOffsetSec',['../class_timed_object.html#a018684356040c139ad420229900dbc5c',1,'TimedObject']]],
+  ['setscrollspeedmult',['setScrollSpeedMult',['../class_scroll_point.html#a0665944f9789745a3f044e4434aa9a4c',1,'ScrollPoint']]],
+  ['setstartnote',['setStartNote',['../class_long_note.html#ad8c3fd0482c2e5cefc6b6518ac3e10d0',1,'LongNote']]],
+  ['settimedobjectvector',['setTimedObjectVector',['../class_timed_object_vector.html#a405f6ca4cdc953fde1bbbc12d48716a7',1,'TimedObjectVector']]],
+  ['settimesigdenominator',['setTimeSigDenominator',['../class_timing_point.html#ae64624e607fc21330bf1f0853587d4b1',1,'TimingPoint']]],
+  ['settimesignumerator',['setTimeSigNumerator',['../class_timing_point.html#ac406633c16582204cf65ae4ccb1e1cb1',1,'TimingPoint']]],
+  ['size',['size',['../class_timed_object_vector.html#aec36e33071a4ea7795faab5e0e8ff649',1,'TimedObjectVector']]],
+  ['sptreventobject',['SPtrEventObject',['../_event_object_8h.html#a27ec72c701d0a974fca4f2863775a776',1,'EventObject.h']]],
+  ['sptrhitobject',['SPtrHitObject',['../_hit_object_8h.html#a9d5f049ce6d4f8d796f5349c5f6193ec',1,'HitObject.h']]],
+  ['sptrtimedobject',['SPtrTimedObject',['../_timed_object_8h.html#a8b73ebf471d8c89749e6b83b5e09a56e',1,'TimedObject.h']]],
+  ['stdafx_2ecpp',['stdafx.cpp',['../stdafx_8cpp.html',1,'']]],
+  ['stdafx_2eh',['stdafx.h',['../stdafx_8h.html',1,'']]],
+  ['subtractoffsetmsec',['subtractOffsetMSec',['../class_timed_object_vector.html#a444a259168ab6f4f02cdf5cab4f68235',1,'TimedObjectVector']]]
 ];

@@ -78,8 +78,9 @@ Inheritance diagram for TimedObject:</div>
   <img src="class_timed_object.png" usemap="#TimedObject_map" alt=""/>
   <map id="TimedObject_map" name="TimedObject_map">
 <area href="class_event_object.html" title="A counterpart to HitObject, this acts as an abstract class that non-hittable objects inherit from." alt="EventObject" shape="rect" coords="0,56,82,80"/>
-<area href="class_hit_object.html" title="A basic &quot;Hittable&quot; Object used for secondary classes." alt="HitObject" shape="rect" coords="92,56,174,80"/>
+<area href="class_hit_object.html" title="A basic &quot;Hittable&quot; Abtract class used for secondary classes." alt="HitObject" shape="rect" coords="92,56,174,80"/>
 <area href="class_timing_point.html" title="Inherits from TimedObject, mainly used to time a song." alt="TimingPoint" shape="rect" coords="184,56,266,80"/>
+<area href="class_scroll_point.html" title="Defines the Scroll Speed Multiplier at a certain point." alt="ScrollPoint" shape="rect" coords="0,112,82,136"/>
 <area href="class_normal_note.html" title="NormalNote doesn&#39;t have any special implementation for now, it just extends from HitObject We won&#39;t u..." alt="NormalNote" shape="rect" coords="92,112,174,136"/>
   </map>
 </div></div>
@@ -91,6 +92,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0846aa70939d5ab096fa192c75a4bf6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41dd23bc16e56d81c33f526185f16284"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a41dd23bc16e56d81c33f526185f16284">~TimedObject</a> ()=0</td></tr>
 <tr class="separator:a41dd23bc16e56d81c33f526185f16284"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a798f80c4db286c444c0dbf5417f15c89"><td class="memItemLeft" align="right" valign="top">virtual std::shared_ptr&lt; <a class="el" href="class_timed_object.html">TimedObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a798f80c4db286c444c0dbf5417f15c89">Clone</a> () const =0</td></tr>
+<tr class="separator:a798f80c4db286c444c0dbf5417f15c89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c1680201c750c3542c92bb973b7dc1d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a8c1680201c750c3542c92bb973b7dc1d">getOffsetMSec</a> () const</td></tr>
 <tr class="memdesc:a8c1680201c750c3542c92bb973b7dc1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Offset in milliseconds.  <a href="#a8c1680201c750c3542c92bb973b7dc1d">More...</a><br /></td></tr>
 <tr class="separator:a8c1680201c750c3542c92bb973b7dc1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,10 +130,26 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac9b3ba027a029cd4995d92e456d4b242"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39823209ac4c66e78b63f2e8d4bc5d19"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a39823209ac4c66e78b63f2e8d4bc5d19">operator==</a> (const <a class="el" href="class_timed_object.html">TimedObject</a> &amp;obj) const</td></tr>
 <tr class="separator:a39823209ac4c66e78b63f2e8d4bc5d19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9b894486fa28c42afbedbad59fe7269"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_timed_object.html">TimedObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#af9b894486fa28c42afbedbad59fe7269">operator *</a> (double by_m_sec) const</td></tr>
+<tr class="separator:af9b894486fa28c42afbedbad59fe7269"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba15a86c6268f39184d81ff3f7e1b914"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_timed_object.html">TimedObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#aba15a86c6268f39184d81ff3f7e1b914">operator/</a> (double by_m_sec) const</td></tr>
+<tr class="separator:aba15a86c6268f39184d81ff3f7e1b914"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7aa047132cd491f8abf7408c07c8ba9"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_timed_object.html">TimedObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#ad7aa047132cd491f8abf7408c07c8ba9">operator+</a> (double by_m_sec) const</td></tr>
+<tr class="separator:ad7aa047132cd491f8abf7408c07c8ba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a306909ead4b4cc96c612970f574d9915"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_timed_object.html">TimedObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a306909ead4b4cc96c612970f574d9915">operator-</a> (double by_m_sec) const</td></tr>
+<tr class="separator:a306909ead4b4cc96c612970f574d9915"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d8046c82ff900b26eca954810c5d12d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a1d8046c82ff900b26eca954810c5d12d">operator *=</a> (double by_m_sec)</td></tr>
+<tr class="separator:a1d8046c82ff900b26eca954810c5d12d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11c6197b205ac31f33dc39f1506f926a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a11c6197b205ac31f33dc39f1506f926a">operator/=</a> (double by_m_sec)</td></tr>
+<tr class="separator:a11c6197b205ac31f33dc39f1506f926a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6184156880c9a1c76d369373430e03a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#ab6184156880c9a1c76d369373430e03a">operator+=</a> (double by_m_sec)</td></tr>
+<tr class="separator:ab6184156880c9a1c76d369373430e03a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af77558198d2ce882a977b974b18b3982"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#af77558198d2ce882a977b974b18b3982">operator-=</a> (double by_m_sec)</td></tr>
+<tr class="separator:af77558198d2ce882a977b974b18b3982"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a3b272c726161e1cd3eed4354e08e30aa"><td class="memItemLeft" align="right" valign="top">static const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a3b272c726161e1cd3eed4354e08e30aa">hour_to_m_sec</a> = 360000.0</td></tr>
+<tr class="memitem:a3b272c726161e1cd3eed4354e08e30aa"><td class="memItemLeft" align="right" valign="top">static const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a3b272c726161e1cd3eed4354e08e30aa">hour_to_m_sec</a> = 3600000.0</td></tr>
 <tr class="memdesc:a3b272c726161e1cd3eed4354e08e30aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of ratio of Hour:Millisecond.  <a href="#a3b272c726161e1cd3eed4354e08e30aa">More...</a><br /></td></tr>
 <tr class="separator:a3b272c726161e1cd3eed4354e08e30aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53afe8c132626fcc1288049f6387cd77"><td class="memItemLeft" align="right" valign="top">static const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timed_object.html#a53afe8c132626fcc1288049f6387cd77">min_to_m_sec</a> = 60000.0</td></tr>
@@ -193,6 +212,33 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a798f80c4db286c444c0dbf5417f15c89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a798f80c4db286c444c0dbf5417f15c89">&#9670;&nbsp;</a></span>Clone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::shared_ptr&lt;<a class="el" href="class_timed_object.html">TimedObject</a>&gt; TimedObject::Clone </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="class_timing_point.html#ad4ec82fa715a26a7cf26a3905e45a73c">TimingPoint</a>, <a class="el" href="class_normal_note.html#a86553d48a1140878306b75559a172064">NormalNote</a>, <a class="el" href="class_hit_object.html#aab9eca34282c73833ed6ae7abc981244">HitObject</a>, <a class="el" href="class_scroll_point.html#a648e2f15f4cf8a0f738803c121308050">ScrollPoint</a>, and <a class="el" href="class_event_object.html#a709f8b2727dbc84d4da30cc250e14b7d">EventObject</a>.</p>
+
+</div>
+</div>
 <a id="aec24170c1ae7768bc4000c17a1dbc504"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aec24170c1ae7768bc4000c17a1dbc504">&#9670;&nbsp;</a></span>getInfo()</h2>
 
@@ -327,6 +373,52 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="af9b894486fa28c42afbedbad59fe7269"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9b894486fa28c42afbedbad59fe7269">&#9670;&nbsp;</a></span>operator *()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="class_timed_object.html">TimedObject</a> &gt; TimedObject::operator * </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>by_m_sec</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1d8046c82ff900b26eca954810c5d12d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d8046c82ff900b26eca954810c5d12d">&#9670;&nbsp;</a></span>operator *=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TimedObject::operator *= </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>by_m_sec</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="class_scroll_point.html#aee2fe2083463eb2050169bf41a092d38">ScrollPoint</a>.</p>
+
+</div>
+</div>
 <a id="aa65886288db24d71e632d277354c3e1b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa65886288db24d71e632d277354c3e1b">&#9670;&nbsp;</a></span>operator bool()</h2>
 
@@ -374,6 +466,144 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad7aa047132cd491f8abf7408c07c8ba9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7aa047132cd491f8abf7408c07c8ba9">&#9670;&nbsp;</a></span>operator+()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="class_timed_object.html">TimedObject</a> &gt; TimedObject::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>by_m_sec</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab6184156880c9a1c76d369373430e03a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6184156880c9a1c76d369373430e03a">&#9670;&nbsp;</a></span>operator+=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TimedObject::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>by_m_sec</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="class_scroll_point.html#ae11c0b3de8236699776ea83b6344da7c">ScrollPoint</a>.</p>
+
+</div>
+</div>
+<a id="a306909ead4b4cc96c612970f574d9915"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a306909ead4b4cc96c612970f574d9915">&#9670;&nbsp;</a></span>operator-()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="class_timed_object.html">TimedObject</a> &gt; TimedObject::operator- </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>by_m_sec</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af77558198d2ce882a977b974b18b3982"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af77558198d2ce882a977b974b18b3982">&#9670;&nbsp;</a></span>operator-=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TimedObject::operator-= </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>by_m_sec</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="class_scroll_point.html#a1b347670ac2167ff0fae365d0fd79c11">ScrollPoint</a>.</p>
+
+</div>
+</div>
+<a id="aba15a86c6268f39184d81ff3f7e1b914"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba15a86c6268f39184d81ff3f7e1b914">&#9670;&nbsp;</a></span>operator/()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="class_timed_object.html">TimedObject</a> &gt; TimedObject::operator/ </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>by_m_sec</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a11c6197b205ac31f33dc39f1506f926a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11c6197b205ac31f33dc39f1506f926a">&#9670;&nbsp;</a></span>operator/=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TimedObject::operator/= </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>by_m_sec</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="class_scroll_point.html#affd18b85f8fc3cb71c31ce0297fe5ed3">ScrollPoint</a>.</p>
 
 </div>
 </div>
@@ -494,7 +724,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const double TimedObject::hour_to_m_sec = 360000.0</td>
+          <td class="memname">const double TimedObject::hour_to_m_sec = 3600000.0</td>
         </tr>
       </table>
   </td>
