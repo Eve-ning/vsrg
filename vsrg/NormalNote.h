@@ -13,9 +13,8 @@ public:
 	 * 
 	 * @param offset_m_sec Offset of the object
 	 * @param index Index of the object
-	 * @param starts_from Specify from what index the index starts from
 	 */
-	NormalNote(const double & offset_m_sec, const int & index, const int & starts_from = 0);
+	NormalNote(const double & offset_m_sec, const int & index);
 	~NormalNote();
 	std::shared_ptr<TimedObject> Clone() const override;
 	

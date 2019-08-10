@@ -3,12 +3,10 @@
 
 
 NormalNote::NormalNote(const double & offset_m_sec,
-					   const int & index,
-					   const int & starts_from) :
-	HitObject(offset_m_sec, index, starts_from)
+					   const int & index) :
+	HitObject(offset_m_sec, index)
 {
 }
-
 
 NormalNote::~NormalNote()
 {

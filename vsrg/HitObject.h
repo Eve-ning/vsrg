@@ -12,16 +12,13 @@ public:
 	 * 
 	 * @param offset_m_sec Offset of the object
 	 * @param index Index of the object
-	 * @param starts_from Specify from what index the index starts from
 	 */
-	HitObject(const double & offset_m_sec, const int & index, const int & starts_from = 0);
+	HitObject(const double & offset_m_sec, const int & index);
 	~HitObject() = 0;
 	virtual SPtrTimedObject Clone() const override = 0;
-	/// Gets the index, specify starts_from to offset it to the correct index
-	int getIndex(const int & starts_from = 0) const;
 
-	/// Sets the index, specify starts_from to offset it to the correct index
-	void setIndex(const int & index, const int & starts_from = 0);
+	int getIndex() const;
+	void setIndex(const int & index);
 
 	/// Checks if 2 objects are overlapping. An alias to operator==
 	virtual bool isOverlapping(const std::shared_ptr<HitObject> & ho) const;

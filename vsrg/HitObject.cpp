@@ -2,11 +2,8 @@
 #include "HitObject.h"
 
 HitObject::HitObject(const double & offset_m_sec,
-					 const int & index,
-					 const int & starts_from) :
-	TimedObject(offset_m_sec) {
-	setIndex(index, starts_from);
-}
+					 const int & index) :
+	TimedObject(offset_m_sec), index_(index) {}
 
 HitObject::~HitObject() {}
 
@@ -20,12 +17,12 @@ bool HitObject::isValid() const {
 	return TimedObject::isValid() && index_ > 0;
 }
 
-int HitObject::getIndex(const int & starts_from) const {
-	return index_ + starts_from;
+int HitObject::getIndex() const {
+	return index_;
 }
 
-void HitObject::setIndex(const int & index, const int & starts_from) {
-	index_ = index - starts_from;
+void HitObject::setIndex(const int & index) {
+	index_ = index;
 }
 
 bool HitObject::isOverlapping(const std::shared_ptr<HitObject>& ho) const
