@@ -3,7 +3,7 @@
 ###############################################################################
 * text=auto
 
-vsrg/html/* linguist-vendored
+vsrg/html/* linguist-documentation
 
 ###############################################################################
 # Set default behavior for command prompt diff.
