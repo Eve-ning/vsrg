@@ -32,10 +32,12 @@ namespace WrapperObjct_
 
 			Assert::AreEqual(size_t(1), ho_v_1.size());
 
-			ho_v_1.push_back(std::make_shared<HitObject>(ln_1));
+			// LN has 2 objs
+			ho_v_1.push_back(std::make_shared<HitObject>(*ln_1.getStartNote()));
+			ho_v_1.push_back(std::make_shared<HitObject>(*ln_1.getEndNote()));
 
 			// Check for polymorphism
-			Assert::AreEqual(size_t(2), ho_v_1.size());
+			Assert::AreEqual(size_t(3), ho_v_1.size());
 
 			ho_v_1.clear();
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "HitObject.h"
-
+#include <vector>
 // Creates a Long/Held Note with 2 Hit Objects
 class LongNote
 {
@@ -53,7 +53,7 @@ public:
 	virtual operator std::string() const; // Calls getInfo
 
 	virtual bool operator==(const LongNote & ln) const;
-	LongNote & operator=(const LongNote & ln);
+	LongNote &   operator= (const LongNote & ln);
 
 private:
 	SPtrHitObject start_ho_;
