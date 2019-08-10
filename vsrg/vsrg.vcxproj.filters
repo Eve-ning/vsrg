@@ -25,6 +25,9 @@
     <Filter Include="Wrapper Objects">
       <UniqueIdentifier>{7c124d07-02fe-43ba-b81b-868a54bf37f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Wrapper Objects\Timed Objects">
+      <UniqueIdentifier>{5b03d687-e92f-495c-96bb-3a045a7dbc9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -42,23 +45,26 @@
     <ClInclude Include="NormalNote.h">
       <Filter>Timed Objects\Hit Objects</Filter>
     </ClInclude>
+    <ClInclude Include="TimedObject.h">
+      <Filter>Timed Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="VsrgMap.h">
+      <Filter>Wrapper Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="TimedObjectVector.h">
+      <Filter>Wrapper Objects\Timed Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="HitObjectVector.h">
+      <Filter>Wrapper Objects\Timed Objects</Filter>
+    </ClInclude>
     <ClInclude Include="EventObject.h">
       <Filter>Timed Objects\Event Objects</Filter>
     </ClInclude>
     <ClInclude Include="TimingPoint.h">
       <Filter>Timed Objects\Event Objects</Filter>
     </ClInclude>
-    <ClInclude Include="TimedObject.h">
-      <Filter>Timed Objects</Filter>
-    </ClInclude>
     <ClInclude Include="ScrollPoint.h">
       <Filter>Timed Objects\Event Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="VsrgMap.h">
-      <Filter>Wrapper Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="TimedObjectVector.h">
-      <Filter>Wrapper Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -71,9 +77,6 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EventObject.cpp">
-      <Filter>Timed Objects\Event Objects</Filter>
-    </ClCompile>
     <ClCompile Include="HitObject.cpp">
       <Filter>Timed Objects\Hit Objects</Filter>
     </ClCompile>
@@ -83,20 +86,26 @@
     <ClCompile Include="NormalNote.cpp">
       <Filter>Timed Objects\Hit Objects</Filter>
     </ClCompile>
-    <ClCompile Include="TimingPoint.cpp">
-      <Filter>Timed Objects\Event Objects</Filter>
-    </ClCompile>
     <ClCompile Include="TimedObject.cpp">
       <Filter>Timed Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="ScrollPoint.cpp">
-      <Filter>Timed Objects\Event Objects</Filter>
     </ClCompile>
     <ClCompile Include="VsrgMap.cpp">
       <Filter>Wrapper Objects</Filter>
     </ClCompile>
     <ClCompile Include="TimedObjectVector.cpp">
-      <Filter>Wrapper Objects</Filter>
+      <Filter>Wrapper Objects\Timed Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="HitObjectVector.cpp">
+      <Filter>Wrapper Objects\Timed Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="EventObject.cpp">
+      <Filter>Timed Objects\Event Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="TimingPoint.cpp">
+      <Filter>Timed Objects\Event Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollPoint.cpp">
+      <Filter>Timed Objects\Event Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
