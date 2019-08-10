@@ -9,6 +9,10 @@ TimingPoint::~TimingPoint()
 {
 }
 
+std::shared_ptr<TimedObject> TimingPoint::Clone() const {
+	return std::make_shared<TimingPoint>(*this);
+}
+
 double TimingPoint::getBpm() const {
 	return bpm_;
 }

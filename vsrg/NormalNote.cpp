@@ -13,3 +13,7 @@ NormalNote::NormalNote(const double & offset_m_sec,
 NormalNote::~NormalNote()
 {
 }
+
+std::shared_ptr<TimedObject> NormalNote::Clone() const {
+	return std::make_shared<NormalNote>(*this);
+}

@@ -22,6 +22,7 @@ public:
 	 */
 	TimingPoint(double offset_m_sec, double bpm, double time_sig_numerator, double time_sig_denominator);
 	~TimingPoint();
+	virtual std::shared_ptr<TimedObject> Clone() const override;
 
 	double getBpm() const;
 	double getTimeSigNumerator() const;

@@ -11,5 +11,6 @@ class EventObject : public TimedObject
 public:
 	EventObject(double offset_m_sec);
 	~EventObject() = 0;
+	virtual std::shared_ptr<TimedObject> Clone() const override = 0;
 };
 

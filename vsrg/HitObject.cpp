@@ -8,19 +8,17 @@ HitObject::HitObject(const double & offset_m_sec,
 	setColumn(column, starts_from);
 }
 
-HitObject::~HitObject()
-{
-}
+HitObject::~HitObject() {}
 
 std::string HitObject::getInfo() const {
 	return TimedObject::getInfo() +
 		"Column " + std::to_string(column_) + '\n';
 }
 
-bool HitObject::operator==(const HitObject & ho) const
+bool HitObject::operator==(const std::shared_ptr<HitObject>& ho) const
 {
-	return (getOffsetMSec() == ho.getOffsetMSec()) &&
-		(getColumn() == ho.getColumn());
+	return (getOffsetMSec() == ho->getOffsetMSec()) &&
+		(getColumn() == ho->getColumn());
 }
 
 bool HitObject::isValid() const {
@@ -36,7 +34,7 @@ void HitObject::setColumn(const int & column, const int & starts_from) {
 	column_ = column - starts_from;
 }
 
-bool HitObject::isOverlapping(const HitObject & ho) const
+bool HitObject::isOverlapping(const std::shared_ptr<HitObject>& ho) const
 {
-	return (this->operator==(ho));
+	return operator==(ho);
 }
