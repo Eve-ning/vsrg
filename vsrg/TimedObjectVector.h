@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "TimedObject.h"
+#include <algorithm> /// MOVE TO CPP
 
 /**
  * @brief A class that wraps multiple TimedObjects for unique operations
@@ -23,12 +24,22 @@ public:
 	void push_back(SPtrTimedObject to);
 	void pop_back();
 	void clear();
+	bool isEmpty();
 	size_t size() const;
+
+	std::vector<double> getOffsetHourVector(bool sort = false) const;
+	std::vector<double> getOffsetMinVector(bool sort = false) const;
+	std::vector<double> getOffsetSecVector(bool sort = false) const;
+	std::vector<double> getOffsetMSecVector(bool sort = false) const;
 	
 	std::vector<SPtrTimedObject> getTimedObjectVector() const;	
 	void setTimedObjectVector(const std::vector<SPtrTimedObject> & to_v);
 	
 private:
+
+	/// Helper function for getOffset___Vector Variants. Scale scales the offset
+	std::vector<double> getOffsetXVector(bool sort = false, double scale = 1.0) const;
+
 	std::vector<SPtrTimedObject> to_v_;
 };
 
