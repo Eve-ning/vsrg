@@ -28,13 +28,6 @@ namespace WrapperObjct_
 								 std::make_shared<NormalNote>(NormalNote(400.0, 7)));
 		HitObjectVector ho_v_1 = HitObjectVector();
 
-		ScrollPoint sp_1 = ScrollPoint(100.0, 1.0);
-		ScrollPoint sp_2 = ScrollPoint(200.0, 2.0);
-
-		TimingPoint tp_1 = TimingPoint(100.0, 120.0, 4.0, 4.0);
-		TimingPoint tp_2 = TimingPoint(200.0, 250.0, 6.5, 4.0);
-		EventObjectVector eo_v_1 = EventObjectVector();
-		
 		TEST_METHOD(HitObjectVector_vecOps)
 		{
 			ho_v_1.push_back(std::make_shared<NormalNote>(nn_1));
@@ -57,6 +50,15 @@ namespace WrapperObjct_
 
 			Assert::AreEqual(size_t(0), ho_v_1.size());
 		}
+	};
+	
+	TEST_CLASS(EventObjectVector_) {
+		ScrollPoint sp_1 = ScrollPoint(100.0, 1.0);
+		ScrollPoint sp_2 = ScrollPoint(200.0, 2.0);
+
+		TimingPoint tp_1 = TimingPoint(100.0, 120.0, 4.0, 4.0);
+		TimingPoint tp_2 = TimingPoint(200.0, 250.0, 6.5, 4.0);
+		EventObjectVector eo_v_1 = EventObjectVector();
 		TEST_METHOD(EventObjectVector_vecOps)
 		{
 			eo_v_1.push_back(std::make_shared<ScrollPoint>(sp_1));
@@ -77,6 +79,17 @@ namespace WrapperObjct_
 
 			Assert::AreEqual(size_t(0), eo_v_1.size());
 		}
+	};
+
+	TEST_CLASS(TimedObjectVector_) {
+
+		ScrollPoint sp_1 = ScrollPoint(100.0, 1.0);
+		ScrollPoint sp_2 = ScrollPoint(200.0, 2.0);
+
+		TimingPoint tp_1 = TimingPoint(100.0, 120.0, 4.0, 4.0);
+		TimingPoint tp_2 = TimingPoint(200.0, 250.0, 6.5, 4.0);
+		EventObjectVector eo_v_1 = EventObjectVector();
+
 		TEST_METHOD(TimedObjectVector_getOffset) {
 			std::vector<double> expected = { 100.0, 200.0, 100.0 };
 			eo_v_1.push_back(sp_1.Clone());
@@ -96,8 +109,10 @@ namespace WrapperObjct_
 			Assert::AreEqual(size_t(2), eo_v_2.size());
 			Assert::AreEqual(size_t(1), eo_v_3.size());
 		}
-		
 	};
+	
+	TEST_CLASS(VsrgMap_) {
 
+	};
 }
 	
