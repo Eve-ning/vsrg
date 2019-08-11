@@ -38,4 +38,54 @@ private:
 
 # Unit Test Conventions
 
-Undocumented
+Unit Testing has a pretty simple convention
+
+Each `FilterName` should go into a different file, named `FilterName.cpp`
+```
+#include "stdafx.h"
+#include "CppUnitTest.h"
+
+#include <ClassNameA.h>
+#include <ClassNameB.h>
+...
+
+#include <iostream>
+
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+
+namespace <FilterName>_
+{
+    TEST_CLASS(<ClassNameA>_)
+    {
+    public:
+        // Initialize objects here
+        ClassNameA var_1 = ClassNameA(...);
+        ClassNameA var_2 = ClassNameA(...);
+
+        TEST_METHOD(methodNameA_) {
+            ...
+        } 
+        TEST_METHOD(methodNameB_) {
+            ...
+        }
+        ...
+    };
+    TEST_CLASS(<ClassName>B_)
+    {
+    public:
+        // Initialize objects here
+        ClassNameB var_1 = ClassNameB(...);
+        ClassNameB var_2 = ClassNameB(...);
+
+        TEST_METHOD(methodNameA_) {
+            // Test
+            ...
+        }
+        TEST_METHOD(methodNameB_) {
+            // Test
+            ...
+        }
+        ...
+    }
+}
+```
