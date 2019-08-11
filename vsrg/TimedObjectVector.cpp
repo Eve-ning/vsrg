@@ -78,6 +78,35 @@ SPtrTimedObject TimedObjectVector::getLatestObject() const
 	return *std::max_element(cbegin(), cend());
 }
 
+bool TimedObjectVector::isValid() const
+{
+	// Runs through the whole vector to find any isValid == false, return false if found
+	std::for_each(cbegin(), cend(), [](const SPtrTimedObject & to) {
+		if (!to->isValid()) return false;
+	});
+	return true;
+}
+
+std::vector<unsigned int> TimedObjectVector::isInvalidIndexes() const
+{
+	std::vector<unsigned int> invalid_index_v = {};
+	unsigned int index = 0;
+	std::for_each(cbegin(), cend(), [&index, &invalid_index_v](const SPtrTimedObject & to) {
+		if (!to->isValid()) { invalid_index_v.push_back(index); };
+		index++;
+	});
+	return invalid_index_v;
+}
+
+std::vector<SPtrTimedObject> TimedObjectVector::isInvalidObjects() const
+{
+	std::vector<SPtrTimedObject> invalid_obj_v = {};
+	std::for_each(cbegin(), cend(), [&invalid_obj_v](SPtrTimedObject to) { // Note to copy the SPtr
+		if (!to->isValid()) { invalid_obj_v.push_back(to); };
+	});
+	return invalid_obj_v;
+}
+
 void TimedObjectVector::multiplyOffsetMSec(double offset_m_sec) {
 	std::transform(begin(), end(), begin(),
 		[offset_m_sec](SPtrTimedObject & to) -> SPtrTimedObject { to->operator*=(offset_m_sec); return to; });

@@ -49,10 +49,18 @@ public:
 	std::vector<SPtrTimedObject> getTimedObjectVector() const;	
 	void setTimedObjectVector(const std::vector<SPtrTimedObject> & to_v);
 
+	// While we could convert to Sec/Min/Hour, I think I'll leave it to them to convert via TimedObject
 	double getEarliestOffsetMSec() const;
 	double getLatestOffsetMSec() const;
 	SPtrTimedObject getEarliestObject() const;
 	SPtrTimedObject getLatestObject() const;
+
+	/// Loops the vector and calls isValid for every element, returns the AND result
+	bool isValid() const;
+	/// Loops the vector and returns the indexes of invalid objects
+	std::vector<unsigned int> isInvalidIndexes() const;
+	/// Loops the vector and returns the invalid objects
+	std::vector<SPtrTimedObject> isInvalidObjects() const;
 
 	void multiplyOffsetMSec(double offset_m_sec);
 	void divideOffsetMSec(double offset_m_sec);
