@@ -32,31 +32,12 @@ public:
 	void setTimeSigNumerator(double time_sig_numerator);
 	void setTimeSigDenominator(double time_sig_denominator);
 
-	/**
-	 * @brief Get the Beat Duration in Milliseconds
-	 * 
-	 * Use getMeasureDurationMSec for measures
-	 *
-	 * @param scale Defines the multiplier on the return value. 
-	 * @return double Returns the beat duration with respect to the scale
-	 */
+	/// Get the Beat Duration in Milliseconds scale defines the multiplier on the return value. 
 	double getBeatDurationMSec(double scale = 1.0);
-
-	/**
-	 * @brief Get the Measure Duration in Milliseconds
-	 *
-	 * Use getBeatDurationMSec for measures
-	 *
-	 * @param scale Defines the multiplier on the return value.
-	 * @return double Returns the measure duration with respect to the scale
-	 */
+	/// Get the Measure Duration in Milliseconds scale defines the multiplier on the return value. 
 	double getMeasureDurationMSec(double scale = 1.0);
 
-	/** 
-	 * @brief Checks if Time Signature is valid.
-	 * 
-	 * Checks if its a valid fraction or if it equates to 0
-	 */
+	/// Checks if Time Signature is a valid fraction or if it equates to 0
 	virtual bool isTimeSigValid() const;
 
 	/// Validates the object being realistic

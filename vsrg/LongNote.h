@@ -27,14 +27,7 @@ public:
 
 	/// Gets the distance between the two Hit Objects
 	virtual double getLength();
-	/**
-	 * @brief Checks if the object is between the 2 Hit Objects
-	 * 
-	 * @param offset_m_sec The offset to check if it's in between
-	 * @param include_ends To include the end points in the range
-	 * @return true Offset is in between the Long Note ends
-	 * @return false Offset is not in between the Long Note ends
-	 */
+    /// If the offset is between the 2 Hit Objects include_ends to include the end points in the range
 	virtual bool isBetween(double offset_m_sec, bool include_ends = false) const;
 
 	/// Validates the object being realistic
