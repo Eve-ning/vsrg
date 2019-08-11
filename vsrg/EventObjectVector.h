@@ -6,6 +6,4 @@ class EventObjectVector : public TimedObjectVector
 public:
 	EventObjectVector();
 	~EventObjectVector();
-
-	
 };

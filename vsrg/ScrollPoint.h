@@ -1,5 +1,6 @@
 #pragma once
 #include "EventObject.h"
+
 /**
  * @brief Defines the Scroll Speed Multiplier at a certain point.
  * 
@@ -65,8 +66,6 @@ public:
 
 	/// Gets info of the important object members
 	virtual std::string getInfo() const override;
-
-
 
 private:
 	/// Scroll Speed Multiplier

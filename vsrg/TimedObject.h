@@ -1,16 +1,15 @@
 #pragma once
 #include <string>
 
-// Abstract Class, used for all "timable" objects
-// Note that it stores the offset in ms, so any function that requires it in another format will call an additional function
+/**
+ * @brief Abstract Class, used for all "timable" objects
+
+ * Note that it stores the offset in ms,
+ * so any function that requires it in other units will call a converter
+ */
 class TimedObject
 {
 public:
-	/**
-	 * @brief Construct a new Timed Object
-	 * 
-	 * @param offset_m_sec 
-	 */
 	TimedObject(double offset_m_sec);
 	virtual ~TimedObject() = 0;
 
