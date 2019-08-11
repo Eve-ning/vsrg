@@ -14,6 +14,8 @@ public:
 	LongNote(SPtrHitObject start_ho, SPtrHitObject end_ho);
 	LongNote(const LongNote & ln);
 	~LongNote();
+	/// Deep Copies the 2 HitObjects into a new LongNote
+	LongNote Clone() const;
 
 	/// Gets a copied shared_ptr of the Start Hit Object
 	SPtrHitObject getStartNote() const;
@@ -29,6 +31,8 @@ public:
 	virtual double getLength();
     /// If the offset is between the 2 Hit Objects include_ends to include the end points in the range
 	virtual bool isBetween(double offset_m_sec, bool include_ends = false) const;
+
+	virtual bool isOverlapping(const LongNote & ln);
 
 	/// Validates the object being realistic
 	virtual bool isValid() const;

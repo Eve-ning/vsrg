@@ -14,6 +14,15 @@ LongNote::~LongNote()
 { // Do not delete SPtr explicitly!
 }
 
+LongNote LongNote::Clone() const {
+	SPtrHitObject start_ho =
+		std::static_pointer_cast<HitObject>(getStartNote()->Clone());
+	SPtrHitObject end_ho =
+		std::static_pointer_cast<HitObject>(getEndNote()->Clone());
+
+	return LongNote(start_ho, end_ho);
+}
+
 SPtrHitObject LongNote::getStartNote() const {
 	return start_ho_;
 }
@@ -43,6 +52,26 @@ bool LongNote::isBetween(double offset_m_sec, bool include_ends) const {
 		return (offset_m_sec > start_ho_->getOffsetMSec()) &&
 			(offset_m_sec < end_ho_->getOffsetMSec());
 	}
+}
+
+bool LongNote::isOverlapping(const LongNote & ln) {
+	// If either LNs are invalid, we cannot check
+	if (!(isValid() && ln.isValid())) return false; // TODO: Add an exception here
+
+	SPtrHitObject start_ho = getStartNote();
+	SPtrHitObject start_ho_other = ln.getStartNote();
+
+	// Indexes don't match, it cannot overlap
+	if (start_ho      ->getIndex() !=
+		start_ho_other->getIndex()) return false;
+
+	SPtrHitObject end_ho_other = ln.getEndNote();
+
+	// If either ends are in between, it overlaps
+	if (isBetween(start_ho_other->getOffsetMSec()) ||
+		isBetween(end_ho_other  ->getOffsetMSec())) return true;
+	
+	return false;
 }
 
 bool LongNote::isValid() const {
