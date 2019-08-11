@@ -11,6 +11,7 @@
 // Windows Header Files
 #include <windows.h>
 #include <algorithm> 
+#include <boost/assert.hpp>
 
 
 // reference additional headers your program requires here
