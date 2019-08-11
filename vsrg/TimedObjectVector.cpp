@@ -80,10 +80,14 @@ SPtrTimedObject TimedObjectVector::getLatestObject() const
 
 bool TimedObjectVector::isValid() const
 {
+	// Using std::for_each raises a warning for some reason
+
 	// Runs through the whole vector to find any isValid == false, return false if found
-	std::for_each(cbegin(), cend(), [](const SPtrTimedObject & to) {
-		if (!to->isValid()) return false;
-	});
+	for (const SPtrTimedObject & to : getTimedObjectVector()) {
+		if (!to->isValid()) { return false; }
+		else { continue; }
+	}
+
 	return true;
 }
 
