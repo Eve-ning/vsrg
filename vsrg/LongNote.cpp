@@ -55,8 +55,7 @@ bool LongNote::isBetween(double offset_m_sec, bool include_ends) const {
 }
 
 bool LongNote::isOverlapping(const LongNote & ln) {
-	// If either LNs are invalid, we cannot check
-	if (!(isValid() && ln.isValid())) return false; // TODO: Add an exception here
+	BOOST_ASSERT_MSG(isValid() && ln.isValid(), "Both LongNotes must be Valid");
 
 	SPtrHitObject start_ho = getStartNote();
 	SPtrHitObject start_ho_other = ln.getStartNote();
@@ -119,5 +118,6 @@ LongNote & LongNote::operator=(const LongNote & ln)
 }
 
 std::string LongNote::toExport() const {
+	BOOST_ASSERT_MSG(isValid(), "Both LongNotes must be Valid");
 	return getInfo();
 }

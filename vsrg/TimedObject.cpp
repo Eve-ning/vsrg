@@ -54,6 +54,11 @@ std::string TimedObject::getInfo() const
 	return "Offset " + std::to_string(offset_m_sec_) + '\n';
 }
 
+std::string TimedObject::toExport() const {
+	BOOST_ASSERT_MSG(isValid(), "Object must pass isValid() == true to be exported.");
+	return getInfo();
+}
+
 TimedObject::operator std::string() const {
 	return toExport();
 }
