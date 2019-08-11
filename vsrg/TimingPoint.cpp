@@ -25,7 +25,7 @@ double TimingPoint::getTimeSigDenominator() const {
 	return time_sig_denominator_;
 }
 
-void TimingPoint::setBpm(double bpm) {
+void TimingPoint::setBpm(double bpm) {	
 	bpm_ = bpm;
 }
 
