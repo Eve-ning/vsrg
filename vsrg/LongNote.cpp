@@ -99,7 +99,7 @@ std::string LongNote::getInfo() const {
 
 LongNote::operator std::string() const
 {
-	return getInfo();
+	return toExport();
 }
 
 bool LongNote::operator==(const LongNote & ln) const
@@ -116,4 +116,8 @@ LongNote & LongNote::operator=(const LongNote & ln)
 	setEndNote(std::static_pointer_cast<HitObject>(ln.getEndNote()->Clone()));
 
 	return *this;
+}
+
+std::string LongNote::toExport() const {
+	return getInfo();
 }

@@ -66,6 +66,8 @@ public:
 	/// Gets info of the important object members
 	virtual std::string getInfo() const override;
 
+
+
 private:
 	/// Scroll Speed Multiplier
 	double scroll_speed_mult_;

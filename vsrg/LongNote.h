@@ -40,10 +40,15 @@ public:
 
 	/// Gets info of the important object members
 	virtual std::string getInfo() const;
-	virtual operator std::string() const; // Calls getInfo
+	virtual operator std::string() const; // Calls toExport
+	/// toExport handles the string exported to files, unlike getInfo which prints more details
+	virtual std::string toExport() const;
 
 	virtual bool operator==(const LongNote & ln) const;
 	LongNote &   operator= (const LongNote & ln);
+
+
+	
 
 private:
 	SPtrHitObject start_ho_;

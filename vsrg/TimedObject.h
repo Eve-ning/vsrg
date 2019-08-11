@@ -40,6 +40,9 @@ public:
 
 	/// Gets info of the important object members
 	virtual std::string getInfo() const;
+	virtual std::string toExport() const {
+		return getInfo();
+	}
 	virtual operator std::string() const final; // Calls getInfo
 
 	virtual bool operator==(const TimedObject & obj) const;

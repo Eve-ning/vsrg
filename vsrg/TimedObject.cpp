@@ -55,7 +55,7 @@ std::string TimedObject::getInfo() const
 }
 
 TimedObject::operator std::string() const {
-	return getInfo();
+	return toExport();
 }
 
 bool TimedObject::operator==(const TimedObject & obj) const
