@@ -18,6 +18,5 @@ public:
 private:
 	HitObjectVector ho_v_;
 	EventObjectVector to_v_;
-	
 };
 
