@@ -41,6 +41,8 @@ private:
 Unit Testing has a pretty simple convention
 
 Each `FilterName` should go into a different file, named `FilterName.cpp`
+
+All methods should be tested unless they are **aliased** or **inherited**.
 ```
 #include "stdafx.h"
 #include "CppUnitTest.h"
