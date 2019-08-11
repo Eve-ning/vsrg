@@ -19,6 +19,6 @@ public:
 	std::shared_ptr<TimedObject> Clone() const override;
 	
 	bool operator==(const NormalNote & nn) const;
-	bool isOverlapping(const NormalNote & nn) const;
+	bool isOverlapping(const NormalNote & nn) const;	
 };
 

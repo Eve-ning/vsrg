@@ -3,7 +3,7 @@
 
 
 TimingPoint::TimingPoint(double offset_m_sec, double bpm, double time_sig_numerator, double time_sig_denominator) :
-	TimedObject(offset_m_sec), bpm_(bpm), time_sig_numerator_(time_sig_numerator), time_sig_denominator_(time_sig_denominator) {}
+	EventObject(offset_m_sec), bpm_(bpm), time_sig_numerator_(time_sig_numerator), time_sig_denominator_(time_sig_denominator) {}
 
 TimingPoint::~TimingPoint()
 {
