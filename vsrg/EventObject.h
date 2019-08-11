@@ -12,6 +12,9 @@ public:
 	EventObject(double offset_m_sec);
 	~EventObject() = 0;
 	virtual std::shared_ptr<TimedObject> Clone() const override = 0;
+
+	/// Gets info of the important object members
+	virtual std::string getInfo() const override;
 };
 
 typedef std::shared_ptr<EventObject> SPtrEventObject;

@@ -1,13 +1,13 @@
 #pragma once
-#include "TimedObject.h"
+#include "EventObject.h"
 /**
- * @brief Inherits from TimedObject, mainly used to time a song
+ * @brief Inherits from EventObject, mainly used to time a song
  * 
  * While can be used to add effects, it's encouraged to not use this as it has triggerable validation functions that will trigger false positives unless turned off.
  * Recommend to use ScrollPoint instead for effects.
  * Measure Lines are not included in this, it needs to be inherited, then implemented. This is so that it's fully customizable and not hardcoded.
  */
-class TimingPoint : public TimedObject
+class TimingPoint : public EventObject
 {
 public:
 	/**
@@ -61,6 +61,9 @@ public:
 
 	/// Validates the object being realistic
 	virtual bool isValid() const override;
+
+	/// Gets info of the important object members
+	virtual std::string getInfo() const override;
 
 private:
 	/// Beats per Minute

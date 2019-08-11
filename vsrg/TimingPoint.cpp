@@ -54,3 +54,12 @@ bool TimingPoint::isTimeSigValid() const {
 bool TimingPoint::isValid() const {
 	return (TimedObject::isValid() && isTimeSigValid()) && (getBpm() > 0);
 }
+
+/// Gets info of the important object members
+
+std::string TimingPoint::getInfo() const {
+	return EventObject::getInfo() +
+		"BPM " + std::to_string(bpm_) + '\n' +
+		"Time Signature Numerator " + std::to_string(time_sig_numerator_) + '\n' +
+		"Time Signature Denominator " + std::to_string(time_sig_denominator_) + '\n';
+}
