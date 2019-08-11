@@ -49,6 +49,11 @@ public:
 	std::vector<SPtrTimedObject> getTimedObjectVector() const;	
 	void setTimedObjectVector(const std::vector<SPtrTimedObject> & to_v);
 
+	double getEarliestOffsetMSec() const;
+	double getLatestOffsetMSec() const;
+	SPtrTimedObject getEarliestObject() const;
+	SPtrTimedObject getLatestObject() const;
+
 	void multiplyOffsetMSec(double offset_m_sec);
 	void divideOffsetMSec(double offset_m_sec);
 	void addOffsetMSec(double offset_m_sec);

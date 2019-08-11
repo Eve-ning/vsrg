@@ -57,6 +57,27 @@ void TimedObjectVector::setTimedObjectVector(const std::vector<SPtrTimedObject>&
 	to_v_ = to_v;
 }
 
+double TimedObjectVector::getEarliestOffsetMSec() const {
+	std::vector<double> offset_v = getOffsetMSecVector(false);
+	return *std::min_element(offset_v.cbegin(), offset_v.cend());
+}
+
+double TimedObjectVector::getLatestOffsetMSec() const
+{
+	std::vector<double> offset_v = getOffsetMSecVector(false);
+	return *std::max_element(offset_v.cbegin(), offset_v.cend());
+}
+
+SPtrTimedObject TimedObjectVector::getEarliestObject() const
+{
+	return *std::min_element(cbegin(), cend());
+}
+
+SPtrTimedObject TimedObjectVector::getLatestObject() const
+{
+	return *std::max_element(cbegin(), cend());
+}
+
 void TimedObjectVector::multiplyOffsetMSec(double offset_m_sec) {
 	std::transform(begin(), end(), begin(),
 		[offset_m_sec](SPtrTimedObject & to) -> SPtrTimedObject { to->operator*=(offset_m_sec); return to; });
