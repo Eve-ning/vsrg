@@ -43,6 +43,10 @@ public:
 	virtual operator std::string() const final; // Calls getInfo
 
 	virtual bool operator==(const TimedObject & obj) const;
+	virtual bool operator>(const TimedObject & obj) const;
+	virtual bool operator<(const TimedObject & obj) const;
+	virtual bool operator<=(const TimedObject & obj) const;
+	virtual bool operator>=(const TimedObject & obj) const;
 	std::shared_ptr<TimedObject> operator*(double by_m_sec) const;
 	std::shared_ptr<TimedObject> operator/(double by_m_sec) const;
 	std::shared_ptr<TimedObject> operator+(double by_m_sec) const;

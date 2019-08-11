@@ -63,6 +63,26 @@ bool TimedObject::operator==(const TimedObject & obj) const
 	return getOffsetMSec() == obj.getOffsetMSec();
 }
 
+bool TimedObject::operator>(const TimedObject & obj) const
+{
+	return getOffsetMSec() > obj.getOffsetMSec();
+}
+
+bool TimedObject::operator<(const TimedObject & obj) const
+{
+	return getOffsetMSec() < obj.getOffsetMSec();
+}
+
+bool TimedObject::operator<=(const TimedObject & obj) const
+{
+	return getOffsetMSec() >= obj.getOffsetMSec();
+}
+
+bool TimedObject::operator>=(const TimedObject & obj) const
+{
+	return getOffsetMSec() <= obj.getOffsetMSec();
+}
+
 std::shared_ptr<TimedObject> TimedObject::operator*(double by_m_sec) const {
 	std::shared_ptr<TimedObject> to = Clone(); to->setOffsetMSec(to->getOffsetMSec() * by_m_sec); return to;
 }
