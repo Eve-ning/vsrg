@@ -83,9 +83,6 @@
     <ClCompile Include="vsrg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VsrgMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EventObject.cpp">
       <Filter>Timed Objects\Event Objects</Filter>
     </ClCompile>
@@ -116,5 +113,11 @@
     <ClCompile Include="EventObjectVector.cpp">
       <Filter>Wrapper Objects\Timed Objects</Filter>
     </ClCompile>
+    <ClCompile Include="VsrgMap.cpp">
+      <Filter>Wrapper Objects</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
