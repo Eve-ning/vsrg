@@ -1,113 +1,83 @@
 #include "stdafx.h"
 #include "LongNote.h"
 
-LongNote::LongNote(SPtrHitObject start_ho, SPtrHitObject end_ho) :
-	start_ho_(start_ho), end_ho_(end_ho) {}
-LongNote::LongNote(const LongNote & ln) {
-	// Static Pointer cast to promote from TimedObject to HitObject
-	start_ho_ = std::static_pointer_cast<HitObject>(start_ho_->Clone());
-	end_ho_ = std::static_pointer_cast<HitObject>(end_ho_->Clone());
-}
-LongNote::~LongNote() {} // Do not delete SPtr explicitly!
+LongNote::LongNote(double offset_m_sec, unsigned int index, double length) :
+	HitObject(offset_m_sec, index), length_m_sec_(length) {}
 
-LongNote LongNote::Clone() const {
-	SPtrHitObject start_ho =
-		std::static_pointer_cast<HitObject>(start_ho_->Clone());
-	SPtrHitObject end_ho =
-		std::static_pointer_cast<HitObject>(end_ho_->Clone());
+LongNote::~LongNote() {} 
 
-	return LongNote(start_ho, end_ho);
+SPtrTimedObject LongNote::Clone() const {
+	return std::make_shared<LongNote>(*this);
 }
 
-SPtrHitObject LongNote::getStartNote() const {
-	return start_ho_;
-}
-SPtrHitObject LongNote::getEndNote() const {
-	return end_ho_;
-}
-void LongNote::setStartNote(SPtrHitObject start_ho) {
-	start_ho_ = start_ho;
-}
-void LongNote::setEndNote(SPtrHitObject end_ho) {
-	end_ho_ = end_ho;
+// To extend this via aesthetics PR
+
+inline double LongNote::getLengthMSec() {
+	return length_m_sec_;
 }
 
-double LongNote::getLength() {
-	return end_ho_->getOffsetMSec() - start_ho_->getOffsetMSec();
+inline void LongNote::setLengthMSec(double length_m_sec) {
+	length_m_sec_ = length_m_sec;
+}
+
+double LongNote::getOffsetEndMSec() const {
+	return getOffsetMSec() + length_m_sec_;
+}
+double LongNote::getOffsetEndSec() const {
+	return getOffsetSec() + length_m_sec_ * TimedObject::sec_to_m_sec;
+}
+double LongNote::getOffsetEndMin() const {
+	return getOffsetMin() + length_m_sec_ * TimedObject::min_to_m_sec;
+}
+double LongNote::getOffsetEndHour() const {
+	return getOffsetHour() + length_m_sec_ * TimedObject::hour_to_m_sec;
+}
+
+inline void LongNote::setOffsetEndMSec(double offset_end_m_sec) {
+	length_m_sec_ = (offset_end_m_sec - getOffsetEndMSec());
+}
+
+inline void LongNote::setOffsetEndSec(double offset_end_sec) {
+	length_m_sec_ = (offset_end_sec - getOffsetEndSec()) / TimedObject::sec_to_m_sec;
+}
+
+inline void LongNote::setOffsetEndMin(double offset_end_min) {
+	length_m_sec_ = (offset_end_min - getOffsetEndMin()) / TimedObject::min_to_m_sec;
+}
+
+inline void LongNote::setOffsetEndHour(double offset_end_hour) {
+	length_m_sec_ = (offset_end_hour - getOffsetEndHour()) / TimedObject::hour_to_m_sec;
 }
 
 bool LongNote::isBetween(double offset_m_sec, bool include_ends) const {
+	double difference = offset_m_sec - getOffsetMSec();
+	
 	if (include_ends) {
-		return (offset_m_sec >= start_ho_->getOffsetMSec()) &&
-			   (offset_m_sec <= end_ho_->getOffsetMSec());
+		return (difference >= 0) && (difference <= length_m_sec_);
 	}
 	else {
-		return (offset_m_sec > start_ho_->getOffsetMSec()) &&
-			   (offset_m_sec < end_ho_->getOffsetMSec());
+		return (difference > 0) && (difference < length_m_sec_);
 	}
 }
 
-bool LongNote::isOverlapping(const LongNote & ln) {
+bool LongNote::isOverlapping(const LongNote & ln, bool include_ends) const {
 	BOOST_ASSERT_MSG(isValid() && ln.isValid(), "Both LongNotes must be Valid");
-
-	SPtrHitObject start_ho = getStartNote();
-	SPtrHitObject start_ho_other = ln.getStartNote();
-
-	// Indexes don't match, it cannot overlap
-	if (start_ho->getIndex() !=
-		start_ho_other->getIndex()) return false;
-
-	SPtrHitObject end_ho_other = ln.getEndNote();
-
-	// If either ends are in between, it overlaps
-	if (isBetween(start_ho_other->getOffsetMSec()) ||
-		  isBetween(end_ho_other->getOffsetMSec())) return true;
 	
-	return false;
+	return isBetween(ln.getOffsetMSec(), include_ends) ||
+		isBetween(ln.getOffsetEndMSec(), include_ends);
 }
 
 bool LongNote::isValid() const {
-	if (bool(start_ho_) && bool(end_ho_)) { // Both must be valid separately
-		// Start must be earlier than End
-		bool valid_offset =
-			start_ho_->getOffsetMSec() < end_ho_->getOffsetMSec();
-		// Both must be on the same index
-		bool valid_index =
-			start_ho_->getIndex() == end_ho_->getIndex();
-
-		return (valid_offset && valid_index);
-	}
-	else {
-		return false;
-	}
-}
-
-LongNote::operator bool() const {
-	return isValid();
+	return HitObject::isValid() && length_m_sec_ > 0;
 }
 
 std::string LongNote::getInfo() const {
-	return
-		"Start \n" + start_ho_->getInfo() +
-		"End \n" + end_ho_->getInfo();
-}
-
-LongNote::operator std::string() const {
-	return toExport();
+	return HitObject::getInfo() +
+		"Length " + std::to_string(length_m_sec_);
 }
 
 bool LongNote::operator==(const LongNote & ln) const {
-	// Equivalent of comparing the HitObjects of the lns
-	return (getStartNote()->isOverlapping(ln.getStartNote())) &&
-		     (getEndNote()->isOverlapping(ln.getEndNote()));
-}
-
-LongNote & LongNote::operator=(const LongNote & ln) {
-	// Static Pointer cast to promote from TimedObject to HitObject
-	setStartNote(std::static_pointer_cast<HitObject>(ln.getStartNote()->Clone()));
-	setEndNote(  std::static_pointer_cast<HitObject>(ln.getEndNote()->Clone()));
-
-	return *this;
+	return isOverlapping(ln);
 }
 
 std::string LongNote::toExport() const {
