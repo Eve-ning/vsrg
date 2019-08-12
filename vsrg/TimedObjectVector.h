@@ -62,6 +62,9 @@ public:
 	/// Loops the vector and returns the invalid objects
 	std::vector<SPtrTimedObject> isInvalidObjects() const;
 
+	/// Loops the vector and calls toExport to push in vector
+	virtual std::vector<std::string> toExport() const final;
+
 	void multiplyOffsetMSec(double offset_m_sec);
 	void divideOffsetMSec(double offset_m_sec);
 	void addOffsetMSec(double offset_m_sec);

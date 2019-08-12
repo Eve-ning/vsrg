@@ -106,6 +106,14 @@ std::vector<SPtrTimedObject> TimedObjectVector::isInvalidObjects() const {
 	return invalid_obj_v;
 }
 
+std::vector<std::string> TimedObjectVector::toExport() const {
+	std::vector<std::string> exported = {};
+	for (const SPtrTimedObject & to : to_v_) {
+		exported.push_back(to->toExport());
+	}
+	return exported;
+}
+
 void TimedObjectVector::multiplyOffsetMSec(double offset_m_sec) {
 	std::transform(begin(), end(), begin(),
 		[offset_m_sec](SPtrTimedObject & to) -> SPtrTimedObject {
