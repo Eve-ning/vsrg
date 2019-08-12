@@ -79,5 +79,5 @@ private:
 
 	/// Helper function for getOffset___Vector Variants. Scale scales the offset
 	std::vector<double> getOffsetXVector(bool sort = false, double scale = 1.0) const;
-	std::vector<SPtrTimedObject> to_v_;
+	std::vector<SPtrTimedObject> eo_v_;
 };
