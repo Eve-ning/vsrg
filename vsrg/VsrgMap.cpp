@@ -10,7 +10,7 @@ std::string VsrgMap::eo_v_tag_ = "// Event Objects";
 VsrgMap::VsrgMap() {}
 VsrgMap::~VsrgMap() {}
 
-void VsrgMap::saveAsVsrg(const std::string & file_path, bool overwrite = false) {
+void VsrgMap::saveAsVsrg(const std::string & file_path, bool overwrite) {
 	if (!overwrite) {
 		BOOST_ASSERT_MSG(!std::filesystem::exists(file_path),
 						 "File already exists.");
