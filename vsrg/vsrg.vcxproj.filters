@@ -80,9 +80,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Exporting Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="vsrg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EventObject.cpp">
       <Filter>Timed Objects\Event Objects</Filter>
     </ClCompile>
@@ -115,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="VsrgMap.cpp">
       <Filter>Wrapper Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="vsrg.cpp">
+      <Filter>Exporting Helpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
