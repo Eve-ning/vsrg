@@ -22,10 +22,8 @@ namespace WrapperObjct_
 		NormalNote nn_1 = NormalNote(100.0, 3);
 		NormalNote nn_2 = NormalNote(200.0, 4);
 
-		LongNote ln_1 = LongNote(std::make_shared<NormalNote>(NormalNote(100.0, 5)),
-								 std::make_shared<NormalNote>(NormalNote(300.0, 5)));
-		LongNote ln_2 = LongNote(std::make_shared<NormalNote>(NormalNote(200.0, 6)),
-								 std::make_shared<NormalNote>(NormalNote(400.0, 7)));
+		LongNote ln_1 = LongNote(100.0, 5, 200.0);
+		LongNote ln_2 = LongNote(200.0, 6, 200.0);
 		HitObjectVector ho_v_1 = HitObjectVector();
 
 		TEST_METHOD(HitObjectVector_vecOps)
@@ -39,12 +37,10 @@ namespace WrapperObjct_
 
 			Assert::AreEqual(size_t(1), ho_v_1.size());
 
-			// LN has 2 objs
-			ho_v_1.push_back(ln_1.getStartNote());
-			ho_v_1.push_back(ln_1.getEndNote());
+			ho_v_1.push_back(std::make_shared<LongNote>(ln_1));
 
 			// Check for polymorphism
-			Assert::AreEqual(size_t(3), ho_v_1.size());
+			Assert::AreEqual(size_t(2), ho_v_1.size());
 
 			ho_v_1.clear();
 

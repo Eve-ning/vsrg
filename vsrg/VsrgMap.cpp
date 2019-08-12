@@ -12,7 +12,7 @@ VsrgMap::~VsrgMap() {}
 
 void VsrgMap::saveAsVsrg(const std::string & file_path, bool overwrite) {
 	if (!overwrite) {
-		BOOST_ASSERT_MSG(!std::filesystem::exists(file_path),
+	BOOST_ASSERT_MSG(!std::filesystem::exists(file_path),
 						 "File already exists.");
 	}
 
