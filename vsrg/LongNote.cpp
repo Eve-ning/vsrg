@@ -12,11 +12,10 @@ SPtrTimedObject LongNote::Clone() const {
 
 // To extend this via aesthetics PR
 
-inline double LongNote::getLengthMSec() {
+double LongNote::getLengthMSec() {
 	return length_m_sec_;
 }
-
-inline void LongNote::setLengthMSec(double length_m_sec) {
+void LongNote::setLengthMSec(double length_m_sec) {
 	length_m_sec_ = length_m_sec;
 }
 
@@ -33,19 +32,19 @@ double LongNote::getOffsetEndHour() const {
 	return getOffsetHour() + length_m_sec_ * TimedObject::hour_to_m_sec;
 }
 
-inline void LongNote::setOffsetEndMSec(double offset_end_m_sec) {
+void LongNote::setOffsetEndMSec(double offset_end_m_sec) {
 	length_m_sec_ = (offset_end_m_sec - getOffsetEndMSec());
 }
 
-inline void LongNote::setOffsetEndSec(double offset_end_sec) {
+void LongNote::setOffsetEndSec(double offset_end_sec) {
 	length_m_sec_ = (offset_end_sec - getOffsetEndSec()) / TimedObject::sec_to_m_sec;
 }
 
-inline void LongNote::setOffsetEndMin(double offset_end_min) {
+void LongNote::setOffsetEndMin(double offset_end_min) {
 	length_m_sec_ = (offset_end_min - getOffsetEndMin()) / TimedObject::min_to_m_sec;
 }
 
-inline void LongNote::setOffsetEndHour(double offset_end_hour) {
+void LongNote::setOffsetEndHour(double offset_end_hour) {
 	length_m_sec_ = (offset_end_hour - getOffsetEndHour()) / TimedObject::hour_to_m_sec;
 }
 
