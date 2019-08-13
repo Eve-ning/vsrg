@@ -28,10 +28,10 @@ public:
 	};
 
 	/// Gets Offset in milliseconds
-	double getOffset(double unit_scale = 1.0) const; 
+	double getOffset(double unit_scale = TimedObject::UnitScale::msecond) const;
 
 	/// Sets Offset in milliseconds
-	void setOffset(double offset_m_sec, double unit_scale = 1.0);
+	void setOffset(double offset_m_sec, double unit_scale = TimedObject::UnitScale::msecond);
 
 	/// Validates the object being realistic
 	virtual bool isValid() const;

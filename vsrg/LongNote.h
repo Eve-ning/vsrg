@@ -17,15 +17,19 @@ public:
 	SPtrTimedObject Clone() const;
 
 	// To extend this via aesthetics PR
-	virtual double getLength(double unit_scale);
-	virtual void setLength(double length, double unit_scale);
+	virtual double getLength(double unit_scale = TimedObject::UnitScale::msecond);
+	virtual void setLength(double length,
+		double unit_scale = TimedObject::UnitScale::msecond);
 
-	virtual double getOffsetEnd(double unit_scale) const;
+	virtual double getOffsetEnd(
+		double unit_scale = TimedObject::UnitScale::msecond) const;
 	
-	virtual void setOffsetEnd(double offset_end, double unit_scale);
+	virtual void setOffsetEnd(double offset_end,
+		double unit_scale = TimedObject::UnitScale::msecond);
 
     /// If the offset is between the 2 Hit Objects include_ends to include the end points in the range
-	virtual bool isBetween(double offset_m_sec, bool include_ends = false, double unit_scale = 1.0) const;
+	virtual bool isBetween(double offset_m_sec, bool include_ends = false,
+		double unit_scale = TimedObject::UnitScale::msecond) const;
 
 	virtual bool isOverlapping(const LongNote & ln, bool include_ends = false) const;
 

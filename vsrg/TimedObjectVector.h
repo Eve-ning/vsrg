@@ -29,7 +29,8 @@ public:
 	bool isEmpty();
 	size_t size() const;
 
-	std::vector<double> getOffsetVector(bool sort = false, double unit_scale = 1.0) const;
+	std::vector<double> getOffsetVector(bool sort = false,
+		double unit_scale = TimedObject::UnitScale::msecond) const;
 	
 	/// Runs a cast check on the vector and returns a vector of matches of class specified
 	template<class T>
@@ -47,8 +48,8 @@ public:
 	void setTimedObjectVector(const std::vector<SPtrTimedObject> & to_v);
 
 	// While we could convert to Sec/Min/Hour, I think I'll leave it to them to convert via TimedObject
-	double getEarliestOffset(double unit_scale) const;
-	double getLatestOffset(double unit_scale) const;
+	double getEarliestOffset(double unit_scale = TimedObject::UnitScale::msecond) const;
+	double getLatestOffset(double unit_scale = TimedObject::UnitScale::msecond) const;
 	SPtrTimedObject getEarliestObject() const;
 	SPtrTimedObject getLatestObject() const;
 
