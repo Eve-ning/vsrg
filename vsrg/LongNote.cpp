@@ -12,44 +12,22 @@ SPtrTimedObject LongNote::Clone() const {
 
 // To extend this via aesthetics PR
 
-double LongNote::getLengthMSec() {
-	return length_m_sec_;
+double LongNote::getLength(double unit_scale) {
+	return length_m_sec_ * unit_scale;
 }
-void LongNote::setLengthMSec(double length_m_sec) {
-	length_m_sec_ = length_m_sec;
-}
-
-double LongNote::getOffsetEndMSec() const {
-	return getOffsetMSec() + length_m_sec_;
-}
-double LongNote::getOffsetEndSec() const {
-	return getOffsetSec() + length_m_sec_ * TimedObject::sec_to_m_sec;
-}
-double LongNote::getOffsetEndMin() const {
-	return getOffsetMin() + length_m_sec_ * TimedObject::min_to_m_sec;
-}
-double LongNote::getOffsetEndHour() const {
-	return getOffsetHour() + length_m_sec_ * TimedObject::hour_to_m_sec;
+void LongNote::setLength(double length, double unit_scale) {
+	length_m_sec_ = length / unit_scale;
 }
 
-void LongNote::setOffsetEndMSec(double offset_end_m_sec) {
-	length_m_sec_ = (offset_end_m_sec - getOffsetEndMSec());
+double LongNote::getOffsetEnd(double unit_scale) const {
+	return getOffset(unit_scale) + length_m_sec_ * unit_scale;
+}
+void LongNote::setOffsetEnd(double offset_end_m_sec, double unit_scale) {
+	length_m_sec_ = (offset_end_m_sec / unit_scale) - getOffset(unit_scale);
 }
 
-void LongNote::setOffsetEndSec(double offset_end_sec) {
-	length_m_sec_ = (offset_end_sec - getOffsetEndSec()) / TimedObject::sec_to_m_sec;
-}
-
-void LongNote::setOffsetEndMin(double offset_end_min) {
-	length_m_sec_ = (offset_end_min - getOffsetEndMin()) / TimedObject::min_to_m_sec;
-}
-
-void LongNote::setOffsetEndHour(double offset_end_hour) {
-	length_m_sec_ = (offset_end_hour - getOffsetEndHour()) / TimedObject::hour_to_m_sec;
-}
-
-bool LongNote::isBetween(double offset_m_sec, bool include_ends) const {
-	double difference = offset_m_sec - getOffsetMSec();
+bool LongNote::isBetween(double offset, bool include_ends, double unit_scale) const {
+	double difference = offset - getOffset();
 	
 	if (include_ends) {
 		return (difference >= 0) && (difference <= length_m_sec_);
@@ -62,8 +40,8 @@ bool LongNote::isBetween(double offset_m_sec, bool include_ends) const {
 bool LongNote::isOverlapping(const LongNote & ln, bool include_ends) const {
 	BOOST_ASSERT_MSG(isValid() && ln.isValid(), "Both LongNotes must be Valid");
 	
-	return isBetween(ln.getOffsetMSec(), include_ends) ||
-		isBetween(ln.getOffsetEndMSec(), include_ends);
+	return isBetween(ln.getOffset(), include_ends) ||
+		isBetween(ln.getOffset(), include_ends);
 }
 
 bool LongNote::isValid() const {

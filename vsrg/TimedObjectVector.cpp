@@ -39,18 +39,6 @@ size_t TimedObjectVector::size() const {
 	return eo_v_.size();
 }
 
-std::vector<double> TimedObjectVector::getOffsetHourVector(bool sort) const {
-	return getOffsetXVector(sort, TimedObject::hour_to_m_sec);
-}
-std::vector<double> TimedObjectVector::getOffsetMinVector(bool sort) const {
-	return getOffsetXVector(sort, TimedObject::min_to_m_sec);
-}
-std::vector<double> TimedObjectVector::getOffsetSecVector(bool sort) const {
-	return getOffsetXVector(sort, TimedObject::sec_to_m_sec);
-}
-std::vector<double> TimedObjectVector::getOffsetMSecVector(bool sort) const {
-	return getOffsetXVector(sort, 1.0);
-}
 
 std::vector<SPtrTimedObject> TimedObjectVector::getTimedObjectVector() const {
 	return eo_v_;
@@ -59,12 +47,12 @@ void TimedObjectVector::setTimedObjectVector(const std::vector<SPtrTimedObject>&
 	eo_v_ = to_v;
 }
 
-double TimedObjectVector::getEarliestOffsetMSec() const {
-	std::vector<double> offset_v = getOffsetMSecVector(false);
+double TimedObjectVector::getEarliestOffset(double unit_scale) const {
+	std::vector<double> offset_v = getOffsetVector(false, unit_scale);
 	return *std::min_element(offset_v.cbegin(), offset_v.cend());
 }
-double TimedObjectVector::getLatestOffsetMSec() const {
-	std::vector<double> offset_v = getOffsetMSecVector(false);
+double TimedObjectVector::getLatestOffset(double unit_scale) const {
+	std::vector<double> offset_v = getOffsetVector(false, unit_scale);
 	return *std::max_element(offset_v.cbegin(), offset_v.cend());
 }
 
@@ -155,19 +143,13 @@ void TimedObjectVector::operator-=(double offset_m_sec) {
 	subtractOffsetMSec(offset_m_sec);
 }
 
-std::vector<double> TimedObjectVector::getOffsetXVector(bool sort, double scale) const {
+std::vector<double> TimedObjectVector::getOffsetVector(bool sort, double unit_scale) const {
 	std::vector<double> offset_v = {};
-	// We use a high level comparison check to avoid checking every loop if scale == 1.0
-	if (scale == 1.0) {
-		for (const SPtrTimedObject & to : eo_v_) {
-			offset_v.push_back(to->getOffsetMSec());
-		}
+
+	for (const SPtrTimedObject & to : eo_v_) {
+		offset_v.push_back(to->getOffset(unit_scale));
 	}
-	else {
-		for (const SPtrTimedObject & to : eo_v_) {
-			offset_v.push_back(to->getOffsetMSec() / scale);
-		}
-	}
+
 	if (sort) { std::sort(offset_v.begin(), offset_v.end()); } 
 
 	return offset_v;

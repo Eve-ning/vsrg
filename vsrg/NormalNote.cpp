@@ -11,7 +11,7 @@ std::shared_ptr<TimedObject> NormalNote::Clone() const {
 }
 
 bool NormalNote::operator==(const NormalNote & nn) const {
-	return (getOffsetMSec() == nn.getOffsetMSec()) &&
+	return (getOffset() == nn.getOffset()) &&
 			    (getIndex() == nn.getIndex());
 }
 

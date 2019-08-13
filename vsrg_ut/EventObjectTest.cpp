@@ -75,16 +75,16 @@ namespace EventObject_
 		TEST_METHOD(TimingPoint_duration)
 		{
 			// BPM: 120.0, 4/4
-			Assert::AreEqual((1 / 120.0) * 60000, tp_1.getBeatDurationMSec(1.0));
-			Assert::AreEqual((1 / 120.0) * 60000 * 2.0, tp_1.getBeatDurationMSec(2.0));
-			Assert::AreEqual((1 / 120.0) * 60000 * 4.0, tp_1.getMeasureDurationMSec(1.0));
-			Assert::AreEqual((1 / 120.0) * 60000 * 4.0 * 2.0, tp_1.getMeasureDurationMSec(2.0));
+			Assert::AreEqual((1 / 120.0) * 60000, tp_1.getBeatDuration(1.0));
+			Assert::AreEqual((1 / 120.0) * 60000 * 2.0, tp_1.getBeatDuration(2.0));
+			Assert::AreEqual((1 / 120.0) * 60000 * 4.0, tp_1.getMeasureDuration(1.0));
+			Assert::AreEqual((1 / 120.0) * 60000 * 4.0 * 2.0, tp_1.getMeasureDuration(2.0));
 
 			// BPM: 250, 6.5/4
-			Assert::AreEqual((1 / 250.0) * 60000, tp_2.getBeatDurationMSec(1.0));
-			Assert::AreEqual((1 / 250.0) * 60000 * 2.0, tp_2.getBeatDurationMSec(2.0));
-			Assert::AreEqual((1 / 250.0) * 60000 * 6.5, tp_2.getMeasureDurationMSec(1.0));
-			Assert::AreEqual((1 / 250.0) * 60000 * 6.5 * 2.0, tp_2.getMeasureDurationMSec(2.0));
+			Assert::AreEqual((1 / 250.0) * 60000, tp_2.getBeatDuration(1.0));
+			Assert::AreEqual((1 / 250.0) * 60000 * 2.0, tp_2.getBeatDuration(2.0));
+			Assert::AreEqual((1 / 250.0) * 60000 * 6.5, tp_2.getMeasureDuration(1.0));
+			Assert::AreEqual((1 / 250.0) * 60000 * 6.5 * 2.0, tp_2.getMeasureDuration(2.0));
 		}
 	};
 }

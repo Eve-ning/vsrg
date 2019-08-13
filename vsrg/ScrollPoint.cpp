@@ -50,16 +50,16 @@ bool ScrollPoint::operator<=(double value) const {
 	return getScrollSpeedMult() <= value;
 }
 ScrollPoint ScrollPoint::operator*(double by) const {
-	return ScrollPoint(getOffsetMSec(), getScrollSpeedMult() * by);
+	return ScrollPoint(getOffset(), getScrollSpeedMult() * by);
 }
 ScrollPoint ScrollPoint::operator/(double by) const {
-	return ScrollPoint(getOffsetMSec(), getScrollSpeedMult() / by);
+	return ScrollPoint(getOffset(), getScrollSpeedMult() / by);
 }
 ScrollPoint ScrollPoint::operator+(double by) const {
-	return ScrollPoint(getOffsetMSec(), getScrollSpeedMult() + by);
+	return ScrollPoint(getOffset(), getScrollSpeedMult() + by);
 }
 ScrollPoint ScrollPoint::operator-(double by) const{
-	return ScrollPoint(getOffsetMSec(), getScrollSpeedMult() - by);
+	return ScrollPoint(getOffset(), getScrollSpeedMult() - by);
 }
 void ScrollPoint::operator*=(double by) {
 	setScrollSpeedMult(getScrollSpeedMult() * by);

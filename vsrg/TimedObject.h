@@ -15,23 +15,23 @@ public:
 
 	virtual std::shared_ptr<TimedObject> Clone() const = 0;
 
+	struct UnitScale {
+		/// Value of ratio of Hour:Millisecond
+		static const double hour;
+		/// Value of ratio of Minute:Millisecond
+		static const double minute;
+		/// Value of ratio of Second:Millisecond
+		static const double second;
+		/// Value of ratio of Millisecond:Millisecond
+		/// (added for clarity of function usage)
+		static const double msecond;
+	};
+
 	/// Gets Offset in milliseconds
-	double getOffsetMSec() const; 
-	/// Gets Offset in seconds
-	double getOffsetSec() const;
-	/// Gets Offset in minutes
-	double getOffsetMin() const;
-	/// Gets Offset in hours
-	double getOffsetHour() const;
+	double getOffset(double unit_scale = 1.0) const; 
 
 	/// Sets Offset in milliseconds
-	void setOffsetMSec(const double & offset_m_sec);
-	/// Sets Offset in seconds
-	void setOffsetSec(const double & offset_sec);
-	/// Sets Offset in minutes
-	void setOffsetMin(const double & offset_min);
-	/// Sets Offset in hours
-	void setOffsetHour(const double & offset_hour);
+	void setOffset(double offset_m_sec, double unit_scale = 1.0);
 
 	/// Validates the object being realistic
 	virtual bool isValid() const;
@@ -55,13 +55,6 @@ public:
 	virtual void operator/=(double by_m_sec);
 	virtual void operator+=(double by_m_sec);
 	virtual void operator-=(double by_m_sec);
-
-	/// Value of ratio of Hour:Millisecond
-	static const double hour_to_m_sec;
-	/// Value of ratio of Minute:Millisecond
-	static const double min_to_m_sec;
-	/// Value of ratio of Second:Millisecond
-	static const double sec_to_m_sec;
 
 private:
 	/// Stored value in milliseconds
