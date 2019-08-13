@@ -29,10 +29,8 @@ public:
 	bool isEmpty();
 	size_t size() const;
 
-	std::vector<double> getOffsetHourVector(bool sort = false) const;
-	std::vector<double> getOffsetMinVector(bool sort = false) const;
-	std::vector<double> getOffsetSecVector(bool sort = false) const;
-	std::vector<double> getOffsetMSecVector(bool sort = false) const;
+	std::vector<double> getOffsetVector(bool sort = false,
+		double unit_scale = TimedObject::UnitScale::msecond) const;
 	
 	/// Runs a cast check on the vector and returns a vector of matches of class specified
 	template<class T>
@@ -50,8 +48,8 @@ public:
 	void setTimedObjectVector(const std::vector<SPtrTimedObject> & to_v);
 
 	// While we could convert to Sec/Min/Hour, I think I'll leave it to them to convert via TimedObject
-	double getEarliestOffsetMSec() const;
-	double getLatestOffsetMSec() const;
+	double getEarliestOffset(double unit_scale = TimedObject::UnitScale::msecond) const;
+	double getLatestOffset(double unit_scale = TimedObject::UnitScale::msecond) const;
 	SPtrTimedObject getEarliestObject() const;
 	SPtrTimedObject getLatestObject() const;
 
@@ -77,7 +75,5 @@ public:
 
 private:
 
-	/// Helper function for getOffset___Vector Variants. Scale scales the offset
-	std::vector<double> getOffsetXVector(bool sort = false, double scale = 1.0) const;
 	std::vector<SPtrTimedObject> eo_v_;
 };

@@ -35,12 +35,14 @@ void TimingPoint::setTimeSigDenominator(double time_sig_denominator) {
 	time_sig_denominator_ = time_sig_denominator;
 }
 
-double TimingPoint::getBeatDurationMSec(double scale) {
+double TimingPoint::getBeatDuration(double scale, double unit_scale) {
 	// Convert it to Minutes per Beat, then change Minutes to MSec
-	return (scale * TimedObject::min_to_m_sec) / getBpm();
+	double beat_m_sec = (scale * TimedObject::UnitScale::minute) / getBpm();
+	return beat_m_sec / unit_scale;
 }
-double TimingPoint::getMeasureDurationMSec(double scale) {
-	return getBeatDurationMSec(getTimeSigNumerator()) * scale;
+double TimingPoint::getMeasureDuration(double scale, double unit_scale) {
+	double measure_m_sec = getBeatDuration(getTimeSigNumerator()) * scale;
+	return measure_m_sec / unit_scale;
 }
 
 bool TimingPoint::isTimeSigValid() const {

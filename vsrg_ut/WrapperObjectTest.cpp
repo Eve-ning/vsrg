@@ -91,9 +91,9 @@ namespace WrapperObjct_
 			eo_v_1.push_back(sp_1.Clone());
 			eo_v_1.push_back(sp_2.Clone());
 			eo_v_1.push_back(tp_1.Clone());
-			Assert::IsTrue(expected == eo_v_1.getOffsetMSecVector());
+			Assert::IsTrue(expected == eo_v_1.getOffsetVector());
 			expected = { 100.0, 100.0, 200.0 };
-			Assert::IsTrue(expected == eo_v_1.getOffsetMSecVector(true));
+			Assert::IsTrue(expected == eo_v_1.getOffsetVector(true));
 		}
 		TEST_METHOD(TimedObjectVector_getClassOnly) {
 			eo_v_1.push_back(sp_1.Clone());

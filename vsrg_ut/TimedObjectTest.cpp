@@ -17,13 +17,13 @@ namespace HitObject_
 		{
 			// The non-assignment operation needs a sptr
 			auto nn_a = ho_nn_1.Clone();
-			Assert::AreEqual(100.0, nn_a->getOffsetMSec());
+			Assert::AreEqual(100.0, nn_a->getOffset());
 			auto nn_b = nn_a->operator+(10.0);
-			Assert::AreEqual(110.0, nn_b->getOffsetMSec());
+			Assert::AreEqual(110.0, nn_b->getOffset());
 
 			// The assignment operation doesn't need conversion
 			ho_nn_1 += 20.0;
-			Assert::AreEqual(120.0, ho_nn_1.getOffsetMSec());
+			Assert::AreEqual(120.0, ho_nn_1.getOffset());
 		}
 
 		TEST_METHOD(TimedObject_setGet)
@@ -31,23 +31,25 @@ namespace HitObject_
 			auto nn_0 = ho_nn_1;
 			
 			// Check setters
-			nn_0.setOffsetHour(1.0);
-			Assert::AreEqual(3600000.0, nn_0.getOffsetMSec());
-			nn_0.setOffsetMin(1.0);
-			Assert::AreEqual(60000.0, nn_0.getOffsetMSec());
-			nn_0.setOffsetSec(1.0);
-			Assert::AreEqual(1000.0, nn_0.getOffsetMSec());
-			nn_0.setOffsetMSec(1.0);
-			Assert::AreEqual(1.0, nn_0.getOffsetMSec());
+			nn_0.setOffset(1.0, TimedObject::UnitScale::hour);
+			Assert::AreEqual(3600000.0, nn_0.getOffset());
+			nn_0.setOffset(1.0, TimedObject::UnitScale::minute);
+			Assert::AreEqual(60000.0, nn_0.getOffset());
+			nn_0.setOffset(1.0, TimedObject::UnitScale::second);
+			Assert::AreEqual(1000.0, nn_0.getOffset());
+			nn_0.setOffset(1.0);
+			Assert::AreEqual(1.0, nn_0.getOffset());
 
 			// Check getters
 
-			nn_0.setOffsetMSec(3600000.0);
-			Assert::AreEqual(1.0, nn_0.getOffsetHour());
-			nn_0.setOffsetMSec(3600000.0);
-			Assert::AreEqual(60.0, nn_0.getOffsetMin());
-			nn_0.setOffsetMSec(3600000.0);
-			Assert::AreEqual(3600.0, nn_0.getOffsetSec());
+			nn_0.setOffset(1.0, TimedObject::UnitScale::hour);
+			Assert::AreEqual(1.0, nn_0.getOffset(TimedObject::UnitScale::hour));
+			nn_0.setOffset(1.0, TimedObject::UnitScale::hour);
+			Assert::AreEqual(60.0, nn_0.getOffset(TimedObject::UnitScale::minute));
+			nn_0.setOffset(1.0, TimedObject::UnitScale::hour);
+			Assert::AreEqual(3600.0, nn_0.getOffset(TimedObject::UnitScale::second));
+			nn_0.setOffset(1.0, TimedObject::UnitScale::hour);
+			Assert::AreEqual(3600000.0, nn_0.getOffset(TimedObject::UnitScale::msecond));
 
 			
 		}

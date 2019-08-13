@@ -33,9 +33,11 @@ public:
 	void setTimeSigDenominator(double time_sig_denominator);
 
 	/// Get the Beat Duration in Milliseconds scale defines the multiplier on the return value. 
-	double getBeatDurationMSec(double scale = 1.0);
+	double getBeatDuration(double scale = 1.0,
+		double unit_scale = TimedObject::UnitScale::msecond);
 	/// Get the Measure Duration in Milliseconds scale defines the multiplier on the return value. 
-	double getMeasureDurationMSec(double scale = 1.0);
+	double getMeasureDuration(double scale = 1.0,
+		double unit_scale = TimedObject::UnitScale::msecond);
 
 	/// Checks if Time Signature is a valid fraction or if it equates to 0
 	virtual bool isTimeSigValid() const;

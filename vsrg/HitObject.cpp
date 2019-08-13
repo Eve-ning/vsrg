@@ -25,6 +25,6 @@ void HitObject::setIndex(const int & index) {
 
 bool HitObject::isOverlapping(const std::shared_ptr<HitObject>& ho) const
 {
-	return (getOffsetMSec() == ho->getOffsetMSec()) &&
+	return (getOffset() == ho->getOffset()) &&
 		   (getIndex() == ho->getIndex());
 }
