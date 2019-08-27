@@ -29,8 +29,8 @@ public:
 
 	virtual HitObjectVector getHitObjectVector() const final;
 	virtual EventObjectVector getEventObjectVector() const final;
-	virtual HitObjectVector setHitObjectVector(HitObjectVector ho_v) final;
-	virtual EventObjectVector setEventObjectVector(EventObjectVector eo_v) final;
+	virtual void setHitObjectVector(const HitObjectVector & ho_v) final;
+	virtual void setEventObjectVector(const EventObjectVector & eo_v) final;
 
 private:
 	HitObjectVector ho_v_;

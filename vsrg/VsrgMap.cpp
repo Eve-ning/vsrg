@@ -58,18 +58,18 @@ void VsrgMap::writeFile(const std::vector<std::string> file_contents, const std:
 	BOOST_ASSERT_MSG(!file_out.is_open(), "File failed to close.");
 }
 
-inline HitObjectVector VsrgMap::getHitObjectVector() const {
+HitObjectVector VsrgMap::getHitObjectVector() const {
 	return ho_v_;
 }
 
-inline EventObjectVector VsrgMap::getEventObjectVector() const {
+EventObjectVector VsrgMap::getEventObjectVector() const {
 	return eo_v_;
 }
 
-inline HitObjectVector VsrgMap::setHitObjectVector(HitObjectVector ho_v) {
+void VsrgMap::setHitObjectVector(const HitObjectVector & ho_v) {
 	ho_v_ = ho_v;
 }
 
-inline EventObjectVector VsrgMap::setEventObjectVector(EventObjectVector eo_v) {
+void VsrgMap::setEventObjectVector(const EventObjectVector & eo_v) {
 	eo_v_ = eo_v;
 }

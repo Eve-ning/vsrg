@@ -16,23 +16,23 @@ VsrgMapParams::VsrgMapParams(const std::string & title, const std::string & arti
 
 VsrgMapParams::~VsrgMapParams() {}
 
-void VsrgMapParams::setTitle(const std::string & title, bool set_unicode = false) {
+void VsrgMapParams::setTitle(const std::string & title, bool set_unicode) {
 	title_ = title;
-	if (set_unicode) title_u_ = toWStr(title);
+	if (set_unicode) title_u_ = title;
 }
-void VsrgMapParams::setArtist(const std::string & artist, bool set_unicode = false) {
+void VsrgMapParams::setArtist(const std::string & artist, bool set_unicode) {
 	artist_ = artist;
-	if (set_unicode) artist_u_ = toWStr(artist);
+	if (set_unicode) artist_u_ = artist;
 }
 void VsrgMapParams::setCreator(const std::string & creator, bool set_unicode) {
 	creator_ = creator;
-	if (set_unicode) creator_u_ = toWStr(creator);
+	if (set_unicode) creator_u_ = creator;
 }
 void VsrgMapParams::setVersion(const std::string & version, bool set_unicode) {
 	version_ = version;
-	if (set_unicode) version_u_ = toWStr(version);
+	if (set_unicode) version_u_ = version;
 }
 
 void VsrgMapParams::setAudioFileName(const std::string & audio_file_name) {
-	audio_file_name_ = toWStr(audio_file_name);
+	audio_file_name_ = audio_file_name;
 }
