@@ -30,6 +30,8 @@ void VsrgMapOsu::loadFile(const std::string & file_path) {
 	params.beatmap_set_id_	=		 std::stoi(matchTag(it, ite, "BeatmapSetID:"));
 	params.hp_				=		 std::stoi(matchTag(it, ite, "HPDrainRate:"));
 	params.keys_			=		 std::stoi(matchTag(it, ite, "CircleSize:"));
+
+	// TODO: Parse the hit objects and timing points
 }
 
 void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
