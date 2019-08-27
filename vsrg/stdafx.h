@@ -11,7 +11,9 @@
 // Windows Header Files
 #include <windows.h>
 #include <algorithm> 
+#include <iostream>
 #include <boost/assert.hpp>
+#include <boost/algorithm/string.hpp>
 #include <fstream>
 #include <filesystem>
 

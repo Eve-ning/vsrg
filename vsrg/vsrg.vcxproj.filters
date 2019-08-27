@@ -78,6 +78,12 @@
     <ClInclude Include="VsrgMapOsu.h">
       <Filter>Game Objects</Filter>
     </ClInclude>
+    <ClInclude Include="VsrgMapOsuParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VsrgMapParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -124,6 +130,12 @@
     </ClCompile>
     <ClCompile Include="VsrgMapOsu.cpp">
       <Filter>Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="VsrgMapOsuParams.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VsrgMapParams.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
