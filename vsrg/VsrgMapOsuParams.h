@@ -20,31 +20,31 @@ public:
 
 	VsrgMapOsuParams(
 		double hp, double od, unsigned int preview_time, unsigned int keys,
-		const std::wstring & bg_file_name,
-		const std::wstring & source,
-		const std::vector<std::wstring> & tags,
+		const std::string & bg_file_name,
+		const std::string & source,
+		const std::vector<std::string> & tags,
 		const std::vector<unsigned int> & bookmarks,
 		int beatmap_id, int beatmap_set_id,
 		VsrgMapParams vsrg_map_params);
 
-	/// Custom wide string setting, use other constructor for lazy
+	/// Custom unicode string setting, use other constructor for lazy
 	VsrgMapOsuParams(
 		double hp, double od, unsigned int preview_time, unsigned int keys,
-		const std::wstring & bg_file_name,
-		const std::wstring & source,
-		const std::vector<std::wstring> & tags,
+		const std::string & bg_file_name,
+		const std::string & source,
+		const std::vector<std::string> & tags,
 		const std::vector<unsigned int> & bookmarks,
 		int beatmap_id, int beatmap_set_id,
 		const std::string & title, const std::string & artist,
 		const std::string & creator, const std::string & version,
-		const std::wstring & title_w, const std::wstring & artist_w,
-		const std::wstring & creator_w, const std::wstring & version_w);
+		const std::string & title_u, const std::string & artist_u,
+		const std::string & creator_u, const std::string & version_u);
 
-	/// Lazy wide string setting, they are copied from non-wide if set_wide == true
+	/// Lazy unicode string setting, they are copied from non-wide if set_unicode == true
 	VsrgMapOsuParams(double hp, double od, unsigned int keys,
 		const std::string & title, const std::string & artist,
 		const std::string & creator, const std::string & version,
-		bool set_wide = true);
+		bool set_unicode = true);
 
 	~VsrgMapOsuParams();
 
@@ -52,9 +52,9 @@ public:
 	double od_;
 	unsigned int preview_time_;
 	unsigned int keys_;
-	std::wstring bg_file_name_;
-	std::wstring source_;
-	std::vector<std::wstring> tags_;
+	std::string bg_file_name_;
+	std::string source_;
+	std::vector<std::string> tags_;
 	std::vector<unsigned int> bookmarks_;
 	int beatmap_id_;
 	int beatmap_set_id_;

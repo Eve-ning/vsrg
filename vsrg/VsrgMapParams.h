@@ -15,36 +15,31 @@ public:
 	VsrgMapParams(
 		const std::string & title, const std::string & artist,
 		const std::string & creator, const std::string & version,
-		const std::wstring & title_w, const std::wstring & artist_w,
-		const std::wstring & creator_w, const std::wstring & version_w);
+		const std::string & title_u, const std::string & artist_u,
+		const std::string & creator_u, const std::string & version_u);
 
-	/// Lazy wide string setting, they are copied from non-wide if set_wide == true
+	/// Lazy wide string setting, they are copied from non-wide if set_unicode == true
 	VsrgMapParams(
 		const std::string & title, const std::string & artist,
 		const std::string & creator, const std::string & version,
-		bool set_wide = true);
+		bool set_unicode = true);
 
 	~VsrgMapParams();
 
-	virtual void setTitle(const std::string & title, bool set_wide = false) final;
-	virtual void setArtist(const std::string & artist, bool set_wide = false) final;
-	virtual void setCreator(const std::string & creator, bool set_wide = false) final;
-	virtual void setVersion(const std::string & version, bool set_wide = false) final;
+	virtual void setTitle(const std::string & title, bool set_unicode = false) final;
+	virtual void setArtist(const std::string & artist, bool set_unicode = false) final;
+	virtual void setCreator(const std::string & creator, bool set_unicode = false) final;
+	virtual void setVersion(const std::string & version, bool set_unicode = false) final;
 	virtual void setAudioFileName(const std::string & audio_file_name) final;
 
-	/// Converts string to wstring
-	static std::wstring toWStr(const std::string& utf8Str);
-	/// Converts wstring to string
-	static std::string toStr(const std::wstring& utf16Str);
-
-	std::wstring audio_file_name_;
-	std::wstring title_w_;
+	std::string audio_file_name_;
+	std::string title_u_;
 	std::string title_;
-	std::wstring artist_w_;
+	std::string artist_u_;
 	std::string artist_;
-	std::wstring creator_w_;
+	std::string creator_u_;
 	std::string creator_;
-	std::wstring version_w_;
+	std::string version_u_;
 	std::string version_;
 };
 
