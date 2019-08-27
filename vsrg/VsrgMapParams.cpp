@@ -18,74 +18,32 @@ VsrgMapParams::~VsrgMapParams() {}
 
 void VsrgMapParams::setTitle(const std::string & title, bool set_wide = false) {
 	title_ = title;
-	if (set_wide) setWideTitle(utf8ToUtf16(title));
-}
-std::string VsrgMapParams::getTitle() {
-	return title_;
+	if (set_wide) title_w_ = toWStr(title);
 }
 void VsrgMapParams::setArtist(const std::string & artist, bool set_wide = false) {
 	artist_ = artist;
-	if (set_wide) setWideArtist(utf8ToUtf16(artist));
-}
-std::string VsrgMapParams::getArtist() {
-	return artist_;
+	if (set_wide) artist_w_ = toWStr(artist);
 }
 void VsrgMapParams::setCreator(const std::string & creator, bool set_wide) {
 	creator_ = creator;
-	if (set_wide) setWideCreator(utf8ToUtf16(creator));
-}
-std::string VsrgMapParams::getCreator() {
-	return creator_;
+	if (set_wide) creator_w_ = toWStr(creator);
 }
 void VsrgMapParams::setVersion(const std::string & version, bool set_wide) {
 	version_ = version;
-	if (set_wide) setWideVersion(utf8ToUtf16(version));
-}
-std::string VsrgMapParams::getVersion() {
-	return version_;
-}
-void VsrgMapParams::setAudioFileName(const std::wstring & audio_file_name) {
-	audio_file_name_ = audio_file_name;
-}
-void VsrgMapParams::setAudioFileName(const std::string & audio_file_name) {
-	audio_file_name_ = utf8ToUtf16(audio_file_name);
-}
-std::wstring VsrgMapParams::getAudioFileName() const {
-	return audio_file_name_;
-}
-void VsrgMapParams::setWideCreator(const std::wstring & creator_w) {
-	creator_w_ = creator_w;
-}
-std::wstring VsrgMapParams::getWideCreator() {
-	return creator_w_;
-}
-void VsrgMapParams::setWideVersion(const std::wstring & version_w) {
-	version_w_ = version_w;
-}
-std::wstring VsrgMapParams::getWideVersion() {
-	return version_w_;
-}
-void VsrgMapParams::setWideTitle(const std::wstring & title_w) {
-	title_w_ = title_w;
-}
-std::wstring VsrgMapParams::getWideTitle() {
-	return title_w_;
-}
-void VsrgMapParams::setWideArtist(const std::wstring & artist_w) {
-	artist_w_ = artist_w;
-}
-std::wstring VsrgMapParams::getWideArtist() {
-	return artist_w_;
+	if (set_wide) version_w_ = toWStr(version);
 }
 
-std::wstring VsrgMapParams::utf8ToUtf16(const std::string & utf8Str)
+void VsrgMapParams::setAudioFileName(const std::string & audio_file_name) {
+	audio_file_name_ = toWStr(audio_file_name);
+}
+std::wstring VsrgMapParams::toWStr(const std::string & utf8Str)
 {
 	// https://codereview.stackexchange.com/a/146738
 	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> conv;
 	return conv.from_bytes(utf8Str);
 }
 
-std::string VsrgMapParams::utf16ToUtf8(const std::wstring & utf16Str)
+std::string VsrgMapParams::toStr(const std::wstring & utf16Str)
 {
 	// https://codereview.stackexchange.com/a/146738
 	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> conv;
