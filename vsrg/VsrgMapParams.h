@@ -27,31 +27,26 @@ public:
 	virtual std::string getCreator();
 	virtual void setVersion(const std::string & version, bool set_wide = false) final;
 	virtual std::string getVersion();
+	virtual void setAudioFileName(const std::wstring & audio_file_name) final;
+	virtual void setAudioFileName(const std::string & audio_file_name) final;
+	virtual std::wstring getAudioFileName() const final;
 
-	/// Wide Variant is for unicode storage
 	virtual void setWideCreator(const std::wstring & creator_w) final;
-	/// Wide Variant is for unicode storage
 	virtual std::wstring getWideCreator() final;
-	/// Wide Variant is for unicode storage
 	virtual void setWideVersion(const std::wstring & version_w) final;
-	/// Wide Variant is for unicode storage
 	virtual std::wstring getWideVersion() final;
-
-	/// Wide Variant is for unicode storage
 	virtual void setWideTitle(const std::wstring & title_w) final;
-	/// Wide Variant is for unicode storage
 	virtual std::wstring getWideTitle() final;
-	/// Wide Variant is for unicode storage
 	virtual void setWideArtist(const std::wstring & artist_w) final;
-	/// Wide Variant is for unicode storage
 	virtual std::wstring getWideArtist() final;
 
 	/// Converts string to wstring
-	std::wstring utf8ToUtf16(const std::string& utf8Str);
+	static std::wstring utf8ToUtf16(const std::string& utf8Str);
 	/// Converts wstring to string
-	std::string utf16ToUtf8(const std::wstring& utf16Str);
+	static std::string utf16ToUtf8(const std::wstring& utf16Str);
 
 private:
+	std::wstring audio_file_name_;
 	std::wstring title_w_;
 	std::string title_;
 	std::wstring artist_w_;

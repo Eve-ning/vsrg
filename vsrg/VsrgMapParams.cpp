@@ -44,6 +44,15 @@ void VsrgMapParams::setVersion(const std::string & version, bool set_wide) {
 std::string VsrgMapParams::getVersion() {
 	return version_;
 }
+void VsrgMapParams::setAudioFileName(const std::wstring & audio_file_name) {
+	audio_file_name_ = audio_file_name;
+}
+void VsrgMapParams::setAudioFileName(const std::string & audio_file_name) {
+	audio_file_name_ = utf8ToUtf16(audio_file_name);
+}
+std::wstring VsrgMapParams::getAudioFileName() const {
+	return audio_file_name_;
+}
 void VsrgMapParams::setWideCreator(const std::wstring & creator_w) {
 	creator_w_ = creator_w;
 }
