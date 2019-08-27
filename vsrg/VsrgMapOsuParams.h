@@ -13,7 +13,7 @@
 
 */
 
-class VsrgMapOsuParams : VsrgMapParams
+class VsrgMapOsuParams : public VsrgMapParams
 {
 public:
 	VsrgMapOsuParams();
