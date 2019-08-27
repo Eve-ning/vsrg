@@ -27,6 +27,11 @@ public:
 	static std::string ho_v_tag_;
 	static std::string eo_v_tag_;
 
+	virtual HitObjectVector getHitObjectVector() const final;
+	virtual EventObjectVector getEventObjectVector() const final;
+	virtual HitObjectVector setHitObjectVector(HitObjectVector ho_v) final;
+	virtual EventObjectVector setEventObjectVector(EventObjectVector eo_v) final;
+
 private:
 	HitObjectVector ho_v_;
 	EventObjectVector eo_v_;

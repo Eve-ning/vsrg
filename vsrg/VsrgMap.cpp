@@ -25,7 +25,7 @@ void VsrgMap::saveAsVsrg(const std::string & file_path, bool overwrite) {
 	writeFile(std::move(file_contents), file_path, overwrite);
 }
 
-inline std::vector<std::string> VsrgMap::readFile(const std::string & file_path) {
+std::vector<std::string> VsrgMap::readFile(const std::string & file_path) {
 	std::ifstream file_stream;
 	BOOST_ASSERT_MSG(std::filesystem::exists(file_path), "File doesn't exist.");
 
@@ -56,4 +56,20 @@ void VsrgMap::writeFile(const std::vector<std::string> file_contents, const std:
 
 	file_out.close();
 	BOOST_ASSERT_MSG(!file_out.is_open(), "File failed to close.");
+}
+
+inline HitObjectVector VsrgMap::getHitObjectVector() const {
+	return ho_v_;
+}
+
+inline EventObjectVector VsrgMap::getEventObjectVector() const {
+	return eo_v_;
+}
+
+inline HitObjectVector VsrgMap::setHitObjectVector(HitObjectVector ho_v) {
+	ho_v_ = ho_v;
+}
+
+inline EventObjectVector VsrgMap::setEventObjectVector(EventObjectVector eo_v) {
+	eo_v_ = eo_v;
 }
