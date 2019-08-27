@@ -2,14 +2,16 @@
 class VsrgMapParams
 {
 public:
-	/// This variant requires all to be filled, use the other for lazy instantiating
+	VsrgMapParams();
+
+	/// Custom wide string setting, use other constructor for lazy
 	VsrgMapParams(
 		const std::string & title, const std::string & artist,
 		const std::string & creator, const std::string & version,
 		const std::wstring & title_w, const std::wstring & artist_w,
 		const std::wstring & creator_w, const std::wstring & version_w);
 
-	/// This variant allows lazy wide string setting and or just leaving wide variants blank
+	/// Lazy wide string setting, they are copied from non-wide if set_wide == true
 	VsrgMapParams(
 		const std::string & title, const std::string & artist,
 		const std::string & creator, const std::string & version,
@@ -17,29 +19,32 @@ public:
 
 	~VsrgMapParams();
 
-	void setTitle(const std::string & title, bool set_wide = false);
-	std::string getTitle();
-	void setArtist(const std::string & artist, bool set_wide = false);
-	std::string getArtist();
-	void setCreator(const std::string & creator, bool set_wide = false);
-	std::string getCreator();
-	void setVersion(const std::string & version, bool set_wide = false);
-	std::string getVersion();
-
-
-	void setWideCreator(const std::wstring & creator_w);
-	std::wstring getWideCreator();
-	void setWideVersion(const std::wstring & version_w);
-	std::wstring getWideVersion();
+	virtual void setTitle(const std::string & title, bool set_wide = false) final;
+	virtual std::string getTitle() final;
+	virtual void setArtist(const std::string & artist, bool set_wide = false) final;
+	virtual std::string getArtist();
+	virtual void setCreator(const std::string & creator, bool set_wide = false) final;
+	virtual std::string getCreator();
+	virtual void setVersion(const std::string & version, bool set_wide = false) final;
+	virtual std::string getVersion();
 
 	/// Wide Variant is for unicode storage
-	void setWideTitle(const std::wstring & title_w);
+	virtual void setWideCreator(const std::wstring & creator_w) final;
 	/// Wide Variant is for unicode storage
-	std::wstring getWideTitle();
+	virtual std::wstring getWideCreator() final;
 	/// Wide Variant is for unicode storage
-	void setWideArtist(const std::wstring & artist_w);
+	virtual void setWideVersion(const std::wstring & version_w) final;
 	/// Wide Variant is for unicode storage
-	std::wstring getWideArtist();
+	virtual std::wstring getWideVersion() final;
+
+	/// Wide Variant is for unicode storage
+	virtual void setWideTitle(const std::wstring & title_w) final;
+	/// Wide Variant is for unicode storage
+	virtual std::wstring getWideTitle() final;
+	/// Wide Variant is for unicode storage
+	virtual void setWideArtist(const std::wstring & artist_w) final;
+	/// Wide Variant is for unicode storage
+	virtual std::wstring getWideArtist() final;
 
 	/// Converts string to wstring
 	std::wstring utf8ToUtf16(const std::string& utf8Str);

@@ -1,12 +1,13 @@
 #include "stdafx.h"
 #include "VsrgMapParams.h"
 
+VsrgMapParams::VsrgMapParams() {}
+
 VsrgMapParams::VsrgMapParams(const std::string & title, const std::string & artist, const std::string & creator, const std::string & version, const std::wstring & title_w, const std::wstring & artist_w, const std::wstring & creator_w, const std::wstring & version_w) :
 	title_(title), artist_(artist), creator_(creator), version_(version),
 	title_w_(title_w), artist_w_(artist_w), creator_w_(creator_w), version_w_(version_w) {}
 
-VsrgMapParams::VsrgMapParams(const std::string & title, const std::string & artist, const std::string & creator, const std::string & version, bool set_wide) :
-	title_w_(L""), artist_w_(L""), creator_w_(L""), version_w_(L"") {
+VsrgMapParams::VsrgMapParams(const std::string & title, const std::string & artist, const std::string & creator, const std::string & version, bool set_wide) {
 	setTitle(title, set_wide);
 	setArtist(artist, set_wide);
 	setCreator(creator, set_wide);
