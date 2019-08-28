@@ -1,5 +1,5 @@
 #pragma once
-#include "VsrgMapParams.h"
+#include "../../../WrapperObjects/VsrgMapParams.h"
 
 /* Comments:
 	

@@ -1,7 +1,7 @@
 #pragma once
-#include "VsrgMap.h"
+#include "../../../WrapperObjects/VsrgMap.h"
 #include "VsrgMapOsuParams.h"
-#include "HitObject.h"
+#include "../../../TimedObjects/HitObject/HitObject.h"
 class VsrgMapOsu :
 	public VsrgMap
 {

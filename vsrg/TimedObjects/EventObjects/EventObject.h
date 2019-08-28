@@ -1,5 +1,5 @@
 #pragma once
-#include "TimedObject.h"
+#include "../TimedObject.h"
 
 /**
  * @brief A counterpart to HitObject, this acts as an abstract class that non-hittable objects inherit from.

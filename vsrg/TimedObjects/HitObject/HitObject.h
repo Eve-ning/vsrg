@@ -1,5 +1,5 @@
 #pragma once
-#include "TimedObject.h"
+#include "../TimedObject.h"
 
 /**
  * @brief A basic "Hittable" Abtract class used for secondary classes
