@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include <LongNote.h>
-#include <NormalNote.h>
+#include <TimedObjects/HitObjects/LongNote.h>
+#include <TimedObjects/HitObjects/NormalNote.h>
 #include <iostream>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
