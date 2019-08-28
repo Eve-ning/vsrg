@@ -34,108 +34,114 @@
     <Filter Include="Game Objects">
       <UniqueIdentifier>{bc3db3e6-5ac3-48fb-b985-a1036504c109}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game Objects\Osu">
+      <UniqueIdentifier>{b211a84d-4abe-4ebc-b3c4-b5d1451c4bfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Objects\Osu\Wrapper Objects">
+      <UniqueIdentifier>{033e4f19-1489-4fcb-8fc4-63b4acdcfe07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Exporting Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Exporting Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="EventObject.h">
+    <ClInclude Include="TimedObjects\EventObjects\EventObject.h">
       <Filter>Timed Objects\Event Objects</Filter>
     </ClInclude>
-    <ClInclude Include="ScrollPoint.h">
+    <ClInclude Include="TimedObjects\HitObject\HitObject.h">
+      <Filter>Timed Objects\Hit Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="TimedObjects\HitObject\LongNote.h">
+      <Filter>Timed Objects\Hit Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="TimedObjects\HitObject\NormalNote.h">
+      <Filter>Timed Objects\Hit Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="TimedObjects\EventObjects\TimingPoint.h">
       <Filter>Timed Objects\Event Objects</Filter>
     </ClInclude>
-    <ClInclude Include="TimingPoint.h">
+    <ClInclude Include="TimedObjects\EventObjects\ScrollPoint.h">
       <Filter>Timed Objects\Event Objects</Filter>
     </ClInclude>
-    <ClInclude Include="HitObject.h">
-      <Filter>Timed Objects\Hit Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="LongNote.h">
-      <Filter>Timed Objects\Hit Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="NormalNote.h">
-      <Filter>Timed Objects\Hit Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="TimedObject.h">
-      <Filter>Timed Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="TimedObjectVector.h">
+    <ClInclude Include="WrapperObjects\TimedObjects\TimedObjectVector.h">
       <Filter>Wrapper Objects\Timed Objects</Filter>
     </ClInclude>
-    <ClInclude Include="HitObjectVector.h">
+    <ClInclude Include="WrapperObjects\TimedObjects\EventObjectVector.h">
       <Filter>Wrapper Objects\Timed Objects</Filter>
     </ClInclude>
-    <ClInclude Include="EventObjectVector.h">
+    <ClInclude Include="WrapperObjects\TimedObjects\HitObjectVector.h">
       <Filter>Wrapper Objects\Timed Objects</Filter>
     </ClInclude>
-    <ClInclude Include="VsrgMap.h">
+    <ClInclude Include="WrapperObjects\VsrgMap.h">
       <Filter>Wrapper Objects</Filter>
     </ClInclude>
-    <ClInclude Include="VsrgMapOsu.h">
-      <Filter>Game Objects</Filter>
+    <ClInclude Include="WrapperObjects\VsrgMapParams.h">
+      <Filter>Wrapper Objects</Filter>
     </ClInclude>
-    <ClInclude Include="VsrgMapOsuParams.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GameObjects\Osu\WrapperObjects\VsrgMapOsu.h">
+      <Filter>Game Objects\Osu\Wrapper Objects</Filter>
     </ClInclude>
-    <ClInclude Include="VsrgMapParams.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GameObjects\Osu\WrapperObjects\VsrgMapOsuParams.h">
+      <Filter>Game Objects\Osu\Wrapper Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="TimedObjects\TimedObject.h">
+      <Filter>Timed Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\stdafx.h">
+      <Filter>Exporting Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\targetver.h">
+      <Filter>Exporting Helpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>Exporting Helpers</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Exporting Helpers</Filter>
-    </ClCompile>
-    <ClCompile Include="EventObject.cpp">
+    <ClCompile Include="TimedObjects\EventObjects\EventObject.cpp">
       <Filter>Timed Objects\Event Objects</Filter>
     </ClCompile>
-    <ClCompile Include="ScrollPoint.cpp">
+    <ClCompile Include="TimedObjects\HitObject\HitObject.cpp">
+      <Filter>Timed Objects\Hit Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="TimedObjects\HitObject\LongNote.cpp">
+      <Filter>Timed Objects\Hit Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="TimedObjects\HitObject\NormalNote.cpp">
+      <Filter>Timed Objects\Hit Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="TimedObjects\EventObjects\TimingPoint.cpp">
       <Filter>Timed Objects\Event Objects</Filter>
     </ClCompile>
-    <ClCompile Include="TimingPoint.cpp">
+    <ClCompile Include="TimedObjects\EventObjects\ScrollPoint.cpp">
       <Filter>Timed Objects\Event Objects</Filter>
     </ClCompile>
-    <ClCompile Include="HitObject.cpp">
-      <Filter>Timed Objects\Hit Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="LongNote.cpp">
-      <Filter>Timed Objects\Hit Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="NormalNote.cpp">
-      <Filter>Timed Objects\Hit Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="TimedObject.cpp">
-      <Filter>Timed Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="TimedObjectVector.cpp">
+    <ClCompile Include="WrapperObjects\TimedObjects\EventObjectVector.cpp">
       <Filter>Wrapper Objects\Timed Objects</Filter>
     </ClCompile>
-    <ClCompile Include="HitObjectVector.cpp">
+    <ClCompile Include="WrapperObjects\TimedObjects\HitObjectVector.cpp">
       <Filter>Wrapper Objects\Timed Objects</Filter>
     </ClCompile>
-    <ClCompile Include="EventObjectVector.cpp">
+    <ClCompile Include="WrapperObjects\TimedObjects\TimedObjectVector.cpp">
       <Filter>Wrapper Objects\Timed Objects</Filter>
     </ClCompile>
-    <ClCompile Include="VsrgMap.cpp">
+    <ClCompile Include="WrapperObjects\VsrgMap.cpp">
       <Filter>Wrapper Objects</Filter>
     </ClCompile>
-    <ClCompile Include="vsrg.cpp">
+    <ClCompile Include="WrapperObjects\VsrgMapParams.cpp">
+      <Filter>Wrapper Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Osu\WrapperObjects\VsrgMapOsu.cpp">
+      <Filter>Game Objects\Osu\Wrapper Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Osu\WrapperObjects\VsrgMapOsuParams.cpp">
+      <Filter>Game Objects\Osu\Wrapper Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="TimedObjects\TimedObject.cpp">
+      <Filter>Timed Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\dllmain.cpp">
       <Filter>Exporting Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="VsrgMapOsu.cpp">
-      <Filter>Game Objects</Filter>
+    <ClCompile Include="Base\stdafx.cpp">
+      <Filter>Exporting Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="VsrgMapOsuParams.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="VsrgMapParams.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Base\vsrg.cpp">
+      <Filter>Exporting Helpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
