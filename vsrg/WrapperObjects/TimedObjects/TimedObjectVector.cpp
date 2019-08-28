@@ -4,47 +4,47 @@
 TimedObjectVector::~TimedObjectVector() {}
 
 std::vector<SPtrTimedObject>::iterator TimedObjectVector::begin() {
-	return eo_v_.begin();
+	return to_v_.begin();
 }
 std::vector<SPtrTimedObject>::iterator TimedObjectVector::end() {
-	return eo_v_.end();  
+	return to_v_.end();  
 }
 std::vector<SPtrTimedObject>::const_iterator TimedObjectVector::cbegin() const {
-	return eo_v_.cbegin();
+	return to_v_.cbegin();
 }
 std::vector<SPtrTimedObject>::const_iterator TimedObjectVector::cend() const {
-	return eo_v_.cend();
+	return to_v_.cend();
 }
 
 SPtrTimedObject TimedObjectVector::getTimedObject(unsigned int index) const {
-	return eo_v_.at(index);
+	return to_v_.at(index);
 }
 SPtrTimedObject TimedObjectVector::operator[](unsigned int index) const {
 	return getTimedObject(index);
 }
 
 void TimedObjectVector::push_back(SPtrTimedObject to) {
-	eo_v_.push_back(to);
+	to_v_.push_back(to);
 }
 void TimedObjectVector::pop_back() {
-	eo_v_.pop_back();
+	to_v_.pop_back();
 }
 void TimedObjectVector::clear() {
-	eo_v_.clear();
+	to_v_.clear();
 }
 bool TimedObjectVector::isEmpty() {
-	return eo_v_.size() == 0;
+	return to_v_.size() == 0;
 }
 size_t TimedObjectVector::size() const {
-	return eo_v_.size();
+	return to_v_.size();
 }
 
 
 std::vector<SPtrTimedObject> TimedObjectVector::getTimedObjectVector() const {
-	return eo_v_;
+	return to_v_;
 }
 void TimedObjectVector::setTimedObjectVector(const std::vector<SPtrTimedObject>& to_v) {
-	eo_v_ = to_v;
+	to_v_ = to_v;
 }
 
 double TimedObjectVector::getEarliestOffset(double unit_scale) const {
@@ -96,7 +96,7 @@ std::vector<SPtrTimedObject> TimedObjectVector::isInvalidObjects() const {
 
 std::vector<std::string> TimedObjectVector::toExport() const {
 	std::vector<std::string> exported = {};
-	for (const SPtrTimedObject & to : eo_v_) {
+	for (const SPtrTimedObject & to : to_v_) {
 		exported.push_back(to->toExport());
 	}
 	return exported;
@@ -146,7 +146,7 @@ void TimedObjectVector::operator-=(double offset_m_sec) {
 std::vector<double> TimedObjectVector::getOffsetVector(bool sort, double unit_scale) const {
 	std::vector<double> offset_v = {};
 
-	for (const SPtrTimedObject & to : eo_v_) {
+	for (const SPtrTimedObject & to : to_v_) {
 		offset_v.push_back(to->getOffset(unit_scale));
 	}
 

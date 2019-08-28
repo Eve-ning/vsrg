@@ -75,5 +75,5 @@ public:
 
 private:
 
-	std::vector<SPtrTimedObject> eo_v_;
+	std::vector<SPtrTimedObject> to_v_;
 };
