@@ -8,7 +8,7 @@ TimingPointOsu::TimingPointOsu(double offset_m_sec, double bpm, double time_sig_
 
 TimingPointOsu::TimingPointOsu(const std::string & str) {
 	std::vector<std::string> str_v;
-	boost::split(str_v, str, boost::is_any_of(','));
+	boost::split(str_v, str, boost::is_any_of(","));
 
 	setOffset(std::stod(str_v[0]));
 	setBpm(60000.0 / std::stod(str_v[1]));
