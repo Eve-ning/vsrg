@@ -32,7 +32,7 @@ public:
 	virtual void setHitObjectVector(const HitObjectVector & ho_v) final;
 	virtual void setEventObjectVector(const EventObjectVector & eo_v) final;
 
-private:
+protected:
 	HitObjectVector ho_v_;
 	EventObjectVector eo_v_;
 };
