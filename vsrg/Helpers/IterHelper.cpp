@@ -17,3 +17,9 @@ std::string IterHelper::matchTag(std::vector<std::string>::const_iterator & begi
 	BOOST_ASSERT_MSG(false, "Failed to match Tag");
 	return str;
 }
+
+std::vector<std::string> IterHelper::grabBetween(std::vector<std::string>::const_iterator begin, std::vector<std::string>::const_iterator end) {
+	std::vector<std::string> out;
+	while (begin != end) { out.push_back(*begin); begin++; }
+	return std::move(out);
+}

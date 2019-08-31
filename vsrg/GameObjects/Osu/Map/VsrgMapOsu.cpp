@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "VsrgMapOsu.h"
+#include "Helpers/IterHelper.h"
 
 VsrgMapOsu::VsrgMapOsu()
 {
@@ -10,6 +11,8 @@ VsrgMapOsu::~VsrgMapOsu()
 }
 
 void VsrgMapOsu::loadFile(const std::string & file_path) {
+	using namespace IterHelper;
+
 	std::vector<std::string> file_contents = readFile(file_path);
 	
 	std::vector<std::string>::const_iterator it = file_contents.cbegin();
@@ -44,26 +47,6 @@ void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
 	// TODO:
 }
 
-std::string VsrgMapOsu::matchTag(
-	std::vector<std::string>::const_iterator & begin,
-	std::vector<std::string>::const_iterator end,
-	const std::string & starts_with) const {
-	
-	std::string str = "";
-	while (begin != end) {
-		str = *begin; 
-		if (boost::algorithm::starts_with(str, starts_with)) {
-			// substr doesn't break on out of range index, it just returns nothing
-			str = str.substr(starts_with.length()); 
-			boost::trim(str);
-			return str;
-		}
-		begin++;
-	}
-	std::cout << starts_with; 
-	BOOST_ASSERT_MSG(false, "Failed to match Tag");
-	return str;
-}
 
 std::vector<unsigned int> VsrgMapOsu::processBookmarks(const std::string & str) {
 	std::vector<std::string> uncasted = {};
