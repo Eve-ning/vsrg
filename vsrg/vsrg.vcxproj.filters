@@ -40,6 +40,12 @@
     <Filter Include="Others">
       <UniqueIdentifier>{a5c66fae-8a5c-4485-b2ac-aee2ee7f735c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game Objects\Osu\Singular\Hit">
+      <UniqueIdentifier>{7d2c894e-96b1-4ccc-9bcc-90771aec41ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Objects\Osu\Singular\Event">
+      <UniqueIdentifier>{d51dc7d4-a446-4105-882e-66457ef0b09e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseObjects\Singular\Event\EventObject.h">
@@ -89,6 +95,21 @@
     </ClInclude>
     <ClInclude Include="Others\stdafx.h">
       <Filter>Others</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Osu\Singular\Hit\NormalNoteOsu.h">
+      <Filter>Game Objects\Osu\Singular\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Osu\Singular\Hit\HitParamsOsu.h">
+      <Filter>Game Objects\Osu\Singular\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Osu\Singular\Hit\LongNoteOsu.h">
+      <Filter>Game Objects\Osu\Singular\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Osu\Singular\Event\ScrollPointOsu.h">
+      <Filter>Game Objects\Osu\Singular\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Osu\Singular\Event\TimingPointOsu.h">
+      <Filter>Game Objects\Osu\Singular\Event</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +166,21 @@
     </ClCompile>
     <ClCompile Include="Others\vsrg.cpp">
       <Filter>Others</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Osu\Singular\Hit\NormalNoteOsu.cpp">
+      <Filter>Game Objects\Osu\Singular\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Osu\Singular\Hit\HitParamsOsu.cpp">
+      <Filter>Game Objects\Osu\Singular\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Osu\Singular\Hit\LongNoteOsu.cpp">
+      <Filter>Game Objects\Osu\Singular\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Osu\Singular\Event\ScrollPointOsu.cpp">
+      <Filter>Game Objects\Osu\Singular\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Osu\Singular\Event\TimingPointOsu.cpp">
+      <Filter>Game Objects\Osu\Singular\Event</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

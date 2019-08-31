@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{70e99685-946e-40e8-a62a-fa1ca1fe3dce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{38ff2b1a-e9c5-4572-8795-35948acf401a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -23,23 +29,23 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EventObjectTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HitObjectTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EventObjectTest.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="HitObjectTest.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
     <ClCompile Include="TimedObjectTest.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="WrapperObjectTest.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="OsuObjectTest.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
