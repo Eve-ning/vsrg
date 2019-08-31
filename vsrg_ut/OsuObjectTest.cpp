@@ -6,24 +6,25 @@
 #include <fstream>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-namespace HitObject_
+namespace VsrgMapOsu_
 {		
 	TEST_CLASS(VsrgMapOsu_)
 	{
 	public:
 
-		std::string osu_dh_51 = "../test_files/Osu/xi - Double Helix (Level 51) [Nucleic].osu";
+		std::string osu_fc_pd = "../test_files/Osu/Camellia - Fastest Crash ('Camellia's ''paroxysmal'' Energetic Hitech Remix) (paradoxus_) [Houkai].osu";
 		// Initialize objects here
 		TEST_METHOD(LogDir) { // set to true to output dirs and file check
 			if (false) {
 				Logger::WriteMessage(std::filesystem::current_path().c_str());
-				Assert::IsTrue(std::filesystem::exists(osu_dh_51));
+				Assert::IsTrue(std::filesystem::exists(osu_fc_pd));
 			}
 		}
 		TEST_METHOD(Create)
 		{
 			VsrgMapOsu osumap = VsrgMapOsu();
-			osumap.loadFile(osu_dh_51);
+			osumap.loadFile(osu_fc_pd);
+
 			Logger::WriteMessage(osumap.params.artist_.c_str());
 			Logger::WriteMessage(osumap.params.artist_u_.c_str());
 			Logger::WriteMessage(osumap.params.audio_file_name_.c_str());

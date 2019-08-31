@@ -13,7 +13,7 @@
 #include <vector>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-namespace WrapperObjct_
+namespace WrapperObject_
 {		
 	TEST_CLASS(HitObjectVector_)
 	{
