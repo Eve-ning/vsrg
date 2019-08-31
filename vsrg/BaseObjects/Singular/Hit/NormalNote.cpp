@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "NormalNote.h"
 
+NormalNote::NormalNote() : HitObject(0, 0) {}
+
 NormalNote::NormalNote(const double & offset_m_sec,
 					   const int & index) :
 	HitObject(offset_m_sec, index) {}

@@ -14,6 +14,7 @@ public:
 	 * @param offset_m_sec Offset of the object
 	 * @param index Index of the object
 	 */
+	NormalNote();
 	NormalNote(const double & offset_m_sec, const int & index);
 	~NormalNote();
 	std::shared_ptr<TimedObject> Clone() const override;
