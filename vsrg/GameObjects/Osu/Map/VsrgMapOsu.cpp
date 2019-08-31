@@ -36,15 +36,54 @@ void VsrgMapOsu::loadFile(const std::string & file_path) {
 
 	// TODO: Parse the hit objects and timing points	
 	matchTag(it, ite, "[TimingPoints]"); // Move it to [TimingPoints]
-	auto it_tp = it++;
+	auto it_tp = it;
 	matchTag(it, ite, "[HitObjects]"); // Move it to [TimingPoints]
-	auto it_ho = it++;
+	auto it_ho = it;
 
-	params.bg_file_name_ = std::to_string(std::distance(it_tp, it_ho));
+	readEO(getBetween(++it_tp, it_ho));
+	readHO(getBetween(++it_ho, ite));
 }
 
 void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
 	// TODO:
+}
+
+void VsrgMapOsu::readHO(const std::vector<std::string>& str_v) {
+	for (const std::string & str : str_v) {
+		SPtrTimedObject sptr = nullptr;
+		if (isNormalNoteOsu(str)) {
+			auto nn = NormalNoteOsu(str, params.keys_);
+			sptr = std::make_shared<NormalNote>(nn);
+		}
+		else {
+			auto ln = LongNoteOsu(str, params.keys_);
+			sptr = std::make_shared<LongNote>(ln);
+		}
+		ho_v_.push_back(sptr);
+	}
+}
+
+void VsrgMapOsu::readEO(const std::vector<std::string>& str_v) {
+	for (const std::string & str : str_v) {
+		SPtrTimedObject sptr = nullptr;
+		if (isTimingPointOsu(str)) {
+			auto sp = ScrollPointOsu(str);
+			sptr = std::make_shared<ScrollPoint>(sp);
+		}
+		else {
+			auto tp = TimingPointOsu(str);
+			sptr = std::make_shared<TimingPoint>(tp);
+		}
+		eo_v_.push_back(sptr);
+	}
+}
+
+bool VsrgMapOsu::isNormalNoteOsu(const std::string & str) {
+	return std::count(str.begin(), str.end(), ':') == 4;
+}
+
+bool VsrgMapOsu::isTimingPointOsu(const std::string & str) {
+	return str[str.length() - 3] == '1';
 }
 
 
