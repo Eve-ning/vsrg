@@ -1,6 +1,16 @@
 #include "stdafx.h"
 #include "ScrollPoint.h"
 
+
+/**
+* @brief Construct a new Scroll Point object
+*
+* @param offset_m_sec Offset in Milliseconds
+* @param scroll_speed_mult Scroll Speed multiplier. 1.0 is the base multiplier
+*/
+
+ScrollPoint::ScrollPoint() : scroll_speed_mult_(1.0) {}
+
 ScrollPoint::ScrollPoint(double offset_m_sec, double scroll_speed_mult) :
 	EventObject(offset_m_sec), scroll_speed_mult_(scroll_speed_mult) {}
 ScrollPoint::~ScrollPoint() {}

@@ -11,6 +11,8 @@ public:
 	 * @param start_ho The start Hit Object as a shared pointer
 	 * @param end_ho The end Hit Object as a shared pointer
 	 */
+
+	LongNote();
 	LongNote(double offset_m_sec, unsigned int index, double length);
 	~LongNote();
 	/// Deep Copies the 2 HitObjects into a new LongNote

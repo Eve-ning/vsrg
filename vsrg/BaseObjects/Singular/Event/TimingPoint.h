@@ -20,6 +20,7 @@ public:
 	 * @param time_sig_numerator Time Signature Numerator, can be fractional
 	 * @param time_sig_denominator Time Signature Denominator, can be fractional
 	 */
+	TimingPoint();
 	TimingPoint(double offset_m_sec, double bpm, double time_sig_numerator, double time_sig_denominator);
 	~TimingPoint();
 	virtual std::shared_ptr<TimedObject> Clone() const override;

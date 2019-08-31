@@ -10,6 +10,7 @@
 class TimedObject
 {
 public:
+	TimedObject();
 	TimedObject(double offset_m_sec);
 	virtual ~TimedObject() = 0;
 

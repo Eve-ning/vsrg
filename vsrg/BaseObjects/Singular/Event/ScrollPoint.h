@@ -15,6 +15,7 @@ public:
 	 * @param offset_m_sec Offset in Milliseconds
 	 * @param scroll_speed_mult Scroll Speed multiplier. 1.0 is the base multiplier
 	 */
+	ScrollPoint();
 	ScrollPoint(double offset_m_sec, double scroll_speed_mult = 1.0);
 	~ScrollPoint();
 	virtual std::shared_ptr<TimedObject> Clone() const override;

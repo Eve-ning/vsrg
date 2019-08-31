@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "LongNote.h"
 
+LongNote::LongNote() {}
+
 LongNote::LongNote(double offset_m_sec, unsigned int index, double length) :
 	HitObject(offset_m_sec, index), length_m_sec_(length) {}
 

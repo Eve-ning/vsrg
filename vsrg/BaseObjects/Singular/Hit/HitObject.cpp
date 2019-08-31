@@ -1,6 +1,16 @@
 #include "stdafx.h"
 #include "HitObject.h"
 
+
+/**
+* @brief Construct a new Hit Object
+*
+* @param offset_m_sec Offset of the object
+* @param index Index of the object
+*/
+
+HitObject::HitObject() {}
+
 HitObject::HitObject(const double & offset_m_sec,
 					 const int & index) :
 	TimedObject(offset_m_sec), index_(index) {}

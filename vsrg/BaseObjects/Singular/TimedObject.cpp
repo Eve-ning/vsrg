@@ -6,6 +6,7 @@ const double TimedObject::UnitScale::minute = 60000.0;
 const double TimedObject::UnitScale::second = 1000.0;
 const double TimedObject::UnitScale::msecond = 1.0;
 
+TimedObject::TimedObject() : offset_m_sec_(0) {}
 TimedObject::TimedObject(double offset_m_sec) : offset_m_sec_(offset_m_sec) {}
 TimedObject::~TimedObject() {}
 
