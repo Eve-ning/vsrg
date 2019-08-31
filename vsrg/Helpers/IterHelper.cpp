@@ -19,8 +19,12 @@ std::string IterHelper::matchTag(std::vector<std::string>::const_iterator & begi
 	return str;
 }
 
-std::vector<std::string> IterHelper::grabBetween(std::vector<std::string>::const_iterator begin, std::vector<std::string>::const_iterator end) {
+std::vector<std::string> IterHelper::getBetween(std::vector<std::string>::const_iterator begin, std::vector<std::string>::const_iterator end) {
 	std::vector<std::string> out;
-	while (begin != end) { out.push_back(*begin); begin++; }
+	while (begin != end) {
+		auto _ = *begin; begin++;
+		if (_.length() == 0) continue;
+		out.push_back(_);
+	}
 	return std::move(out);
 }
