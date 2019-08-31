@@ -99,9 +99,6 @@
     <ClInclude Include="GameObjects\Osu\Singular\Hit\NormalNoteOsu.h">
       <Filter>Game Objects\Osu\Singular\Hit</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\Osu\Singular\Hit\HitParamsOsu.h">
-      <Filter>Game Objects\Osu\Singular\Hit</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjects\Osu\Singular\Hit\LongNoteOsu.h">
       <Filter>Game Objects\Osu\Singular\Hit</Filter>
     </ClInclude>
@@ -109,6 +106,12 @@
       <Filter>Game Objects\Osu\Singular\Event</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\Osu\Singular\Event\TimingPointOsu.h">
+      <Filter>Game Objects\Osu\Singular\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Osu\Singular\Hit\HitParamsOsu.h">
+      <Filter>Game Objects\Osu\Singular\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="EventParamsOsu.h">
       <Filter>Game Objects\Osu\Singular\Event</Filter>
     </ClInclude>
   </ItemGroup>
@@ -170,9 +173,6 @@
     <ClCompile Include="GameObjects\Osu\Singular\Hit\NormalNoteOsu.cpp">
       <Filter>Game Objects\Osu\Singular\Hit</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjects\Osu\Singular\Hit\HitParamsOsu.cpp">
-      <Filter>Game Objects\Osu\Singular\Hit</Filter>
-    </ClCompile>
     <ClCompile Include="GameObjects\Osu\Singular\Hit\LongNoteOsu.cpp">
       <Filter>Game Objects\Osu\Singular\Hit</Filter>
     </ClCompile>
@@ -180,6 +180,12 @@
       <Filter>Game Objects\Osu\Singular\Event</Filter>
     </ClCompile>
     <ClCompile Include="GameObjects\Osu\Singular\Event\TimingPointOsu.cpp">
+      <Filter>Game Objects\Osu\Singular\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Osu\Singular\Hit\HitParamsOsu.cpp">
+      <Filter>Game Objects\Osu\Singular\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="EventParamsOsu.cpp">
       <Filter>Game Objects\Osu\Singular\Event</Filter>
     </ClCompile>
   </ItemGroup>
