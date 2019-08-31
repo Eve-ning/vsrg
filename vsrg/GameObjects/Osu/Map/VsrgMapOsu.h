@@ -1,7 +1,8 @@
 #pragma once
-#include "../../../WrapperObjects/VsrgMap.h"
+#include "BaseObjects/Map/VsrgMap.h"
 #include "VsrgMapOsuParams.h"
-#include "../../../TimedObjects/HitObject/HitObject.h"
+#include "BaseObjects/Singular/Hit/HitObject.h"
+#include "BaseObjects/Singular/Event/EventObject.h"
 class VsrgMapOsu :
 	public VsrgMap
 {
@@ -14,6 +15,8 @@ public:
 
 	SPtrHitObject readHO(const std::string & str);
 	SPtrEventObject readEO(const std::string & str);
+
+	VsrgMapOsuParams params;
 
 private:
 
@@ -28,7 +31,5 @@ private:
 
 	// Inherited
 	// void saveAsVsrg(const std::string & file_path, bool overwrite = false);
-
-	VsrgMapOsuParams params;
 };
 

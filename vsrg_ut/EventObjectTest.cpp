@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include <TimedObjects/EventObjects/ScrollPoint.h>
-#include <TimedObjects/EventObjects/TimingPoint.h>
+#include <BaseObjects/Singular/Event/ScrollPoint.h>
+#include <BaseObjects/Singular/Event/TimingPoint.h>
 #include <iostream>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;

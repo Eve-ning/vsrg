@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
-#include "TimedObjects/HitObjectVector.h"
-#include "TimedObjects/EventObjectVector.h"
+#include "BaseObjects/Multiple/HitObjectVector.h"
+#include "BaseObjects/Multiple/EventObjectVector.h"
 
 class VsrgMap
 {

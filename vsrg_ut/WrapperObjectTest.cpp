@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 
-#include <TimedObjects/HitObjects/LongNote.h>
-#include <TimedObjects/HitObjects/NormalNote.h>
-#include <WrapperObjects/TimedObjects/HitObjectVector.h>
+#include <BaseObjects/Singular/Hit/LongNote.h>
+#include <BaseObjects/Singular/Hit/NormalNote.h>
+#include <BaseObjects/Multiple/HitObjectVector.h>
 
-#include <TimedObjects/EventObjects/ScrollPoint.h>
-#include <TimedObjects/EventObjects/TimingPoint.h>
-#include <WrapperObjects/TimedObjects/EventObjectVector.h>
+#include <BaseObjects/Singular/Event/ScrollPoint.h>
+#include <BaseObjects/Singular/Event/TimingPoint.h>
+#include <BaseObjects/Multiple/EventObjectVector.h>
 
 #include <iostream>
 #include <vector>

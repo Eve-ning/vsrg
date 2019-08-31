@@ -1,6 +1,6 @@
 #pragma once
 #include "TimedObjectVector.h"
-#include "../../TimedObjects/EventObjects/EventObject.h"
+#include "BaseObjects/Singular/Event/EventObject.h"
 class EventObjectVector : public TimedObjectVector
 {
 public:

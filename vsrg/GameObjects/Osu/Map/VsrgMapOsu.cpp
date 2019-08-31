@@ -31,7 +31,13 @@ void VsrgMapOsu::loadFile(const std::string & file_path) {
 	params.hp_				=		 std::stoi(matchTag(it, ite, "HPDrainRate:"));
 	params.keys_			=		 std::stoi(matchTag(it, ite, "CircleSize:"));
 
-	// TODO: Parse the hit objects and timing points
+	// TODO: Parse the hit objects and timing points	
+	matchTag(it, ite, "[TimingPoints]"); // Move it to [TimingPoints]
+	auto it_tp = it++;
+	matchTag(it, ite, "[HitObjects]"); // Move it to [TimingPoints]
+	auto it_ho = it++;
+
+	params.bg_file_name_ = std::to_string(std::distance(it_tp, it_ho));
 }
 
 void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
@@ -55,7 +61,7 @@ std::string VsrgMapOsu::matchTag(
 		begin++;
 	}
 	std::cout << starts_with; 
-	BOOST_ASSERT_MSG(true, "Failed to match Tag");
+	BOOST_ASSERT_MSG(false, "Failed to match Tag");
 	return str;
 }
 

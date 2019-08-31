@@ -1,150 +1,150 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Base Objects">
+      <UniqueIdentifier>{a7b3af14-91b1-472f-aa1f-76220aa7f047}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Base Objects\Map">
+      <UniqueIdentifier>{1ee2d058-3f1b-4dfb-9734-44422659b272}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Base Objects\Singular">
+      <UniqueIdentifier>{8b5bd7d5-600f-4f80-a004-cc282c5fbe44}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Timed Objects">
-      <UniqueIdentifier>{1f2918ef-88e3-4479-8d80-a8862248551d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Timed Objects\Hit Objects">
-      <UniqueIdentifier>{06716b84-8f98-4695-9d42-7d3f39a8d8cf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Timed Objects\Event Objects">
-      <UniqueIdentifier>{081f19b4-9713-4c1b-8ffb-91bb17037421}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Wrapper Objects">
-      <UniqueIdentifier>{7c124d07-02fe-43ba-b81b-868a54bf37f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Wrapper Objects\Timed Objects">
-      <UniqueIdentifier>{5b03d687-e92f-495c-96bb-3a045a7dbc9e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Exporting Helpers">
-      <UniqueIdentifier>{5e7f1667-7146-4fcc-b567-ce4bfb65b40e}</UniqueIdentifier>
+    <Filter Include="Base Objects\Multiple">
+      <UniqueIdentifier>{6511d8ee-d07b-40cc-b080-2ae25769ac5e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game Objects">
-      <UniqueIdentifier>{bc3db3e6-5ac3-48fb-b985-a1036504c109}</UniqueIdentifier>
+      <UniqueIdentifier>{4fb47192-8242-47c9-9d87-ec58057bec12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base Objects\Singular\Event">
+      <UniqueIdentifier>{6ee1daf0-d813-4d0a-85c7-43a09ca025e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base Objects\Singular\Hit">
+      <UniqueIdentifier>{b7c5ef07-a61b-4264-bb9d-6d2cb44c790a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{a12a8b62-6545-4f30-bdc4-e4c002bf16fa}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game Objects\Osu">
-      <UniqueIdentifier>{b211a84d-4abe-4ebc-b3c4-b5d1451c4bfb}</UniqueIdentifier>
+      <UniqueIdentifier>{99fae255-cf41-469e-8b4e-57920a6d9854}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game Objects\Osu\Wrapper Objects">
-      <UniqueIdentifier>{033e4f19-1489-4fcb-8fc4-63b4acdcfe07}</UniqueIdentifier>
+    <Filter Include="Game Objects\Osu\Map">
+      <UniqueIdentifier>{79b96909-9440-441c-b3b9-7403b7764b52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Objects\Osu\Multiple">
+      <UniqueIdentifier>{6e0810a9-70a9-4032-848e-2d5974286d16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Objects\Osu\Singular">
+      <UniqueIdentifier>{0c5e2838-051e-40f1-aea6-cdf78cdb5ea0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Others">
+      <UniqueIdentifier>{a5c66fae-8a5c-4485-b2ac-aee2ee7f735c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TimedObjects\EventObjects\EventObject.h">
-      <Filter>Timed Objects\Event Objects</Filter>
+    <ClInclude Include="BaseObjects\Singular\Event\EventObject.h">
+      <Filter>Base Objects\Singular\Event</Filter>
     </ClInclude>
-    <ClInclude Include="TimedObjects\HitObject\HitObject.h">
-      <Filter>Timed Objects\Hit Objects</Filter>
+    <ClInclude Include="BaseObjects\Multiple\EventObjectVector.h">
+      <Filter>Base Objects\Multiple</Filter>
     </ClInclude>
-    <ClInclude Include="TimedObjects\HitObject\LongNote.h">
-      <Filter>Timed Objects\Hit Objects</Filter>
+    <ClInclude Include="BaseObjects\Singular\Hit\HitObject.h">
+      <Filter>Base Objects\Singular\Hit</Filter>
     </ClInclude>
-    <ClInclude Include="TimedObjects\HitObject\NormalNote.h">
-      <Filter>Timed Objects\Hit Objects</Filter>
+    <ClInclude Include="BaseObjects\Multiple\HitObjectVector.h">
+      <Filter>Base Objects\Multiple</Filter>
     </ClInclude>
-    <ClInclude Include="TimedObjects\EventObjects\TimingPoint.h">
-      <Filter>Timed Objects\Event Objects</Filter>
+    <ClInclude Include="Helpers\IterHelper.h">
+      <Filter>Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="TimedObjects\EventObjects\ScrollPoint.h">
-      <Filter>Timed Objects\Event Objects</Filter>
+    <ClInclude Include="BaseObjects\Singular\Hit\LongNote.h">
+      <Filter>Base Objects\Singular\Hit</Filter>
     </ClInclude>
-    <ClInclude Include="WrapperObjects\TimedObjects\TimedObjectVector.h">
-      <Filter>Wrapper Objects\Timed Objects</Filter>
+    <ClInclude Include="BaseObjects\Singular\Hit\NormalNote.h">
+      <Filter>Base Objects\Singular\Hit</Filter>
     </ClInclude>
-    <ClInclude Include="WrapperObjects\TimedObjects\EventObjectVector.h">
-      <Filter>Wrapper Objects\Timed Objects</Filter>
+    <ClInclude Include="BaseObjects\Singular\Event\ScrollPoint.h">
+      <Filter>Base Objects\Singular\Event</Filter>
     </ClInclude>
-    <ClInclude Include="WrapperObjects\TimedObjects\HitObjectVector.h">
-      <Filter>Wrapper Objects\Timed Objects</Filter>
+    <ClInclude Include="BaseObjects\Singular\TimedObject.h">
+      <Filter>Base Objects\Singular</Filter>
     </ClInclude>
-    <ClInclude Include="WrapperObjects\VsrgMap.h">
-      <Filter>Wrapper Objects</Filter>
+    <ClInclude Include="BaseObjects\Multiple\TimedObjectVector.h">
+      <Filter>Base Objects\Multiple</Filter>
     </ClInclude>
-    <ClInclude Include="WrapperObjects\VsrgMapParams.h">
-      <Filter>Wrapper Objects</Filter>
+    <ClInclude Include="BaseObjects\Singular\Event\TimingPoint.h">
+      <Filter>Base Objects\Singular\Event</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\Osu\WrapperObjects\VsrgMapOsu.h">
-      <Filter>Game Objects\Osu\Wrapper Objects</Filter>
+    <ClInclude Include="BaseObjects\Map\VsrgMap.h">
+      <Filter>Base Objects\Map</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\Osu\WrapperObjects\VsrgMapOsuParams.h">
-      <Filter>Game Objects\Osu\Wrapper Objects</Filter>
+    <ClInclude Include="GameObjects\Osu\Map\VsrgMapOsu.h">
+      <Filter>Game Objects\Osu\Map</Filter>
     </ClInclude>
-    <ClInclude Include="TimedObjects\TimedObject.h">
-      <Filter>Timed Objects</Filter>
+    <ClInclude Include="GameObjects\Osu\Map\VsrgMapOsuParams.h">
+      <Filter>Game Objects\Osu\Map</Filter>
     </ClInclude>
-    <ClInclude Include="Base\stdafx.h">
-      <Filter>Exporting Helpers</Filter>
+    <ClInclude Include="BaseObjects\Map\VsrgMapParams.h">
+      <Filter>Base Objects\Map</Filter>
     </ClInclude>
-    <ClInclude Include="Base\targetver.h">
-      <Filter>Exporting Helpers</Filter>
+    <ClInclude Include="Others\stdafx.h">
+      <Filter>Others</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TimedObjects\EventObjects\EventObject.cpp">
-      <Filter>Timed Objects\Event Objects</Filter>
+    <ClCompile Include="BaseObjects\Singular\Event\EventObject.cpp">
+      <Filter>Base Objects\Singular\Event</Filter>
     </ClCompile>
-    <ClCompile Include="TimedObjects\HitObject\HitObject.cpp">
-      <Filter>Timed Objects\Hit Objects</Filter>
+    <ClCompile Include="BaseObjects\Multiple\EventObjectVector.cpp">
+      <Filter>Base Objects\Multiple</Filter>
     </ClCompile>
-    <ClCompile Include="TimedObjects\HitObject\LongNote.cpp">
-      <Filter>Timed Objects\Hit Objects</Filter>
+    <ClCompile Include="BaseObjects\Singular\Hit\HitObject.cpp">
+      <Filter>Base Objects\Singular\Hit</Filter>
     </ClCompile>
-    <ClCompile Include="TimedObjects\HitObject\NormalNote.cpp">
-      <Filter>Timed Objects\Hit Objects</Filter>
+    <ClCompile Include="BaseObjects\Multiple\HitObjectVector.cpp">
+      <Filter>Base Objects\Multiple</Filter>
     </ClCompile>
-    <ClCompile Include="TimedObjects\EventObjects\TimingPoint.cpp">
-      <Filter>Timed Objects\Event Objects</Filter>
+    <ClCompile Include="Helpers\IterHelper.cpp">
+      <Filter>Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="TimedObjects\EventObjects\ScrollPoint.cpp">
-      <Filter>Timed Objects\Event Objects</Filter>
+    <ClCompile Include="BaseObjects\Singular\Hit\LongNote.cpp">
+      <Filter>Base Objects\Singular\Hit</Filter>
     </ClCompile>
-    <ClCompile Include="WrapperObjects\TimedObjects\EventObjectVector.cpp">
-      <Filter>Wrapper Objects\Timed Objects</Filter>
+    <ClCompile Include="BaseObjects\Singular\Hit\NormalNote.cpp">
+      <Filter>Base Objects\Singular\Hit</Filter>
     </ClCompile>
-    <ClCompile Include="WrapperObjects\TimedObjects\HitObjectVector.cpp">
-      <Filter>Wrapper Objects\Timed Objects</Filter>
+    <ClCompile Include="BaseObjects\Singular\Event\ScrollPoint.cpp">
+      <Filter>Base Objects\Singular\Event</Filter>
     </ClCompile>
-    <ClCompile Include="WrapperObjects\TimedObjects\TimedObjectVector.cpp">
-      <Filter>Wrapper Objects\Timed Objects</Filter>
+    <ClCompile Include="BaseObjects\Singular\TimedObject.cpp">
+      <Filter>Base Objects\Singular</Filter>
     </ClCompile>
-    <ClCompile Include="WrapperObjects\VsrgMap.cpp">
-      <Filter>Wrapper Objects</Filter>
+    <ClCompile Include="BaseObjects\Multiple\TimedObjectVector.cpp">
+      <Filter>Base Objects\Multiple</Filter>
     </ClCompile>
-    <ClCompile Include="WrapperObjects\VsrgMapParams.cpp">
-      <Filter>Wrapper Objects</Filter>
+    <ClCompile Include="BaseObjects\Singular\Event\TimingPoint.cpp">
+      <Filter>Base Objects\Singular\Event</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjects\Osu\WrapperObjects\VsrgMapOsu.cpp">
-      <Filter>Game Objects\Osu\Wrapper Objects</Filter>
+    <ClCompile Include="BaseObjects\Map\VsrgMap.cpp">
+      <Filter>Base Objects\Map</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjects\Osu\WrapperObjects\VsrgMapOsuParams.cpp">
-      <Filter>Game Objects\Osu\Wrapper Objects</Filter>
+    <ClCompile Include="GameObjects\Osu\Map\VsrgMapOsu.cpp">
+      <Filter>Game Objects\Osu\Map</Filter>
     </ClCompile>
-    <ClCompile Include="TimedObjects\TimedObject.cpp">
-      <Filter>Timed Objects</Filter>
+    <ClCompile Include="GameObjects\Osu\Map\VsrgMapOsuParams.cpp">
+      <Filter>Game Objects\Osu\Map</Filter>
     </ClCompile>
-    <ClCompile Include="Base\dllmain.cpp">
-      <Filter>Exporting Helpers</Filter>
+    <ClCompile Include="BaseObjects\Map\VsrgMapParams.cpp">
+      <Filter>Base Objects\Map</Filter>
     </ClCompile>
-    <ClCompile Include="Base\stdafx.cpp">
-      <Filter>Exporting Helpers</Filter>
+    <ClCompile Include="Others\dllmain.cpp">
+      <Filter>Others</Filter>
     </ClCompile>
-    <ClCompile Include="Base\vsrg.cpp">
-      <Filter>Exporting Helpers</Filter>
+    <ClCompile Include="Others\stdafx.cpp">
+      <Filter>Others</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <ClCompile Include="Others\vsrg.cpp">
+      <Filter>Others</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
