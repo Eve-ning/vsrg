@@ -1,6 +1,19 @@
 #include "stdafx.h"
 #include "TimingPoint.h"
 
+
+/**
+* @brief Construct a new Timing Point object
+*
+* See isValid() for validation checks on parameters
+*
+* @param offset_m_sec Offset in milliseconds
+* @param bpm Beats per minute
+* @param time_sig_numerator Time Signature Numerator, can be fractional
+* @param time_sig_denominator Time Signature Denominator, can be fractional
+*/
+
+TimingPoint::TimingPoint() : bpm_(120.0), time_sig_numerator_(4), time_sig_denominator_(4) {}
 TimingPoint::TimingPoint(
 	double offset_m_sec,
 	double bpm,
