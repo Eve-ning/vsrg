@@ -28,3 +28,9 @@ std::vector<std::string> IterHelper::getBetween(std::vector<std::string>::const_
 	}
 	return std::move(out);
 }
+
+boost::tokenizer<boost::char_separator<char>> IterHelper::tokenize(const std::string & str, const char * separators) {
+	boost::char_separator<char> sep(separators, "", boost::keep_empty_tokens);
+	boost::tokenizer<boost::char_separator<char>> tokens(str, sep);
+	return std::move(tokens);
+}
