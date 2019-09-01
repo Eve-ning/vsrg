@@ -35,14 +35,16 @@ public:
 	
 	/// Runs a cast check on the vector and returns a vector of matches of class specified
 	template<class T>
-	std::shared_ptr<std::vector<T>> getClassOnly() const {
+	std::vector<T> getClassOnly() const {
+		// Note: May be a problem in the future if we're copying the vector over
+		// Returning by reference doesn't really work though (?)
 		std::vector<T> filtered = {};
 		std::for_each(cbegin(), cend(), [&filtered](const SPtrTimedObject & to) -> void {
 			std::shared_ptr<T> casted = std::dynamic_pointer_cast<T>(to->Clone());
 			if (casted) { filtered.push_back(*casted); }
 		});
 
-		return std::make_shared<std::vector<T>>(filtered);
+		return filtered;
 	}
 	
 	std::vector<SPtrTimedObject> getTimedObjectVector() const;	

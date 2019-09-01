@@ -100,8 +100,8 @@ namespace WrapperObject_
 			eo_v_1.push_back(sp_2.Clone());
 			eo_v_1.push_back(tp_1.Clone());
 			// Filters out all Scroll Points
-			std::vector<ScrollPoint> eo_v_2 = *eo_v_1.getClassOnly<ScrollPoint>();
-			std::vector<TimingPoint> eo_v_3 = *eo_v_1.getClassOnly<TimingPoint>();
+			std::vector<ScrollPoint> eo_v_2 = eo_v_1.getClassOnly<ScrollPoint>();
+			std::vector<TimingPoint> eo_v_3 = eo_v_1.getClassOnly<TimingPoint>();
 			Assert::AreEqual(size_t(2), eo_v_2.size());
 			Assert::AreEqual(size_t(1), eo_v_3.size());
 		}

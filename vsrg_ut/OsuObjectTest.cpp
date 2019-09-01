@@ -31,14 +31,14 @@ namespace VsrgMapOsu_
 			VsrgMapOsu osumap = VsrgMapOsu();
 			osumap.loadFile(osu_fc_pd);
 
-			Assert::AreEqual(osumap.params.artist_.c_str(), "Camellia");
-			Assert::AreEqual(osumap.params.audio_file_name_.c_str(), "audio.mp3");
-			Assert::AreEqual(osumap.params.beatmap_id_, 1940322);
-			Assert::AreEqual(osumap.params.beatmap_set_id_, 929005);
-			Assert::AreEqual(osumap.params.creator_.c_str(), "paradoxus_");
-			Assert::AreEqual(osumap.getHitObjectVector().getEarliestOffset(), 2315.);
-			Assert::AreEqual(osumap.getEventObjectVector().getLatestOffset(), 1385015.);
-			Assert::AreEqual(osumap.getEventObjectVector().getClassOnly<TimingPoint>()->at(0).getBpm(), 153.);
+			Assert::AreEqual("Camellia",osumap.params.artist_.c_str());
+			Assert::AreEqual("audio.mp3",osumap.params.audio_file_name_.c_str());
+			Assert::AreEqual(1940322,osumap.params.beatmap_id_);
+			Assert::AreEqual(929005,osumap.params.beatmap_set_id_);
+			Assert::AreEqual("paradoxus_",osumap.params.creator_.c_str());
+			Assert::AreEqual(2315.,osumap.getHitObjectVector().getEarliestOffset());
+			Assert::AreEqual(1385015.,osumap.getEventObjectVector().getLatestOffset());
+			Assert::AreEqual(153.,osumap.getEventObjectVector().getClassOnly<TimingPoint>()[0].getBpm());
 		}
 		TEST_METHOD(NormalNoteOsu_) {
 			NormalNoteOsu nn = NormalNoteOsu("36,192,1000,1,0,0:0:0:0:", 7);
