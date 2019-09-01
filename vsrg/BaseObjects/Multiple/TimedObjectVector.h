@@ -23,6 +23,7 @@ public:
 	/// Alias to operator[]
 	SPtrTimedObject getTimedObject(unsigned int index) const;
 	SPtrTimedObject operator[](unsigned int index) const;
+
 	void push_back(SPtrTimedObject to);
 	void pop_back();
 	void clear();
@@ -41,7 +42,7 @@ public:
 			if (casted) { filtered.push_back(*casted); }
 		});
 
-		return std::make_shared<std::vector<T>>(filtered);;
+		return std::make_shared<std::vector<T>>(filtered);
 	}
 	
 	std::vector<SPtrTimedObject> getTimedObjectVector() const;	
@@ -54,11 +55,11 @@ public:
 	SPtrTimedObject getLatestObject() const;
 
 	/// Loops the vector and calls isValid for every element, returns the AND result
-	bool isValid() const;
+	virtual bool isValid() const final;
 	/// Loops the vector and returns the indexes of invalid objects
-	std::vector<unsigned int> isInvalidIndexes() const;
+	virtual std::vector<unsigned int> isInvalidIndexes() const final;
 	/// Loops the vector and returns the invalid objects
-	std::vector<SPtrTimedObject> isInvalidObjects() const;
+	virtual std::vector<SPtrTimedObject> isInvalidObjects() const final;
 
 	/// Loops the vector and calls toExport to push in vector
 	virtual std::vector<std::string> toExport() const final;
@@ -73,7 +74,7 @@ public:
 	void operator+=(double offset_m_sec);
 	void operator-=(double offset_m_sec);
 
-private:
+protected:
 
 	std::vector<SPtrTimedObject> to_v_;
 };
