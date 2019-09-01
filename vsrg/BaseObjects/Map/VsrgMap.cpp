@@ -47,8 +47,7 @@ void VsrgMap::writeFile(const std::vector<std::string> file_contents, const std:
 			"File already exists.");
 	}
 
-	std::ofstream file_out;
-	file_out.open(file_path, std::ios::in);
+	std::ofstream file_out(file_path);
 	BOOST_ASSERT_MSG(file_out.is_open(), "File failed to open.");
 	for (const std::string & line : file_contents) {
 		file_out << line << '\n';

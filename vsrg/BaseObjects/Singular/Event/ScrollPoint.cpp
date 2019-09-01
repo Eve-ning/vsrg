@@ -86,5 +86,5 @@ void ScrollPoint::operator-=(double by) {
 
 std::string ScrollPoint::getInfo() const {
 	return EventObject::getInfo() +
-		"Scroll Speed Mult " + std::to_string(scroll_speed_mult_) + '\n';
+		"\nScroll Speed Mult " + std::to_string(scroll_speed_mult_);
 }

@@ -98,6 +98,7 @@ std::vector<std::string> TimedObjectVector::toExport() const {
 	std::vector<std::string> exported = {};
 	for (const SPtrTimedObject & to : to_v_) {
 		exported.push_back(to->toExport());
+		exported.push_back("");
 	}
 	return exported;
 }

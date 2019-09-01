@@ -18,12 +18,12 @@ HitObject::~HitObject() {}
 
 std::string HitObject::getInfo() const {
 	return TimedObject::getInfo() +
-		   "Index " + std::to_string(index_) + '\n';
+		   "\nIndex " + std::to_string(index_);
 }
 
 bool HitObject::isValid() const {
 	// Put in index validation if required.
-	return TimedObject::isValid() && index_ > 0;
+	return TimedObject::isValid() && index_ >= 0;
 }
 
 int HitObject::getIndex() const {

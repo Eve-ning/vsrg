@@ -69,7 +69,7 @@ bool TimingPoint::isValid() const {
 
 std::string TimingPoint::getInfo() const {
 	return EventObject::getInfo() +
-		   "BPM " + std::to_string(bpm_) + '\n' +
-		   "Time Signature Numerator " + std::to_string(time_sig_numerator_) + '\n' +
-		   "Time Signature Denominator " + std::to_string(time_sig_denominator_) + '\n';
+		   "\nBPM " + std::to_string(bpm_) + 
+		   "\nTime Signature Numerator " + std::to_string(time_sig_numerator_) + 
+		   "\nTime Signature Denominator " + std::to_string(time_sig_denominator_);
 }

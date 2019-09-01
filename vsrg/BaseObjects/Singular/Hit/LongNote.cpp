@@ -51,8 +51,8 @@ bool LongNote::isValid() const {
 }
 
 std::string LongNote::getInfo() const {
-	return HitObject::getInfo() +
-		"Length " + std::to_string(length_m_sec_);
+	return HitObject::getInfo() + 
+		"\nLength " + std::to_string(length_m_sec_);
 }
 
 bool LongNote::operator==(const LongNote & ln) const {

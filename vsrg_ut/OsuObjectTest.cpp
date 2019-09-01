@@ -39,6 +39,8 @@ namespace VsrgMapOsu_
 			Assert::AreEqual(2315.,osumap.getHitObjectVector().getEarliestOffset());
 			Assert::AreEqual(1385015.,osumap.getEventObjectVector().getLatestOffset());
 			Assert::AreEqual(153.,osumap.getEventObjectVector().getClassOnly<TimingPoint>()[0].getBpm());
+
+			osumap.saveAsVsrg("testing.vsrg", true);
 		}
 		TEST_METHOD(NormalNoteOsu_) {
 			NormalNoteOsu nn = NormalNoteOsu("36,192,1000,1,0,0:0:0:0:", 7);
