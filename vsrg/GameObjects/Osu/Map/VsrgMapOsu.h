@@ -1,12 +1,7 @@
 #pragma once
 #include "BaseObjects/Map/VsrgMap.h"
 #include "VsrgMapOsuParams.h"
-#include "BaseObjects/Singular/Hit/HitObject.h"
-#include "BaseObjects/Singular/Event/EventObject.h"
-#include "GameObjects/Osu/Singular/Hit/NormalNoteOsu.h"
-#include "GameObjects/Osu/Singular/Hit/LongNoteOsu.h"
-#include "GameObjects/Osu/Singular/Event/ScrollPointOsu.h"
-#include "GameObjects/Osu/Singular/Event/TimingPointOsu.h"
+
 class VsrgMapOsu :
 	public VsrgMap
 {
