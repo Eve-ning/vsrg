@@ -67,12 +67,12 @@ void VsrgMapOsu::readEO(const std::vector<std::string>& str_v) {
 	for (const std::string & str : str_v) {
 		SPtrTimedObject sptr = nullptr;
 		if (isTimingPointOsu(str)) {
-			auto sp = ScrollPointOsu(str);
-			sptr = std::make_shared<ScrollPoint>(sp);
-		}
-		else {
 			auto tp = TimingPointOsu(str);
 			sptr = std::make_shared<TimingPoint>(tp);
+		}
+		else {
+			auto sp = ScrollPointOsu(str);
+			sptr = std::make_shared<ScrollPoint>(sp);
 		}
 		eo_v_.push_back(sptr);
 	}
