@@ -24,6 +24,9 @@ public:
 	virtual void writeFile(const std::vector<std::string> file_contents,
 		const std::string & file_path, bool overwrite = false);
 
+	virtual void writeFile(YAML::Node node,
+		const std::string & file_path, bool overwrite = false);
+
 	static std::string ho_v_tag_;
 	static std::string eo_v_tag_;
 

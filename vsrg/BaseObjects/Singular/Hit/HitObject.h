@@ -27,8 +27,7 @@ public:
 	/// Validates the object being realistic
 	virtual bool isValid() const override;
 
-	/// Gets info of the important object members
-	virtual std::string getInfo() const override;
+	virtual YAML::Node toMap() const override;
 
 private:
 	int index_;

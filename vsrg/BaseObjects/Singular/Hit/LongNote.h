@@ -38,10 +38,8 @@ public:
 	/// Validates the object being realistic
 	virtual bool isValid() const;
 
-	/// Gets info of the important object members
-	virtual std::string getInfo() const;
 	/// toExport handles the string exported to files, unlike getInfo which prints more details
-	virtual std::string toExport() const;
+	virtual YAML::Node toMap() const;
 
 	virtual bool operator==(const LongNote & ln) const;
 

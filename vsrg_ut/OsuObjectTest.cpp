@@ -60,6 +60,7 @@ namespace VsrgMapOsu_
 			Assert::AreEqual(153.,osumap.getEventObjectVector().getClassOnly<TimingPoint>()[0].getBpm());
 
 			//osumap.saveAsVsrg("testing.vsrg", true);
+			osumap.saveAsVsrg("test.vsrg", true);
 			
 		}
 		TEST_METHOD(NormalNoteOsu_) {

@@ -50,16 +50,13 @@ bool LongNote::isValid() const {
 	return HitObject::isValid() && length_m_sec_ > 0;
 }
 
-std::string LongNote::getInfo() const {
-	return HitObject::getInfo() + 
-		"\nLength " + std::to_string(length_m_sec_);
-}
-
 bool LongNote::operator==(const LongNote & ln) const {
 	return isOverlapping(ln);
 }
 
-std::string LongNote::toExport() const {
-	BOOST_ASSERT_MSG(isValid(), "Both LongNotes must be Valid");
-	return getInfo();
+YAML::Node LongNote::toMap() const {
+	BOOST_ASSERT_MSG(isValid(), "Note is invalid");
+	auto out = HitObject::toMap();
+	out["length_m_sec"] = length_m_sec_;
+	return out;
 }

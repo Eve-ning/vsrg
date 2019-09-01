@@ -39,7 +39,6 @@ size_t TimedObjectVector::size() const {
 	return to_v_.size();
 }
 
-
 std::vector<SPtrTimedObject> TimedObjectVector::getTimedObjectVector() const {
 	return to_v_;
 }
@@ -94,13 +93,10 @@ std::vector<SPtrTimedObject> TimedObjectVector::isInvalidObjects() const {
 	return invalid_obj_v;
 }
 
-std::vector<std::string> TimedObjectVector::toExport() const {
-	std::vector<std::string> exported = {};
-	for (const SPtrTimedObject & to : to_v_) {
-		exported.push_back(to->toExport());
-		exported.push_back("");
-	}
-	return exported;
+YAML::Node TimedObjectVector::toMap() const {
+	YAML::Node out = {};
+	for (const SPtrTimedObject & to : to_v_) out.push_back(to->toMap());
+	return out;
 }
 
 void TimedObjectVector::multiplyOffsetMSec(double offset_m_sec) {

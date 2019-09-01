@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <map>
+#include "yaml-cpp/yaml.h"
 
 /**
  * @brief Abstract Class, used for all "timable" objects
@@ -39,9 +41,7 @@ public:
 	virtual operator bool() const final; // Calls isValid
 
 	/// Gets info of the important object members
-	virtual std::string getInfo() const;
-	virtual std::string toExport() const;
-	virtual operator std::string() const final; // Calls getInfo
+	virtual YAML::Node toMap() const;
 
 	virtual bool operator==(const TimedObject & obj) const;
 	virtual bool operator>(const TimedObject & obj) const;

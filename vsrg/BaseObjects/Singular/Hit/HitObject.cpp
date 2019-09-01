@@ -16,14 +16,15 @@ HitObject::HitObject(const double & offset_m_sec,
 	TimedObject(offset_m_sec), index_(index) {}
 HitObject::~HitObject() {}
 
-std::string HitObject::getInfo() const {
-	return TimedObject::getInfo() +
-		   "\nIndex " + std::to_string(index_);
-}
-
 bool HitObject::isValid() const {
 	// Put in index validation if required.
 	return TimedObject::isValid() && index_ >= 0;
+}
+
+YAML::Node HitObject::toMap() const {
+	auto out = TimedObject::toMap();
+	out["index"] = index_;
+	return out;
 }
 
 int HitObject::getIndex() const {

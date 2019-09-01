@@ -9,10 +9,10 @@
 * @param scroll_speed_mult Scroll Speed multiplier. 1.0 is the base multiplier
 */
 
-ScrollPoint::ScrollPoint() : scroll_speed_mult_(1.0) {}
+ScrollPoint::ScrollPoint() : scroll_mult_(1.0) {}
 
 ScrollPoint::ScrollPoint(double offset_m_sec, double scroll_speed_mult) :
-	EventObject(offset_m_sec), scroll_speed_mult_(scroll_speed_mult) {}
+	EventObject(offset_m_sec), scroll_mult_(scroll_speed_mult) {}
 ScrollPoint::~ScrollPoint() {}
 
 std::shared_ptr<TimedObject> ScrollPoint::Clone() const {
@@ -20,10 +20,10 @@ std::shared_ptr<TimedObject> ScrollPoint::Clone() const {
 }
 
 double ScrollPoint::getScrollSpeedMult() const {
-	return scroll_speed_mult_;
+	return scroll_mult_;
 }
 void ScrollPoint::setScrollSpeedMult(double scroll_speed_mult) {
-	scroll_speed_mult_ = scroll_speed_mult;
+	scroll_mult_ = scroll_speed_mult;
 }
 
 bool ScrollPoint::isNegative(bool include0) const {
@@ -45,6 +45,12 @@ bool ScrollPoint::isApproximately(
 		return ((*this > (value - threshold)) &&
 			    (*this < (value + threshold)));
 	}
+}
+
+YAML::Node ScrollPoint::toMap() const {
+	auto out = EventObject::toMap();
+	out["scroll_mult"] = scroll_mult_;
+	return out;
 }
 
 bool ScrollPoint::operator>(double value) const {
@@ -84,7 +90,3 @@ void ScrollPoint::operator-=(double by) {
 	setScrollSpeedMult(getScrollSpeedMult() - by);
 }
 
-std::string ScrollPoint::getInfo() const {
-	return EventObject::getInfo() +
-		"\nScroll Speed Mult " + std::to_string(scroll_speed_mult_);
-}

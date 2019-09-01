@@ -25,15 +25,11 @@ TimedObject::operator bool() const {
 	return isValid();
 }
 
-std::string TimedObject::getInfo() const {
-	return "Offset " + std::to_string(offset_m_sec_);
-}
-std::string TimedObject::toExport() const {
-	BOOST_ASSERT_MSG(isValid(), "Object must pass isValid() == true to be exported.");
-	return getInfo();
-}
-TimedObject::operator std::string() const {
-	return toExport();
+YAML::Node TimedObject::toMap() const {
+	BOOST_ASSERT_MSG(isValid(), "Object must pass isValid() to be exported.");
+	YAML::Node out;
+	out["offset_m_sec"] = offset_m_sec_;
+	return out;
 }
 
 bool TimedObject::operator==(const TimedObject & obj) const {

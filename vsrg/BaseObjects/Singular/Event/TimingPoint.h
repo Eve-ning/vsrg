@@ -1,5 +1,6 @@
 #pragma once
 #include "EventObject.h"
+
 /**
  * @brief Inherits from EventObject, mainly used to time a song
  * 
@@ -46,8 +47,7 @@ public:
 	/// Validates the object being realistic
 	virtual bool isValid() const override;
 
-	/// Gets info of the important object members
-	virtual std::string getInfo() const override;
+	virtual YAML::Node toMap() const override;
 
 private:
 	/// Beats per Minute

@@ -67,9 +67,10 @@ bool TimingPoint::isValid() const {
 	return TimedObject::isValid() && isTimeSigValid() && (getBpm() > 0);
 }
 
-std::string TimingPoint::getInfo() const {
-	return EventObject::getInfo() +
-		   "\nBPM " + std::to_string(bpm_) + 
-		   "\nTime Signature Numerator " + std::to_string(time_sig_numerator_) + 
-		   "\nTime Signature Denominator " + std::to_string(time_sig_denominator_);
+YAML::Node TimingPoint::toMap() const {
+	auto out = EventObject::toMap();
+	out["bpm"] = bpm_;
+	out["time_sig_numerator"] = time_sig_numerator_;
+	out["time_sig_denominator"] = time_sig_denominator_;
+	return out;
 }
