@@ -48,7 +48,6 @@ public:
 	std::vector<SPtrTimedObject> getTimedObjectVector() const;	
 	void setTimedObjectVector(const std::vector<SPtrTimedObject> & to_v);
 
-	// While we could convert to Sec/Min/Hour, I think I'll leave it to them to convert via TimedObject
 	double getEarliestOffset(double unit_scale = TimedObject::UnitScale::msecond) const;
 	double getLatestOffset(double unit_scale = TimedObject::UnitScale::msecond) const;
 	SPtrTimedObject getEarliestObject() const;
