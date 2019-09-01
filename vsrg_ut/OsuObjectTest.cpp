@@ -8,6 +8,7 @@
 #include <iostream>
 #include <filesystem>
 #include <fstream>
+#include "yaml-cpp/yaml.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace VsrgMapOsu_
@@ -19,6 +20,24 @@ namespace VsrgMapOsu_
 		std::string osu_fc_pd = "../test_files/Osu/Camellia - Fastest Crash ('Camellia's ''paroxysmal'' Energetic Hitech Remix) (paradoxus_) [Houkai].osu";
 		std::string osu_dh_51 = "../test_files/Osu/xi - Double Helix (Level 51) [Nucleic].osu";
 		
+		TEST_METHOD(test) {
+			YAML::Node node;  // starts out as null
+			node["key"] = "value";  // it now is a map node
+			node["seq"].push_back("first element");  // node["seq"] automatically becomes a sequence
+			node["seq"].push_back("second element");
+
+			node["mirror"] = node["seq"][0];  // this creates an alias
+			node["seq"][0] = "1st element";  // this also changes node["mirror"]
+			node["mirror"] = "element #1";  // and this changes node["seq"][0] - they're really the "same" node
+
+			node["self"] = node;  // you can even create self-aliases
+			node[node["mirror"]] = node["seq"];  // and strange loops :)
+
+			std::ofstream fout("file.yaml");
+			fout << node;
+	
+		}
+
 		// Initialize objects here
 		TEST_METHOD(LogDir) { // set to true to output dirs and file check
 			if (false) {
@@ -40,7 +59,8 @@ namespace VsrgMapOsu_
 			Assert::AreEqual(1385015.,osumap.getEventObjectVector().getLatestOffset());
 			Assert::AreEqual(153.,osumap.getEventObjectVector().getClassOnly<TimingPoint>()[0].getBpm());
 
-			osumap.saveAsVsrg("testing.vsrg", true);
+			//osumap.saveAsVsrg("testing.vsrg", true);
+			
 		}
 		TEST_METHOD(NormalNoteOsu_) {
 			NormalNoteOsu nn = NormalNoteOsu("36,192,1000,1,0,0:0:0:0:", 7);
