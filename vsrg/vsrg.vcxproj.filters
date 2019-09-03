@@ -60,9 +60,6 @@
     <ClInclude Include="BaseObjects\Multiple\HitObjectVector.h">
       <Filter>Base Objects\Multiple</Filter>
     </ClInclude>
-    <ClInclude Include="Helpers\IterHelper.h">
-      <Filter>Helpers</Filter>
-    </ClInclude>
     <ClInclude Include="BaseObjects\Singular\Hit\LongNote.h">
       <Filter>Base Objects\Singular\Hit</Filter>
     </ClInclude>
@@ -114,6 +111,9 @@
     <ClInclude Include="EventParamsOsu.h">
       <Filter>Game Objects\Osu\Singular\Event</Filter>
     </ClInclude>
+    <ClInclude Include="Helpers\MiscHelper.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseObjects\Singular\Event\EventObject.cpp">
@@ -127,9 +127,6 @@
     </ClCompile>
     <ClCompile Include="BaseObjects\Multiple\HitObjectVector.cpp">
       <Filter>Base Objects\Multiple</Filter>
-    </ClCompile>
-    <ClCompile Include="Helpers\IterHelper.cpp">
-      <Filter>Helpers</Filter>
     </ClCompile>
     <ClCompile Include="BaseObjects\Singular\Hit\LongNote.cpp">
       <Filter>Base Objects\Singular\Hit</Filter>
@@ -187,6 +184,9 @@
     </ClCompile>
     <ClCompile Include="EventParamsOsu.cpp">
       <Filter>Game Objects\Osu\Singular\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Helpers\MiscHelper.cpp">
+      <Filter>Helpers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
