@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ScrollPointOsu.h"
-#include "Helpers/IterHelper.h"
+#include "Helpers/MiscHelper.h"
 
 ScrollPointOsu::ScrollPointOsu(double offset_m_sec, double scroll_speed_mult) :
 	ScrollPoint(offset_m_sec, scroll_speed_mult) {}

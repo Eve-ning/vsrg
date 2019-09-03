@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "VsrgMapOsu.h"
-#include "Helpers/IterHelper.h"
+#include "Helpers/MiscHelper.h"
 #include "BaseObjects/Singular/Hit/HitObject.h"
 #include "BaseObjects/Singular/Event/EventObject.h"
 #include "GameObjects/Osu/Singular/Hit/NormalNoteOsu.h"

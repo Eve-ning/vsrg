@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ScrollPoint.h"
+#include "Helpers/MiscHelper.h"
 
 /**
 * @brief Construct a new Scroll Point object
@@ -11,7 +12,8 @@
 ScrollPoint::ScrollPoint() : scroll_mult_(1.0) {}
 
 ScrollPoint::ScrollPoint(double offset_m_sec, double scroll_speed_mult) :
-	EventObject(offset_m_sec), scroll_mult_(scroll_speed_mult) {}
+	EventObject(offset_m_sec),
+	scroll_mult_(scroll_speed_mult) {}
 ScrollPoint::~ScrollPoint() {}
 
 std::shared_ptr<TimedObject> ScrollPoint::Clone() const {
@@ -48,7 +50,7 @@ bool ScrollPoint::isApproximately(
 
 YAML::Node ScrollPoint::toMap() const {
 	auto out = EventObject::toMap();
-	out["scroll_mult"] = scroll_mult_;
+	out["scroll_mult"] = StringHelper::formatDbl(scroll_mult_);
 	return out;
 }
 

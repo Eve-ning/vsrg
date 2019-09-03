@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "TimedObject.h"
+#include "Helpers/MiscHelper.h"
 
 const double TimedObject::UnitScale::hour = 3600000.0;
 const double TimedObject::UnitScale::minute = 60000.0;
@@ -28,7 +29,7 @@ TimedObject::operator bool() const {
 YAML::Node TimedObject::toMap() const {
 	BOOST_ASSERT_MSG(isValid(), "Object must pass isValid() to be exported.");
 	YAML::Node out;
-	out["offset_m_sec"] = offset_m_sec_;
+	out["offset_m_sec"] = StringHelper::formatDbl(offset_m_sec_);
 	return out;
 }
 

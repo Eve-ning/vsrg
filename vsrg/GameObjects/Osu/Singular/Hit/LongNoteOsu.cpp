@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "LongNoteOsu.h"
 #include "HitParamsOsu.h"
-#include "Helpers/IterHelper.h"
+#include "Helpers/MiscHelper.h"
 
 LongNoteOsu::LongNoteOsu() {}
 LongNoteOsu::LongNoteOsu(double offset_m_sec, unsigned int index, double length) :

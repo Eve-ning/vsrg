@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "TimingPoint.h"
-
+#include "Helpers/MiscHelper.h"
 
 /**
 * @brief Construct a new Timing Point object
@@ -69,7 +69,7 @@ bool TimingPoint::isValid() const {
 
 YAML::Node TimingPoint::toMap() const {
 	auto out = EventObject::toMap();
-	out["bpm"] = bpm_;
+	out["bpm"] = StringHelper::formatDbl(bpm_);
 	out["time_sig_numerator"] = time_sig_numerator_;
 	out["time_sig_denominator"] = time_sig_denominator_;
 	return out;

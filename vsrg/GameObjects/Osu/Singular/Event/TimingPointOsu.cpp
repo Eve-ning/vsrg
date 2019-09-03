@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "TimingPointOsu.h"
-#include "Helpers/IterHelper.h"
+#include "Helpers/MiscHelper.h"
 
 TimingPointOsu::TimingPointOsu(double offset_m_sec, double bpm, double time_sig_numerator) :
 	TimingPoint(offset_m_sec, bpm, time_sig_numerator, 4.0) {}

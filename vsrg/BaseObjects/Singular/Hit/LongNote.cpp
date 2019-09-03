@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "LongNote.h"
+#include "Helpers/MiscHelper.h"
 
 LongNote::LongNote() {}
 
@@ -57,6 +58,6 @@ bool LongNote::operator==(const LongNote & ln) const {
 YAML::Node LongNote::toMap() const {
 	BOOST_ASSERT_MSG(isValid(), "Note is invalid");
 	auto out = HitObject::toMap();
-	out["length_m_sec"] = length_m_sec_;
+	out["length_m_sec"] = StringHelper::formatDbl(length_m_sec_);
 	return out;
 }
