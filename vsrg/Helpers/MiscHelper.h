@@ -1,7 +1,9 @@
 #pragma once
+
 namespace IterHelper
 {
 	// Matches a string by starts_with and returns the content excluding starts_with
+	// E.g. "Number: 3", starts_with = "Number: ", returns "3"
 	std::string matchTag(
 		std::vector<std::string>::const_iterator & begin,
 		std::vector<std::string>::const_iterator end,
@@ -15,5 +17,10 @@ namespace IterHelper
 
 	boost::tokenizer<boost::char_separator<char>> tokenize(
 		const std::string & str, const char * separators);
-};
+}
+
+namespace StringHelper {
+	static constexpr char formatDblf[] = "%.5f";
+	std::string formatDbl(const double & val);
+}
 
