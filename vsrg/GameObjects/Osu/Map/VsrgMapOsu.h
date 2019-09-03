@@ -12,6 +12,8 @@ public:
 	virtual void loadFile(const std::string & file_path) override;
 	virtual void saveFile(const std::string & file_path, bool overwrite = false) override;
 
+	virtual YAML::Node asYaml() const;
+
 	VsrgMapOsuParams params;
 
 private:
@@ -24,8 +26,5 @@ private:
 
 	std::vector<unsigned int> processBookmarks(const std::string & str);
 	std::vector<std::string> processTags(const std::string & str);
-
-	// Inherited
-	// void saveAsVsrg(const std::string & file_path, bool overwrite = false);
 };
 

@@ -54,6 +54,12 @@ void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
 	// TODO:
 }
 
+YAML::Node VsrgMapOsu::asYaml() const {
+	auto node = VsrgMap::asYaml();
+	node.push_back(params.asYaml());
+	return node;
+}
+
 void VsrgMapOsu::readHO(const std::vector<std::string>& str_v) {
 	for (const std::string & str : str_v) {
 		SPtrTimedObject sptr = nullptr;
@@ -105,6 +111,6 @@ std::vector<unsigned int> VsrgMapOsu::processBookmarks(const std::string & str) 
 
 std::vector<std::string> VsrgMapOsu::processTags(const std::string & str) {
 	std::vector<std::string> out = {};
-	boost::split(out, str, boost::is_any_of(","));
+	boost::split(out, str, boost::is_any_of(" "));
 	return std::move(out);
 }

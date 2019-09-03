@@ -48,6 +48,8 @@ public:
 
 	~VsrgMapOsuParams();
 
+	YAML::Node asYaml() const;
+
 	double hp_;
 	double od_;
 	unsigned int preview_time_;

@@ -59,8 +59,9 @@ namespace VsrgMapOsu_
 			Assert::AreEqual(1385015.,osumap.getEventObjectVector().getLatestOffset());
 			Assert::AreEqual(153.,osumap.getEventObjectVector().getClassOnly<TimingPoint>()[0].getBpm());
 
+			osumap.writeFile(osumap.asYaml(), "test.vsrg", true);
 			//osumap.saveAsVsrg("testing.vsrg", true);
-			osumap.saveAsVsrg("test.vsrg", true);
+			//osumap.saveAsVsrg("test.vsrg", true);
 			
 		}
 		TEST_METHOD(NormalNoteOsu_) {

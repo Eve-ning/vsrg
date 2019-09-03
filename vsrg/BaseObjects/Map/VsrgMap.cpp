@@ -1,7 +1,6 @@
 #include "stdafx.h" 
 #include "VsrgMap.h"
 #include <iostream>
-#include "yaml-cpp/yaml.h"
 
 std::string VsrgMap::ho_v_tag_ = "// Hit Objects";
 std::string VsrgMap::eo_v_tag_ = "// Event Objects";
@@ -9,18 +8,11 @@ std::string VsrgMap::eo_v_tag_ = "// Event Objects";
 VsrgMap::VsrgMap() {}
 VsrgMap::~VsrgMap() {}
 
-void VsrgMap::saveAsVsrg(const std::string & file_path, bool overwrite) {
-
+YAML::Node VsrgMap::asYaml() const {
 	YAML::Node node;
-
-	for (const auto & ho : ho_v_.toMap()) {
-		node.push_back(ho);
-	}
-	for (const auto & eo : eo_v_.toMap()) {
-		node.push_back(eo);
-	}
-
-	writeFile(node, file_path, overwrite);
+	for (const auto & ho : ho_v_.toMap()) node.push_back(ho); 
+	for (const auto & eo : eo_v_.toMap()) node.push_back(eo);
+	return node;
 }
 
 std::vector<std::string> VsrgMap::readFile(const std::string & file_path) {
@@ -30,9 +22,7 @@ std::vector<std::string> VsrgMap::readFile(const std::string & file_path) {
 	std::vector<std::string> file_vector;
 	std::string line = "";
 	file_stream.open(file_path);
-	while (std::getline(file_stream, line)) {
-		file_vector.push_back(line);
-	}
+	while (std::getline(file_stream, line)) file_vector.push_back(line);
 
 	file_stream.close();
 
@@ -55,7 +45,7 @@ void VsrgMap::writeFile(const std::vector<std::string> file_contents, const std:
 	BOOST_ASSERT_MSG(!file_out.is_open(), "File failed to close.");
 }
 
-void VsrgMap::writeFile(YAML::Node node, const std::string & file_path, bool overwrite) {
+void VsrgMap::writeFile(const YAML::Node & node, const std::string & file_path, bool overwrite) {
 	if (!overwrite) {
 		BOOST_ASSERT_MSG(!std::filesystem::exists(file_path),
 			"File already exists.");

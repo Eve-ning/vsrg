@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "ScrollPoint.h"
 
-
 /**
 * @brief Construct a new Scroll Point object
 *

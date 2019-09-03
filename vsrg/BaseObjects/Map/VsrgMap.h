@@ -12,9 +12,9 @@ public:
 	virtual void loadFile(const std::string & file_path) = 0;
 	virtual void saveFile(const std::string & file_path, bool overwrite) = 0;
 
-	// This is the universal exporting function
-	virtual void saveAsVsrg(const std::string & file_path,
-						    bool overwrite = false) final;
+	// This is the universal default exporting function, it should be overridden to
+	// add more nodes by derived classes
+	virtual YAML::Node asYaml() const;
 
 	/// This reads all lines from the file and coerces to vector.
 	/// These have additional assertions for error handling
@@ -22,10 +22,10 @@ public:
 	/// This writes all lines to the file from vector
 	/// These have additional assertions for error handling
 	virtual void writeFile(const std::vector<std::string> file_contents,
-		const std::string & file_path, bool overwrite = false);
+		const std::string & file_path, bool overwrite = false) final;
 
-	virtual void writeFile(YAML::Node node,
-		const std::string & file_path, bool overwrite = false);
+	virtual void writeFile(const YAML::Node & node,
+		const std::string & file_path, bool overwrite = false) final;
 
 	static std::string ho_v_tag_;
 	static std::string eo_v_tag_;
