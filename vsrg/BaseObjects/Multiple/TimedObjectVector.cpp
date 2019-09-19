@@ -93,9 +93,9 @@ std::vector<SPtrTimedObject> TimedObjectVector::isInvalidObjects() const {
 	return invalid_obj_v;
 }
 
-YAML::Node TimedObjectVector::toMap() const {
+YAML::Node TimedObjectVector::toYaml() const {
 	YAML::Node out = {};
-	for (const SPtrTimedObject & to : to_v_) out.push_back(to->toMap());
+	for (const SPtrTimedObject & to : to_v_) out.push_back(to->toYaml());
 	return out;
 }
 

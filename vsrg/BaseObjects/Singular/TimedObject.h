@@ -41,7 +41,7 @@ public:
 	virtual operator bool() const final; // Calls isValid
 
 	/// Gets info of the important object members
-	virtual YAML::Node toMap() const;
+	virtual YAML::Node toYaml() const;
 
 	virtual bool operator==(const TimedObject & obj) const;
 	virtual bool operator>(const TimedObject & obj) const;

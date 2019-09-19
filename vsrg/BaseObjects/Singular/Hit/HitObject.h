@@ -27,7 +27,7 @@ public:
 	/// Validates the object being realistic
 	virtual bool isValid() const override;
 
-	virtual YAML::Node toMap() const override;
+	virtual YAML::Node toYaml() const override;
 
 private:
 	int index_;

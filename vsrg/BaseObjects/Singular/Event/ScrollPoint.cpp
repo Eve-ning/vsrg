@@ -48,8 +48,8 @@ bool ScrollPoint::isApproximately(
 	}
 }
 
-YAML::Node ScrollPoint::toMap() const {
-	auto out = EventObject::toMap();
+YAML::Node ScrollPoint::toYaml() const {
+	auto out = EventObject::toYaml();
 	out["scroll_mult"] = StringHelper::formatDbl(scroll_mult_);
 	return out;
 }

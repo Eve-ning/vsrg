@@ -40,7 +40,7 @@ public:
 	 */
 	bool isApproximately(double value, double threshold = 0.0, bool include_ends = false) const;
 
-	virtual YAML::Node toMap() const override;
+	virtual YAML::Node toYaml() const override;
 
 	/// Comparison Operator compares scroll_speed_mult
 	bool operator>(double value) const;

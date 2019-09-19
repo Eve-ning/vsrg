@@ -67,8 +67,8 @@ bool TimingPoint::isValid() const {
 	return TimedObject::isValid() && isTimeSigValid() && (getBpm() > 0);
 }
 
-YAML::Node TimingPoint::toMap() const {
-	auto out = EventObject::toMap();
+YAML::Node TimingPoint::toYaml() const {
+	auto out = EventObject::toYaml();
 	out["bpm"] = StringHelper::formatDbl(bpm_);
 	out["time_sig_numerator"] = time_sig_numerator_;
 	out["time_sig_denominator"] = time_sig_denominator_;

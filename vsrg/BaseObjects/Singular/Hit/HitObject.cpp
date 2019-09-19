@@ -21,8 +21,8 @@ bool HitObject::isValid() const {
 	return TimedObject::isValid() && index_ >= 0;
 }
 
-YAML::Node HitObject::toMap() const {
-	auto out = TimedObject::toMap();
+YAML::Node HitObject::toYaml() const {
+	auto out = TimedObject::toYaml();
 	out["index"] = index_;
 	return out;
 }

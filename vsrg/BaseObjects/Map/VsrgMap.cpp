@@ -7,13 +7,24 @@ VsrgMap::~VsrgMap() {}
 
 void VsrgMap::saveAsYaml(const std::string & file_path, bool overwrite)
 {
-	writeFile(asYaml(), file_path, overwrite);
+	if (!overwrite) {
+		BOOST_ASSERT_MSG(!std::filesystem::exists(file_path),
+			"File already exists.");
+	}
+
+	std::ofstream file_out(file_path);
+	BOOST_ASSERT_MSG(file_out.is_open(), "File failed to open.");
+	YAML::Node node = asYaml();
+	file_out << node;
+
+	file_out.close();
+	BOOST_ASSERT_MSG(!file_out.is_open(), "File failed to close.");
 }
 
 YAML::Node VsrgMap::asYaml() const {
 	YAML::Node node;
-	for (const auto & ho : ho_v_.toMap()) node["hitobjects"].push_back(ho); 
-	for (const auto & eo : eo_v_.toMap()) node["eventobjects"].push_back(eo);
+	for (const auto & ho : ho_v_.toYaml()) node["hitobjects"].push_back(ho); 
+	for (const auto & eo : eo_v_.toYaml()) node["eventobjects"].push_back(eo);
 	return node;
 }
 
@@ -42,20 +53,6 @@ void VsrgMap::writeFile(const std::vector<std::string> file_contents, const std:
 	for (const std::string & line : file_contents) {
 		file_out << line << '\n';
 	}
-
-	file_out.close();
-	BOOST_ASSERT_MSG(!file_out.is_open(), "File failed to close.");
-}
-
-void VsrgMap::writeFile(const YAML::Node & node, const std::string & file_path, bool overwrite) {
-	if (!overwrite) {
-		BOOST_ASSERT_MSG(!std::filesystem::exists(file_path),
-			"File already exists.");
-	}
-
-	std::ofstream file_out(file_path);
-	BOOST_ASSERT_MSG(file_out.is_open(), "File failed to open.");
-	file_out << node;
 
 	file_out.close();
 	BOOST_ASSERT_MSG(!file_out.is_open(), "File failed to close.");

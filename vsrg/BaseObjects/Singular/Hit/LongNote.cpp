@@ -55,9 +55,9 @@ bool LongNote::operator==(const LongNote & ln) const {
 	return isOverlapping(ln);
 }
 
-YAML::Node LongNote::toMap() const {
+YAML::Node LongNote::toYaml() const {
 	BOOST_ASSERT_MSG(isValid(), "Note is invalid");
-	auto out = HitObject::toMap();
+	auto out = HitObject::toYaml();
 	out["length_m_sec"] = StringHelper::formatDbl(length_m_sec_);
 	return out;
 }

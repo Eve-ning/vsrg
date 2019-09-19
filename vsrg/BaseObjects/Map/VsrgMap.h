@@ -9,13 +9,25 @@ public:
 	VsrgMap();
 	~VsrgMap();
 	
+	// Load in derived format
 	virtual void loadFile(const std::string & file_path) = 0;
+	// Save in derived format
 	virtual void saveFile(const std::string & file_path, bool overwrite) = 0;
-	virtual void saveAsYaml(const std::string & file_path, bool overwrite);
+	// Save in standard YAML format, depends on asYaml
+	virtual void saveAsYaml(const std::string & file_path, bool overwrite) final;
+	virtual void readAsYaml(const std::string & file_path) final {
+		std::vector<std::string> lines = readFile(file_path);
+	}
 
 	// This is the universal default exporting function, it should be overridden to
 	// add more nodes by derived classes
 	virtual YAML::Node asYaml() const;
+	virtual YAML::Node fromYaml(const YAML::Node & node) {
+
+		for (std::size_t i = 0; i < node.size(); i++) {
+
+		}
+	}
 
 	virtual HitObjectVector getHitObjectVector() const final;
 	virtual EventObjectVector getEventObjectVector() const final;

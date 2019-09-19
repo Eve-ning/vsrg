@@ -26,7 +26,7 @@ TimedObject::operator bool() const {
 	return isValid();
 }
 
-YAML::Node TimedObject::toMap() const {
+YAML::Node TimedObject::toYaml() const {
 	BOOST_ASSERT_MSG(isValid(), "Object must pass isValid() to be exported.");
 	YAML::Node out;
 	out["offset_m_sec"] = StringHelper::formatDbl(offset_m_sec_);

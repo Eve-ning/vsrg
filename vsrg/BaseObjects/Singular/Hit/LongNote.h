@@ -39,7 +39,7 @@ public:
 	virtual bool isValid() const;
 
 	/// toExport handles the string exported to files, unlike getInfo which prints more details
-	virtual YAML::Node toMap() const;
+	virtual YAML::Node toYaml() const;
 
 	virtual bool operator==(const LongNote & ln) const;
 
