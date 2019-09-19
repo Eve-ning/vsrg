@@ -61,3 +61,8 @@ YAML::Node LongNote::toYaml() const {
 	out["length_m_sec"] = StringHelper::formatDbl(length_m_sec_);
 	return out;
 }
+
+void LongNote::fromYaml(const YAML::Node & node) {
+	HitObject::fromYaml(node);
+	length_m_sec_ = node["length_m_sec"].as<double>();
+}

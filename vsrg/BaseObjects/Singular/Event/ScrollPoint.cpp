@@ -54,6 +54,11 @@ YAML::Node ScrollPoint::toYaml() const {
 	return out;
 }
 
+void ScrollPoint::fromYaml(const YAML::Node & node){
+	EventObject::fromYaml(node);
+	scroll_mult_ = node["scroll_mult"].as<double>();
+}
+
 bool ScrollPoint::operator>(double value) const {
 	return getScrollSpeedMult() > value;
 }

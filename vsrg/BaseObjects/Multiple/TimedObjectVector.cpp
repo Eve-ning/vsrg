@@ -99,6 +99,10 @@ YAML::Node TimedObjectVector::toYaml() const {
 	return out;
 }
 
+void TimedObjectVector::fromYaml(const YAML::Node & node) {
+	for (const SPtrTimedObject & to : to_v_) to->fromYaml()
+}
+
 void TimedObjectVector::multiplyOffsetMSec(double offset_m_sec) {
 	std::transform(begin(), end(), begin(),
 		[offset_m_sec](SPtrTimedObject & to) -> SPtrTimedObject {

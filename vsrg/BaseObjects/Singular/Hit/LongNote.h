@@ -38,8 +38,8 @@ public:
 	/// Validates the object being realistic
 	virtual bool isValid() const;
 
-	/// toExport handles the string exported to files, unlike getInfo which prints more details
-	virtual YAML::Node toYaml() const;
+	virtual YAML::Node toYaml() const override;
+	virtual void fromYaml(const YAML::Node & node) override;
 
 	virtual bool operator==(const LongNote & ln) const;
 

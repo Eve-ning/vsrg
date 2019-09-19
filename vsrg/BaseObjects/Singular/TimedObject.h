@@ -42,6 +42,7 @@ public:
 
 	/// Gets info of the important object members
 	virtual YAML::Node toYaml() const;
+	virtual void fromYaml(const YAML::Node & node);
 
 	virtual bool operator==(const TimedObject & obj) const;
 	virtual bool operator>(const TimedObject & obj) const;

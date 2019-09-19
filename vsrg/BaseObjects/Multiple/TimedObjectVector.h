@@ -64,6 +64,9 @@ public:
 
 	/// Loops the vector and calls toYaml to push in vector
 	virtual YAML::Node toYaml() const final;
+	virtual void fromYaml(const YAML::Node & node) final {
+
+	}
 
 	void multiplyOffsetMSec(double offset_m_sec);
 	void divideOffsetMSec(double offset_m_sec);

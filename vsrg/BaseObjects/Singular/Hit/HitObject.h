@@ -28,6 +28,7 @@ public:
 	virtual bool isValid() const override;
 
 	virtual YAML::Node toYaml() const override;
+	virtual void fromYaml(const YAML::Node & node) override;
 
 private:
 	int index_;

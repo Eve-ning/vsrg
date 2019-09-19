@@ -27,6 +27,11 @@ YAML::Node HitObject::toYaml() const {
 	return out;
 }
 
+void HitObject::fromYaml(const YAML::Node & node) {
+	TimedObject::fromYaml(node);
+	index_ = node["index"].as<int>();
+}
+
 int HitObject::getIndex() const {
 	return index_;
 }

@@ -74,3 +74,10 @@ YAML::Node TimingPoint::toYaml() const {
 	out["time_sig_denominator"] = time_sig_denominator_;
 	return out;
 }
+
+void TimingPoint::fromYaml(const YAML::Node & node) {
+	EventObject::fromYaml(node);
+	bpm_ = node["bpm"].as<double>();
+	time_sig_numerator_ = node["time_sig_numerator"].as<double>();
+	time_sig_denominator_ = node["time_sig_denominator"].as<double>();
+}

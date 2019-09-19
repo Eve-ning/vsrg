@@ -48,6 +48,12 @@ public:
 	virtual bool isValid() const override;
 
 	virtual YAML::Node toYaml() const override;
+	virtual void fromYaml(const YAML::Node & node) override {
+		EventObject::fromYaml(node);
+		bpm_ = node["bpm"].as<double>();
+		time_sig_numerator_ = node["time_sig_numerator"].as<double>();
+		time_sig_denominator_ = node["time_sig_denominator"].as<double>();
+	}
 
 private:
 	/// Beats per Minute

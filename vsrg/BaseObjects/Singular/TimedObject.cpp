@@ -33,6 +33,10 @@ YAML::Node TimedObject::toYaml() const {
 	return out;
 }
 
+void TimedObject::fromYaml(const YAML::Node & node) {
+	offset_m_sec_ = node["offset_m_sec"].as<double>();
+}
+
 bool TimedObject::operator==(const TimedObject & obj) const {
 	return getOffset() == obj.getOffset();
 }
