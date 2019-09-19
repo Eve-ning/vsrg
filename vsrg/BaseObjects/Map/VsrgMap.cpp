@@ -10,8 +10,8 @@ VsrgMap::~VsrgMap() {}
 
 YAML::Node VsrgMap::asYaml() const {
 	YAML::Node node;
-	for (const auto & ho : ho_v_.toMap()) node.push_back(ho); 
-	for (const auto & eo : eo_v_.toMap()) node.push_back(eo);
+	for (const auto & ho : ho_v_.toMap()) node["hitobjects"].push_back(ho); 
+	for (const auto & eo : eo_v_.toMap()) node["eventobjects"].push_back(eo);
 	return node;
 }
 

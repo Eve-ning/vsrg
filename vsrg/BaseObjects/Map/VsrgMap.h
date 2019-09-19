@@ -16,9 +16,6 @@ public:
 	// add more nodes by derived classes
 	virtual YAML::Node asYaml() const;
 
-	/// This reads all lines from the file and coerces to vector.
-	/// These have additional assertions for error handling
-	virtual std::vector<std::string> readFile(const std::string & file_path);
 	/// This writes all lines to the file from vector
 	/// These have additional assertions for error handling
 	virtual void writeFile(const std::vector<std::string> file_contents,
@@ -36,6 +33,10 @@ public:
 	virtual void setEventObjectVector(const EventObjectVector & eo_v) final;
 
 protected:
+	/// This reads all lines from the file and coerces to vector.
+	/// These have additional assertions for error handling
+	virtual std::vector<std::string> readFile(const std::string & file_path);
+
 	HitObjectVector ho_v_;
 	EventObjectVector eo_v_;
 };
