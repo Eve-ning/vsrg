@@ -21,6 +21,7 @@ namespace IterHelper
 
 namespace StringHelper {
 	static constexpr char formatDblf[] = "%.5f";
+	// Converts double to string without scientific notation or trailing zeros
 	std::string formatDbl(const double & val);
 }
 

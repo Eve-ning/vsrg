@@ -41,6 +41,7 @@ boost::tokenizer<boost::char_separator<char>> IterHelper::tokenize(const std::st
 	return std::move(tokens);
 }
 
+// double to string without scientific notation or trailing zeros
 std::string StringHelper::formatDbl(const double & val) {
 	// Reference: https://stackoverflow.com/a/15167203
 	size_t len = std::snprintf(0, 0, formatDblf, val);
