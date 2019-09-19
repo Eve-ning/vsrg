@@ -56,7 +56,7 @@ void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
 
 YAML::Node VsrgMapOsu::asYaml() const {
 	auto node = VsrgMap::asYaml();
-	node["params"].push_back(params.asYaml());
+	node["params"] = params.asYaml();
 	return node;
 }
 
