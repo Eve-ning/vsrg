@@ -2,11 +2,13 @@
 #include "VsrgMap.h"
 #include <iostream>
 
-std::string VsrgMap::ho_v_tag_ = "// Hit Objects";
-std::string VsrgMap::eo_v_tag_ = "// Event Objects";
-
 VsrgMap::VsrgMap() {}
 VsrgMap::~VsrgMap() {}
+
+void VsrgMap::saveAsYaml(const std::string & file_path, bool overwrite)
+{
+	writeFile(asYaml(), file_path, overwrite);
+}
 
 YAML::Node VsrgMap::asYaml() const {
 	YAML::Node node;
