@@ -15,6 +15,10 @@ std::shared_ptr<TimedObject> NormalNote::Clone() const {
 	return std::make_shared<NormalNote>(*this);
 }
 
+std::string NormalNote::getYamlTag() const {
+	return "normal_note";
+}
+
 bool NormalNote::operator==(const NormalNote & nn) const {
 	return (getOffset() == nn.getOffset()) &&
 			    (getIndex() == nn.getIndex());

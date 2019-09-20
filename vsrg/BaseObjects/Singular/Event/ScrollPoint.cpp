@@ -23,6 +23,10 @@ std::shared_ptr<TimedObject> ScrollPoint::Clone() const {
 	return std::make_shared<ScrollPoint>(*this);
 }
 
+std::string ScrollPoint::getYamlTag() const {
+	return "scroll_point";
+}
+
 double ScrollPoint::getScrollSpeedMult() const {
 	return scroll_mult_;
 }
@@ -51,8 +55,8 @@ bool ScrollPoint::isApproximately(
 	}
 }
 
-YAML::Node ScrollPoint::toYaml() const {
-	auto out = EventObject::toYaml();
+YAML::Node ScrollPoint::asYaml() const {
+	auto out = EventObject::asYaml();
 	out["scroll_mult"] = StringHelper::formatDbl(scroll_mult_);
 	return out;
 }

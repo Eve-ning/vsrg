@@ -37,12 +37,14 @@ public:
 	/// Sets Offset in milliseconds
 	void setOffset(double offset_m_sec, double unit_scale = TimedObject::UnitScale::msecond);
 
+	virtual std::string getYamlTag() const = 0;
+
 	/// Validates the object being realistic
 	virtual bool isValid() const;
 	virtual operator bool() const final; // Calls isValid
 
 	/// Gets info of the important object members
-	virtual YAML::Node toYaml() const;
+	virtual YAML::Node asYaml() const;
 	virtual void fromYaml(const YAML::Node & node);
 
 	virtual bool operator==(const TimedObject & obj) const;

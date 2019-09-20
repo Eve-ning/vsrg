@@ -50,15 +50,15 @@ VsrgMapOsuParams::~VsrgMapOsuParams()
 
 YAML::Node VsrgMapOsuParams::asYaml() const {
 	YAML::Node node;
-	node["hp_"] = hp_;
-	node["od_"] = od_;
-	node["preview_time_"] = preview_time_;
-	node["keys_"] = keys_;
-	node["bg_file_name_"] = bg_file_name_;
-	node["source_"] = source_;
-	node["tags_"] = tags_;
-	node["bookmarks_"] = bookmarks_;
-	node["beatmap_id_"] = beatmap_id_;
-	node["beatmap_set_id_"] = beatmap_set_id_;
+	node["hp"] = hp_;
+	node["od"] = od_;
+	node["preview_time"] = preview_time_;
+	node["keys"] = keys_;
+	node["bg_file_name"] = bg_file_name_;
+	node["source"] = source_;
+	node["tags"] = tags_;
+	node["bookmarks"] = bookmarks_;
+	node["beatmap_id"] = beatmap_id_;
+	node["beatmap_set_id"] = beatmap_set_id_;
 	return node;
 }

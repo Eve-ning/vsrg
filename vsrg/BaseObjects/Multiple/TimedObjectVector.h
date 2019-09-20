@@ -62,8 +62,8 @@ public:
 	/// Loops the vector and returns the invalid objects
 	virtual std::vector<SPtrTimedObject> isInvalidObjects() const final;
 
-	/// Loops the vector and calls toYaml to push in vector
-	virtual YAML::Node toYaml() const final;
+	/// Loops the vector and calls asYaml to push in vector
+	virtual YAML::Node asYaml() const final;
 	virtual void fromYaml(const YAML::Node & node) final;
 
 	void multiplyOffsetMSec(double offset_m_sec);

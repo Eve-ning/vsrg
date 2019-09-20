@@ -19,6 +19,8 @@ public:
 	NormalNote(const YAML::Node & node);
 	~NormalNote();
 	std::shared_ptr<TimedObject> Clone() const override;
+
+	std::string getYamlTag() const override;
 	
 	bool operator==(const NormalNote & nn) const;
 	bool isOverlapping(const NormalNote & nn) const;	

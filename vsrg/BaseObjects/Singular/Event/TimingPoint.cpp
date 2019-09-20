@@ -32,6 +32,10 @@ std::shared_ptr<TimedObject> TimingPoint::Clone() const {
 	return std::make_shared<TimingPoint>(*this);
 }
 
+std::string TimingPoint::getYamlTag() const{
+	return "timing_point";
+}
+
 double TimingPoint::getBpm() const {
 	return bpm_;
 }
@@ -70,8 +74,8 @@ bool TimingPoint::isValid() const {
 	return TimedObject::isValid() && isTimeSigValid() && (getBpm() > 0);
 }
 
-YAML::Node TimingPoint::toYaml() const {
-	auto out = EventObject::toYaml();
+YAML::Node TimingPoint::asYaml() const {
+	auto out = EventObject::asYaml();
 	out["bpm"] = StringHelper::formatDbl(bpm_);
 	out["time_sig_numerator"] = time_sig_numerator_;
 	out["time_sig_denominator"] = time_sig_denominator_;

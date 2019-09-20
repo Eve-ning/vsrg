@@ -19,6 +19,8 @@ public:
 	/// Deep Copies the 2 HitObjects into a new LongNote
 	SPtrTimedObject Clone() const;
 
+	std::string getYamlTag() const override;
+
 	// To extend this via aesthetics PR
 	virtual double getLength(double unit_scale = TimedObject::UnitScale::msecond);
 	virtual void setLength(double length,
@@ -39,7 +41,7 @@ public:
 	/// Validates the object being realistic
 	virtual bool isValid() const;
 
-	virtual YAML::Node toYaml() const override;
+	virtual YAML::Node asYaml() const override;
 	virtual void fromYaml(const YAML::Node & node) override;
 
 	virtual bool operator==(const LongNote & ln) const;

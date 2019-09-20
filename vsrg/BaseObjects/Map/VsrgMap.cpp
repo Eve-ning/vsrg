@@ -23,10 +23,8 @@ void VsrgMap::saveAsYaml(const std::string & file_path, bool overwrite)
 
 YAML::Node VsrgMap::asYaml() const {
 	YAML::Node node;
-	for (const auto & ho : ho_v_.getHitObjectVector())
-		node["hitobjects"].push_back(ho->toYaml()); 
-	for (const auto & eo : eo_v_.getEventObjectVector())
-		node["eventobjects"].push_back(eo->toYaml());
+	node["hit_objects"] = ho_v_.asYaml();
+	node["event_objects"] = eo_v_.asYaml();
 	return node;
 }
 

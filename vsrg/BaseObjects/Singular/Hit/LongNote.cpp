@@ -17,6 +17,10 @@ SPtrTimedObject LongNote::Clone() const {
 	return std::make_shared<LongNote>(*this);
 }
 
+std::string LongNote::getYamlTag() const {
+	return "long_note";
+}
+
 // To extend this via aesthetics PR
 
 double LongNote::getLength(double unit_scale) {
@@ -59,9 +63,9 @@ bool LongNote::operator==(const LongNote & ln) const {
 	return isOverlapping(ln);
 }
 
-YAML::Node LongNote::toYaml() const {
+YAML::Node LongNote::asYaml() const {
 	BOOST_ASSERT_MSG(isValid(), "Note is invalid");
-	auto out = HitObject::toYaml();
+	auto out = HitObject::asYaml();
 	out["length_m_sec"] = StringHelper::formatDbl(length_m_sec_);
 	return out;
 }

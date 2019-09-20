@@ -27,6 +27,8 @@ public:
 	~TimingPoint();
 	virtual std::shared_ptr<TimedObject> Clone() const override;
 
+	std::string getYamlTag() const override;
+
 	double getBpm() const;
 	double getTimeSigNumerator() const;
 	double getTimeSigDenominator() const;
@@ -48,7 +50,7 @@ public:
 	/// Validates the object being realistic
 	virtual bool isValid() const override;
 
-	virtual YAML::Node toYaml() const override;
+	virtual YAML::Node asYaml() const override;
 	virtual void fromYaml(const YAML::Node & node) override;
 
 private:
