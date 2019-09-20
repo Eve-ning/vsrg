@@ -9,6 +9,9 @@ const double TimedObject::UnitScale::msecond = 1.0;
 
 TimedObject::TimedObject() : offset_m_sec_(0) {}
 TimedObject::TimedObject(double offset_m_sec) : offset_m_sec_(offset_m_sec) {}
+TimedObject::TimedObject(const YAML::Node & node) {
+	fromYaml(node);
+}
 TimedObject::~TimedObject() {}
 
 double TimedObject::getOffset(double unit_scale) const {

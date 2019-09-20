@@ -22,7 +22,7 @@ public:
 	// This is the universal default exporting function, it should be overridden to
 	// add more nodes by derived classes
 	virtual YAML::Node asYaml() const;
-	virtual YAML::Node fromYaml(const YAML::Node & node) {
+	virtual void fromYaml(const YAML::Node & node) {
 
 		for (std::size_t i = 0; i < node.size(); i++) {
 
@@ -38,9 +38,6 @@ protected:
 	/// This writes all lines to the file from vector
 	/// These have additional assertions for error handling
 	virtual void writeFile(const std::vector<std::string> file_contents,
-		const std::string & file_path, bool overwrite = false) final;
-
-	virtual void writeFile(const YAML::Node & node,
 		const std::string & file_path, bool overwrite = false) final;
 
 	/// This reads all lines from the file and coerces to vector.

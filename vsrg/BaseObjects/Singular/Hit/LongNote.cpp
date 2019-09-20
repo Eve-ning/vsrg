@@ -7,7 +7,11 @@ LongNote::LongNote() {}
 LongNote::LongNote(double offset_m_sec, unsigned int index, double length) :
 	HitObject(offset_m_sec, index), length_m_sec_(length) {}
 
-LongNote::~LongNote() {} 
+LongNote::LongNote(const YAML::Node & node) {
+	fromYaml(node);
+}
+
+LongNote::~LongNote() {}
 
 SPtrTimedObject LongNote::Clone() const {
 	return std::make_shared<LongNote>(*this);

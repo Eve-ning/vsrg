@@ -14,6 +14,9 @@ HitObject::HitObject() {}
 HitObject::HitObject(const double & offset_m_sec,
 					 const int & index) :
 	TimedObject(offset_m_sec), index_(index) {}
+HitObject::HitObject(const YAML::Node & node) {
+	fromYaml(node);
+}
 HitObject::~HitObject() {}
 
 bool HitObject::isValid() const {

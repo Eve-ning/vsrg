@@ -14,6 +14,7 @@ class TimedObject
 public:
 	TimedObject();
 	TimedObject(double offset_m_sec);
+	TimedObject(const YAML::Node & node);
 	virtual ~TimedObject() = 0;
 
 	virtual std::shared_ptr<TimedObject> Clone() const = 0;

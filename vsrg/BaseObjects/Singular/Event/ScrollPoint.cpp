@@ -14,6 +14,9 @@ ScrollPoint::ScrollPoint() : scroll_mult_(1.0) {}
 ScrollPoint::ScrollPoint(double offset_m_sec, double scroll_speed_mult) :
 	EventObject(offset_m_sec),
 	scroll_mult_(scroll_speed_mult) {}
+ScrollPoint::ScrollPoint(const YAML::Node & node) {
+	fromYaml(node);
+}
 ScrollPoint::~ScrollPoint() {}
 
 std::shared_ptr<TimedObject> ScrollPoint::Clone() const {

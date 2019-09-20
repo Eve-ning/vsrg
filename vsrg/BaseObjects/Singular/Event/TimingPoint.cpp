@@ -23,6 +23,9 @@ TimingPoint::TimingPoint(
 	bpm_(bpm),
 	time_sig_numerator_(time_sig_numerator),
 	time_sig_denominator_(time_sig_denominator) {}
+TimingPoint::TimingPoint(const YAML::Node & node) {
+	fromYaml(node);
+}
 TimingPoint::~TimingPoint() {}
 
 std::shared_ptr<TimedObject> TimingPoint::Clone() const {

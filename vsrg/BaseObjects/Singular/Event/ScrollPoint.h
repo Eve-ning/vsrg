@@ -17,6 +17,7 @@ public:
 	 */
 	ScrollPoint();
 	ScrollPoint(double offset_m_sec, double scroll_speed_mult = 1.0);
+	ScrollPoint(const YAML::Node & node);
 	~ScrollPoint();
 	virtual std::shared_ptr<TimedObject> Clone() const override;
 
