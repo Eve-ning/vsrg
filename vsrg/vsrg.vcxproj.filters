@@ -108,11 +108,17 @@
     <ClInclude Include="GameObjects\Osu\Singular\Hit\HitParamsOsu.h">
       <Filter>Game Objects\Osu\Singular\Hit</Filter>
     </ClInclude>
-    <ClInclude Include="EventParamsOsu.h">
-      <Filter>Game Objects\Osu\Singular\Event</Filter>
-    </ClInclude>
     <ClInclude Include="Helpers\MiscHelper.h">
       <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Osu\Singular\Event\EventParamsOsu.h">
+      <Filter>Game Objects\Osu\Singular\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Osu\Multiple\EventObjectVectorOsu.h">
+      <Filter>Game Objects\Osu\Multiple</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Osu\Multiple\HitObjectVectorOsu.h">
+      <Filter>Game Objects\Osu\Multiple</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -182,11 +188,17 @@
     <ClCompile Include="GameObjects\Osu\Singular\Hit\HitParamsOsu.cpp">
       <Filter>Game Objects\Osu\Singular\Hit</Filter>
     </ClCompile>
-    <ClCompile Include="EventParamsOsu.cpp">
-      <Filter>Game Objects\Osu\Singular\Event</Filter>
-    </ClCompile>
     <ClCompile Include="Helpers\MiscHelper.cpp">
       <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Osu\Singular\Event\EventParamsOsu.cpp">
+      <Filter>Game Objects\Osu\Singular\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Osu\Multiple\EventObjectVectorOsu.cpp">
+      <Filter>Game Objects\Osu\Multiple</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Osu\Multiple\HitObjectVectorOsu.cpp">
+      <Filter>Game Objects\Osu\Multiple</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
