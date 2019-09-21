@@ -33,3 +33,9 @@ LongNoteOsu::LongNoteOsu(const std::string & str, int keys) {
 		throw std::exception("Long Note has a bad format");
 	}
 }
+
+YAML::Node LongNoteOsu::asYaml() const {
+	auto node = LongNote::asYaml();
+	node["params"] = params.asYaml();
+	return node;
+}

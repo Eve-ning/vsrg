@@ -7,9 +7,15 @@
 #include "GameObjects/Osu/Singular/Hit/LongNoteOsu.h"
 #include "GameObjects/Osu/Singular/Event/ScrollPointOsu.h"
 #include "GameObjects/Osu/Singular/Event/TimingPointOsu.h"
+#include "GameObjects/Osu/Multiple/HitObjectVectorOsu.h"
+#include "GameObjects/Osu/Multiple/EventObjectVectorOsu.h"
 
 VsrgMapOsu::VsrgMapOsu()
 {
+	auto eo = EventObjectVectorOsu();
+	auto ho = HitObjectVectorOsu();
+	eo_v_ = std::make_shared<EventObjectVectorOsu>(eo);
+	ho_v_ = std::make_shared<HitObjectVectorOsu>(ho);
 }
 
 VsrgMapOsu::~VsrgMapOsu()
@@ -65,13 +71,13 @@ void VsrgMapOsu::readHO(const std::vector<std::string>& str_v) {
 		SPtrTimedObject sptr = nullptr;
 		if (isNormalNoteOsu(str)) {
 			auto nn = NormalNoteOsu(str, params.keys_);
-			sptr = std::make_shared<NormalNote>(nn);
+			sptr = std::make_shared<NormalNoteOsu>(nn);
 		}
 		else {
 			auto ln = LongNoteOsu(str, params.keys_);
-			sptr = std::make_shared<LongNote>(ln);
+			sptr = std::make_shared<LongNoteOsu>(ln);
 		}
-		ho_v_.push_back(sptr);
+		ho_v_->push_back(sptr);
 	}
 }
 
@@ -80,13 +86,13 @@ void VsrgMapOsu::readEO(const std::vector<std::string>& str_v) {
 		SPtrTimedObject sptr = nullptr;
 		if (isTimingPointOsu(str)) {
 			auto tp = TimingPointOsu(str);
-			sptr = std::make_shared<TimingPoint>(tp);
+			sptr = std::make_shared<TimingPointOsu>(tp);
 		}
 		else {
 			auto sp = ScrollPointOsu(str);
-			sptr = std::make_shared<ScrollPoint>(sp);
+			sptr = std::make_shared<ScrollPointOsu>(sp);
 		}
-		eo_v_.push_back(sptr);
+		eo_v_->push_back(sptr);
 	}
 }
 

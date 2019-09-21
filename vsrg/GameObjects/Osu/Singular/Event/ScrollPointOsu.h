@@ -10,5 +10,7 @@ public:
 	~ScrollPointOsu();
 
 	EventParamsOsu params;
+
+	YAML::Node asYaml() const override;
 };
 

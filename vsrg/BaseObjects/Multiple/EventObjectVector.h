@@ -15,3 +15,5 @@ public:
 	SPtrEventObject getEarliestObject() const;
 	SPtrEventObject getLatestObject() const;
 };
+
+typedef std::shared_ptr<EventObjectVector> SPtrEventObjectVector;

@@ -29,3 +29,9 @@ NormalNoteOsu::NormalNoteOsu(const std::string & str, int keys) {
 NormalNoteOsu::~NormalNoteOsu()
 {
 }
+
+YAML::Node NormalNoteOsu::asYaml() const {
+	auto node = NormalNote::asYaml();
+	node["params"] = params.asYaml();
+	return node;
+}

@@ -10,6 +10,8 @@ public:
 	LongNoteOsu(double offset_m_sec, unsigned int index, double length);
 	LongNoteOsu(const std::string & str, int keys);
 
+	YAML::Node asYaml() const override;
+
 	HitParamsOsu params;
 };
 

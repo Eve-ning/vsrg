@@ -15,5 +15,7 @@ public:
 	~TimingPointOsu();
 
 	EventParamsOsu params;
+
+	YAML::Node asYaml() const override;
 };
 

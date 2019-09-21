@@ -23,9 +23,14 @@ void VsrgMap::saveAsYaml(const std::string & file_path, bool overwrite)
 
 YAML::Node VsrgMap::asYaml() const {
 	YAML::Node node;
-	node["hit_objects"] = ho_v_.asYaml();
-	node["event_objects"] = eo_v_.asYaml();
+	node["hit_objects"] = ho_v_->asYaml();
+	node["event_objects"] = eo_v_->asYaml();
 	return node;
+}
+
+void VsrgMap::fromYaml(const YAML::Node & node) {
+	ho_v_->fromYaml(node["hit_objects"]);
+	eo_v_->fromYaml(node["event_objects"]);
 }
 
 std::vector<std::string> VsrgMap::readFile(const std::string & file_path) {
@@ -58,18 +63,18 @@ void VsrgMap::writeFile(const std::vector<std::string> file_contents, const std:
 	BOOST_ASSERT_MSG(!file_out.is_open(), "File failed to close.");
 }
 
-HitObjectVector VsrgMap::getHitObjectVector() const {
+SPtrHitObjectVector VsrgMap::getHitObjectVector() const {
 	return ho_v_;
 }
 
-EventObjectVector VsrgMap::getEventObjectVector() const {
+SPtrEventObjectVector VsrgMap::getEventObjectVector() const {
 	return eo_v_;
 }
 
-void VsrgMap::setHitObjectVector(const HitObjectVector & ho_v) {
+void VsrgMap::setHitObjectVector(const SPtrHitObjectVector & ho_v) {
 	ho_v_ = ho_v;
 }
 
-void VsrgMap::setEventObjectVector(const EventObjectVector & eo_v) {
+void VsrgMap::setEventObjectVector(const SPtrEventObjectVector & eo_v) {
 	eo_v_ = eo_v;
 }

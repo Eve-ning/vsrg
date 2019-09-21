@@ -10,6 +10,8 @@ public:
 	NormalNoteOsu(const std::string & str, int keys);
 	~NormalNoteOsu();
 
+	YAML::Node asYaml() const override;
+
 	HitParamsOsu params;
 };
 

@@ -3,11 +3,8 @@
 /// This should define the game specific params of a osu note, such as local hitsound
 struct HitParamsOsu
 {
-	static unsigned int indexToAxis(double index,
-		unsigned int keys);
-
-	static unsigned int axisToIndex(double axis,
-		unsigned int keys);
+	static unsigned int indexToAxis(double index, unsigned int keys);
+	static unsigned int axisToIndex(double axis, unsigned int keys);
 
 	unsigned int hitsound_;
 	unsigned int sample_;
@@ -15,5 +12,7 @@ struct HitParamsOsu
 	unsigned int custom_;
 	unsigned int volume_;
 	std::string hitsound_file_;
+
+	YAML::Node asYaml() const;
 };
 

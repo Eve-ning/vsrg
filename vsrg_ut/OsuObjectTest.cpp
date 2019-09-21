@@ -26,8 +26,8 @@ namespace VsrgMapOsu_
 				Logger::WriteMessage(std::filesystem::current_path().c_str());
 				Assert::IsTrue(std::filesystem::exists(osu_fc_pd));
 			}
-		}
-		TEST_METHOD(LoadFile)
+		} 
+		 TEST_METHOD(FileIO)
 		{
 			VsrgMapOsu osumap = VsrgMapOsu();
 			osumap.loadFile(osu_fc_pd);
@@ -37,9 +37,9 @@ namespace VsrgMapOsu_
 			Assert::AreEqual(1940322,osumap.params.beatmap_id_);
 			Assert::AreEqual(929005,osumap.params.beatmap_set_id_);
 			Assert::AreEqual("paradoxus_",osumap.params.creator_.c_str());
-			Assert::AreEqual(2315.,osumap.getHitObjectVector().getEarliestOffset());
-			Assert::AreEqual(1385015.,osumap.getEventObjectVector().getLatestOffset());
-			Assert::AreEqual(153.,osumap.getEventObjectVector().getClassOnly<TimingPoint>()[0].getBpm());
+			Assert::AreEqual(2315.,osumap.getHitObjectVector()->getEarliestOffset());
+			Assert::AreEqual(1385015.,osumap.getEventObjectVector()->getLatestOffset());
+			Assert::AreEqual(153.,osumap.getEventObjectVector()->getClassOnly<TimingPoint>()[0].getBpm());
 
 			osumap.saveAsYaml("test.vsrg", true);
 			//osumap.saveAsVsrg("testing.vsrg", true);
@@ -51,9 +51,7 @@ namespace VsrgMapOsu_
 			VsrgMapOsu osumap = VsrgMapOsu();
 			YAML::Node node = YAML::LoadFile("test.vsrg");
 
-			Logger::WriteMessage(node["params"]["hp_"].as<std::string>().c_str());
-
-
+			Logger::WriteMessage(node["params"]["hp"].as<std::string>().c_str());
 		}
 		TEST_METHOD(NormalNoteOsu_) {
 			NormalNoteOsu nn = NormalNoteOsu("36,192,1000,1,0,0:0:0:0:", 7);

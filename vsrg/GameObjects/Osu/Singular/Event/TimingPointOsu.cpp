@@ -20,3 +20,9 @@ TimingPointOsu::TimingPointOsu(const std::string & str) {
 TimingPointOsu::~TimingPointOsu()
 {
 }
+
+YAML::Node TimingPointOsu::asYaml() const {
+	auto node = TimingPoint::asYaml();
+	node["params"] = params.asYaml();
+	return node;
+}

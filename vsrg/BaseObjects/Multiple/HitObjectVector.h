@@ -16,3 +16,4 @@ public:
 	SPtrHitObject getLatestObject() const;
 };
 
+typedef std::shared_ptr<HitObjectVector> SPtrHitObjectVector;

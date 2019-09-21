@@ -21,3 +21,9 @@ ScrollPointOsu::ScrollPointOsu(const std::string & str) {
 ScrollPointOsu::~ScrollPointOsu()
 {
 }
+
+YAML::Node ScrollPointOsu::asYaml() const {
+	auto node = ScrollPoint::asYaml();
+	node["params"] = params.asYaml();
+	return node;
+}
