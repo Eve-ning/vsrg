@@ -42,7 +42,7 @@ VsrgMapOsuParams::VsrgMapOsuParams(
 
 VsrgMapOsuParams::VsrgMapOsuParams(double hp, double od, unsigned int keys, const std::string & title, const std::string & artist, const std::string & creator, const std::string & version, bool set_unicode) :
 	VsrgMapParams(title, artist, creator, version, set_unicode),
-	hp_(hp), od_(od), keys_(keys) {}
+	hp_(hp), od_(od), keys_(keys), beatmap_id_(0), beatmap_set_id_(-1), preview_time_(0) {}
 
 VsrgMapOsuParams::~VsrgMapOsuParams(){}
 
