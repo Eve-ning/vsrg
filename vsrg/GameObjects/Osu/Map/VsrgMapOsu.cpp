@@ -25,10 +25,9 @@ VsrgMapOsu::~VsrgMapOsu()
 
 void VsrgMapOsu::loadFile(const std::string & file_path) {
 	using namespace IterHelper;
-	using namespace boost::spirit::classic;
-	
-
 	std::vector<std::string> file_contents = readFile(file_path);
+
+	// To convert to using boost::qi when im not lazy
 	
 	std::vector<std::string>::const_iterator it = file_contents.cbegin();
 	std::vector<std::string>::const_iterator ite = file_contents.cend();
@@ -47,6 +46,7 @@ void VsrgMapOsu::loadFile(const std::string & file_path) {
 	params.beatmap_id_		=		 std::stoi(matchTag(it, ite, "BeatmapID:"));
 	params.beatmap_set_id_	=		 std::stoi(matchTag(it, ite, "BeatmapSetID:"));
 	params.hp_				=		 std::stoi(matchTag(it, ite, "HPDrainRate:"));
+	params.od_				=		 std::stoi(matchTag(it, ite, "OverallDifficulty:"));
 	params.keys_			=		 std::stoi(matchTag(it, ite, "CircleSize:"));
 
 	// TODO: Parse the hit objects and timing points	
