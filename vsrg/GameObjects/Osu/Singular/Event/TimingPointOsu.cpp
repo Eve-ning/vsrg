@@ -24,5 +24,5 @@ TimingPointOsu::~TimingPointOsu()
 YAML::Node TimingPointOsu::asYaml() const {
 	auto node = TimingPoint::asYaml();
 	node["params"] = params.asYaml();
-	return node;
+	return std::move(node);
 }

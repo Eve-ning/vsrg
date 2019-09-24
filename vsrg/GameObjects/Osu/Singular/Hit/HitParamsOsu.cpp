@@ -18,5 +18,5 @@ YAML::Node HitParamsOsu::asYaml() const {
 	node["volume"] = volume_;
 	node["hitsound_file"] = hitsound_file_;
 
-	return node;
+	return std::move(node);
 }

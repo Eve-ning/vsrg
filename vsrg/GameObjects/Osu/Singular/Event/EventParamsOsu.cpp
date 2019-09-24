@@ -9,5 +9,5 @@ YAML::Node EventParamsOsu::asYaml() const {
 	node["volume"] = volume_;
 	node["is_kiai"] = is_kiai_;
 
-	return node;
+	return std::move(node);
 }

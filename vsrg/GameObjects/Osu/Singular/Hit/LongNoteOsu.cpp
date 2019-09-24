@@ -9,7 +9,7 @@ LongNoteOsu::LongNoteOsu(double offset_m_sec, unsigned int index, double length)
 
 LongNoteOsu::LongNoteOsu(const std::string & str, int keys) {
 	
-	auto it = IterHelper::tokenize(str, ",:").begin();
+	auto it = IterHelper::tokenize_(str, ",:").begin();
 
 	double offset;
 	double offset_end;
@@ -37,5 +37,5 @@ LongNoteOsu::LongNoteOsu(const std::string & str, int keys) {
 YAML::Node LongNoteOsu::asYaml() const {
 	auto node = LongNote::asYaml();
 	node["params"] = params.asYaml();
-	return node;
+	return std::move(node);
 }

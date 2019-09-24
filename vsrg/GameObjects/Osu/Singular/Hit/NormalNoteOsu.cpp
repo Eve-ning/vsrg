@@ -7,7 +7,8 @@ NormalNoteOsu::NormalNoteOsu(const double & offset_m_sec, const int & index) :
 
 NormalNoteOsu::NormalNoteOsu(const std::string & str, int keys) {
 
-	auto it = IterHelper::tokenize(str, ",:").begin();
+	auto tokens = IterHelper::tokenize_(str, ",:", 10U);
+	auto it = tokens.cbegin();
 	
 	try {
 		/* 0 */		  setIndex(HitParamsOsu::axisToIndex(std::stod(*it), keys));
@@ -33,5 +34,5 @@ NormalNoteOsu::~NormalNoteOsu()
 YAML::Node NormalNoteOsu::asYaml() const {
 	auto node = NormalNote::asYaml();
 	node["params"] = params.asYaml();
-	return node;
+	return std::move(node);
 }
