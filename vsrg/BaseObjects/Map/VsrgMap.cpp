@@ -21,6 +21,10 @@ void VsrgMap::saveAsYaml(const std::string & file_path, bool overwrite)
 	BOOST_ASSERT_MSG(!file_out.is_open(), "File failed to close.");
 }
 
+void VsrgMap::readAsYaml(const std::string & file_path) {
+	fromYaml(YAML::LoadFile(file_path));
+}
+
 YAML::Node VsrgMap::asYaml() const {
 	YAML::Node node;
 	node["hit_objects"] = ho_v_->asYaml();

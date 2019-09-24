@@ -9,6 +9,7 @@
 #include "GameObjects/Osu/Singular/Event/TimingPointOsu.h"
 #include "GameObjects/Osu/Multiple/HitObjectVectorOsu.h"
 #include "GameObjects/Osu/Multiple/EventObjectVectorOsu.h"
+#include <boost/spirit/include/classic.hpp>
 
 VsrgMapOsu::VsrgMapOsu()
 {
@@ -24,6 +25,8 @@ VsrgMapOsu::~VsrgMapOsu()
 
 void VsrgMapOsu::loadFile(const std::string & file_path) {
 	using namespace IterHelper;
+	using namespace boost::spirit::classic;
+	
 
 	std::vector<std::string> file_contents = readFile(file_path);
 	
@@ -57,7 +60,7 @@ void VsrgMapOsu::loadFile(const std::string & file_path) {
 }
 
 void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
-	// TODO:
+	
 }
 
 YAML::Node VsrgMapOsu::asYaml() const {
