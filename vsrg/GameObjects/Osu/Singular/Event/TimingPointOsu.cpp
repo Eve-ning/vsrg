@@ -6,7 +6,8 @@ TimingPointOsu::TimingPointOsu(double offset_m_sec, double bpm, double time_sig_
 	TimingPoint(offset_m_sec, bpm, time_sig_numerator, 4.0) {}
 
 TimingPointOsu::TimingPointOsu(const std::string & str) {
-	auto it = IterHelper::tokenize(str, ",").begin();
+	auto tokens = IterHelper::tokenize(str, ",", 8U);
+	auto it = tokens.cbegin();
 
 	/* 0 */       setOffset(std::stod(*it));
 	/* 1 */ it++; setBpm(60000.0 / std::stod(*it));

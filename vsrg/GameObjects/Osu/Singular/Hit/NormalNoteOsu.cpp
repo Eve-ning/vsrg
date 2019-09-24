@@ -7,7 +7,7 @@ NormalNoteOsu::NormalNoteOsu(const double & offset_m_sec, const int & index) :
 
 NormalNoteOsu::NormalNoteOsu(const std::string & str, int keys) {
 
-	auto tokens = IterHelper::tokenize_(str, ",:", 10U);
+	auto tokens = IterHelper::tokenize(str, ",:", 10U);
 	auto it = tokens.cbegin();
 	
 	try {

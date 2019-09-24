@@ -15,8 +15,9 @@ namespace IterHelper
 		std::vector<std::string>::const_iterator end
 	);
 
-	boost::tokenizer<boost::char_separator<char>> tokenize(
-		const std::string & str, const char * separators);
+	std::vector<std::string> tokenize(
+		const std::string & str, const char * separators,
+		size_t pad_size = 0);
 }
 
 namespace StringHelper {

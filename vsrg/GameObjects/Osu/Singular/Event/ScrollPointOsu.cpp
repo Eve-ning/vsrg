@@ -6,7 +6,8 @@ ScrollPointOsu::ScrollPointOsu(double offset_m_sec, double scroll_speed_mult) :
 	ScrollPoint(offset_m_sec, scroll_speed_mult) {}
 
 ScrollPointOsu::ScrollPointOsu(const std::string & str) {
-	auto it = IterHelper::tokenize(str, ",").begin();
+	auto tokens = IterHelper::tokenize(str, ",", 8U);
+	auto it = tokens.cbegin();
 
 	/* 0 */       setOffset(std::stod(*it));
 	/* 1 */ it++; setScrollSpeedMult(-100.0 / std::stod(*it));
