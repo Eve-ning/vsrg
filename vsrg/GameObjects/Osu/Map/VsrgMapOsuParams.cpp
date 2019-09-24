@@ -44,12 +44,10 @@ VsrgMapOsuParams::VsrgMapOsuParams(double hp, double od, unsigned int keys, cons
 	VsrgMapParams(title, artist, creator, version, set_unicode),
 	hp_(hp), od_(od), keys_(keys) {}
 
-VsrgMapOsuParams::~VsrgMapOsuParams()
-{
-}
+VsrgMapOsuParams::~VsrgMapOsuParams(){}
 
 YAML::Node VsrgMapOsuParams::asYaml() const {
-	YAML::Node node;
+	YAML::Node node = VsrgMapParams::asYaml();
 	node["hp"] = hp_;
 	node["od"] = od_;
 	node["preview_time"] = preview_time_;
@@ -60,5 +58,19 @@ YAML::Node VsrgMapOsuParams::asYaml() const {
 	node["bookmarks"] = bookmarks_;
 	node["beatmap_id"] = beatmap_id_;
 	node["beatmap_set_id"] = beatmap_set_id_;
-	return node;
+	return std::move(node);
+}
+
+void VsrgMapOsuParams::fromYaml(const YAML::Node & node){
+	VsrgMapParams::fromYaml(node);
+	hp_	= node["hp"].as<double>();
+	od_	= node["od"].as<double>();
+	preview_time_ = node["preview_time"].as<unsigned int>();
+	keys_ = node["keys"].as<unsigned int>();
+	bg_file_name_ = node["bg_file_name"].as<std::string>();
+	source_	= node["source"].as<std::string>();
+	tags_ = node["tags"].as<std::vector<std::string>>();
+	bookmarks_ = node["bookmarks"].as<std::vector<unsigned int>>();
+	beatmap_id_	= node["beatmap_id"].as<int>();
+	beatmap_set_id_	= node["beatmap_set_id"].as<int>();
 }
