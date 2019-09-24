@@ -9,7 +9,8 @@ LongNoteOsu::LongNoteOsu(double offset_m_sec, unsigned int index, double length)
 
 LongNoteOsu::LongNoteOsu(const std::string & str, int keys) {
 	
-	auto it = IterHelper::tokenize_(str, ",:").begin();
+	auto tokens = IterHelper::tokenize_(str, ",:", 11U);
+	auto it = tokens.cbegin();
 
 	double offset;
 	double offset_end;
