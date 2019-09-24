@@ -8,6 +8,7 @@ public:
 	NormalNoteOsu(const double & offset_m_sec, 
 				  const int & index);
 	NormalNoteOsu(const std::string & str, int keys);
+	using NormalNote::NormalNote;
 	~NormalNoteOsu();
 
 	YAML::Node asYaml() const override;

@@ -9,6 +9,7 @@ public:
 	LongNoteOsu();
 	LongNoteOsu(double offset_m_sec, unsigned int index, double length);
 	LongNoteOsu(const std::string & str, int keys);
+	using LongNote::LongNote;
 
 	YAML::Node asYaml() const override;
 

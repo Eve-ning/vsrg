@@ -12,6 +12,7 @@ public:
 
 	TimingPointOsu(double offset_m_sec, double bpm, double time_sig_numerator);
 	TimingPointOsu(const std::string & str);
+	using TimingPoint::TimingPoint;
 	~TimingPointOsu();
 
 	EventParamsOsu params;

@@ -7,6 +7,7 @@ class ScrollPointOsu :
 public:
 	ScrollPointOsu(double offset_m_sec, double scroll_speed_mult);
 	ScrollPointOsu(const std::string & str);
+	using ScrollPoint::ScrollPoint;
 	~ScrollPointOsu();
 
 	EventParamsOsu params;
