@@ -15,11 +15,11 @@ NormalNoteOsu::NormalNoteOsu(const std::string & str, int keys) {
 		/* 1 */ it++; 															
 		/* 2 */ it++; setOffset(std::stod(*it));								
 		/* 3 */ it++; 															
-		/* 4 */ it++; params.hitsound_		= std::stoi(*it);				
-		/* 5 */ it++; params.sample_		= std::stoi(*it);			
-		/* 6 */ it++; params.addition_		= std::stoi(*it);				
-		/* 7 */ it++; params.custom_		= std::stoi(*it);			
-		/* 8 */ it++; params.volume_		= std::stoi(*it);			
+		/* 4 */ it++; params.hitsound_		= std::stoul(*it);				
+		/* 5 */ it++; params.sample_		= std::stoul(*it);			
+		/* 6 */ it++; params.addition_		= std::stoul(*it);				
+		/* 7 */ it++; params.custom_		= std::stoul(*it);			
+		/* 8 */ it++; params.volume_		= std::stoul(*it);			
 		/* 9 */ it++; params.hitsound_file_	= *it;							
 	}
 	catch ([[maybe_unused]] std::out_of_range &e) {
@@ -27,12 +27,36 @@ NormalNoteOsu::NormalNoteOsu(const std::string & str, int keys) {
 	}
 }
 
-NormalNoteOsu::~NormalNoteOsu()
-{
+std::string NormalNoteOsu::asNative(int keys) const {
+	std::string out = "";
+	out +=  std::to_string(HitParamsOsu::indexToAxis(getIndex(), keys)) +
+		',' + "192" +
+		',' + std::to_string(getOffset()) +
+		',' + "1" +
+		',' + std::to_string(params.hitsound_) +
+		',' + std::to_string(params.sample_) +
+		':' + std::to_string(params.addition_) +
+		':' + std::to_string(params.custom_) +
+		':' + std::to_string(params.volume_) +
+		':' + params.hitsound_file_;
+	return std::move(out);
 }
+
+std::string NormalNoteOsu::asNative() const {
+	// This is a default override for asNative, keys should have been provided
+	return asNative(0);
+}
+
+NormalNoteOsu::~NormalNoteOsu(){}
 
 YAML::Node NormalNoteOsu::asYaml() const {
 	auto node = NormalNote::asYaml();
 	node["params"] = params.asYaml();
 	return std::move(node);
 }
+
+void NormalNoteOsu::fromYaml(const YAML::Node& node) {
+	NormalNote::fromYaml(node);
+	params.fromYaml(node);
+}
+

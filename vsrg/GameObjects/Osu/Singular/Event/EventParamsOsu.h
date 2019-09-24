@@ -7,5 +7,6 @@ struct EventParamsOsu
 	bool is_kiai_;
 
 	YAML::Node asYaml() const;
+	void fromYaml(const YAML::Node& node);
 };
 

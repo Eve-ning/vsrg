@@ -9,7 +9,6 @@
 #include "GameObjects/Osu/Singular/Event/TimingPointOsu.h"
 #include "GameObjects/Osu/Multiple/HitObjectVectorOsu.h"
 #include "GameObjects/Osu/Multiple/EventObjectVectorOsu.h"
-#include <boost/spirit/include/classic.hpp>
 
 VsrgMapOsu::VsrgMapOsu()
 {
@@ -45,9 +44,9 @@ void VsrgMapOsu::loadFile(const std::string & file_path) {
 	params.tags_			=	   processTags(matchTag(it, ite, "Tags:"));
 	params.beatmap_id_		=		 std::stoi(matchTag(it, ite, "BeatmapID:"));
 	params.beatmap_set_id_	=		 std::stoi(matchTag(it, ite, "BeatmapSetID:"));
-	params.hp_				=		 std::stoi(matchTag(it, ite, "HPDrainRate:"));
-	params.od_				=		 std::stoi(matchTag(it, ite, "OverallDifficulty:"));
+	params.hp_				=		 std::stod(matchTag(it, ite, "HPDrainRate:"));
 	params.keys_			=		 std::stoi(matchTag(it, ite, "CircleSize:"));
+	params.od_				=		 std::stod(matchTag(it, ite, "OverallDifficulty:"));
 
 	// TODO: Parse the hit objects and timing points	
 	matchTag(it, ite, "[TimingPoints]"); // Move it to [TimingPoints]
@@ -60,13 +59,77 @@ void VsrgMapOsu::loadFile(const std::string & file_path) {
 }
 
 void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
+	std::vector<std::string> contents = {};
+	auto _ = [&contents](const std::string & str) { contents.push_back(str); };
+
+	_("osu file format v14");
+
+	_("[General]");
+	_("AudioFilename: " + params.audio_file_name_);
+	_("AudioLeadIn : 0");
+	_("PreviewTime : " + std::to_string(params.preview_time_));
+	_("Countdown : 0");
+	_("SampleSet : Soft");
+	_("StackLeniency : 0.7");
+	_("Mode : 3");
+	_("LetterboxInBreaks : 0");
+	_("SpecialStyle : 0");
+	_("WidescreenStoryboard : 0");
+	_("SamplesMatchPlaybackRate : 1");
+
+	_("[Editor]");
+	std::string bookmarks = "";
+	for (const auto& bookmark : params.bookmarks_) bookmarks += "," + std::to_string(bookmark);
+	_("Bookmarks: " + bookmarks);
+	_("DistanceSpacing : 0.6");
+	_("BeatDivisor : 4");
+	_("GridSize : 32");
+	_("TimelineZoom : 1.8");
+
+	_("[Metadata]");
+	_("Title : " + params.title_);
+	_("TitleUnicode : " + params.title_u_);
+	_("Artist : " + params.artist_);
+	_("ArtistUnicode :" + params.artist_u_);
+	_("Creator : " + params.creator_);
+	_("Version : " + params.version_);
+	_("Source :" + params.source_);
+	std::string tags = "";
+	for (const auto& tag : params.tags_) tags += " " + tag;
+	_("Tags:" + tags);
+	_("BeatmapID : " + std::to_string(params.beatmap_id_));
+	_("BeatmapSetID : " + std::to_string(params.beatmap_set_id_));
+
+	_("[Difficulty]");
+	_("HPDrainRate : " + std::to_string(params.hp_));
+	_("CircleSize : " + std::to_string(params.keys_));
+	_("OverallDifficulty : " + std::to_string(params.od_));
+	_("ApproachRate : 5");
+	_("SliderMultiplier : 1");
+	_("SliderTickRate : 1");
+
+	_("[Events]");
+	_("0, 0, " + params.bg_file_name_ + ", 0, 0");
+
+	_("[TimingPoints]");
+	for (const auto& eo : eo_v_->getEventObjectVector()) _(eo->asNative());
+
+	_("[HitObjects]");
+	for (const auto& ho : ho_v_->getHitObjectVector()) _(ho->asNative());
 	
+	writeFile(contents, file_path, overwrite);
 }
 
 YAML::Node VsrgMapOsu::asYaml() const {
 	auto node = VsrgMap::asYaml();
 	node["params"] = params.asYaml();
 	return node;
+}
+
+void VsrgMapOsu::fromYaml(const YAML::Node & node) {
+	eo_v_->fromYaml(node["hit_objects"]);
+	ho_v_->fromYaml(node["event_objects"]);
+	params.fromYaml(node["params"]);
 }
 
 void VsrgMapOsu::readHO(const std::vector<std::string>& str_v) {

@@ -14,5 +14,6 @@ struct HitParamsOsu
 	std::string hitsound_file_;
 
 	YAML::Node asYaml() const;
+	void fromYaml(const YAML::Node& node);
 };
 
