@@ -115,7 +115,7 @@ void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
 	for (const auto& eo : eo_v_->getEventObjectVector()) _(eo->asNative());
 
 	_("[HitObjects]");
-	for (const auto& ho : ho_v_->getHitObjectVector()) _(ho->asNative());
+	for (const auto& ho : ho_v_->getHitObjectVector()) _(ho->asNative(params.keys_));
 	
 	writeFile(contents, file_path, overwrite);
 }
