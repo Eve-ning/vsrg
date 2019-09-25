@@ -19,10 +19,6 @@ ScrollPoint::ScrollPoint(const YAML::Node & node) {
 }
 ScrollPoint::~ScrollPoint() {}
 
-std::shared_ptr<TimedObject> ScrollPoint::Clone() const {
-	return std::make_shared<ScrollPoint>(*this);
-}
-
 std::string ScrollPoint::getYamlTag() const {
 	return "scroll_point";
 }
@@ -78,17 +74,21 @@ bool ScrollPoint::operator>=(double value) const {
 bool ScrollPoint::operator<=(double value) const {
 	return getScrollSpeedMult() <= value;
 }
-ScrollPoint ScrollPoint::operator*(double by) const {
-	return ScrollPoint(getOffset(), getScrollSpeedMult() * by);
+SPtrScrollPoint ScrollPoint::operator*(double by) const {
+	SPtrScrollPoint to = std::static_pointer_cast<ScrollPoint>(Clone());
+	to->setScrollSpeedMult(getScrollSpeedMult() * by); return to;
 }
-ScrollPoint ScrollPoint::operator/(double by) const {
-	return ScrollPoint(getOffset(), getScrollSpeedMult() / by);
+SPtrScrollPoint ScrollPoint::operator/(double by) const {
+	SPtrScrollPoint to = std::static_pointer_cast<ScrollPoint>(Clone());
+	to->setScrollSpeedMult(getScrollSpeedMult() / by); return to;
 }
-ScrollPoint ScrollPoint::operator+(double by) const {
-	return ScrollPoint(getOffset(), getScrollSpeedMult() + by);
+SPtrScrollPoint ScrollPoint::operator+(double by) const {
+	SPtrScrollPoint to = std::static_pointer_cast<ScrollPoint>(Clone());
+	to->setScrollSpeedMult(getScrollSpeedMult() + by); return to;
 }
-ScrollPoint ScrollPoint::operator-(double by) const{
-	return ScrollPoint(getOffset(), getScrollSpeedMult() - by);
+SPtrScrollPoint ScrollPoint::operator-(double by) const{
+	SPtrScrollPoint to = std::static_pointer_cast<ScrollPoint>(Clone());
+	to->setScrollSpeedMult(getScrollSpeedMult() - by); return to;
 }
 void ScrollPoint::operator*=(double by) {
 	setScrollSpeedMult(getScrollSpeedMult() * by);

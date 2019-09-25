@@ -46,7 +46,7 @@ public:
 	/// Gets info of the important object members
 	virtual YAML::Node asYaml() const;
 	virtual std::string asNative(int keys) const;
-	virtual std::string asNative() const;
+	virtual std::string asNative() const = 0;
 	virtual void fromYaml(const YAML::Node & node);
 
 	virtual bool operator==(const TimedObject & obj) const;
