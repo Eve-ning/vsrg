@@ -7,7 +7,6 @@ EventObjectVectorOsu::EventObjectVectorOsu()
 {
 }
 
-
 EventObjectVectorOsu::~EventObjectVectorOsu()
 {
 }
