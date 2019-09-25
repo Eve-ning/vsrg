@@ -18,5 +18,14 @@ YAML::Node HitParamsOsu::asYaml() const {
 	node["volume"] = volume_;
 	node["hitsound_file"] = hitsound_file_;
 
-	return node;
+	return std::move(node);
+}
+
+void HitParamsOsu::fromYaml(const YAML::Node& node) {
+	hitsound_ = node["hitsound"].as<unsigned int>();
+	sample_ = node["sample"].as<unsigned int>();
+	addition_ = node["addition"].as<unsigned int>();
+	custom_ = node["custom"].as<unsigned int>();
+	volume_ = node["volume"].as<unsigned int>();
+	hitsound_file_ = node["hitsound_file"].as<std::string>();
 }

@@ -123,7 +123,7 @@
     <ClInclude Include="BaseObjects\Map\VsrgMapParser.h">
       <Filter>Base Objects\Map</Filter>
     </ClInclude>
-    <ClInclude Include="VsrgMapOsuParser.h" />
+    <ClInclude Include="GameObjects\Osu\Map\VsrgMapOsuParser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseObjects\Singular\Event\EventObject.cpp">
@@ -207,6 +207,6 @@
     <ClCompile Include="BaseObjects\Map\VsrgMapParser.cpp">
       <Filter>Base Objects\Map</Filter>
     </ClCompile>
-    <ClCompile Include="VsrgMapOsuParser.cpp" />
+    <ClCompile Include="GameObjects\Osu\Map\VsrgMapOsuParser.cpp" />
   </ItemGroup>
 </Project>

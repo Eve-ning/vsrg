@@ -39,5 +39,6 @@ protected:
 
 	SPtrHitObjectVector ho_v_;
 	SPtrEventObjectVector eo_v_;
+
 };
 

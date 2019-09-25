@@ -18,7 +18,6 @@ public:
 	NormalNote(const double & offset_m_sec, const int & index);
 	NormalNote(const YAML::Node & node);
 	~NormalNote();
-	std::shared_ptr<TimedObject> Clone() const override;
 
 	std::string getYamlTag() const override;
 	

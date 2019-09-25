@@ -13,6 +13,7 @@ public:
 	virtual void saveFile(const std::string & file_path, bool overwrite = false) override;
 
 	virtual YAML::Node asYaml() const;
+	virtual void fromYaml(const YAML::Node & node) override;
 
 	VsrgMapOsuParams params;
 
@@ -23,6 +24,8 @@ private:
 
 	bool isNormalNoteOsu(const std::string & str);
 	bool isTimingPointOsu(const std::string & str);
+
+	std::string processBackground(const std::string& str);
 
 	std::vector<unsigned int> processBookmarks(const std::string & str);
 	std::vector<std::string> processTags(const std::string & str);

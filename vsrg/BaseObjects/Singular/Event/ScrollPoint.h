@@ -19,7 +19,6 @@ public:
 	ScrollPoint(double offset_m_sec, double scroll_speed_mult = 1.0);
 	ScrollPoint(const YAML::Node & node);
 	~ScrollPoint();
-	virtual std::shared_ptr<TimedObject> Clone() const override;
 
 	std::string getYamlTag() const override;
 
@@ -55,13 +54,13 @@ public:
 	/// Comparison Operator compares scroll_speed_mult
 	bool operator<=(double value) const;
 	/// Arithmetic Operator multiplies scroll_speed_mult
-	ScrollPoint operator*(double by) const;
+	std::shared_ptr<ScrollPoint> operator*(double by) const;
 	/// Arithmetic Operator divides scroll_speed_mult
-	ScrollPoint operator/(double by) const;
+	std::shared_ptr<ScrollPoint> operator/(double by) const;
 	/// Arithmetic Operator adds scroll_speed_mult
-	ScrollPoint operator+(double by) const;
+	std::shared_ptr<ScrollPoint> operator+(double by) const;
 	/// Arithmetic O-erator subtracts scroll_speed_mult
-	ScrollPoint operator-(double by) const;
+	std::shared_ptr<ScrollPoint> operator-(double by) const;
 	/// Assignment Arithmetic Operator multiplies scroll_speed_mult
 	void operator*=(double by);
 	/// Assignment Arithmetic Operator divides scroll_speed_mult
@@ -76,3 +75,4 @@ private:
 	double scroll_mult_;
 };
 
+typedef std::shared_ptr<ScrollPoint> SPtrScrollPoint;

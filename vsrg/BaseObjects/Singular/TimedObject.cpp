@@ -36,6 +36,14 @@ YAML::Node TimedObject::asYaml() const {
 	return out;
 }
 
+std::string TimedObject::asNative(int keys) const {
+	return "";
+}
+
+std::string TimedObject::asNative() const {
+	return ""; // TODO: Convert to pure virtual when not lazy
+}
+
 void TimedObject::fromYaml(const YAML::Node & node) {
 	offset_m_sec_ = node["offset_m_sec"].as<double>();
 }

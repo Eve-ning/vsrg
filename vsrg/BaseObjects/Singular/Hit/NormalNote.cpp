@@ -11,10 +11,6 @@ NormalNote::NormalNote(const YAML::Node & node) {
 }
 NormalNote::~NormalNote() {}
 
-std::shared_ptr<TimedObject> NormalNote::Clone() const {
-	return std::make_shared<NormalNote>(*this);
-}
-
 std::string NormalNote::getYamlTag() const {
 	return "normal_note";
 }

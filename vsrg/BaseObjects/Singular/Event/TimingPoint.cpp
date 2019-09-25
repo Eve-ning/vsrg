@@ -28,10 +28,6 @@ TimingPoint::TimingPoint(const YAML::Node & node) {
 }
 TimingPoint::~TimingPoint() {}
 
-std::shared_ptr<TimedObject> TimingPoint::Clone() const {
-	return std::make_shared<TimingPoint>(*this);
-}
-
 std::string TimingPoint::getYamlTag() const{
 	return "timing_point";
 }

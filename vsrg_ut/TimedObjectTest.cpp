@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include <BaseObjects/Singular/Hit/NormalNote.h>
-#include <BaseObjects/Singular/Hit/LongNote.h>
+#include <GameObjects/Osu/Singular/Hit/NormalNoteOsu.h>
+#include <GameObjects/Osu/Singular/Hit/LongNoteOsu.h>
 #include <iostream>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -11,8 +11,8 @@ namespace HitObject_
 	{
 	public:
 		// Initialize objects here
-		NormalNote ho_nn_1 = NormalNote(100.0, 3);
-		NormalNote ho_nn_2 = NormalNote(200.0, 4);
+		NormalNoteOsu ho_nn_1 = NormalNoteOsu(100.0, 3);
+		NormalNoteOsu ho_nn_2 = NormalNoteOsu(200.0, 4);
 		TEST_METHOD(TimedObject_arithmetic)
 		{
 			// The non-assignment operation needs a sptr

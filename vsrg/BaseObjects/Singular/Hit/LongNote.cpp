@@ -13,10 +13,6 @@ LongNote::LongNote(const YAML::Node & node) {
 
 LongNote::~LongNote() {}
 
-SPtrTimedObject LongNote::Clone() const {
-	return std::make_shared<LongNote>(*this);
-}
-
 std::string LongNote::getYamlTag() const {
 	return "long_note";
 }
