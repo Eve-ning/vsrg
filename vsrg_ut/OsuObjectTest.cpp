@@ -30,7 +30,7 @@ namespace VsrgMapOsu_
 		TEST_METHOD(FileIO)
 		{
 			VsrgMapOsu osumap = VsrgMapOsu();
-			osumap.loadFile(osu_dh_51);
+			osumap.loadFile(osu_fc_pd);
 /*
 			Assert::AreEqual("Camellia",osumap.params.artist_.c_str());
 			Assert::AreEqual("audio.mp3",osumap.params.audio_file_name_.c_str());
@@ -50,6 +50,7 @@ namespace VsrgMapOsu_
 		{
 			VsrgMapOsu osumap = VsrgMapOsu();
 			osumap.readAsYaml("test.vsrg");
+			osumap.saveFile("test.osu", true);
 
 			//Logger::WriteMessage(node["params"]["hp"].as<std::string>().c_str());
 		}
