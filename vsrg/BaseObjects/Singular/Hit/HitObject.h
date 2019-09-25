@@ -17,7 +17,6 @@ public:
 	HitObject(const double & offset_m_sec, const int & index);
 	HitObject(const YAML::Node & node);
 	~HitObject() = 0;
-	virtual SPtrTimedObject Clone() const override = 0;
 
 	int getIndex() const;
 	void setIndex(const int & index);
