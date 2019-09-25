@@ -17,10 +17,7 @@ public:
 	 */
 	ScrollPoint();
 	ScrollPoint(double offset_m_sec, double scroll_speed_mult = 1.0);
-	ScrollPoint(const YAML::Node & node);
 	~ScrollPoint();
-
-	std::string getYamlTag() const override;
 
 	double getScrollSpeedMult() const;
 	void setScrollSpeedMult(double scroll_speed_mult);
@@ -41,9 +38,6 @@ public:
 	 * @return false Value is not approximately equal or not in the range
 	 */
 	bool isApproximately(double value, double threshold = 0.0, bool include_ends = false) const;
-
-	virtual YAML::Node asYaml() const override;
-	virtual void fromYaml(const YAML::Node & node) override;
 
 	/// Comparison Operator compares scroll_speed_mult
 	bool operator>(double value) const;

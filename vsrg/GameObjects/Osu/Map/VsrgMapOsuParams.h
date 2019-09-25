@@ -48,8 +48,6 @@ public:
 
 	~VsrgMapOsuParams();
 
-	YAML::Node asYaml() const override;
-	void fromYaml(const YAML::Node & node);
 
 	double hp_;
 	double od_;

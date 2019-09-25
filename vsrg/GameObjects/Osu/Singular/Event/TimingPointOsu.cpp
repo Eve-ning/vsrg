@@ -38,15 +38,3 @@ std::string TimingPointOsu::asNative() const {
 		',' + (params.is_kiai_ ? '1' : '0');
 	return std::move(out);
 }
-
-YAML::Node TimingPointOsu::asYaml() const {
-	auto node = TimingPoint::asYaml();
-	node["params"] = params.asYaml();
-	return std::move(node);
-}
-
-void TimingPointOsu::fromYaml(const YAML::Node& node) {
-	TimingPoint::fromYaml(node);
-	params.fromYaml(node);
-}
-

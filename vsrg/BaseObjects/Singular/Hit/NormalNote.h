@@ -16,10 +16,8 @@ public:
 	 */
 	NormalNote();
 	NormalNote(const double & offset_m_sec, const int & index);
-	NormalNote(const YAML::Node & node);
 	~NormalNote();
 
-	std::string getYamlTag() const override;
 	
 	bool operator==(const NormalNote & nn) const;
 	bool isOverlapping(const NormalNote & nn) const;	

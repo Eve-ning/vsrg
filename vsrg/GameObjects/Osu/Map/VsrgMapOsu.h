@@ -12,9 +12,6 @@ public:
 	virtual void loadFile(const std::string & file_path) override;
 	virtual void saveFile(const std::string & file_path, bool overwrite = false) override;
 
-	virtual YAML::Node asYaml() const;
-	virtual void fromYaml(const YAML::Node & node) override;
-
 	VsrgMapOsuParams params;
 
 private:

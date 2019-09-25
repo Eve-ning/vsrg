@@ -39,14 +39,3 @@ std::string ScrollPointOsu::asNative() const {
 		',' + (params.is_kiai_ ? '1' : '0');
 	return std::move(out);
 }
-
-YAML::Node ScrollPointOsu::asYaml() const {
-	auto node = ScrollPoint::asYaml();
-	node["params"] = params.asYaml();
-	return std::move(node);
-}
-
-void ScrollPointOsu::fromYaml(const YAML::Node& node) {
-	ScrollPoint::fromYaml(node);
-	params.fromYaml(node);
-}

@@ -17,6 +17,5 @@
 #include <boost/tokenizer.hpp>
 #include <fstream>
 #include <filesystem>
-#include <yaml-cpp/yaml.h>
 
 // reference additional headers your program requires here

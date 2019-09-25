@@ -93,12 +93,6 @@ std::vector<SPtrTimedObject> TimedObjectVector::isInvalidObjects() const {
 	return invalid_obj_v;
 }
 
-YAML::Node TimedObjectVector::asYaml() const {
-	YAML::Node out = {};
-	for (const SPtrTimedObject & to : to_v_) out[to->getYamlTag()].push_back(to->asYaml());
-	return std::move(out);
-}
-
 void TimedObjectVector::multiplyOffsetMSec(double offset_m_sec) {
 	std::transform(begin(), end(), begin(),
 		[offset_m_sec](SPtrTimedObject & to) -> SPtrTimedObject {

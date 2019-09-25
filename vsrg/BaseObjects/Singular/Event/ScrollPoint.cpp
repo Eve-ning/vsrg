@@ -14,14 +14,7 @@ ScrollPoint::ScrollPoint() : scroll_mult_(1.0) {}
 ScrollPoint::ScrollPoint(double offset_m_sec, double scroll_speed_mult) :
 	EventObject(offset_m_sec),
 	scroll_mult_(scroll_speed_mult) {}
-ScrollPoint::ScrollPoint(const YAML::Node & node) {
-	fromYaml(node);
-}
 ScrollPoint::~ScrollPoint() {}
-
-std::string ScrollPoint::getYamlTag() const {
-	return "scroll_point";
-}
 
 double ScrollPoint::getScrollSpeedMult() const {
 	return scroll_mult_;
@@ -49,17 +42,6 @@ bool ScrollPoint::isApproximately(
 		return ((*this > (value - threshold)) &&
 			    (*this < (value + threshold)));
 	}
-}
-
-YAML::Node ScrollPoint::asYaml() const {
-	auto out = EventObject::asYaml();
-	out["scroll_mult"] = StringHelper::formatDbl(scroll_mult_);
-	return out;
-}
-
-void ScrollPoint::fromYaml(const YAML::Node & node){
-	EventObject::fromYaml(node);
-	scroll_mult_ = node["scroll_mult"].as<double>();
 }
 
 bool ScrollPoint::operator>(double value) const {

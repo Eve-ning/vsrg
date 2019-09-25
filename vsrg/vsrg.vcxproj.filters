@@ -120,10 +120,6 @@
     <ClInclude Include="GameObjects\Osu\Multiple\HitObjectVectorOsu.h">
       <Filter>Game Objects\Osu\Multiple</Filter>
     </ClInclude>
-    <ClInclude Include="BaseObjects\Map\VsrgMapParser.h">
-      <Filter>Base Objects\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjects\Osu\Map\VsrgMapOsuParser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseObjects\Singular\Event\EventObject.cpp">
@@ -204,9 +200,5 @@
     <ClCompile Include="GameObjects\Osu\Multiple\HitObjectVectorOsu.cpp">
       <Filter>Game Objects\Osu\Multiple</Filter>
     </ClCompile>
-    <ClCompile Include="BaseObjects\Map\VsrgMapParser.cpp">
-      <Filter>Base Objects\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects\Osu\Map\VsrgMapOsuParser.cpp" />
   </ItemGroup>
 </Project>

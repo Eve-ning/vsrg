@@ -12,8 +12,5 @@ struct HitParamsOsu
 	unsigned int custom_;
 	unsigned int volume_;
 	std::string hitsound_file_;
-
-	YAML::Node asYaml() const;
-	void fromYaml(const YAML::Node& node);
 };
 

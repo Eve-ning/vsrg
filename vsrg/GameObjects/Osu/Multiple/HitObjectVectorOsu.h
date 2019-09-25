@@ -6,7 +6,5 @@ class HitObjectVectorOsu :
 public:
 	HitObjectVectorOsu();
 	~HitObjectVectorOsu();
-
-	void fromYaml(const YAML::Node & node) override;
 };
 

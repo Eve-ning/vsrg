@@ -123,18 +123,6 @@ void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
 	writeFile(contents, file_path, overwrite);
 }
 
-YAML::Node VsrgMapOsu::asYaml() const {
-	auto node = VsrgMap::asYaml();
-	node["params"] = params.asYaml();
-	return node;
-}
-
-void VsrgMapOsu::fromYaml(const YAML::Node & node) {
-	eo_v_->fromYaml(node["hit_objects"]);
-	ho_v_->fromYaml(node["event_objects"]);
-	params.fromYaml(node["params"]);
-}
-
 void VsrgMapOsu::readHO(const std::vector<std::string>& str_v) {
 	for (const std::string & str : str_v) {
 		SPtrTimedObject sptr = nullptr;
