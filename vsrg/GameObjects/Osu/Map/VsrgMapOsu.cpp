@@ -47,13 +47,17 @@ void VsrgMapOsu::loadFile(const std::string & file_path) {
 	params.hp_				=		 std::stod(matchTag(it, ite, "HPDrainRate:"));
 	params.keys_			=		 std::stoi(matchTag(it, ite, "CircleSize:"));
 	params.od_				=		 std::stod(matchTag(it, ite, "OverallDifficulty:"));
+	
+	// Move to background
+	matchTag(it, ite, "//Background and Video events");
+	processBackground(*(++it));
 
 	matchTag(it, ite, "[TimingPoints]"); // Move it to [TimingPoints]
 	auto it_tp = it;
 	matchTag(it, ite, "[HitObjects]"); // Move it to [TimingPoints]
 	auto it_ho = it;
 
-	readEO(getBetween(++it_tp, it_ho));
+	readEO(getBetween(++it_tp, it_ho)); // Reads between the iters
 	readHO(getBetween(++it_ho, ite));
 }
 
@@ -169,6 +173,15 @@ bool VsrgMapOsu::isTimingPointOsu(const std::string & str) {
 	return str[str.length() - 3] == '1';
 }
 
+
+std::string VsrgMapOsu::processBackground(const std::string& str){
+	size_t first_ = str.find_first_of('"');
+	size_t last_ = str.find_last_of('"');
+	if (first_ != std::string::npos) {
+		return str.substr(first_, last_ - first_ + 1);
+	}
+	return "";
+}
 
 std::vector<unsigned int> VsrgMapOsu::processBookmarks(const std::string & str) {
 	std::vector<std::string> uncasted = {};

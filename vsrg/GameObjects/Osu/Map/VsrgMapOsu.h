@@ -25,6 +25,8 @@ private:
 	bool isNormalNoteOsu(const std::string & str);
 	bool isTimingPointOsu(const std::string & str);
 
+	std::string processBackground(const std::string& str);
+
 	std::vector<unsigned int> processBookmarks(const std::string & str);
 	std::vector<std::string> processTags(const std::string & str);
 };
