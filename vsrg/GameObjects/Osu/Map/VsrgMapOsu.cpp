@@ -48,7 +48,6 @@ void VsrgMapOsu::loadFile(const std::string & file_path) {
 	params.keys_			=		 std::stoi(matchTag(it, ite, "CircleSize:"));
 	params.od_				=		 std::stod(matchTag(it, ite, "OverallDifficulty:"));
 
-	// TODO: Parse the hit objects and timing points	
 	matchTag(it, ite, "[TimingPoints]"); // Move it to [TimingPoints]
 	auto it_tp = it;
 	matchTag(it, ite, "[HitObjects]"); // Move it to [TimingPoints]
@@ -80,7 +79,7 @@ void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
 	_("[Editor]");
 	std::string bookmarks = "";
 	for (const auto& bookmark : params.bookmarks_) bookmarks += "," + std::to_string(bookmark);
-	_("Bookmarks: " + bookmarks);
+	_("Bookmarks: " + bookmarks.substr(1, std::string::npos));
 	_("DistanceSpacing : 0.6");
 	_("BeatDivisor : 4");
 	_("GridSize : 32");

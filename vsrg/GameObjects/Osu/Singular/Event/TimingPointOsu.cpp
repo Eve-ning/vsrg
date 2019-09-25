@@ -30,7 +30,7 @@ std::string TimingPointOsu::asNative() const {
 	std::string out = "";
 	out += std::to_string(getOffset()) +
 		',' + std::to_string(60000.0 / getBpm()) +
-		',' + std::to_string(getTimeSigNumerator()) +
+		',' + std::to_string((unsigned int) getTimeSigNumerator()) +
 		',' + std::to_string(params.sample_) +
 		',' + std::to_string(params.sample_index_) +
 		',' + std::to_string(params.volume_) +
