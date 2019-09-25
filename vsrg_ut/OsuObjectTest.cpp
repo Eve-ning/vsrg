@@ -31,7 +31,7 @@ namespace VsrgMapOsu_
 		{
 			VsrgMapOsu osumap = VsrgMapOsu();
 			osumap.loadFile(osu_fc_pd);
-/*
+
 			Assert::AreEqual("Camellia",osumap.params.artist_.c_str());
 			Assert::AreEqual("audio.mp3",osumap.params.audio_file_name_.c_str());
 			Assert::AreEqual(1940322,osumap.params.beatmap_id_);
@@ -39,7 +39,7 @@ namespace VsrgMapOsu_
 			Assert::AreEqual("paradoxus_",osumap.params.creator_.c_str());
 			Assert::AreEqual(2315.,osumap.getHitObjectVector()->getEarliestOffset());
 			Assert::AreEqual(1385015.,osumap.getEventObjectVector()->getLatestOffset());
-			Assert::AreEqual(153.,osumap.getEventObjectVector()->getClassOnly<TimingPoint>()[0].getBpm());*/
+			Assert::AreEqual(153.,osumap.getEventObjectVector()->getClassOnly<TimingPointOsu>()[0].getBpm());
 
 			osumap.saveAsYaml("test.vsrg", true);
 			//osumap.saveAsVsrg("testing.vsrg", true);
