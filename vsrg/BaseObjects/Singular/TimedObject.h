@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <map>
+#include "yaml-cpp/yaml.h"
 
 /**
  * @brief Abstract Class, used for all "timable" objects
@@ -12,6 +14,7 @@ class TimedObject
 public:
 	TimedObject();
 	TimedObject(double offset_m_sec);
+	TimedObject(const YAML::Node & node);
 	virtual ~TimedObject() = 0;
 
 	virtual std::shared_ptr<TimedObject> Clone() const = 0;
@@ -34,14 +37,17 @@ public:
 	/// Sets Offset in milliseconds
 	void setOffset(double offset_m_sec, double unit_scale = TimedObject::UnitScale::msecond);
 
+	virtual std::string getYamlTag() const = 0;
+
 	/// Validates the object being realistic
 	virtual bool isValid() const;
 	virtual operator bool() const final; // Calls isValid
 
 	/// Gets info of the important object members
-	virtual std::string getInfo() const;
-	virtual std::string toExport() const;
-	virtual operator std::string() const final; // Calls getInfo
+	virtual YAML::Node asYaml() const;
+	virtual std::string asNative(int keys) const;
+	virtual std::string asNative() const = 0;
+	virtual void fromYaml(const YAML::Node & node);
 
 	virtual bool operator==(const TimedObject & obj) const;
 	virtual bool operator>(const TimedObject & obj) const;

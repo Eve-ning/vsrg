@@ -11,8 +11,8 @@ class EventObject : public TimedObject
 public:
 	EventObject();
 	EventObject(double offset_m_sec);
+	EventObject(const YAML::Node & node);
 	~EventObject() = 0;
-	virtual std::shared_ptr<TimedObject> Clone() const override = 0;
 };
 
 typedef std::shared_ptr<EventObject> SPtrEventObject;

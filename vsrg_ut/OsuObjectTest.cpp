@@ -19,24 +19,6 @@ namespace VsrgMapOsu_
 
 		std::string osu_fc_pd = "../test_files/Osu/Camellia - Fastest Crash ('Camellia's ''paroxysmal'' Energetic Hitech Remix) (paradoxus_) [Houkai].osu";
 		std::string osu_dh_51 = "../test_files/Osu/xi - Double Helix (Level 51) [Nucleic].osu";
-		
-		TEST_METHOD(test) {
-			YAML::Node node;  // starts out as null
-			node["key"] = "value";  // it now is a map node
-			node["seq"].push_back("first element");  // node["seq"] automatically becomes a sequence
-			node["seq"].push_back("second element");
-
-			node["mirror"] = node["seq"][0];  // this creates an alias
-			node["seq"][0] = "1st element";  // this also changes node["mirror"]
-			node["mirror"] = "element #1";  // and this changes node["seq"][0] - they're really the "same" node
-
-			node["self"] = node;  // you can even create self-aliases
-			node[node["mirror"]] = node["seq"];  // and strange loops :)
-
-			std::ofstream fout("file.yaml");
-			fout << node;
-	
-		}
 
 		// Initialize objects here
 		TEST_METHOD(LogDir) { // set to true to output dirs and file check
@@ -44,24 +26,35 @@ namespace VsrgMapOsu_
 				Logger::WriteMessage(std::filesystem::current_path().c_str());
 				Assert::IsTrue(std::filesystem::exists(osu_fc_pd));
 			}
-		}
-		TEST_METHOD(LoadFile)
+		} 
+		TEST_METHOD(FileIO)
 		{
 			VsrgMapOsu osumap = VsrgMapOsu();
 			osumap.loadFile(osu_fc_pd);
+			osumap.saveFile("test.osu", true);
 
 			Assert::AreEqual("Camellia",osumap.params.artist_.c_str());
 			Assert::AreEqual("audio.mp3",osumap.params.audio_file_name_.c_str());
 			Assert::AreEqual(1940322,osumap.params.beatmap_id_);
 			Assert::AreEqual(929005,osumap.params.beatmap_set_id_);
 			Assert::AreEqual("paradoxus_",osumap.params.creator_.c_str());
-			Assert::AreEqual(2315.,osumap.getHitObjectVector().getEarliestOffset());
-			Assert::AreEqual(1385015.,osumap.getEventObjectVector().getLatestOffset());
-			Assert::AreEqual(153.,osumap.getEventObjectVector().getClassOnly<TimingPoint>()[0].getBpm());
+			Assert::AreEqual(2315.,osumap.getHitObjectVector()->getEarliestOffset());
+			Assert::AreEqual(1385015.,osumap.getEventObjectVector()->getLatestOffset());
+			Assert::AreEqual(153.,osumap.getEventObjectVector()->getClassOnly<TimingPointOsu>()[0].getBpm());
 
+			//osumap.saveAsYaml("test.vsrg", true);
 			//osumap.saveAsVsrg("testing.vsrg", true);
+			//osumap.saveAsVsrg("test.vsrg", true);
 			
 		}
+		//TEST_METHOD(LoadVsrgFile)
+		//{
+		//	VsrgMapOsu osumap = VsrgMapOsu();
+		//	osumap.readAsYaml("test.vsrg");
+		//	osumap.saveFile("test.osu", true);
+
+		//	//Logger::WriteMessage(node["params"]["hp"].as<std::string>().c_str());
+		//}
 		TEST_METHOD(NormalNoteOsu_) {
 			NormalNoteOsu nn = NormalNoteOsu("36,192,1000,1,0,0:0:0:0:", 7);
 			Assert::IsTrue(nn.getIndex() == 0);

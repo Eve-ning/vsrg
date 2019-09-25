@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "TimedObject.h"
+#include "Helpers/MiscHelper.h"
 
 const double TimedObject::UnitScale::hour = 3600000.0;
 const double TimedObject::UnitScale::minute = 60000.0;
@@ -8,6 +9,9 @@ const double TimedObject::UnitScale::msecond = 1.0;
 
 TimedObject::TimedObject() : offset_m_sec_(0) {}
 TimedObject::TimedObject(double offset_m_sec) : offset_m_sec_(offset_m_sec) {}
+TimedObject::TimedObject(const YAML::Node & node) {
+	fromYaml(node);
+}
 TimedObject::~TimedObject() {}
 
 double TimedObject::getOffset(double unit_scale) const {
@@ -25,15 +29,23 @@ TimedObject::operator bool() const {
 	return isValid();
 }
 
-std::string TimedObject::getInfo() const {
-	return "Offset " + std::to_string(offset_m_sec_);
+YAML::Node TimedObject::asYaml() const {
+	BOOST_ASSERT_MSG(isValid(), "Object must pass isValid() to be exported.");
+	YAML::Node out;
+	out["offset_m_sec"] = StringHelper::formatDbl(offset_m_sec_);
+	return out;
 }
-std::string TimedObject::toExport() const {
-	BOOST_ASSERT_MSG(isValid(), "Object must pass isValid() == true to be exported.");
-	return getInfo();
+
+std::string TimedObject::asNative(int keys) const {
+	return "";
 }
-TimedObject::operator std::string() const {
-	return toExport();
+
+std::string TimedObject::asNative() const {
+	return ""; // TODO: Convert to pure virtual when not lazy
+}
+
+void TimedObject::fromYaml(const YAML::Node & node) {
+	offset_m_sec_ = node["offset_m_sec"].as<double>();
 }
 
 bool TimedObject::operator==(const TimedObject & obj) const {

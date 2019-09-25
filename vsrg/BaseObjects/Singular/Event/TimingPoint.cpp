@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "TimingPoint.h"
-
+#include "Helpers/MiscHelper.h"
 
 /**
 * @brief Construct a new Timing Point object
@@ -23,10 +23,13 @@ TimingPoint::TimingPoint(
 	bpm_(bpm),
 	time_sig_numerator_(time_sig_numerator),
 	time_sig_denominator_(time_sig_denominator) {}
+TimingPoint::TimingPoint(const YAML::Node & node) {
+	fromYaml(node);
+}
 TimingPoint::~TimingPoint() {}
 
-std::shared_ptr<TimedObject> TimingPoint::Clone() const {
-	return std::make_shared<TimingPoint>(*this);
+std::string TimingPoint::getYamlTag() const{
+	return "timing_point";
 }
 
 double TimingPoint::getBpm() const {
@@ -67,9 +70,17 @@ bool TimingPoint::isValid() const {
 	return TimedObject::isValid() && isTimeSigValid() && (getBpm() > 0);
 }
 
-std::string TimingPoint::getInfo() const {
-	return EventObject::getInfo() +
-		   "\nBPM " + std::to_string(bpm_) + 
-		   "\nTime Signature Numerator " + std::to_string(time_sig_numerator_) + 
-		   "\nTime Signature Denominator " + std::to_string(time_sig_denominator_);
+YAML::Node TimingPoint::asYaml() const {
+	auto out = EventObject::asYaml();
+	out["bpm"] = StringHelper::formatDbl(bpm_);
+	out["time_sig_numerator"] = time_sig_numerator_;
+	out["time_sig_denominator"] = time_sig_denominator_;
+	return out;
+}
+
+void TimingPoint::fromYaml(const YAML::Node & node) {
+	EventObject::fromYaml(node);
+	bpm_ = node["bpm"].as<double>();
+	time_sig_numerator_ = node["time_sig_numerator"].as<double>();
+	time_sig_denominator_ = node["time_sig_denominator"].as<double>();
 }

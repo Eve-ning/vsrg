@@ -14,9 +14,10 @@ public:
 
 	LongNote();
 	LongNote(double offset_m_sec, unsigned int index, double length);
-	~LongNote();
-	/// Deep Copies the 2 HitObjects into a new LongNote
-	SPtrTimedObject Clone() const;
+	LongNote(const YAML::Node & node);
+	virtual ~LongNote();
+
+	std::string getYamlTag() const override;
 
 	// To extend this via aesthetics PR
 	virtual double getLength(double unit_scale = TimedObject::UnitScale::msecond);
@@ -38,10 +39,8 @@ public:
 	/// Validates the object being realistic
 	virtual bool isValid() const;
 
-	/// Gets info of the important object members
-	virtual std::string getInfo() const;
-	/// toExport handles the string exported to files, unlike getInfo which prints more details
-	virtual std::string toExport() const;
+	virtual YAML::Node asYaml() const override;
+	virtual void fromYaml(const YAML::Node & node) override;
 
 	virtual bool operator==(const LongNote & ln) const;
 

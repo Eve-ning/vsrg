@@ -13,7 +13,14 @@ public:
 	TimingPointOsu(double offset_m_sec, double bpm, double time_sig_numerator);
 	TimingPointOsu(const std::string & str);
 	~TimingPointOsu();
+	using TimingPoint::TimingPoint;
+	SPtrTimedObject Clone() const override;
+
+	std::string asNative() const override;
 
 	EventParamsOsu params;
+
+	YAML::Node asYaml() const override;
+	void fromYaml(const YAML::Node& node) override;
 };
 

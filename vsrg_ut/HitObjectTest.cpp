@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include <BaseObjects/Singular/Hit/LongNote.h>
-#include <BaseObjects/Singular/Hit/NormalNote.h>
+#include <GameObjects/Osu/Singular/Hit/LongNoteOsu.h>
+#include <GameObjects/Osu/Singular/Hit/NormalNoteOsu.h>
 #include <iostream>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -11,8 +11,8 @@ namespace HitObject_
 	{
 	public:
 		// Initialize objects here
-		NormalNote nn_1 = NormalNote(100.0, 3);
-		NormalNote nn_2 = NormalNote(200.0, 4);
+		NormalNoteOsu nn_1 = NormalNoteOsu(100.0, 3);
+		NormalNoteOsu nn_2 = NormalNoteOsu(200.0, 4);
 
 		TEST_METHOD(Clone) {
 			SPtrTimedObject sptr_nn = nn_1.Clone();
@@ -26,21 +26,21 @@ namespace HitObject_
 			Assert::IsFalse(nn_1.isOverlapping(nn_2));
 		}
 		TEST_METHOD(isValid) {
-			Assert::IsFalse(bool(NormalNote(100.0, -10)));
-			Assert::IsFalse(bool(NormalNote(-10.0, 10)));
-			Assert::IsFalse(bool(NormalNote(-10.0, -100)));
-			Assert::IsTrue(bool(NormalNote(10.0, 100)));
+			Assert::IsFalse(bool(NormalNoteOsu(100.0, -10)));
+			Assert::IsFalse(bool(NormalNoteOsu(-10.0, 10)));
+			Assert::IsFalse(bool(NormalNoteOsu(-10.0, -100)));
+			Assert::IsTrue(bool(NormalNoteOsu(10.0, 100)));
 		}
 	};
 
 	TEST_CLASS(LongNote_)
 	{
 	public:
-		LongNote ln_1 = LongNote(100.0, 5, 200.0);
+		LongNoteOsu ln_1 = LongNoteOsu(100.0, 5, 200.0);
 
-		LongNote ln_2 = LongNote(200.0, 6, 200.0);
+		LongNoteOsu ln_2 = LongNoteOsu(200.0, 6, 200.0);
 
-		LongNote ln_3 = LongNote(200.0, 5, 200.0);
+		LongNoteOsu ln_3 = LongNoteOsu(200.0, 5, 200.0);
 
 		TEST_METHOD(Clone)
 		{
@@ -52,10 +52,10 @@ namespace HitObject_
 		}
 		TEST_METHOD(isValid)
 		{
-			Assert::IsTrue(bool(LongNote(100.0, 5, 200.0)));
-			Assert::IsFalse(bool(LongNote(100.0, -5, 200.0)));
-			Assert::IsFalse(bool(LongNote(100.0, 5, -200.0)));
-			Assert::IsFalse(bool(LongNote(100.0, -5, -200.0)));
+			Assert::IsTrue(bool(LongNoteOsu(100.0, 5, 200.0)));
+			Assert::IsFalse(bool(LongNoteOsu(100.0, -5, 200.0)));
+			Assert::IsFalse(bool(LongNoteOsu(100.0, 5, -200.0)));
+			Assert::IsFalse(bool(LongNoteOsu(100.0, -5, -200.0)));
 		}
 		TEST_METHOD(isBetween)
 		{

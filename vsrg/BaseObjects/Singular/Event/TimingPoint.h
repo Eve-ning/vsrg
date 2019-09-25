@@ -1,5 +1,6 @@
 #pragma once
 #include "EventObject.h"
+
 /**
  * @brief Inherits from EventObject, mainly used to time a song
  * 
@@ -22,8 +23,10 @@ public:
 	 */
 	TimingPoint();
 	TimingPoint(double offset_m_sec, double bpm, double time_sig_numerator, double time_sig_denominator);
+	TimingPoint(const YAML::Node & node);
 	~TimingPoint();
-	virtual std::shared_ptr<TimedObject> Clone() const override;
+
+	std::string getYamlTag() const override;
 
 	double getBpm() const;
 	double getTimeSigNumerator() const;
@@ -46,8 +49,8 @@ public:
 	/// Validates the object being realistic
 	virtual bool isValid() const override;
 
-	/// Gets info of the important object members
-	virtual std::string getInfo() const override;
+	virtual YAML::Node asYaml() const override;
+	virtual void fromYaml(const YAML::Node & node) override;
 
 private:
 	/// Beats per Minute
@@ -57,3 +60,5 @@ private:
 	/// Time Signature Denominator
 	double time_sig_denominator_;
 };
+
+typedef std::shared_ptr<TimingPoint> SPtrTimingPoint;

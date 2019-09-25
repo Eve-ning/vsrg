@@ -15,8 +15,8 @@ public:
 	 */
 	HitObject();
 	HitObject(const double & offset_m_sec, const int & index);
+	HitObject(const YAML::Node & node);
 	~HitObject() = 0;
-	virtual SPtrTimedObject Clone() const override = 0;
 
 	int getIndex() const;
 	void setIndex(const int & index);
@@ -27,8 +27,8 @@ public:
 	/// Validates the object being realistic
 	virtual bool isValid() const override;
 
-	/// Gets info of the important object members
-	virtual std::string getInfo() const override;
+	virtual YAML::Node asYaml() const override;
+	virtual void fromYaml(const YAML::Node & node) override;
 
 private:
 	int index_;

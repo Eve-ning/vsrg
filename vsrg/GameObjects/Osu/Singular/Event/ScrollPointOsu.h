@@ -8,7 +8,14 @@ public:
 	ScrollPointOsu(double offset_m_sec, double scroll_speed_mult);
 	ScrollPointOsu(const std::string & str);
 	~ScrollPointOsu();
+	using ScrollPoint::ScrollPoint;
+	SPtrTimedObject Clone() const override;
 
 	EventParamsOsu params;
+
+	std::string asNative() const override;
+
+	YAML::Node asYaml() const override;
+	void fromYaml(const YAML::Node& node) override;
 };
 

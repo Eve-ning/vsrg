@@ -1,15 +1,20 @@
 #include "stdafx.h"
 #include "LongNote.h"
+#include "Helpers/MiscHelper.h"
 
 LongNote::LongNote() {}
 
 LongNote::LongNote(double offset_m_sec, unsigned int index, double length) :
 	HitObject(offset_m_sec, index), length_m_sec_(length) {}
 
-LongNote::~LongNote() {} 
+LongNote::LongNote(const YAML::Node & node) {
+	fromYaml(node);
+}
 
-SPtrTimedObject LongNote::Clone() const {
-	return std::make_shared<LongNote>(*this);
+LongNote::~LongNote() {}
+
+std::string LongNote::getYamlTag() const {
+	return "long_note";
 }
 
 // To extend this via aesthetics PR
@@ -50,16 +55,18 @@ bool LongNote::isValid() const {
 	return HitObject::isValid() && length_m_sec_ > 0;
 }
 
-std::string LongNote::getInfo() const {
-	return HitObject::getInfo() + 
-		"\nLength " + std::to_string(length_m_sec_);
-}
-
 bool LongNote::operator==(const LongNote & ln) const {
 	return isOverlapping(ln);
 }
 
-std::string LongNote::toExport() const {
-	BOOST_ASSERT_MSG(isValid(), "Both LongNotes must be Valid");
-	return getInfo();
+YAML::Node LongNote::asYaml() const {
+	BOOST_ASSERT_MSG(isValid(), "Note is invalid");
+	auto out = HitObject::asYaml();
+	out["length_m_sec"] = StringHelper::formatDbl(length_m_sec_);
+	return out;
+}
+
+void LongNote::fromYaml(const YAML::Node & node) {
+	HitObject::fromYaml(node);
+	length_m_sec_ = node["length_m_sec"].as<double>();
 }
