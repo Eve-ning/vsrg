@@ -41,17 +41,6 @@ SPtrTimedObject LongNoteOsu::Clone() const {
 	return std::make_shared<LongNoteOsu>(*this);
 }
 
-YAML::Node LongNoteOsu::asYaml() const {
-	auto node = LongNote::asYaml();
-	node["params"] = params.asYaml();
-	return std::move(node);
-}
-
-void LongNoteOsu::fromYaml(const YAML::Node& node) {
-	LongNote::fromYaml(node);
-	params.fromYaml(node);
-}
-
 std::string LongNoteOsu::asNative(int keys) const
 {
 	std::string out = "";

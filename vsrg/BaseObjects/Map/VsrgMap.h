@@ -13,14 +13,6 @@ public:
 	virtual void loadFile(const std::string & file_path) = 0;
 	// Save in derived format
 	virtual void saveFile(const std::string & file_path, bool overwrite) = 0;
-	// Save in standard YAML format, depends on asYaml
-	virtual void saveAsYaml(const std::string & file_path, bool overwrite) final;
-	virtual void readAsYaml(const std::string & file_path) final;
-
-	// This is the universal default exporting function, it should be overridden to
-	// add more nodes by derived classes
-	virtual YAML::Node asYaml() const;
-	virtual void fromYaml(const YAML::Node & node);
 
 	virtual SPtrHitObjectVector getHitObjectVector() const final;
 	virtual SPtrEventObjectVector getEventObjectVector() const final;

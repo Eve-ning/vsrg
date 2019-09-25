@@ -7,15 +7,7 @@ LongNote::LongNote() {}
 LongNote::LongNote(double offset_m_sec, unsigned int index, double length) :
 	HitObject(offset_m_sec, index), length_m_sec_(length) {}
 
-LongNote::LongNote(const YAML::Node & node) {
-	fromYaml(node);
-}
-
 LongNote::~LongNote() {}
-
-std::string LongNote::getYamlTag() const {
-	return "long_note";
-}
 
 // To extend this via aesthetics PR
 
@@ -57,16 +49,4 @@ bool LongNote::isValid() const {
 
 bool LongNote::operator==(const LongNote & ln) const {
 	return isOverlapping(ln);
-}
-
-YAML::Node LongNote::asYaml() const {
-	BOOST_ASSERT_MSG(isValid(), "Note is invalid");
-	auto out = HitObject::asYaml();
-	out["length_m_sec"] = StringHelper::formatDbl(length_m_sec_);
-	return out;
-}
-
-void LongNote::fromYaml(const YAML::Node & node) {
-	HitObject::fromYaml(node);
-	length_m_sec_ = node["length_m_sec"].as<double>();
 }

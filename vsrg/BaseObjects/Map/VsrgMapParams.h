@@ -32,9 +32,6 @@ public:
 	virtual void setVersion(const std::string & version, bool set_unicode = false) final;
 	virtual void setAudioFileName(const std::string & audio_file_name) final;
 
-	virtual YAML::Node asYaml() const;
-	virtual void fromYaml(const YAML::Node & node);
-
 	std::string audio_file_name_;
 	std::string title_u_;
 	std::string title_;

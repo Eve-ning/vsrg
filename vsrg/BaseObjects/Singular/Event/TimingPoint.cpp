@@ -23,14 +23,7 @@ TimingPoint::TimingPoint(
 	bpm_(bpm),
 	time_sig_numerator_(time_sig_numerator),
 	time_sig_denominator_(time_sig_denominator) {}
-TimingPoint::TimingPoint(const YAML::Node & node) {
-	fromYaml(node);
-}
 TimingPoint::~TimingPoint() {}
-
-std::string TimingPoint::getYamlTag() const{
-	return "timing_point";
-}
 
 double TimingPoint::getBpm() const {
 	return bpm_;
@@ -68,19 +61,4 @@ bool TimingPoint::isTimeSigValid() const {
 }
 bool TimingPoint::isValid() const {
 	return TimedObject::isValid() && isTimeSigValid() && (getBpm() > 0);
-}
-
-YAML::Node TimingPoint::asYaml() const {
-	auto out = EventObject::asYaml();
-	out["bpm"] = StringHelper::formatDbl(bpm_);
-	out["time_sig_numerator"] = time_sig_numerator_;
-	out["time_sig_denominator"] = time_sig_denominator_;
-	return out;
-}
-
-void TimingPoint::fromYaml(const YAML::Node & node) {
-	EventObject::fromYaml(node);
-	bpm_ = node["bpm"].as<double>();
-	time_sig_numerator_ = node["time_sig_numerator"].as<double>();
-	time_sig_denominator_ = node["time_sig_denominator"].as<double>();
 }

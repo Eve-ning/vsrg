@@ -11,7 +11,6 @@ class EventObject : public TimedObject
 public:
 	EventObject();
 	EventObject(double offset_m_sec);
-	EventObject(const YAML::Node & node);
 	~EventObject() = 0;
 };
 

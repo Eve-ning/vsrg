@@ -15,7 +15,6 @@ public:
 	 */
 	HitObject();
 	HitObject(const double & offset_m_sec, const int & index);
-	HitObject(const YAML::Node & node);
 	~HitObject() = 0;
 
 	int getIndex() const;
@@ -26,9 +25,6 @@ public:
 
 	/// Validates the object being realistic
 	virtual bool isValid() const override;
-
-	virtual YAML::Node asYaml() const override;
-	virtual void fromYaml(const YAML::Node & node) override;
 
 private:
 	int index_;

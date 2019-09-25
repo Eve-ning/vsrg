@@ -36,29 +36,3 @@ void VsrgMapParams::setVersion(const std::string & version, bool set_unicode) {
 void VsrgMapParams::setAudioFileName(const std::string & audio_file_name) {
 	audio_file_name_ = audio_file_name;
 }
-
-YAML::Node VsrgMapParams::asYaml() const {
-	YAML::Node node;
-	node["audio_file_name"] = audio_file_name_;
-	node["title_u"] = title_u_;
-	node["title"] = title_;
-	node["artist_u"] = artist_u_;
-	node["artist"] = artist_;
-	node["creator_u"] = creator_u_;
-	node["creator"] = creator_;
-	node["version_u"] = version_u_;
-	node["version"] = version_;
-	return std::move(node);
-}
-
-void VsrgMapParams::fromYaml(const YAML::Node & node) {
-	audio_file_name_ = node["audio_file_name"].as<std::string>();
-	title_u_ = node["title_u"].as<std::string>();
-	title_ = node["title"].as<std::string>();
-	artist_u_ = node["artist_u"].as<std::string>();
-	artist_ = node["artist"].as<std::string>();
-	creator_u_ = node["creator_u"].as<std::string>();
-	creator_ = node["creator"].as<std::string>();
-	version_u_ = node["version_u"].as<std::string>();
-	version_ = node["version"].as<std::string>();
-}

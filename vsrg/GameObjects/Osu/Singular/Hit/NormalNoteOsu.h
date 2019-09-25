@@ -12,8 +12,6 @@ public:
 	using NormalNote::NormalNote;
 	SPtrTimedObject Clone() const override;
 
-	YAML::Node asYaml() const override;
-	void fromYaml(const YAML::Node& node) override;
 	std::string asNative(int keys) const override;
 	std::string asNative() const override;
 

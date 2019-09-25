@@ -7,7 +7,5 @@ class EventObjectVectorOsu :
 public:
 	EventObjectVectorOsu();
 	~EventObjectVectorOsu();
-
-	void fromYaml(const YAML::Node & node) override;
 };
 

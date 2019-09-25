@@ -8,7 +8,6 @@
 #include <iostream>
 #include <filesystem>
 #include <fstream>
-#include "yaml-cpp/yaml.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace VsrgMapOsu_
@@ -42,19 +41,10 @@ namespace VsrgMapOsu_
 			Assert::AreEqual(1385015.,osumap.getEventObjectVector()->getLatestOffset());
 			Assert::AreEqual(153.,osumap.getEventObjectVector()->getClassOnly<TimingPointOsu>()[0].getBpm());
 
-			//osumap.saveAsYaml("test.vsrg", true);
 			//osumap.saveAsVsrg("testing.vsrg", true);
 			//osumap.saveAsVsrg("test.vsrg", true);
 			
 		}
-		//TEST_METHOD(LoadVsrgFile)
-		//{
-		//	VsrgMapOsu osumap = VsrgMapOsu();
-		//	osumap.readAsYaml("test.vsrg");
-		//	osumap.saveFile("test.osu", true);
-
-		//	//Logger::WriteMessage(node["params"]["hp"].as<std::string>().c_str());
-		//}
 		TEST_METHOD(NormalNoteOsu_) {
 			NormalNoteOsu nn = NormalNoteOsu("36,192,1000,1,0,0:0:0:0:", 7);
 			Assert::IsTrue(nn.getIndex() == 0);

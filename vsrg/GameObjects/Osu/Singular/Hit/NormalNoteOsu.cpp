@@ -52,15 +52,3 @@ NormalNoteOsu::~NormalNoteOsu(){}
 SPtrTimedObject NormalNoteOsu::Clone() const {
 	return std::make_shared<NormalNoteOsu>(*this);
 }
-
-YAML::Node NormalNoteOsu::asYaml() const {
-	auto node = NormalNote::asYaml();
-	node["params"] = params.asYaml();
-	return std::move(node);
-}
-
-void NormalNoteOsu::fromYaml(const YAML::Node& node) {
-	NormalNote::fromYaml(node);
-	params.fromYaml(node);
-}
-
