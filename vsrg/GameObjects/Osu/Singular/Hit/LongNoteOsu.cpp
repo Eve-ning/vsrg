@@ -35,6 +35,12 @@ LongNoteOsu::LongNoteOsu(const std::string & str, int keys) {
 	}
 }
 
+LongNoteOsu::~LongNoteOsu() {}
+
+SPtrTimedObject LongNoteOsu::Clone() const {
+	return std::make_shared<LongNoteOsu>(*this);
+}
+
 YAML::Node LongNoteOsu::asYaml() const {
 	auto node = LongNote::asYaml();
 	node["params"] = params.asYaml();

@@ -22,6 +22,10 @@ TimingPointOsu::~TimingPointOsu()
 {
 }
 
+SPtrTimedObject TimingPointOsu::Clone() const {
+	return std::make_shared<TimingPointOsu>(*this);
+}
+
 std::string TimingPointOsu::asNative() const {
 	std::string out = "";
 	out += std::to_string(getOffset()) +

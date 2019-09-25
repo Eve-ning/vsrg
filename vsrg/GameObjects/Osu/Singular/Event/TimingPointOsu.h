@@ -12,8 +12,9 @@ public:
 
 	TimingPointOsu(double offset_m_sec, double bpm, double time_sig_numerator);
 	TimingPointOsu(const std::string & str);
-	using TimingPoint::TimingPoint;
 	~TimingPointOsu();
+	using TimingPoint::TimingPoint;
+	SPtrTimedObject Clone() const override;
 
 	std::string asNative() const override;
 

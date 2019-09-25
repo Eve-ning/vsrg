@@ -9,7 +9,9 @@ public:
 	LongNoteOsu();
 	LongNoteOsu(double offset_m_sec, unsigned int index, double length);
 	LongNoteOsu(const std::string & str, int keys);
+	~LongNoteOsu();
 	using LongNote::LongNote;
+	SPtrTimedObject Clone() const override;
 
 	YAML::Node asYaml() const override;
 	void fromYaml(const YAML::Node& node) override;

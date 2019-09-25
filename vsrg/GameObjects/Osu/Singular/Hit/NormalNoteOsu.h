@@ -8,13 +8,15 @@ public:
 	NormalNoteOsu(const double & offset_m_sec, 
 				  const int & index);
 	NormalNoteOsu(const std::string & str, int keys);
-	using NormalNote::NormalNote;
 	~NormalNoteOsu();
+	using NormalNote::NormalNote;
+	SPtrTimedObject Clone() const override;
 
 	YAML::Node asYaml() const override;
 	void fromYaml(const YAML::Node& node) override;
 	std::string asNative(int keys) const override;
 	std::string asNative() const override;
+
 
 	HitParamsOsu params;
 };

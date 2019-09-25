@@ -23,6 +23,10 @@ ScrollPointOsu::~ScrollPointOsu()
 {
 }
 
+SPtrTimedObject ScrollPointOsu::Clone() const {
+	return std::make_shared<ScrollPointOsu>(*this);
+}
+
 std::string ScrollPointOsu::asNative() const {
 	std::string out = "";
 	out += std::to_string(getOffset()) +
