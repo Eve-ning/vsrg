@@ -1,8 +1,8 @@
 #pragma once
 #include "BaseObjects/Singular/Hit/LongNote.h"
-class LongNoteSM : public LongNote
+class HoldNoteSM : public LongNote
 {
-	LongNoteSM() {}
+	HoldNoteSM() {}
 
 	std::string asNative() const override;
 	// There shouldn't be any need for extra implementation other than
