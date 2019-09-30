@@ -156,9 +156,6 @@
     <ClInclude Include="GameObjects\SM\Singular\Hit\NormalNoteSM.h">
       <Filter>Game Objects\SM\Singular\Hit</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\SM\Singular\Event\ScrollPointSM.h">
-      <Filter>Game Objects\SM\Singular\Event</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjects\SM\Singular\Event\TimingPointSM.h">
       <Filter>Game Objects\SM\Singular\Event</Filter>
     </ClInclude>
@@ -173,6 +170,9 @@
     </ClInclude>
     <ClInclude Include="GameObjects\SM\Singular\Hit\MineNoteSM.h">
       <Filter>Game Objects\SM\Singular\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\SM\Singular\Event\StopPointSM.h">
+      <Filter>Game Objects\SM\Singular\Event</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -272,9 +272,6 @@
     <ClCompile Include="GameObjects\SM\Singular\Hit\NormalNoteSM.cpp">
       <Filter>Game Objects\SM\Singular\Hit</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjects\SM\Singular\Event\ScrollPointSM.cpp">
-      <Filter>Game Objects\SM\Singular\Event</Filter>
-    </ClCompile>
     <ClCompile Include="GameObjects\SM\Singular\Event\TimingPointSM.cpp">
       <Filter>Game Objects\SM\Singular\Event</Filter>
     </ClCompile>
@@ -289,6 +286,9 @@
     </ClCompile>
     <ClCompile Include="GameObjects\SM\Singular\Hit\MineNoteSM.cpp">
       <Filter>Game Objects\SM\Singular\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\SM\Singular\Event\StopPointSM.cpp">
+      <Filter>Game Objects\SM\Singular\Event</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
