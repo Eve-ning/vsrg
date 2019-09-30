@@ -31,7 +31,7 @@ void VsrgMapOsu::loadFile(const std::string & file_path) {
 	std::vector<std::string>::const_iterator it = file_contents.cbegin();
 	std::vector<std::string>::const_iterator ite = file_contents.cend();
 
-	params.audio_file_name_ =				   matchTag(it, ite, "AudioFilename:");
+	params.audio_path_ =				   matchTag(it, ite, "AudioFilename:");
 	params.preview_time_	=		 std::stoi(matchTag(it, ite, "PreviewTime:"));
 	params.bookmarks_		= processBookmarks(matchTag(it, ite, "Bookmarks:"));
 	params.title_			=				   matchTag(it, ite, "Title:");
@@ -68,7 +68,7 @@ void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
 	_("osu file format v14");
 
 	_("[General]");
-	_("AudioFilename: " + params.audio_file_name_);
+	_("AudioFilename: " + params.audio_path_);
 	_("AudioLeadIn : 0");
 	_("PreviewTime : " + std::to_string(params.preview_time_));
 	_("Countdown : 0");

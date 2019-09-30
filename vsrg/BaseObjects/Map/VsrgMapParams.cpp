@@ -33,6 +33,6 @@ void VsrgMapParams::setVersion(const std::string & version, bool set_unicode) {
 	if (set_unicode) version_u_ = version;
 }
 
-void VsrgMapParams::setAudioFileName(const std::string & audio_file_name) {
-	audio_file_name_ = audio_file_name;
+void VsrgMapParams::setAudioFileName(const std::string & audio_path) {
+	audio_path_ = audio_path;
 }
