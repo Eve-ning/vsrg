@@ -46,6 +46,24 @@
     <Filter Include="Game Objects\Osu\Singular\Event">
       <UniqueIdentifier>{d51dc7d4-a446-4105-882e-66457ef0b09e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game Objects\SM">
+      <UniqueIdentifier>{dc07b2e0-cd56-4c1f-848c-d5be5be58511}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Objects\SM\Map">
+      <UniqueIdentifier>{2e899894-83b6-4fa6-a9c0-31584bc65f68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Objects\SM\Multiple">
+      <UniqueIdentifier>{f35f85d3-e6b5-400c-9cdc-7bc94c09797f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Objects\SM\Singular">
+      <UniqueIdentifier>{cc67e4d2-09a9-416e-bd64-96d8bebc2651}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Objects\SM\Singular\Event">
+      <UniqueIdentifier>{e858a788-b43c-48d0-908c-f49ee3951c92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Objects\SM\Singular\Hit">
+      <UniqueIdentifier>{8ae26c5e-72f9-4818-bbc5-429114a9912b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseObjects\Singular\Event\EventObject.h">
@@ -119,6 +137,36 @@
     </ClInclude>
     <ClInclude Include="GameObjects\Osu\Multiple\HitObjectVectorOsu.h">
       <Filter>Game Objects\Osu\Multiple</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\SM\Multiple\EventObjectVectorSM.h">
+      <Filter>Game Objects\SM\Multiple</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\SM\Multiple\HitObjectVectorSM.h">
+      <Filter>Game Objects\SM\Multiple</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\SM\Singular\Event\EventParamsSM.h">
+      <Filter>Game Objects\SM\Singular\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\SM\Singular\Hit\HitParamsSM.h">
+      <Filter>Game Objects\SM\Singular\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\SM\Singular\Hit\LongNoteSM.h">
+      <Filter>Game Objects\SM\Singular\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\SM\Singular\Hit\NormalNoteSM.h">
+      <Filter>Game Objects\SM\Singular\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\SM\Singular\Event\ScrollPointSM.h">
+      <Filter>Game Objects\SM\Singular\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\SM\Singular\Event\TimingPointSM.h">
+      <Filter>Game Objects\SM\Singular\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\SM\Map\VsrgMapSM.h">
+      <Filter>Game Objects\SM\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\SM\Map\VsrgMapSMParams.h">
+      <Filter>Game Objects\SM\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +247,36 @@
     </ClCompile>
     <ClCompile Include="GameObjects\Osu\Multiple\HitObjectVectorOsu.cpp">
       <Filter>Game Objects\Osu\Multiple</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\SM\Multiple\EventObjectVectorSM.cpp">
+      <Filter>Game Objects\SM\Multiple</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\SM\Multiple\HitObjectVectorSM.cpp">
+      <Filter>Game Objects\SM\Multiple</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\SM\Singular\Event\EventParamsSM.cpp">
+      <Filter>Game Objects\SM\Singular\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\SM\Singular\Hit\HitParamsSM.cpp">
+      <Filter>Game Objects\SM\Singular\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\SM\Singular\Hit\LongNoteSM.cpp">
+      <Filter>Game Objects\SM\Singular\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\SM\Singular\Hit\NormalNoteSM.cpp">
+      <Filter>Game Objects\SM\Singular\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\SM\Singular\Event\ScrollPointSM.cpp">
+      <Filter>Game Objects\SM\Singular\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\SM\Singular\Event\TimingPointSM.cpp">
+      <Filter>Game Objects\SM\Singular\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\SM\Map\VsrgMapSM.cpp">
+      <Filter>Game Objects\SM\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\SM\Map\VsrgMapSMParams.cpp">
+      <Filter>Game Objects\SM\Map</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
