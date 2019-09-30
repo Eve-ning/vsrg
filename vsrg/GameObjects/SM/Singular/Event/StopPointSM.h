@@ -4,9 +4,12 @@
 // This doesn't really follow ScrollPoint implementation, so we'll use EventObj
 class StopPointSM : public EventObject
 {
-	StopPointSM(double offset_m_sec, double length);
+	StopPointSM(double offset_m_sec, double length_sec);
 
+	// Returns =Seconds
 	std::string asNative() const override;
+
+	StopPointSM(double offset_m_sec, double length);
 
 	double getLength() const;
 	void setLength(double length);
@@ -16,6 +19,6 @@ class StopPointSM : public EventObject
 	bool isValid() const override;
 
 private:
-	double length_;
+	double length_sec_;
 };
 
