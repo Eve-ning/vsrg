@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include <map>
 
 /**
  * @brief Abstract Class, used for all "timable" objects
