@@ -2,8 +2,10 @@
 #include "BaseObjects/Map/VsrgMapParams.h"
 class VsrgMapSMParams : public VsrgMapParams
 {
+public:
 	VsrgMapSMParams(
 		const std::string & subtitle,
+		const std::string & subtitle_u,
 		const std::string & genre,
 		const std::string & bn_path,
 		const std::string & bg_path,
@@ -20,6 +22,7 @@ class VsrgMapSMParams : public VsrgMapParams
 
 	VsrgMapSMParams(
 		const std::string & subtitle,
+		const std::string & subtitle_u,
 		const std::string & genre,
 		const std::string & bn_path,
 		const std::string & bg_path,
@@ -39,8 +42,8 @@ class VsrgMapSMParams : public VsrgMapParams
 
 	VsrgMapSMParams();
 
-private:
 	std::string subtitle_;
+	std::string subtitle_u_;
 	std::string genre_;
 	std::string bn_path_;
 	std::string bg_path_;
