@@ -112,7 +112,7 @@ void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
 	_("SliderTickRate : 1");
 
 	_("[Events]");
-	_("0, 0, " + params.bg_file_name_ + ", 0, 0");
+	_("0, 0, " + params.bg_path_ + ", 0, 0");
 
 	_("[TimingPoints]");
 	for (const auto& eo : eo_v_->getEventObjectVector()) _(eo->asNative());

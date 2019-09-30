@@ -53,7 +53,7 @@ public:
 	double od_;
 	unsigned int preview_time_;
 	unsigned int keys_;
-	std::string bg_file_name_;
+	std::string bg_path_;
 	std::string source_;
 	std::vector<std::string> tags_;
 	std::vector<unsigned int> bookmarks_;
