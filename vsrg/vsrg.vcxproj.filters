@@ -168,6 +168,12 @@
     <ClInclude Include="GameObjects\SM\Map\VsrgMapSMParams.h">
       <Filter>Game Objects\SM\Map</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjects\SM\Singular\Hit\RollNoteSM.h">
+      <Filter>Game Objects\SM\Singular\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\SM\Singular\Hit\MineNoteSM.h">
+      <Filter>Game Objects\SM\Singular\Hit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseObjects\Singular\Event\EventObject.cpp">
@@ -277,6 +283,12 @@
     </ClCompile>
     <ClCompile Include="GameObjects\SM\Map\VsrgMapSMParams.cpp">
       <Filter>Game Objects\SM\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\SM\Singular\Hit\RollNoteSM.cpp">
+      <Filter>Game Objects\SM\Singular\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\SM\Singular\Hit\MineNoteSM.cpp">
+      <Filter>Game Objects\SM\Singular\Hit</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
