@@ -14,6 +14,8 @@ public:
 
 	SPtrEventObject getEarliestObject() const;
 	SPtrEventObject getLatestObject() const;
+	SPtrEventObject getLowerObject(double offset, double unit_scale = TimedObject::UnitScale::msecond);
+	SPtrEventObject getUpperObject(double offset, double unit_scale = TimedObject::UnitScale::msecond);
 };
 
 typedef std::shared_ptr<EventObjectVector> SPtrEventObjectVector;

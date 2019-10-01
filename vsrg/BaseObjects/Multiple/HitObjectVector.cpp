@@ -16,10 +16,16 @@ std::vector<SPtrHitObject> HitObjectVector::getHitObjectVector() const {
 	return ho_v;
 }
 
-
 SPtrHitObject HitObjectVector::getEarliestObject() const {
 	return HO_CAST(TimedObjectVector::getEarliestObject());
 }
 SPtrHitObject HitObjectVector::getLatestObject() const {
 	return HO_CAST(TimedObjectVector::getLatestObject());
+}
+
+SPtrHitObject HitObjectVector::getLowerObject(double offset, double unit_scale){
+	return HO_CAST(TimedObjectVector::getLowerObject(offset, unit_scale));
+}
+SPtrHitObject HitObjectVector::getUpperObject(double offset, double unit_scale){
+	return HO_CAST(TimedObjectVector::getUpperObject(offset, unit_scale));
 }
