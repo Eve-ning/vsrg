@@ -47,10 +47,10 @@ public:
 	virtual bool operator< (const TimedObject & obj) const;
 	virtual bool operator<=(const TimedObject & obj) const;
 	virtual bool operator>=(const TimedObject & obj) const;
-	virtual bool operator> (const double & offset_m_sec) const { return offset_m_sec_ >  offset_m_sec; }
-	virtual bool operator< (const double & offset_m_sec) const { return offset_m_sec_ <  offset_m_sec; }
-	virtual bool operator<=(const double & offset_m_sec) const { return offset_m_sec_ <= offset_m_sec; }
-	virtual bool operator>=(const double & offset_m_sec) const { return offset_m_sec_ >= offset_m_sec; }
+	virtual bool operator> (const double & offset_m_sec) const;
+	virtual bool operator< (const double & offset_m_sec) const;
+	virtual bool operator<=(const double & offset_m_sec) const;
+	virtual bool operator>=(const double & offset_m_sec) const;
 	std::shared_ptr<TimedObject> operator*(double by_m_sec) const;
 	std::shared_ptr<TimedObject> operator/(double by_m_sec) const;
 	std::shared_ptr<TimedObject> operator+(double by_m_sec) const;
