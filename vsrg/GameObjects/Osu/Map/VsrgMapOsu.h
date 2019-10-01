@@ -31,18 +31,6 @@ private:
 	std::string iterToTag(
 		std::vector<std::string>::const_iterator & begin,
 		std::vector<std::string>::const_iterator end,
-		const std::string& starts_with) {
-
-		auto begin_input = begin;
-		while (begin != end) {
-			if (boost::algorithm::starts_with(*begin, starts_with)) return *begin;
-		}
-
-		begin = begin_input; // Condition was never true
-		return "";
-	}
-	std::string iterExtract(const std::string& str) {
-
-	}
+		const std::string& starts_with);
 };
 

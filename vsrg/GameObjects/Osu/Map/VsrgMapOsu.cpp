@@ -210,3 +210,16 @@ std::vector<std::string> VsrgMapOsu::processTags(const std::string & str) {
 	boost::split(out, str, boost::is_any_of(" "));	
 	return std::move(out);
 }
+
+// Gets the value left of the ':' op
+
+std::string VsrgMapOsu::iterToTag(std::vector<std::string>::const_iterator& begin, std::vector<std::string>::const_iterator end, const std::string& starts_with) {
+
+	auto begin_input = begin;
+	while (begin != end) {
+		if (boost::algorithm::starts_with(*begin, starts_with)) return *begin;
+	}
+
+	begin = begin_input; // Condition was never true
+	return "";
+}
