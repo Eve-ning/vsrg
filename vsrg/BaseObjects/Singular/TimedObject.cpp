@@ -30,21 +30,15 @@ std::string TimedObject::asNative(int keys) const {
 	return "";
 }
 
-bool TimedObject::operator==(const TimedObject & obj) const {
-	return getOffset() == obj.getOffset();
-}
-bool TimedObject::operator>(const TimedObject & obj) const {
-	return getOffset() > obj.getOffset();
-}
-bool TimedObject::operator<(const TimedObject & obj) const {
-	return getOffset() < obj.getOffset();
-}
-bool TimedObject::operator<=(const TimedObject & obj) const {
-	return getOffset() >= obj.getOffset();
-}
-bool TimedObject::operator>=(const TimedObject & obj) const {
-	return getOffset() <= obj.getOffset();
-}
+bool TimedObject::operator==(const TimedObject & obj) const { return getOffset() == obj.getOffset(); }
+bool TimedObject::operator> (const TimedObject & obj) const { return getOffset() > obj.getOffset(); }
+bool TimedObject::operator< (const TimedObject & obj) const { return getOffset() < obj.getOffset(); }
+bool TimedObject::operator<=(const TimedObject & obj) const { return getOffset() >= obj.getOffset(); }
+bool TimedObject::operator>=(const TimedObject & obj) const { return getOffset() <= obj.getOffset(); }
+bool TimedObject::operator> (const double & offset_m_sec) const	{ return offset_m_sec_ >  offset_m_sec; }
+bool TimedObject::operator< (const double & offset_m_sec) const	{ return offset_m_sec_ <  offset_m_sec; }
+bool TimedObject::operator<=(const double & offset_m_sec) const	{ return offset_m_sec_ <= offset_m_sec; }
+bool TimedObject::operator>=(const double & offset_m_sec) const	{ return offset_m_sec_ >= offset_m_sec; }
 std::shared_ptr<TimedObject> TimedObject::operator*(double by_m_sec) const {
 	std::shared_ptr<TimedObject> to = Clone(); to->setOffset(to->getOffset() * by_m_sec); return to;
 }
@@ -57,15 +51,7 @@ std::shared_ptr<TimedObject> TimedObject::operator+(double by_m_sec) const {
 std::shared_ptr<TimedObject> TimedObject::operator-(double by_m_sec) const {
 	std::shared_ptr<TimedObject> to = Clone(); to->setOffset(to->getOffset() - by_m_sec); return to;
 }
-void TimedObject::operator*=(double by_m_sec) {
-	setOffset(getOffset() * by_m_sec);
-}
-void TimedObject::operator/=(double by_m_sec) {
-	setOffset(getOffset() / by_m_sec);
-}
-void TimedObject::operator+=(double by_m_sec) {
-	setOffset(getOffset() + by_m_sec);
-}
-void TimedObject::operator-=(double by_m_sec) {
-	setOffset(getOffset() - by_m_sec);
-}
+void TimedObject::operator*=(double by_m_sec) { setOffset(getOffset() * by_m_sec); }
+void TimedObject::operator/=(double by_m_sec) { setOffset(getOffset() / by_m_sec); }
+void TimedObject::operator+=(double by_m_sec) { setOffset(getOffset() + by_m_sec); }
+void TimedObject::operator-=(double by_m_sec) { setOffset(getOffset() - by_m_sec); }
