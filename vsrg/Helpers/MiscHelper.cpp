@@ -2,29 +2,6 @@
 #include "MiscHelper.h"
 #include <sstream>
 
-std::string IterHelper::matchTag(std::vector<std::string>::const_iterator & begin,
-	std::vector<std::string>::const_iterator end, const std::string & starts_with) {
-	std::string str = "";
-	auto begin_input = begin;
-	while (begin != end) {
-		str = *begin;
-		if (boost::algorithm::starts_with(str, starts_with)) {
-			// substr doesn't break on out of range index, it just returns nothing
-			str = str.substr(starts_with.length());
-			boost::trim(str);
-			return str;
-		}
-		begin++;
-	}
-	// We will revert the begin to the input iter if the tag is totally missing
-	if (begin == end) {
-		begin = begin_input;
-	}
-	// Don't need to assert, just return nothing
-	//BOOST_ASSERT_MSG(false, "Failed to match Tag"); 
-	return str;
-}
-
 std::vector<std::string> IterHelper::getBetween(std::vector<std::string>::const_iterator begin, std::vector<std::string>::const_iterator end) {
 	std::vector<std::string> out;
 	while (begin != end) {
