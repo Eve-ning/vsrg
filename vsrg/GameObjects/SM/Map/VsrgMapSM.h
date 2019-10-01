@@ -82,14 +82,20 @@ public:
 		//NULL								=			MATCH("#BGCHANGES:");
 		//NULL								=			MATCH("#FGCHANGES:");
 														MATCH("#NOTES:"); // Move it to #NOTES	
-
 		#undef MATCH
 		params.chart_type_		= *(++it);
 		// If creator is empty we assign the it, else we still increment it
 		if (params.creator_.empty()) 
 			params.creator_		= *(++it); else ++it;
 		params.difficulty_name_ = *(++it);
-		params.difficulty_val_	= std::stod(*(++it));
+
+		// Remove the last colons
+		params.chart_type_.pop_back(); 
+		params.creator_.pop_back();
+		params.difficulty_name_.pop_back();
+
+		++it; 
+		params.difficulty_val_ = std::stod(it->substr(0, it->size() - 1));
 
 		// TODO: PARSE BPMS
 		processBpms(bpm_str, offset);
