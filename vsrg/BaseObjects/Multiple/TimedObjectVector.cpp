@@ -62,6 +62,13 @@ SPtrTimedObject TimedObjectVector::getLatestObject() const {
 	return *std::max_element(cbegin(), cend());
 }
 
+SPtrTimedObject TimedObjectVector::getLowerObject(double offset, double unit_scale) const {
+	return *std::lower_bound(cbegin(), cend(), (offset / unit_scale));
+}
+
+SPtrTimedObject TimedObjectVector::getUpperObject(double offset, double unit_scale) const {
+	return *std::upper_bound(cbegin(), cend(), (offset / unit_scale));}
+
 bool TimedObjectVector::isValid() const {
 	// Using std::for_each raises a warning for some reason
 

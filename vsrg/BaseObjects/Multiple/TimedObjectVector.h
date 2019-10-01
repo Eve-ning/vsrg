@@ -54,6 +54,8 @@ public:
 	double getLatestOffset(double unit_scale = TimedObject::UnitScale::msecond) const;
 	SPtrTimedObject getEarliestObject() const;
 	SPtrTimedObject getLatestObject() const;
+	SPtrTimedObject getLowerObject(double offset, double unit_scale = TimedObject::UnitScale::msecond) const;
+	SPtrTimedObject getUpperObject(double offset, double unit_scale = TimedObject::UnitScale::msecond) const;
 
 	/// Loops the vector and calls isValid for every element, returns the AND result
 	virtual bool isValid() const final;
