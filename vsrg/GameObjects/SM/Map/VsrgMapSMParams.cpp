@@ -9,7 +9,7 @@ VsrgMapSMParams::VsrgMapSMParams(
 	const double& preview_time_start, const double& preview_time_end,
 	const std::string& display_bpm, const std::string& chart_type, 
 	const std::string & group,const std::string& difficulty_name,
-	const double& difficulty_val, const VsrgMapParams& vsrg_map_params) :
+	const std::string& difficulty_val, const VsrgMapParams& vsrg_map_params) :
 
 	subtitle_(subtitle),
 	subtitle_u_(subtitle_u),
@@ -36,7 +36,7 @@ VsrgMapSMParams::VsrgMapSMParams(
 	const double& preview_time_start, const double& preview_time_end,
 	const std::string& display_bpm, const std::string& chart_type,
 	const std::string& difficulty_name, const std::string & group,
-	const double& difficulty_val, const std::string& title,
+	const std::string& difficulty_val, const std::string& title,
 	const std::string& artist, const std::string& creator,
 	const std::string& version, const std::string& title_u,
 	const std::string& artist_u, const std::string& creator_u,
