@@ -16,6 +16,7 @@ public:
 		const double & preview_time_end,
 		const std::string & display_bpm,
 		const std::string & chart_type,
+		const std::string & group,
 		const std::string & difficulty_name,
 		const double & difficulty_val,
 		const VsrgMapParams & vsrg_map_params);
@@ -33,6 +34,7 @@ public:
 		const double & preview_time_end,
 		const std::string & display_bpm,
 		const std::string & chart_type,
+		const std::string & group,
 		const std::string & difficulty_name,
 		const double & difficulty_val,
 		const std::string & title, const std::string & artist,
@@ -54,7 +56,7 @@ public:
 	double preview_time_end_;
 	std::string display_bpm_;
 	std::string chart_type_;
-	// Author?
+	std::string group_;
 	std::string difficulty_name_;
 	double difficulty_val_;
 };
