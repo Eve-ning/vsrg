@@ -2,6 +2,7 @@
 #include "BaseObjects/Map/VsrgMap.h"
 #include "GameObjects/SM/Map/VsrgMapSMParams.h"
 #include "Helpers/MiscHelper.h"
+#include <unordered_map>
 class VsrgMapSM : public VsrgMap
 {	
 public:
@@ -21,5 +22,9 @@ private:
 
 	void processBpms(const std::vector<std::string>& str_v, double offset);
 	void processStops(const std::vector<std::string>& str_v, SPtrEventObjectVector eo_v);
+
+	std::unordered_map<std::string, std::vector<std::string>> toUMap(
+		std::vector<std::string>::const_iterator& begin,
+		std::vector<std::string>::const_iterator end);
 };
 
