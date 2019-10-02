@@ -4,7 +4,9 @@
 // Despite it being a mine, we classify it as a note for convenience
 class MineNoteSM : public NormalNote
 {
-	MineNoteSM();
+	using NormalNote::NormalNote;
+	SPtrTimedObject Clone() const override;
+
 	std::string asNative() const override;
 };
 

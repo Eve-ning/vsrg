@@ -5,6 +5,8 @@
 class StopPointSM : public EventObject
 {
 	StopPointSM(double offset_m_sec, double length, double unit_scale = TimedObject::UnitScale::second);
+	
+	SPtrTimedObject Clone() const override;
 
 	// Returns =Seconds
 	std::string asNative() const override;

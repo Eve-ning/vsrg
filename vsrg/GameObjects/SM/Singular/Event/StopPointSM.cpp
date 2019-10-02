@@ -4,7 +4,11 @@
 StopPointSM::StopPointSM(double offset_m_sec, double length, double unit_scale) :
 	EventObject(offset_m_sec), length_m_sec_(length / unit_scale) {}
 
-inline std::string StopPointSM::asNative() const {
+SPtrTimedObject StopPointSM::Clone() const {
+	return std::make_shared<StopPointSM>(*this);
+}
+
+std::string StopPointSM::asNative() const {
 	return "=" + std::to_string(length_m_sec_ * UnitScale::second);
 }
 
