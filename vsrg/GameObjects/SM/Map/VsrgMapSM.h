@@ -6,8 +6,8 @@
 class VsrgMapSM : public VsrgMap
 {	
 public:
-	VsrgMapSM() {}
-	~VsrgMapSM() {}
+	VsrgMapSM();
+	~VsrgMapSM();
 
 	virtual void loadFile(const std::string& file_path) override;
 	virtual void saveFile(const std::string& file_path, bool overwrite = false) override;

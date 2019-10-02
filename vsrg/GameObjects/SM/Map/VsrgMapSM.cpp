@@ -1,5 +1,18 @@
 #include "stdafx.h"
 #include "VsrgMapSM.h"
+#include "GameObjects/SM/Singular/Event/TimingPointSM.h"
+#include "GameObjects/SM/Singular/Event/StopPointSM.h"
+#include "GameObjects/SM/Multiple/EventObjectVectorSM.h"
+#include "GameObjects/SM/Multiple/HitObjectVectorSM.h"
+
+VsrgMapSM::VsrgMapSM() : VsrgMap() {
+	auto eo = EventObjectVectorSM();
+	auto ho = HitObjectVectorSM();
+	eo_v_ = std::make_shared<EventObjectVectorSM>(eo);
+	ho_v_ = std::make_shared<HitObjectVectorSM>(ho);
+}
+
+VsrgMapSM::~VsrgMapSM() {}
 
 void VsrgMapSM::loadFile(const std::string& file_path) {
 	// Reference: https://github.com/stepmania/stepmania/wiki/sm
@@ -10,45 +23,6 @@ void VsrgMapSM::loadFile(const std::string& file_path) {
 	std::vector<std::string>::const_iterator ite = file_contents.cend();
 
 	auto u_map = toUMap(it, ite);
-
-	/* // Moves iter to tag
-	auto iterToTag = [](
-		std::vector<std::string>::const_iterator& begin,
-		std::vector<std::string>::const_iterator end,
-		const std::string& starts_with) -> std::vector<std::string> {
-			auto begin_input = begin;
-			std::vector<std::string> str_v = {};
-
-			// Iterate through the vector
-			for (; begin != end; begin++) {
-				// If we find a starts_with match
-				if (boost::algorithm::starts_with(*begin, starts_with)) {
-					// Substrings KEY:(VALUE)
-					std::string value = *begin;
-					value = value.substr(value.find(':') + 1);
-
-					// Push back (VALUE)
-					str_v.push_back(value);
-
-					// Case: VALUE;
-					if (begin->back() == ';') {
-						str_v[0].pop_back(); // Remove the ';'
-						return str_v;
-					}
-
-					// Case: VALUE\nVALUE\n...\n;
-					else {
-						for (; begin->back() != ';'; begin++)
-							str_v.push_back(*begin);
-						return str_v;
-					}
-				}
-			}
-
-			// If we reach here, condition was never true
-			begin = begin_input;
-			return std::vector<std::string>({ "" });
-	};*/
 
 	// Tries to get value, if not found then we return "" 1-populated vector
 	auto getValue = [&](const std::string & str)->std::vector<std::string> {
@@ -81,10 +55,10 @@ void VsrgMapSM::loadFile(const std::string& file_path) {
 
 	std::vector<std::string> notes_str	=			getValue("#NOTES")	; // Move i	t to #NOTES	
 
-	params.chart_type_		=			notes_str[2]; params.chart_type_		.pop_back();
-	params.group_			=			notes_str[3]; params.group_				.pop_back();
-	params.difficulty_name_ =			notes_str[4]; params.difficulty_name_	.pop_back();
-	params.difficulty_val_	=			notes_str[5]; params.difficulty_val_	.pop_back();
+	params.chart_type_		=	notes_str[2]; params.chart_type_		.pop_back();
+	params.group_			=	notes_str[3]; params.group_				.pop_back();
+	params.difficulty_name_ =	notes_str[4]; params.difficulty_name_	.pop_back();
+	params.difficulty_val_	=	notes_str[5]; params.difficulty_val_	.pop_back();
 
 	processBpms(bpm_str, params.offset_);
 	processStops(stop_str, eo_v_);
@@ -114,6 +88,49 @@ void VsrgMapSM::readHOChunk(const std::vector<std::string>& str_v) {
 }
 
 void VsrgMapSM::processBpms(const std::vector<std::string>& str_v, double offset) {
+	/* StepMania uses measures instead of offsets, which makes it complicated
+	
+		Firstly, you have an offset, given as seconds, this is the audio offset.
+		So the first measure will start from here, even if it's negative.
+	*/
+
+	offset *= TimedObject::UnitScale::second; // offset is given as seconds;
+	
+	auto split = [](const std::string& str) -> std::pair<double, double> {
+		size_t sep_loc = str.find('=');
+		return std::make_pair<double, double>(
+			std::stod(str.substr(0, sep_loc)),
+			std::stod(str.substr(sep_loc + 1)));
+	};
+
+	auto bpmToLength = [](const double& bpm) -> double { // each increment represents a beat
+		return (1 / bpm) * TimedObject::UnitScale::minute;
+	};
+
+	std::vector<std::pair<double, double>> pair_v;
+	
+	// {Measure=BPM},{Measure=BPM, ... }
+	// {{Measure, BPM}, {Measure, BPM}, ... }
+	std::transform(str_v.begin(), str_v.end(), std::back_inserter(pair_v), split);	
+
+	double measure_no_prev = 0.0;
+	double measure_length_prev = 0.0;
+	double measure_no_curr = 0.0;
+	double measure_length_curr = 0.0;
+
+	for (const auto & pair : pair_v) {
+		measure_no_curr = pair.first;
+		measure_length_curr = bpmToLength(pair.second);
+
+		offset += measure_length_prev *
+			(measure_no_curr - measure_no_prev);
+		TimingPointSM tp = TimingPointSM(offset, pair.second, 4, 4);
+		SPtrTimedObject sptr = std::make_shared<TimingPointSM>(tp);
+		eo_v_->push_back(sptr);
+
+		measure_no_prev = measure_no_curr;
+		measure_length_prev = measure_length_curr;
+	}
 
 }
 
@@ -141,12 +158,11 @@ std::unordered_map<std::string, std::vector<std::string>> VsrgMapSM::toUMap(
 			value.push_back(str.substr(str_sep + 1, str.length() - str_sep - 2));
 		else { // Else KEY:VALUE\nVALUE\n...\n;
 			// Still need to push the first value in (KEY:VALUE)
-			value.push_back(str.substr(str_sep + 1));
+			value.push_back(str.substr(str_sep + 1)); begin++;
 			for (; begin != end && *begin != ";"; begin++) {
-				value.push_back(*begin);
+				value.push_back(begin->substr(1));
 			}
 		}
-		
 		u_map[key] = value;
 	}
 	return std::move(u_map);
