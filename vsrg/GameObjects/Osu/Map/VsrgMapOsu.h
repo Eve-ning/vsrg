@@ -16,16 +16,16 @@ public:
 
 private:
 
-	void readHO(const std::vector<std::string> & str_v);
-	void readEO(const std::vector<std::string> & str_v);
+
 
 	bool isNormalNoteOsu(const std::string & str);
 	bool isTimingPointOsu(const std::string & str);
 
 	std::string processBackground(const std::string& str);
-
 	std::vector<unsigned int> processBookmarks(const std::string & str);
 	std::vector<std::string> processTags(const std::string & str);
+	void processHO(const std::vector<std::string> & str_v);
+	void processEO(const std::vector<std::string> & str_v);
 
 	// Gets the value left of the ':' op
 	std::string iterToTag(

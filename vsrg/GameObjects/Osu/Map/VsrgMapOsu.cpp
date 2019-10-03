@@ -81,8 +81,8 @@ void VsrgMapOsu::loadFile(const std::string & file_path) {
 	iterToTag(it, ite, "[HitObjects]"); // Move it to [TimingPoints]
 	auto it_ho = it;
 
-	readEO(IterHelper::getBetween(++it_tp, it_ho)); // Reads between the iters
-	readHO(IterHelper::getBetween(++it_ho, ite));
+	processEO(IterHelper::getBetween(++it_tp, it_ho)); // Reads between the iters
+	processHO(IterHelper::getBetween(++it_ho, ite));
 }
 
 void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
@@ -147,7 +147,7 @@ void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
 	writeFile(contents, file_path, overwrite);
 }
 
-void VsrgMapOsu::readHO(const std::vector<std::string>& str_v) {
+void VsrgMapOsu::processHO(const std::vector<std::string>& str_v) {
 	for (const std::string & str : str_v) {
 		SPtrTimedObject sptr = nullptr;
 		if (isNormalNoteOsu(str)) {
@@ -162,7 +162,7 @@ void VsrgMapOsu::readHO(const std::vector<std::string>& str_v) {
 	}
 }
 
-void VsrgMapOsu::readEO(const std::vector<std::string>& str_v) {
+void VsrgMapOsu::processEO(const std::vector<std::string>& str_v) {
 	for (const std::string & str : str_v) {
 		SPtrTimedObject sptr = nullptr;
 		if (isTimingPointOsu(str)) {
