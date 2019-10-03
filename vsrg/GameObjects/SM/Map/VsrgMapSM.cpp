@@ -60,8 +60,9 @@ void VsrgMapSM::loadFile(const std::string& file_path) {
 	params.difficulty_name_ =	notes_str[4]; params.difficulty_name_	.pop_back();
 	params.difficulty_val_	=	notes_str[5]; params.difficulty_val_	.pop_back();
 
-	processBpms(bpm_str, params.offset_);
-	processStops(stop_str, eo_v_);
+	processBpms(bpm_str.begin(), bpm_str.end(), params.offset_);
+	processStops(stop_str.begin(), stop_str.end());
+	processHO(notes_str.begin() + 6, notes_str.end());
 
 }
 
@@ -69,29 +70,19 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 
 }
 
-void VsrgMapSM::readHO(const std::vector<std::string>& ho_v, const SPtrEventObjectVector eo_v) {
-	std::vector<std::string> chunk = {};
-	auto it = ho_v.begin();
-	auto ite = ho_v.end();
-
-	for (; it < ite; it++) {
-		if (it->back() == ',') {
-			readHOChunk(chunk);
-			chunk.clear();
-		}
-		else chunk.push_back(*it);
-	}
-}
-
-void VsrgMapSM::readHOChunk(const std::vector<std::string>& str_v) {
-	size_t size = str_v.size(); // This determines the snap
-}
-
-void VsrgMapSM::processBpms(const std::vector<std::string>& str_v, double offset) {
+void VsrgMapSM::processBpms(const std::vector<std::string>::iterator & begin,
+							const std::vector<std::string>::iterator & end,
+							double offset) {
 	/* StepMania uses measures instead of offsets, which makes it complicated
 	
 		Firstly, you have an offset, given as seconds, this is the audio offset.
 		So the first measure will start from here, even if it's negative.
+
+		#BPMS:0.000=102.769
+		,6.000=113.212 Notice we have an extra comma here, we need to
+		,7.000=113.208 get rid of it using a find_first_of
+		,8.000=115.475
+		,9.000=115.470
 	*/
 
 	offset *= TimedObject::UnitScale::second; // offset is given as seconds;
@@ -99,7 +90,10 @@ void VsrgMapSM::processBpms(const std::vector<std::string>& str_v, double offset
 	auto split = [](const std::string& str) -> std::pair<double, double> {
 		size_t sep_loc = str.find('=');
 		return std::make_pair<double, double>(
-			std::stod(str.substr(0, sep_loc)),
+			std::stod(str.substr(
+				// Refer to docstring comment
+				str.find_first_of(',') == std::string::npos ? 0 : 1,
+				sep_loc)),
 			std::stod(str.substr(sep_loc + 1)));
 	};
 
@@ -111,7 +105,7 @@ void VsrgMapSM::processBpms(const std::vector<std::string>& str_v, double offset
 	
 	// {Measure=BPM},{Measure=BPM, ... }
 	// {{Measure, BPM}, {Measure, BPM}, ... }
-	std::transform(str_v.begin(), str_v.end(), std::back_inserter(pair_v), split);	
+	std::transform(begin, end, std::back_inserter(pair_v), split);	
 
 	double measure_no_prev = 0.0;
 	double measure_length_prev = 0.0;
@@ -134,7 +128,28 @@ void VsrgMapSM::processBpms(const std::vector<std::string>& str_v, double offset
 
 }
 
-void VsrgMapSM::processStops(const std::vector<std::string>& str_v, SPtrEventObjectVector eo_v) {
+void VsrgMapSM::processStops(const std::vector<std::string>::iterator & begin,
+							 const std::vector<std::string>::iterator & end) {
+	// Pending Implementation, not sure how this one works
+}
+
+void VsrgMapSM::processHO(std::vector<std::string>::iterator begin,
+							 const std::vector<std::string>::iterator& end) {
+	std::vector<std::string> chunk = {};
+	unsigned int index = 0;
+	for (; begin < end; begin++, index++) {
+		if (begin->back() == ',') {
+			processHOChunk(chunk.begin(), chunk.end(), index);
+			chunk.clear();
+		}
+		else chunk.push_back(*begin);
+	}
+}
+
+void VsrgMapSM::processHOChunk(std::vector<std::string>::iterator begin, 
+							   const std::vector<std::string>::iterator& end,
+							   unsigned int index){
+	unsigned int i = 0;
 
 }
 
@@ -160,7 +175,7 @@ std::unordered_map<std::string, std::vector<std::string>> VsrgMapSM::toUMap(
 			// Still need to push the first value in (KEY:VALUE)
 			value.push_back(str.substr(str_sep + 1)); begin++;
 			for (; begin != end && *begin != ";"; begin++) {
-				value.push_back(begin->substr(1));
+				value.push_back(*begin);
 			}
 		}
 		u_map[key] = value;
