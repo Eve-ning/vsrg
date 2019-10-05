@@ -144,7 +144,7 @@ void VsrgMapSM::processHO(std::vector<std::string>::iterator begin,
 		eo_v_->push_back(sptr);
 	};
 
-	std::vector<std::string> beat_chunk = {};
+	std::vector<std::string> measure_chunk = {};
 
 	int beat = 0;
 	unsigned int size = 0;
@@ -183,28 +183,25 @@ void VsrgMapSM::processHO(std::vector<std::string>::iterator begin,
 				3. size
 			*/
 
-			tryUpdateBpm(beat); // Tries to update bpm w.r.t. beat
+			size = measure_chunk.size(); // Size of chunk vector
 
-			beat_length = bpmToBeat(bpm); // How long the beat lasts in ms
-			size = beat_chunk.size(); // Size of chunk vector
-			
-			processHOBeat(beat_chunk.begin(), beat_chunk.end(),
-						  offset, beat_length / size);
+			for (int _ = 0; _ < 4; _++) {
+				tryUpdateBpm(beat); // Tries to update bpm w.r.t. beat
+				beat_length = bpmToBeat(bpm); // How long the beat lasts in ms
 
-			/*
-				After parsing the beat
+				// Each chunk has 4 beats, so we split them into 4 and loop
+				processHOBeat(
+					measure_chunk.begin() + (int)  _      * size / 4,
+					measure_chunk.begin() + (int) (_ + 1) * size / 4,
+					offset,
+					beat_length / size);
 
-				We need to:
-				1. push the offset to the end of the beat
-				2. clear the beat_chunk
-			
-			*/
-
-			offset += beat_length;
-			beat++;
-			beat_chunk.clear();
+				offset += beat_length;
+				beat++;
+			}
+			measure_chunk.clear();
 		}
-		else beat_chunk.push_back(*begin);
+		else measure_chunk.push_back(*begin);
 	}
 }
 
