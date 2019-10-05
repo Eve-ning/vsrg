@@ -62,7 +62,7 @@ void VsrgMapSM::loadFile(const std::string& file_path) {
 
 	auto bpm_pairs = processBpms(bpm_str.begin(), bpm_str.end(), params.offset_);
 	processStops(stop_str.begin(), stop_str.end());
-	processHO(notes_str.begin() + 6, notes_str.end());
+	processHO(notes_str.begin() + 6, notes_str.end(), bpm_pairs, params.offset_);
 
 }
 
@@ -77,7 +77,7 @@ VsrgMapSM::processBpms(const std::vector<std::string>::iterator& begin,
 	/* StepMania uses measures instead of offsets, which makes it complicated
 	
 		Firstly, you have an offset, given as seconds, this is the audio offset.
-		So the first measure will start from here, even if it's negative.
+		So the first beat will start from here, even if it's negative.
 
 		#BPMS:0.000=102.769
 		,6.000=113.212 Notice we have an extra comma here, we need to
@@ -98,35 +98,31 @@ VsrgMapSM::processBpms(const std::vector<std::string>::iterator& begin,
 			std::stod(str.substr(sep_loc + 1)));
 	};
 
-	auto bpmToLength = [](const double& bpm) -> double { // each increment represents a beat
-		return (1 / bpm) * TimedObject::UnitScale::minute;
-	};
-
 	std::vector<std::pair<double, double>> bpm_pair_v;
 	
 	// {Measure=BPM},{Measure=BPM, ... }
 	// {{Measure, BPM}, {Measure, BPM}, ... }
 	std::transform(begin, end, std::back_inserter(bpm_pair_v), split);	
 
-	double measure_no_prev = 0.0;
-	double measure_length_prev = 0.0;
-	double measure_no_curr = 0.0;
-	double measure_length_curr = 0.0;
+	//double measure_no_prev = 0.0;
+	//double measure_length_prev = 0.0;
+	//double measure_no_curr = 0.0;
+	//double measure_length_curr = 0.0;
 
-	// Generate Timing Points from pairs
-	for (const auto & pair : bpm_pair_v) {
-		measure_no_curr = pair.first;
-		measure_length_curr = bpmToLength(pair.second);
+	//// Generate Timing Points from pairs
+	//for (const auto & pair : bpm_pair_v) {
+	//	measure_no_curr = pair.first;
+	//	measure_length_curr = bpmToLength(pair.second);
 
-		offset += measure_length_prev *
-			(measure_no_curr - measure_no_prev);
-		TimingPointSM tp = TimingPointSM(offset, pair.second, 4, 4);
-		SPtrTimedObject sptr = std::make_shared<TimingPointSM>(tp);
-		eo_v_->push_back(sptr);
+	//	offset += measure_length_prev *
+	//		(measure_no_curr - measure_no_prev);
+	//	TimingPointSM tp = TimingPointSM(offset, pair.second, 4, 4);
+	//	SPtrTimedObject sptr = std::make_shared<TimingPointSM>(tp);
+	//	eo_v_->push_back(sptr);
 
-		measure_no_prev = measure_no_curr;
-		measure_length_prev = measure_length_curr;
-	}
+	//	measure_no_prev = measure_no_curr;
+	//	measure_length_prev = measure_length_curr;
+	//}
 
 	return std::move(bpm_pair_v);
 }
@@ -137,44 +133,94 @@ void VsrgMapSM::processStops(const std::vector<std::string>::iterator & begin,
 }
 
 void VsrgMapSM::processHO(std::vector<std::string>::iterator begin,
-	const std::vector<std::string>::iterator & end,
-	const std::vector<std::pair<double, double>> & bpm_pair_v) {
+	const std::vector<std::string>::iterator& end,
+	const std::vector<std::pair<double, double>>& bpm_pair_v,
+	double offset) {
 
-	std::vector<std::string> chunk = {};
-
-	unsigned int index_pair = 0;
-	double curr_bpm = bpm_pair_v[index_pair].first;
-	double curr_measure = bpm_pair_v[index_pair].second;
-
-	auto getNext = [&bpm_pair_v, &index_pair, &curr_bpm, &curr_measure]() {
-		try { 
-			auto index_next = index_pair;
-			if (curr_measure >= bpm_pair_v[index_next].first) {
-				curr_measure = bpm_pair_v[index_next].first;
-				curr_bpm = bpm_pair_v[index_next].second;
-			}
-		}
-		catch (...) {} // Means there's no next 
+	// Pushes Timing Point to EOV
+	auto pushToEOV = [this](double offset, double bpm) {
+		TimingPointSM tp = TimingPointSM(offset, bpm, 4, 4);
+		SPtrTimedObject sptr = std::make_shared<TimingPointSM>(tp);
+		eo_v_->push_back(sptr);
 	};
 
-	// Can we get the offset?
+	std::vector<std::string> beat_chunk = {};
 
+	int beat = 0;
+	unsigned int size = 0;
+	unsigned int bpm_pair_i = 0;
+	double beat_length = 0;
+	double bpm = bpm_pair_v[0].second; pushToEOV(offset, bpm);
 
+	auto bpmToBeat = [](const double& bpm) -> double {
+		return (1 / bpm) * TimedObject::UnitScale::minute;
+	};
+
+	// Tries to update bpm based on current beat
+	auto tryUpdateBpm = [&bpm_pair_v, &bpm, &bpm_pair_i,
+						 pushToEOV, this, &offset](double beat){
+		try {
+			auto next_beat = bpm_pair_v[bpm_pair_i + 1].first;
+			if (beat >= next_beat) {
+				bpm_pair_i++;
+				bpm = bpm_pair_v[bpm_pair_i].second;
+				pushToEOV(offset, bpm);
+			}
+		}
+		catch (...) { // Means the beat is still on the same bpm
+			// Catches out of index searching
+		}
+	};
 
 	for (unsigned int index_row = 0; begin < end; begin++, index_row++) {
-		if (begin->back() == ',') { // Found end of measure
-			processHOMeasure(chunk.begin(), chunk.end(), index_row, chunk.size());
-			chunk.clear();
-			curr_measure += 1;
+		if (begin->back() == ',') { // Found end of beat
+			/*  
+				Now we have the data of a beat
+
+				We have to find out:
+				1. offset of the start of the beat
+				2. bpm
+				3. size
+			*/
+
+			tryUpdateBpm(beat); // Tries to update bpm w.r.t. beat
+
+			beat_length = bpmToBeat(bpm); // How long the beat lasts in ms
+			size = beat_chunk.size(); // Size of chunk vector
+			
+			processHOBeat(beat_chunk.begin(), beat_chunk.end(),
+						  offset, beat_length / size);
+
+			/*
+				After parsing the beat
+
+				We need to:
+				1. push the offset to the end of the beat
+				2. clear the beat_chunk
+			
+			*/
+
+			offset += beat_length;
+			beat++;
+			beat_chunk.clear();
 		}
-		else chunk.push_back(*begin);
+		else beat_chunk.push_back(*begin);
 	}
 }
 
-void VsrgMapSM::processHOMeasure(std::vector<std::string>::iterator begin, 
-							   const std::vector<std::string>::iterator& end,
-							   unsigned int index,
-							   size_t chunk_size){
+void VsrgMapSM::processHOBeat(std::vector<std::string>::iterator begin, 
+							  const std::vector<std::string>::iterator& end,
+							  double offset,
+							  double step_size){
+	/*
+		Step Size: Determines the offset movement for 1 step
+
+		0001 [0ms] <offset = 0ms>
+		0100 [0 + step_size ms]
+		0000 [0 + 2 * step_size ms]
+		...
+	
+	*/
 	unsigned int i = 0;	
 
 }

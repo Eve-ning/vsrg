@@ -26,11 +26,12 @@ private:
 					  const std::vector<std::string>::iterator & end);
 	void processHO(std::vector<std::string>::iterator begin,
 				   const std::vector<std::string>::iterator & end,
-				   const std::vector<std::pair<double, double>> & bpm_pair_v);
-	void processHOChunk(std::vector<std::string>::iterator begin,
+				   const std::vector<std::pair<double, double>> & bpm_pair_v,
+				   double offset);
+	void processHOBeat(std::vector<std::string>::iterator begin,
 						const std::vector<std::string>::iterator & end,
-						unsigned int index,
-						size_t chunk_size);
+						double offset,
+						double step_size);
 
 	std::unordered_map<std::string, std::vector<std::string>> toUMap(
 		std::vector<std::string>::const_iterator& begin,
