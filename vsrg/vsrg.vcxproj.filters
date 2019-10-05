@@ -64,6 +64,12 @@
     <Filter Include="Game Objects\SM\Singular\Hit">
       <UniqueIdentifier>{8ae26c5e-72f9-4818-bbc5-429114a9912b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Base Objects\Special">
+      <UniqueIdentifier>{b904aa0b-d0aa-4c43-952d-7d8b18e6df42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Objects\SM\Special">
+      <UniqueIdentifier>{0cce76d9-ff6c-4ddb-af88-0ce8160b08ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseObjects\Singular\Event\EventObject.h">
@@ -173,6 +179,12 @@
     </ClInclude>
     <ClInclude Include="GameObjects\SM\Singular\Hit\HoldNoteSM.h">
       <Filter>Game Objects\SM\Singular\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\SM\Special\TimingPointMeasureSM.h">
+      <Filter>Game Objects\SM\Special</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseObjects\Special\TimingPointMeasure.h">
+      <Filter>Base Objects\Special</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +301,12 @@
     </ClCompile>
     <ClCompile Include="GameObjects\SM\Singular\Hit\HoldNoteSM.cpp">
       <Filter>Game Objects\SM\Singular\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\SM\Special\TimingPointMeasureSM.cpp">
+      <Filter>Game Objects\SM\Special</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseObjects\Special\TimingPointMeasure.cpp">
+      <Filter>Base Objects\Special</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

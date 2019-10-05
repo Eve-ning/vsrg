@@ -60,7 +60,7 @@ void VsrgMapSM::loadFile(const std::string& file_path) {
 	params.difficulty_name_ =	notes_str[4]; params.difficulty_name_	.pop_back();
 	params.difficulty_val_	=	notes_str[5]; params.difficulty_val_	.pop_back();
 
-	processBpms(bpm_str.begin(), bpm_str.end(), params.offset_);
+	auto bpm_pairs = processBpms(bpm_str.begin(), bpm_str.end(), params.offset_);
 	processStops(stop_str.begin(), stop_str.end());
 	processHO(notes_str.begin() + 6, notes_str.end());
 
@@ -70,9 +70,10 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 
 }
 
-void VsrgMapSM::processBpms(const std::vector<std::string>::iterator & begin,
-							const std::vector<std::string>::iterator & end,
-							double offset) {
+std::vector<std::pair<double, double>>
+VsrgMapSM::processBpms(const std::vector<std::string>::iterator& begin,
+					   const std::vector<std::string>::iterator & end,
+					   double offset) {
 	/* StepMania uses measures instead of offsets, which makes it complicated
 	
 		Firstly, you have an offset, given as seconds, this is the audio offset.
@@ -86,7 +87,7 @@ void VsrgMapSM::processBpms(const std::vector<std::string>::iterator & begin,
 	*/
 
 	offset *= TimedObject::UnitScale::second; // offset is given as seconds;
-	
+
 	auto split = [](const std::string& str) -> std::pair<double, double> {
 		size_t sep_loc = str.find('=');
 		return std::make_pair<double, double>(
@@ -101,18 +102,19 @@ void VsrgMapSM::processBpms(const std::vector<std::string>::iterator & begin,
 		return (1 / bpm) * TimedObject::UnitScale::minute;
 	};
 
-	std::vector<std::pair<double, double>> pair_v;
+	std::vector<std::pair<double, double>> bpm_pair_v;
 	
 	// {Measure=BPM},{Measure=BPM, ... }
 	// {{Measure, BPM}, {Measure, BPM}, ... }
-	std::transform(begin, end, std::back_inserter(pair_v), split);	
+	std::transform(begin, end, std::back_inserter(bpm_pair_v), split);	
 
 	double measure_no_prev = 0.0;
 	double measure_length_prev = 0.0;
 	double measure_no_curr = 0.0;
 	double measure_length_curr = 0.0;
 
-	for (const auto & pair : pair_v) {
+	// Generate Timing Points from pairs
+	for (const auto & pair : bpm_pair_v) {
 		measure_no_curr = pair.first;
 		measure_length_curr = bpmToLength(pair.second);
 
@@ -126,6 +128,7 @@ void VsrgMapSM::processBpms(const std::vector<std::string>::iterator & begin,
 		measure_length_prev = measure_length_curr;
 	}
 
+	return std::move(bpm_pair_v);
 }
 
 void VsrgMapSM::processStops(const std::vector<std::string>::iterator & begin,
@@ -134,22 +137,45 @@ void VsrgMapSM::processStops(const std::vector<std::string>::iterator & begin,
 }
 
 void VsrgMapSM::processHO(std::vector<std::string>::iterator begin,
-							 const std::vector<std::string>::iterator& end) {
+	const std::vector<std::string>::iterator & end,
+	const std::vector<std::pair<double, double>> & bpm_pair_v) {
+
 	std::vector<std::string> chunk = {};
-	unsigned int index = 0;
-	for (; begin < end; begin++, index++) {
-		if (begin->back() == ',') {
-			processHOChunk(chunk.begin(), chunk.end(), index);
+
+	unsigned int index_pair = 0;
+	double curr_bpm = bpm_pair_v[index_pair].first;
+	double curr_measure = bpm_pair_v[index_pair].second;
+
+	auto getNext = [&bpm_pair_v, &index_pair, &curr_bpm, &curr_measure]() {
+		try { 
+			auto index_next = index_pair;
+			if (curr_measure >= bpm_pair_v[index_next].first) {
+				curr_measure = bpm_pair_v[index_next].first;
+				curr_bpm = bpm_pair_v[index_next].second;
+			}
+		}
+		catch (...) {} // Means there's no next 
+	};
+
+	// Can we get the offset?
+
+
+
+	for (unsigned int index_row = 0; begin < end; begin++, index_row++) {
+		if (begin->back() == ',') { // Found end of measure
+			processHOMeasure(chunk.begin(), chunk.end(), index_row, chunk.size());
 			chunk.clear();
+			curr_measure += 1;
 		}
 		else chunk.push_back(*begin);
 	}
 }
 
-void VsrgMapSM::processHOChunk(std::vector<std::string>::iterator begin, 
+void VsrgMapSM::processHOMeasure(std::vector<std::string>::iterator begin, 
 							   const std::vector<std::string>::iterator& end,
-							   unsigned int index){
-	unsigned int i = 0;
+							   unsigned int index,
+							   size_t chunk_size){
+	unsigned int i = 0;	
 
 }
 

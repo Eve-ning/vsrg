@@ -2,5 +2,6 @@
 #include "BaseObjects/Multiple/EventObjectVector.h"
 class EventObjectVectorSM : public EventObjectVector
 {
+
 };
 

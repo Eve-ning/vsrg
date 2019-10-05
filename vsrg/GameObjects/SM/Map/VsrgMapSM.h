@@ -18,17 +18,19 @@ private:
 	void readHO(const std::vector<std::string> & ho_v,
 		const SPtrEventObjectVector eo_v);
 
-	void processBpms(const std::vector<std::string>::iterator & begin,
+	std::vector<std::pair<double, double>>
+		 processBpms(const std::vector<std::string>::iterator & begin,
 					 const std::vector<std::string>::iterator & end,
 					 double offset);
 	void processStops(const std::vector<std::string>::iterator & begin,
 					  const std::vector<std::string>::iterator & end);
 	void processHO(std::vector<std::string>::iterator begin,
-				   const std::vector<std::string>::iterator & end);
+				   const std::vector<std::string>::iterator & end,
+				   const std::vector<std::pair<double, double>> & bpm_pair_v);
 	void processHOChunk(std::vector<std::string>::iterator begin,
 						const std::vector<std::string>::iterator & end,
-						unsigned int index);
-
+						unsigned int index,
+						size_t chunk_size);
 
 	std::unordered_map<std::string, std::vector<std::string>> toUMap(
 		std::vector<std::string>::const_iterator& begin,
