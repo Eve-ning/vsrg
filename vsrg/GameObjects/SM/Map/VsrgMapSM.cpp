@@ -137,6 +137,37 @@ void VsrgMapSM::processHO(std::vector<std::string>::iterator begin,
 	const std::vector<std::pair<double, double>>& bpm_pair_v,
 	double offset) {
 
+	/* Processing HO and EO in parellel
+	
+	This is a pretty complicated process, I'll explain briefly
+
+	Here are a few pointers:
+	- BPM is labelled in BEATS
+	- Notes are separated by MEASURES with ','
+	- It is ineffecient and bulky to process both in series
+	
+	What we aim to do here is to have an already processed BPM pair
+	vector in the format: {Measure:BPM},{Measure,BPM},...
+
+	Then we read the Notes by chunk. A chunk is defined by if the notes
+	are wrapped in between those ','. This defines a measure_chunk.
+
+	For each measure_chunk, we split it into 4 (it must be 4). Then we
+	feed it into tryUpdateBPM.
+
+	tryUpdateBPM:
+		This lambda tries to update the bpm if the current beat enters
+		a new defined BPM. If not it just does nothing.
+		Updating the bpm is important to get the correct offset, which
+		is explained below
+
+	The updated bpm, computes a beat_length, this is to update the
+	offset, to correct the newer BPM labels.
+
+	This process is then repeated until we read all BPM inputs.
+	*/
+
+
 	// Pushes Timing Point to EOV
 	auto pushToEOV = [this](double offset, double bpm) {
 		TimingPointSM tp = TimingPointSM(offset, bpm, 4, 4);
@@ -157,8 +188,8 @@ void VsrgMapSM::processHO(std::vector<std::string>::iterator begin,
 	};
 
 	// Tries to update bpm based on current beat
-	auto tryUpdateBpm = [&bpm_pair_v, &bpm, &bpm_pair_i,
-						 pushToEOV, this, &offset](double beat){
+	auto tryUpdateBpm = [&bpm_pair_v, &bpm, &bpm_pair_i, &offset,
+						 pushToEOV, this](double beat){
 		try {
 			auto next_beat = bpm_pair_v[bpm_pair_i + 1].first;
 			if (beat >= next_beat) {
@@ -185,23 +216,25 @@ void VsrgMapSM::processHO(std::vector<std::string>::iterator begin,
 
 			size = measure_chunk.size(); // Size of chunk vector
 
+			// Each chunk has 4 beats, so we split them into 4 and loop
 			for (int _ = 0; _ < 4; _++) {
 				tryUpdateBpm(beat); // Tries to update bpm w.r.t. beat
 				beat_length = bpmToBeat(bpm); // How long the beat lasts in ms
 
-				// Each chunk has 4 beats, so we split them into 4 and loop
 				processHOBeat(
 					measure_chunk.begin() + (int)  _      * size / 4,
 					measure_chunk.begin() + (int) (_ + 1) * size / 4,
 					offset,
 					beat_length / size);
 
+				// Push offset to end of beat
 				offset += beat_length;
 				beat++;
 			}
 			measure_chunk.clear();
 		}
-		else measure_chunk.push_back(*begin);
+		// If we do not find end of beat we feed it to chunk
+		else measure_chunk.push_back(*begin); 
 	}
 }
 
