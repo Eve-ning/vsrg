@@ -4,6 +4,10 @@
 #include "GameObjects/SM/Singular/Event/StopPointSM.h"
 #include "GameObjects/SM/Multiple/EventObjectVectorSM.h"
 #include "GameObjects/SM/Multiple/HitObjectVectorSM.h"
+#include "GameObjects/SM/Singular/Hit/NormalNoteSM.h"
+#include "GameObjects/SM/Singular/Hit/RollNoteSM.h"
+#include "GameObjects/SM/Singular/Hit/MineNoteSM.h"
+#include "GameObjects/SM/Singular/Hit/HoldNoteSM.h"
 
 VsrgMapSM::VsrgMapSM() : VsrgMap() {
 	auto eo = EventObjectVectorSM();
@@ -188,23 +192,22 @@ void VsrgMapSM::processHO(std::vector<std::string>::iterator begin,
 	};
 
 	// Tries to update bpm based on current beat
-	auto tryUpdateBpm = [&bpm_pair_v, &bpm, &bpm_pair_i, &offset,
+	auto updateBpm = [&bpm_pair_v, &bpm, &bpm_pair_i, &offset,
 						 pushToEOV, this](double beat){
-		try {
+		// First if to prevent out of index
+		if (bpm_pair_i + 1 < bpm_pair_v.size()) {
 			auto next_beat = bpm_pair_v[bpm_pair_i + 1].first;
 			if (beat >= next_beat) {
 				bpm_pair_i++;
 				bpm = bpm_pair_v[bpm_pair_i].second;
 				pushToEOV(offset, bpm);
 			}
-		}
-		catch (...) { // Means the beat is still on the same bpm
-			// Catches out of index searching
+			// Else means the beat is still on the same bpm
 		}
 	};
 
 	for (unsigned int index_row = 0; begin < end; begin++, index_row++) {
-		if (begin->back() == ',') { // Found end of beat
+		if (begin->back() == ',' || begin == (end - 1)) { // Found end of beat
 			/*  
 				Now we have the data of a beat
 
@@ -218,14 +221,16 @@ void VsrgMapSM::processHO(std::vector<std::string>::iterator begin,
 
 			// Each chunk has 4 beats, so we split them into 4 and loop
 			for (int _ = 0; _ < 4; _++) {
-				tryUpdateBpm(beat); // Tries to update bpm w.r.t. beat
+
+				updateBpm(beat); // Tries to update bpm w.r.t. beat
+				
 				beat_length = bpmToBeat(bpm); // How long the beat lasts in ms
 
 				processHOBeat(
 					measure_chunk.begin() + (int)  _      * size / 4,
 					measure_chunk.begin() + (int) (_ + 1) * size / 4,
 					offset,
-					beat_length / size);
+					beat_length * 4 / size);
 
 				// Push offset to end of beat
 				offset += beat_length;
@@ -250,8 +255,69 @@ void VsrgMapSM::processHOBeat(std::vector<std::string>::iterator begin,
 		0000 [0 + 2 * step_size ms]
 		...
 	
-	*/
-	unsigned int i = 0;	
+	*/	
+	auto createHO = [&begin, this](unsigned int index, char chr, double offset)
+	{
+		/* Function of sptr_buffer
+
+			Some Objects need 2 inputs for it to be "complete", the buffer
+			holds old inputs so that the final inputs can "complete" it
+			and push into ho_v_.
+
+			Remember to clear the buffer!
+		*/
+
+		static std::vector<std::shared_ptr<LongNote>> sptr_buffer(begin->size(), nullptr);
+		SPtrHitObject sptr = nullptr;
+		switch (chr)
+		{
+		case '0': break;
+		case '1': {
+			auto nn = NormalNoteSM(offset, index);
+			sptr = std::make_shared<NormalNoteSM>(nn);
+			ho_v_->push_back(sptr);
+			break;
+		}
+		case '2': { // Buffer Head
+			auto hn = HoldNoteSM(offset, index, 0);
+			sptr_buffer[index] = std::make_shared<HoldNoteSM>(hn);
+			break;
+		}
+		case '3': { // Buffer Tail
+			if (auto ln = sptr_buffer[index]) {
+				ln->setLength(offset - ln->getOffset());
+				ho_v_->push_back(ln);
+				sptr_buffer[index] = nullptr; // Clear buffer
+			} else {
+				BOOST_ASSERT_MSG(true, "Tail found without Head");
+			}
+			break;
+		}
+		case '4': { // Buffer Head
+			auto hn = RollNoteSM(offset, index, 0);
+			sptr_buffer[index] = std::make_shared<RollNoteSM>(hn);
+			break;
+		}
+		case 'M': {
+			auto mn = MineNoteSM(offset, index);
+			sptr = std::make_shared<MineNoteSM>(mn);
+			ho_v_->push_back(sptr);
+			break;
+		}
+		// There are still more note types, will implement later			
+		default:
+			// All unknown types fall here
+			break;
+		}
+	};
+
+	for (; begin < end; begin++) {
+		std::string row = *begin;
+		for (size_t index = 0; index < row.size(); index++) {
+			createHO(index, row[index], offset);
+		}
+		offset += step_size;
+	}
 
 }
 

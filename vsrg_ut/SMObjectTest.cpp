@@ -3,6 +3,8 @@
 #include <GameObjects/SM/Map/VsrgMapSM.h>
 #include <GameObjects/SM/Singular/Hit/NormalNoteSM.h>
 #include <GameObjects/SM/Singular/Hit/HoldNoteSM.h>
+#include <GameObjects/SM/Singular/Hit/MineNoteSM.h>
+#include <GameObjects/SM/Singular/Hit/RollNoteSM.h>
 #include <GameObjects/SM/Singular/Event/TimingPointSM.h>
 #include <iostream>
 #include <filesystem>
@@ -19,6 +21,7 @@ namespace VsrgMapSM_
 		std::string sm_icf_ev = "../test_files/SM/I Can Fly In The Universe - Camellia (Evening).sm";
 		std::string sm_532_mw = "../test_files/SM/532nm.sm";
 		std::string sm_hpd_ln = "../test_files/SM/HappiDAAAaAAaAaAAA.sm";
+		std::string sm_grv_ev = "../test_files/SM/Gravity.sm";
 
 		// Initialize objects here
 		TEST_METHOD(LogDir) { // set to true to output dirs and file check
@@ -32,7 +35,10 @@ namespace VsrgMapSM_
 			VsrgMapSM smmap = VsrgMapSM();
 			smmap.loadFile(sm_wu_ev);
 
-			auto eo_v = smmap.getEventObjectVector();
+			auto hn_v = smmap.getHitObjectVector()->getClassOnly<HoldNoteSM>();
+			auto mn_v = smmap.getHitObjectVector()->getClassOnly<MineNoteSM>();
+			auto rn_v = smmap.getHitObjectVector()->getClassOnly<RollNoteSM>();
+			auto tp_v = smmap.getEventObjectVector()->getClassOnly<TimingPointSM>();
 
 			//osumap.saveFile("test.osu", true);
 
