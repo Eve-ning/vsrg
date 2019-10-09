@@ -66,7 +66,7 @@ void VsrgMapSM::loadFile(const std::string& file_path) {
 
 	auto bpm_pairs = processBpms(bpm_str.begin(), bpm_str.end(), params.offset_);
 	processStops(stop_str.begin(), stop_str.end());
-	processHO(notes_str.begin() + 6, notes_str.end(), bpm_pairs, params.offset_);
+	processObjs(notes_str.begin() + 6, notes_str.end(), bpm_pairs, params.offset_);
 
 }
 
@@ -108,26 +108,6 @@ VsrgMapSM::processBpms(const std::vector<std::string>::iterator& begin,
 	// {{Measure, BPM}, {Measure, BPM}, ... }
 	std::transform(begin, end, std::back_inserter(bpm_pair_v), split);	
 
-	//double measure_no_prev = 0.0;
-	//double measure_length_prev = 0.0;
-	//double measure_no_curr = 0.0;
-	//double measure_length_curr = 0.0;
-
-	//// Generate Timing Points from pairs
-	//for (const auto & pair : bpm_pair_v) {
-	//	measure_no_curr = pair.first;
-	//	measure_length_curr = bpmToLength(pair.second);
-
-	//	offset += measure_length_prev *
-	//		(measure_no_curr - measure_no_prev);
-	//	TimingPointSM tp = TimingPointSM(offset, pair.second, 4, 4);
-	//	SPtrTimedObject sptr = std::make_shared<TimingPointSM>(tp);
-	//	eo_v_->push_back(sptr);
-
-	//	measure_no_prev = measure_no_curr;
-	//	measure_length_prev = measure_length_curr;
-	//}
-
 	return std::move(bpm_pair_v);
 }
 
@@ -136,7 +116,7 @@ void VsrgMapSM::processStops(const std::vector<std::string>::iterator & begin,
 	// Pending Implementation, not sure how this one works
 }
 
-void VsrgMapSM::processHO(std::vector<std::string>::iterator begin,
+void VsrgMapSM::processObjs(std::vector<std::string>::iterator begin,
 	const std::vector<std::string>::iterator& end,
 	const std::vector<std::pair<double, double>>& bpm_pair_v,
 	double offset) {
@@ -311,6 +291,7 @@ void VsrgMapSM::processHOBeat(std::vector<std::string>::iterator begin,
 		}
 	};
 
+	// For each row we will split it further into parsing each char
 	for (; begin < end; begin++) {
 		std::string row = *begin;
 		for (size_t index = 0; index < row.size(); index++) {

@@ -24,7 +24,7 @@ private:
 					 double offset);
 	void processStops(const std::vector<std::string>::iterator & begin,
 					  const std::vector<std::string>::iterator & end);
-	void processHO(std::vector<std::string>::iterator begin,
+	void processObjs(std::vector<std::string>::iterator begin,
 				   const std::vector<std::string>::iterator & end,
 				   const std::vector<std::pair<double, double>> & bpm_pair_v,
 				   double offset);
