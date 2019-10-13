@@ -8,5 +8,7 @@ class MineNoteSM : public NormalNote
 	SPtrTimedObject Clone() const override;
 
 	std::string asNative() const override;
+public:
+	static constexpr char chr = 'M';
 };
 

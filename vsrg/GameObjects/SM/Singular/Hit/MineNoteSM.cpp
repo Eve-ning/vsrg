@@ -6,5 +6,5 @@ SPtrTimedObject MineNoteSM::Clone() const {
 }
 
 std::string MineNoteSM::asNative() const {
-	return "M";
+	return "";
 }

@@ -6,5 +6,5 @@ SPtrTimedObject HoldNoteSM::Clone() const {
 }
 
 std::string HoldNoteSM::asNative() const {
-	return "2";
+	return "";
 }

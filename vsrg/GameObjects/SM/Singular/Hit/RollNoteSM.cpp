@@ -6,5 +6,5 @@ SPtrTimedObject RollNoteSM::Clone() const {
 }
 
 std::string RollNoteSM::asNative() const {
-	return "4";
+	return "";
 }

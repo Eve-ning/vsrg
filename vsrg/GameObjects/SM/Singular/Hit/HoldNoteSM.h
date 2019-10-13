@@ -6,7 +6,8 @@ class HoldNoteSM : public LongNote
 	SPtrTimedObject Clone() const override;
 
 	std::string asNative() const override;
-	// There shouldn't be any need for extra implementation other than
-	// exporting w.r.t. pure virtuals
+public:
+	static constexpr char chr_head = '2';
+	static constexpr char chr_tail = '3';
 };
 

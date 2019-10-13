@@ -6,5 +6,5 @@ SPtrTimedObject NormalNoteSM::Clone() const {
 }
 
 std::string NormalNoteSM::asNative() const {
-	return "1";
+	return "";
 }

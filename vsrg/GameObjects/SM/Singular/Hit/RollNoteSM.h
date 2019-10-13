@@ -6,5 +6,8 @@ class RollNoteSM : public LongNote
 	SPtrTimedObject Clone() const override;
 
 	std::string asNative() const override;
+public:
+	static constexpr char chr_head = '4';
+	static constexpr char chr_tail = '3';
 };
 

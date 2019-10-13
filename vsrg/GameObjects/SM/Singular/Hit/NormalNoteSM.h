@@ -6,7 +6,7 @@ class NormalNoteSM : public NormalNote
 	SPtrTimedObject Clone() const override;
 
 	std::string asNative() const override;
-	// There shouldn't be any need for extra implementation other than
-	// exporting w.r.t. pure virtuals
+public:
+	static constexpr char chr = '1';
 };
 
