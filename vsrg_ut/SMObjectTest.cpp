@@ -33,13 +33,13 @@ namespace VsrgMapSM_
 		TEST_METHOD(FileIO)
 		{
 			VsrgMapSM smmap = VsrgMapSM();
-			smmap.loadFile(sm_wu_ev);
+			smmap.loadFile(sm_grv_ev);
 
 			auto hn_v = smmap.getHitObjectVector()->getClassOnly<HoldNoteSM>();
 			auto mn_v = smmap.getHitObjectVector()->getClassOnly<MineNoteSM>();
 			auto rn_v = smmap.getHitObjectVector()->getClassOnly<RollNoteSM>();
 			auto tp_v = smmap.getEventObjectVector()->getClassOnly<TimingPointSM>();
-
+			smmap.saveFile("t.sm", true);
 			//osumap.saveFile("test.osu", true);
 
 			//osumap.saveAsVsrg("testing.vsrg", true);

@@ -72,6 +72,203 @@ void VsrgMapSM::loadFile(const std::string& file_path) {
 
 void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 
+	/*
+		We have to settle how notes and bpm are interlinked here
+
+		- We cannot assume perfect offset synchronization
+		- BPM goes by beats, but notes go by measures.
+		  We can assume that all measures have 4 beats.
+
+		Steps:
+		- We will first set a snap threshold, that is, if a note is within
+		  a set range, it will be regarded as a specific snap. This is
+		  proportional to how many divisions we want to use.
+		  We will use 192nds to be safe, it is the maximum anyways
+
+		- We generate all possible 192nds as we go through the TPs, if we
+		  notice that a note is in between 2 192nds, we will assign the note
+		  to the closest 192nd!
+
+		- We will have to trim the output since not all beats require 192nd
+	*/
+
+	struct Bpm {
+		Bpm(double offset_, double bpm_) :
+			offset(offset_), bpm(bpm_) {}
+		double offset;
+		double bpm;
+	};
+
+	struct Note {
+		Note(double offset_, int index_, char chr_) :
+			offset(offset_), index(index_), chr(chr_) {}
+		double offset;
+		int index;
+		char chr;
+	};
+
+	std::vector<Bpm> bpms;
+	std::vector<Note> notes;
+	{ // Limit scope to avoid pollution
+		auto tp_v = eo_v_->getClassOnly<TimingPointSM>();
+		for (const auto& tp : tp_v) {
+			bpms.push_back(Bpm(tp.getOffset(), tp.getBpm()));
+		}
+		auto rn_v = ho_v_->getClassOnly<RollNoteSM>();
+		for (const auto& rn : rn_v) {
+			notes.push_back(Note(rn.getOffset(), rn.getIndex(), RollNoteSM::chr_head));
+			notes.push_back(Note(rn.getOffsetEnd(), rn.getIndex(), RollNoteSM::chr_tail));
+		}
+		auto hn_v = ho_v_->getClassOnly<HoldNoteSM>();
+		for (const auto& hn : hn_v) {
+			notes.push_back(Note(hn.getOffset(), hn.getIndex(), HoldNoteSM::chr_head));
+			notes.push_back(Note(hn.getOffsetEnd(), hn.getIndex(), HoldNoteSM::chr_tail));
+		}
+		auto mn_v = ho_v_->getClassOnly<MineNoteSM>();
+		for (const auto& mn : mn_v) {
+			notes.push_back(Note(mn.getOffset(), mn.getIndex(), MineNoteSM::chr));
+		}
+		auto nn_v = ho_v_->getClassOnly<NormalNoteSM>();
+		for (const auto& nn : nn_v) {
+			notes.push_back(Note(nn.getOffset(), nn.getIndex(), NormalNoteSM::chr));
+		}
+	}
+
+	std::sort(notes.begin(), notes.end(), [](Note i, Note j) { return i.offset < j.offset; });
+	std::sort(bpms.begin(), bpms.end(), [](Bpm i, Bpm j) { return i.offset < j.offset; });
+
+	/*
+	We will create a large 2D Vector filled with '0's
+	Then we will populate that
+	*/
+
+	// Initialize a 3D Vector [frame_i][row][column]
+	std::vector<std::vector<std::vector<char>>> frame
+		(0, std::vector<std::vector<char>>(192, std::vector<char>(4)));
+	
+	// We will populate this subframe then push to the main frame once it's filled
+	std::vector<std::vector<char>> subframe
+		(192, std::vector<char>(4, '0'));
+
+	auto bpm_it = bpms.begin();
+	auto note_it = notes.begin();
+	auto offset = bpm_it->offset;
+	int subframe_row = 0;
+	double step_size = 60000 / (bpm_it->bpm * 48); // 1/48 beat sensitivity
+	auto moveOffset = [&offset, &subframe_row](double step_size) {
+		offset += step_size;
+		subframe_row++;
+	};
+	auto checkNextBpm = [&offset, &bpm_it, &bpms, &step_size]() {
+		if (bpm_it + 1 == bpms.end()) {
+			bpm_it++;
+		}
+		else if (offset >= (bpm_it + 1)->offset) {
+			bpm_it++;
+			step_size = 60000 / (bpm_it->bpm * 192);
+			offset = bpm_it->offset; // Fixes offset
+		}
+		return;
+	};
+	auto pushFrame = [&subframe, &frame, &subframe_row]() {
+		// Optimize the 3D Vector before pushing
+
+		auto subframe_ = subframe; // This holds the temp frame
+		bool optimize_flag = false;
+
+		// We repeatedly trim it by half until we encounter a non "Empty" row.
+		// We stop at 6ths (192 isn't just 2^x)
+		while (subframe_.size() > 6 && !optimize_flag) {
+			for (int _ = subframe.size() - 1; _ > 0; _ -= 2) {
+				if (subframe[_] == std::vector<char>(4, '0')) 
+					subframe_.erase(subframe_.begin() + _);
+				else {
+					optimize_flag = true; break;
+				}
+			}
+			subframe = subframe_;
+		}
+
+		// Attempt to trim by division of 3
+		for (int _ = subframe.size() - 1; _ > 0; _ -= 3) {
+			if (subframe[_] == std::vector<char>(4, '0')) 
+				subframe_.erase(subframe_.begin() + _);
+			else {
+				optimize_flag = true; break;
+			}
+		}
+		subframe = subframe_;
+
+		subframe_row = 0; // Reset subframe index
+		frame.push_back(subframe);
+		subframe = std::vector<std::vector<char>>(192, std::vector<char>(4, '0'));
+	};
+
+	while (bpm_it < bpms.end()) {
+		for (int beat = 0; beat < 4; beat++) {
+			for (int step = 0; step < 48;) {
+				if (note_it != notes.end() &&
+					note_it->offset >= offset &&
+					note_it->offset <= (offset + step_size)) {
+					subframe[subframe_row][note_it->index] = note_it->chr;
+					note_it++;
+					// If we find a note, we don't increment step
+					// As there may be multiple on the same step
+				}
+				else {
+					moveOffset(step_size);
+					step++;
+				}
+			}
+			checkNextBpm();
+			if (bpm_it == bpms.end()) break;
+		}
+		pushFrame();
+	}
+
+	std::vector<std::string> contents = {};
+	auto _ = [&contents](const std::string & str) { contents.push_back(str); };
+
+	_("[General]"); 
+	_("#TITLE:" + params.title_);
+	_("#SUBTITLE:" + params.subtitle_);
+	_("#ARTIST:" + params.artist_);
+	_("#TITLETRANSLIT:" + params.title_u_);
+	_("#SUBTITLETRANSLIT:" + params.subtitle_u_);
+	_("#ARTISTTRANSLIT:" + params.artist_u_);
+	_("#GENRE:" + params.genre_);
+	_("#CREDIT:" + params.creator_);
+	_("#MUSIC:" + params.audio_path_);
+	_("#BANNER:" + params.bn_path_);
+	_("#BACKGROUND:" + params.bg_path_);
+	_("#LYRICSPATH:");											
+	_("#CDTITLE:" + params.cd_path_);
+	_("#SAMPLESTART:" + std::to_string(params.preview_time_start_));
+	_("#SAMPLELENGTH:" + std::to_string(params.preview_time_end_));
+	_("#SELECTABLE");											
+	_("#OFFSET:" + std::to_string(params.offset_));	
+	_("#BPMS:");// +std::vector<std::string> bpm_str	);
+	_("#STOPS:"); // +std::vector<std::string> stop_str	);
+	_("#DISPLAYBPM:" + params.display_bpm_);
+	_("#BGCHANGES:");
+	_("#FGCHANGES:");
+	_("//--------------- dance-single -  ----------------");
+	_("#NOTES:");
+	_(params.chart_type_);
+	_(params.group_);
+	_(params.difficulty_name_);
+	_(params.difficulty_val_);
+	_("     0,0,0,0,0:");
+	
+	for (const auto& measure : frame) {
+		for (const auto& step : measure) {
+			std::string s = "";
+			for (const char& str : step) s += str;
+			_(s);
+		}
+		_(",");
+	}
+	writeFile(contents, file_path, overwrite);
 }
 
 std::vector<std::pair<double, double>>
@@ -252,18 +449,18 @@ void VsrgMapSM::processHOBeat(std::vector<std::string>::iterator begin,
 		switch (chr)
 		{
 		case '0': break;
-		case '1': {
+		case NormalNoteSM::chr: {
 			auto nn = NormalNoteSM(offset, index);
 			sptr = std::make_shared<NormalNoteSM>(nn);
 			ho_v_->push_back(sptr);
 			break;
 		}
-		case '2': { // Buffer Head
+		case HoldNoteSM::chr_head: { // Buffer Head
 			auto hn = HoldNoteSM(offset, index, 0);
 			sptr_buffer[index] = std::make_shared<HoldNoteSM>(hn);
 			break;
 		}
-		case '3': { // Buffer Tail
+		case HoldNoteSM::chr_tail: { // Buffer Tail
 			if (auto ln = sptr_buffer[index]) {
 				ln->setLength(offset - ln->getOffset());
 				ho_v_->push_back(ln);
@@ -273,12 +470,12 @@ void VsrgMapSM::processHOBeat(std::vector<std::string>::iterator begin,
 			}
 			break;
 		}
-		case '4': { // Buffer Head
+		case RollNoteSM::chr_head: { // Buffer Head
 			auto hn = RollNoteSM(offset, index, 0);
 			sptr_buffer[index] = std::make_shared<RollNoteSM>(hn);
 			break;
 		}
-		case 'M': {
+		case MineNoteSM::chr: {
 			auto mn = MineNoteSM(offset, index);
 			sptr = std::make_shared<MineNoteSM>(mn);
 			ho_v_->push_back(sptr);
