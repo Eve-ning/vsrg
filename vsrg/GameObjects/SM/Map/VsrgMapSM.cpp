@@ -165,7 +165,7 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 		}
 		else if (offset >= (bpm_it + 1)->offset) {
 			bpm_it++;
-			step_size = 60000 / (bpm_it->bpm * 192);
+			step_size = 60000 / (bpm_it->bpm * 48);
 			offset = bpm_it->offset; // Fixes offset
 		}
 		return;
@@ -180,7 +180,7 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 		// We stop at 6ths (192 isn't just 2^x)
 		while (subframe_.size() > 6 && !optimize_flag) {
 			for (int _ = subframe.size() - 1; _ > 0; _ -= 2) {
-				if (subframe[_] == std::vector<char>(4, '0')) 
+				if (subframe[_] == std::vector<char>(4, '0'))
 					subframe_.erase(subframe_.begin() + _);
 				else {
 					optimize_flag = true; break;
@@ -190,14 +190,17 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 		}
 
 		// Attempt to trim by division of 3
+		optimize_flag = false;
 		for (int _ = subframe.size() - 1; _ > 0; _ -= 3) {
-			if (subframe[_] == std::vector<char>(4, '0')) 
+			if (subframe[_] == std::vector<char>(4, '0'))
 				subframe_.erase(subframe_.begin() + _);
 			else {
 				optimize_flag = true; break;
 			}
 		}
-		subframe = subframe_;
+		// If we break half way through we don't override
+		if (!optimize_flag) subframe = subframe_;
+
 
 		subframe_row = 0; // Reset subframe index
 		frame.push_back(subframe);
@@ -208,8 +211,8 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 		for (int beat = 0; beat < 4; beat++) {
 			for (int step = 0; step < 48;) {
 				if (note_it != notes.end() &&
-					note_it->offset >= offset &&
-					note_it->offset <= (offset + step_size)) {
+					note_it->offset >= offset - TimedObject::SNAP_ERROR_MARGIN &&
+					note_it->offset <= (offset + step_size) - TimedObject::SNAP_ERROR_MARGIN) {
 					subframe[subframe_row][note_it->index] = note_it->chr;
 					note_it++;
 					// If we find a note, we don't increment step
