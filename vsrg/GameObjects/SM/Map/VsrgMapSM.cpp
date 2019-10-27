@@ -178,7 +178,7 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 
 		// We repeatedly trim it by half until we encounter a non "Empty" row.
 		// We stop at 6ths (192 isn't just 2^x)
-		while (subframe_.size() > 6 && !optimize_flag) {
+		while (subframe_.size() > 12 && !optimize_flag) {
 			for (int _ = subframe.size() - 1; _ > 0; _ -= 2) {
 				if (subframe[_] == std::vector<char>(4, '0'))
 					subframe_.erase(subframe_.begin() + _);
@@ -190,10 +190,15 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 		}
 
 		// Attempt to trim by division of 3
+		// We trim by deleting 2, skipping 1, then repeat
+		// 100100100100 -> 1111 
 		optimize_flag = false;
 		for (int _ = subframe.size() - 1; _ > 0; _ -= 3) {
-			if (subframe[_] == std::vector<char>(4, '0'))
+			if (subframe[_] == std::vector<char>(4, '0') &&
+				subframe[_ - 1] == std::vector<char>(4, '0')) {
 				subframe_.erase(subframe_.begin() + _);
+				subframe_.erase(subframe_.begin() + _ - 1);
+			}
 			else {
 				optimize_flag = true; break;
 			}
