@@ -36,5 +36,20 @@ private:
 	std::unordered_map<std::string, std::vector<std::string>> toUMap(
 		std::vector<std::string>::const_iterator& begin,
 		std::vector<std::string>::const_iterator end);
+
+	struct Bpm {
+		Bpm(double offset_, double bpm_) :
+			offset(offset_), bpm(bpm_) {}
+		double offset;
+		double bpm;
+	};
+
+	struct Note {
+		Note(double offset_, int index_, char chr_) :
+			offset(offset_), index(index_), chr(chr_) {}
+		double offset;
+		int index;
+		char chr;
+	};
 };
 
