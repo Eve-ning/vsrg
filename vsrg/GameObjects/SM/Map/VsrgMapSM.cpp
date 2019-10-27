@@ -94,6 +94,7 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 
 	std::vector<Bpm> bpms;
 	std::vector<Note> notes;
+
 	{ // Limit scope to avoid pollution
 		auto tp_v = eo_v_->getClassOnly<TimingPointSM>();
 		for (const auto& tp : tp_v) {
@@ -264,7 +265,7 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 	writeFile(contents, file_path, overwrite);
 }
 
-std::vector<std::pair<double, double>>
+std::vector<VsrgMapSM::Bpm>
 VsrgMapSM::processBpms(const std::vector<std::string>::iterator& begin,
 					   const std::vector<std::string>::iterator & end,
 					   double offset) {
@@ -282,17 +283,18 @@ VsrgMapSM::processBpms(const std::vector<std::string>::iterator& begin,
 
 	offset *= TimedObject::UnitScale::second; // offset is given as seconds;
 
-	auto split = [](const std::string& str) -> std::pair<double, double> {
+	auto split = [](const std::string& str) -> Bpm {
 		size_t sep_loc = str.find('=');
-		return std::make_pair<double, double>(
+		return Bpm(
+			// Refer to docstring comment
+			// Offset
 			std::stod(str.substr(
-				// Refer to docstring comment
-				str.find_first_of(',') == std::string::npos ? 0 : 1,
-				sep_loc)),
+				str.find_first_of(',') == std::string::npos ? 0 : 1, sep_loc)),
+			// Bpm
 			std::stod(str.substr(sep_loc + 1)));
 	};
 
-	std::vector<std::pair<double, double>> bpm_pair_v;
+	std::vector<Bpm> bpm_pair_v;
 	
 	// {Measure=BPM},{Measure=BPM, ... }
 	// {{Measure, BPM}, {Measure, BPM}, ... }
@@ -309,7 +311,7 @@ void VsrgMapSM::processStops(const std::vector<std::string>::iterator & begin,
 void VsrgMapSM::processObjs(
 	std::vector<std::string>::iterator begin,
 	const std::vector<std::string>::iterator& end,
-	const std::vector<std::pair<double, double>>& bpm_pair_v,
+	const std::vector<Bpm>& bpm_pair_v,
 	double offset) {
 
 	/* Processing HO and EO in parellel
@@ -356,7 +358,7 @@ void VsrgMapSM::processObjs(
 	unsigned int size = 0;
 	unsigned int bpm_pair_i = 0;
 	double beat_length = 0;
-	double bpm = bpm_pair_v[0].second; pushToEOV(offset, bpm);
+	double bpm = bpm_pair_v[0].bpm; pushToEOV(offset, bpm);
 
 	auto bpmToBeat = [](const double& bpm) -> double {
 		return (1 / bpm) * TimedObject::UnitScale::minute;
@@ -367,10 +369,10 @@ void VsrgMapSM::processObjs(
 					  pushToEOV, this](double beat){
 		// First if to prevent out of index
 		if (bpm_pair_i + 1 < bpm_pair_v.size()) {
-			auto next_beat = bpm_pair_v[bpm_pair_i + 1].first;
+			auto next_beat = bpm_pair_v[bpm_pair_i + 1].offset;
 			if (beat >= next_beat) {
 				bpm_pair_i++;
-				bpm = bpm_pair_v[bpm_pair_i].second;
+				bpm = bpm_pair_v[bpm_pair_i].bpm;
 				pushToEOV(offset, bpm);
 			}
 			// Else means the beat is still on the same bpm
