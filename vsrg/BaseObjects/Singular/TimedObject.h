@@ -27,6 +27,7 @@ public:
 		/// (added for clarity of function usage)
 		static const double msecond;
 	};
+	static double SNAP_ERROR_MARGIN;
 
 	/// Gets Offset in milliseconds
 	double getOffset(double unit_scale = TimedObject::UnitScale::msecond) const;
