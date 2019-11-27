@@ -344,7 +344,6 @@ void VsrgMapSM::processObjs(
 	This process is then repeated until we read all BPM inputs.
 	*/
 
-
 	// Pushes Timing Point to EOV
 	auto pushToEOV = [this](double offset, double bpm) {
 		TimingPointSM tp = TimingPointSM(offset, bpm, 4, 4);
@@ -380,28 +379,29 @@ void VsrgMapSM::processObjs(
 	};
 
 	for (unsigned int index_row = 0; begin < end; begin++, index_row++) {
-		if (begin->back() == ',' || begin == (end - 1)) { // Found end of beat
-			/*  
-				Now we have the data of a beat
-
-				We have to find out:
-				1. offset of the start of the beat
-				2. bpm
-				3. size
+		if (begin->back() == ',' || begin == (end - 1)) { // Found end of measure
+			/*  Measure 1, Size 8
+				0000 Beat 1 (8th, 1/2) [1]
+				0000		(8th, 2/2) [2]
+				0000 Beat 2	(8th, 1/2)
+				0000		(8th, 2/2)
+				0000 Beat 3	(8th, 1/2)
+				0000		(8th, 2/2)
+				0000 Beat 4	(8th, 1/2)
+				0000		(8th, 2/2)
 			*/
 
 			size = measure_chunk.size(); // Size of chunk vector
 
 			// Each chunk has 4 beats, so we split them into 4 and loop
 			for (int _ = 0; _ < 4; _++) {
-
 				updateBpm(beat); // Tries to update bpm w.r.t. beat
 				
 				beat_length = bpmToBeat(bpm); // How long the beat lasts in ms
 
 				processHOBeat(
-					measure_chunk.begin() + (int)  _      * size / 4,
-					measure_chunk.begin() + (int) (_ + 1) * size / 4,
+					measure_chunk.begin() + (int)  _      * size / 4, // Ref: [1]
+					measure_chunk.begin() + (int) (_ + 1) * size / 4, // Ref: [2]
 					offset,
 					beat_length * 4 / size);
 
