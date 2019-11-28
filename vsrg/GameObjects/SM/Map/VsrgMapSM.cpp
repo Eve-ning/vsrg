@@ -9,7 +9,7 @@
 #include "GameObjects/SM/Singular/Hit/MineNoteSM.h"
 #include "GameObjects/SM/Singular/Hit/HoldNoteSM.h"
 
-VsrgMapSM::VsrgMapSM() : VsrgMap() {
+VsrgMapSM::VsrgMapSM() : VsrgMapA() {
 	auto eo = EventObjectVectorSM();
 	auto ho = HitObjectVectorSM();
 	eo_v_ = std::make_shared<EventObjectVectorSM>(eo);
