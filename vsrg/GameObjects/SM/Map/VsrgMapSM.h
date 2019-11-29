@@ -1,9 +1,9 @@
 #pragma once
-#include "BaseObjects/Map/Type/VsrgMapA.h"
+#include "BaseObjects/Map/VsrgMap.h"
 #include "GameObjects/SM/Map/VsrgMapSMParams.h"
 #include "Helpers/MiscHelper.h"
 #include <unordered_map>
-class VsrgMapSM : public VsrgMapA
+class VsrgMapSM : public VsrgMap
 {	
 public:
 	VsrgMapSM();

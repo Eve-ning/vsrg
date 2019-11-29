@@ -70,9 +70,6 @@
     <Filter Include="Game Objects\SM\Special">
       <UniqueIdentifier>{0cce76d9-ff6c-4ddb-af88-0ce8160b08ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Base Objects\Map\Type">
-      <UniqueIdentifier>{efa55b49-9652-459a-9500-8396b3eec5ab}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseObjects\Singular\Event\EventObject.h">
@@ -188,16 +185,6 @@
     </ClInclude>
     <ClInclude Include="BaseObjects\Special\TimingPointMeasure.h">
       <Filter>Base Objects\Special</Filter>
-    </ClInclude>
-    <ClInclude Include="TimingGridBase.h" />
-    <ClInclude Include="TimingGridMeasure.h" />
-    <ClInclude Include="TimingGridBeat.h" />
-    <ClInclude Include="TimingGridSnap.h" />
-    <ClInclude Include="BaseObjects\Map\Type\VsrgMapA.h">
-      <Filter>Base Objects\Map\Type</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseObjects\Map\Type\VsrgMapB.h">
-      <Filter>Base Objects\Map\Type</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -320,16 +307,6 @@
     </ClCompile>
     <ClCompile Include="BaseObjects\Special\TimingPointMeasure.cpp">
       <Filter>Base Objects\Special</Filter>
-    </ClCompile>
-    <ClCompile Include="TimingGridBase.cpp" />
-    <ClCompile Include="TimingGridMeasure.cpp" />
-    <ClCompile Include="TimingGridBeat.cpp" />
-    <ClCompile Include="TimingGridSnap.cpp" />
-    <ClCompile Include="BaseObjects\Map\Type\VsrgMapA.cpp">
-      <Filter>Base Objects\Map\Type</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseObjects\Map\Type\VsrgMapB.cpp">
-      <Filter>Base Objects\Map\Type</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

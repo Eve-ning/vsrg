@@ -14,6 +14,11 @@ public:
 	// Save in derived format
 	virtual void saveFile(const std::string & file_path, bool overwrite) = 0;
 
+	virtual SPtrHitObjectVector getHitObjectVector() const final;
+	virtual SPtrEventObjectVector getEventObjectVector() const final;
+	virtual void setHitObjectVector(const SPtrHitObjectVector & ho_v) final;
+	virtual void setEventObjectVector(const SPtrEventObjectVector & eo_v) final;
+
 protected:
 	/// This writes all lines to the file from vector
 	/// These have additional assertions for error handling
@@ -23,6 +28,9 @@ protected:
 	/// This reads all lines from the file and coerces to vector.
 	/// These have additional assertions for error handling
 	virtual std::vector<std::string> readFile(const std::string & file_path);
+
+	SPtrHitObjectVector ho_v_;
+	SPtrEventObjectVector eo_v_;
 
 };
 

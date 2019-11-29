@@ -1,9 +1,9 @@
 #pragma once
-#include "BaseObjects/Map/Type/VsrgMapA.h"
+#include "BaseObjects/Map/VsrgMap.h"
 #include "VsrgMapOsuParams.h"
 
 class VsrgMapOsu :
-	public VsrgMapA
+	public VsrgMap
 {
 public:
 	VsrgMapOsu();
@@ -15,6 +15,8 @@ public:
 	VsrgMapOsuParams params;
 
 private:
+
+
 
 	bool isNormalNoteOsu(const std::string & str);
 	bool isTimingPointOsu(const std::string & str);
