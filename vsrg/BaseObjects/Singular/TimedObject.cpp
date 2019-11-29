@@ -6,7 +6,7 @@ const double TimedObject::Units::hour = 3600000.0;
 const double TimedObject::Units::minute = 60000.0;
 const double TimedObject::Units::second = 1000.0;
 const double TimedObject::Units::msecond = 1.0;
-inline double TimedObject::Units::bpmToMspb(const double& bpm) {
+double TimedObject::Units::bpmToMspb(const double& bpm) {
 	return 1.0 * minute / bpm;
 }
 

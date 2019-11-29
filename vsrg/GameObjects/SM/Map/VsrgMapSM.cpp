@@ -324,10 +324,7 @@ void VsrgMapSM::processObjs(
 	What we aim to do here is to have an already processed BPM pair
 	vector in the format: {Measure:BPM},{Measure,BPM},...
 
-	Then we read the Notes by chunk. A chunk is defined by if the notes
-	are wrapped in between those ','. This defines a measure_chunk.
-
-	For each measure_chunk, we split it into 4 (it must be 4). Then we
+	For each measure, we split it into 4 (it must be 4). Then we
 	feed it into tryUpdateBPM.
 
 	tryUpdateBPM:
@@ -349,7 +346,7 @@ void VsrgMapSM::processObjs(
 		eo_v_->push_back(sptr);
 	};
 
-	std::vector<std::string> measure_chunk = {};
+	std::vector<std::string> measure = {};
 
 	int beat = 0;
 	unsigned int size = 0;
@@ -357,23 +354,20 @@ void VsrgMapSM::processObjs(
 	double beat_length = 0;
 	double bpm = bpm_pair_v[0].bpm; pushToEOV(offset, bpm);
 
-	auto bpmToBeat = [](const double& bpm) -> double {
-		return (1 / bpm) * TimedObject::Units::minute;
-	};
-
 	// Tries to update bpm based on current beat
 	auto updateBpm = [&bpm_pair_v, &bpm, &bpm_pair_i, &offset,
 					  pushToEOV, this](double beat){
+
 		// First if to prevent out of index
-		if (bpm_pair_i + 1 < bpm_pair_v.size()) {
-			auto next_beat = bpm_pair_v[bpm_pair_i + 1].offset;
-			if (beat >= next_beat) {
-				bpm_pair_i++;
-				bpm = bpm_pair_v[bpm_pair_i].bpm;
-				pushToEOV(offset, bpm);
-			}
-			// Else means the beat is still on the same bpm
+		if (bpm_pair_i + 1 >= bpm_pair_v.size()) return;
+
+		auto next_beat = bpm_pair_v[bpm_pair_i + 1].offset;
+		if (beat >= next_beat) { // Check if we need to update bpm
+			bpm_pair_i++;
+			bpm = bpm_pair_v[bpm_pair_i].bpm;
+			pushToEOV(offset, bpm);
 		}
+		// Else means the beat is still on the same bpm
 	};
 
 	for (unsigned int index_row = 0; begin < end; begin++, index_row++) {
@@ -389,28 +383,28 @@ void VsrgMapSM::processObjs(
 				0000		(8th, 2/2)
 			*/
 
-			size = measure_chunk.size(); // Size of chunk vector
+			size = measure.size(); // Size of chunk vector
 
 			// Each chunk has 4 beats, so we split them into 4 and loop
 			for (int _ = 0; _ < 4; _++) {
 				updateBpm(beat); // Tries to update bpm w.r.t. beat
 				
-				beat_length = bpmToBeat(bpm); // How long the beat lasts in ms
+				beat_length = TimedObject::Units::bpmToMspb(bpm); // How long the beat lasts in ms
 
 				processHOBeat(
-					measure_chunk.begin() + (int)  _      * size / 4, // Ref: [1]
-					measure_chunk.begin() + (int) (_ + 1) * size / 4, // Ref: [2]
-					offset,
-					beat_length * 4 / size);
+					measure.begin() + (int)  _      * size / 4, // Start Beat
+					measure.begin() + (int) (_ + 1) * size / 4, // End Beat
+					offset,	
+					beat_length * 4 / size); // Step Size
 
 				// Push offset to end of beat
 				offset += beat_length;
 				beat++;
 			}
-			measure_chunk.clear();
+			measure.clear();
 		}
 		// If we do not find end of beat we feed it to chunk
-		else measure_chunk.push_back(*begin); 
+		else measure.push_back(*begin); 
 	}
 }
 
@@ -490,7 +484,6 @@ void VsrgMapSM::processHOBeat(std::vector<std::string>::iterator begin,
 		}
 		offset += step_size;
 	}
-
 }
 
 std::unordered_map<std::string, std::vector<std::string>> VsrgMapSM::toUMap(
