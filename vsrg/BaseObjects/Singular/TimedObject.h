@@ -16,7 +16,7 @@ public:
 
 	virtual std::shared_ptr<TimedObject> Clone() const = 0;
 
-	struct UnitScale {
+	struct Units {
 		/// Value of ratio of Hour:Millisecond
 		static const double hour;
 		/// Value of ratio of Minute:Millisecond
@@ -26,14 +26,17 @@ public:
 		/// Value of ratio of Millisecond:Millisecond
 		/// (added for clarity of function usage)
 		static const double msecond;
+
+		// Beats per minute to Millisecond per Beat
+		static double bpmToMspb(const double& bpm);
 	};
 	static double SNAP_ERROR_MARGIN;
 
 	/// Gets Offset in milliseconds
-	double getOffset(double unit_scale = TimedObject::UnitScale::msecond) const;
+	double getOffset(double unit_scale = TimedObject::Units::msecond) const;
 
 	/// Sets Offset in milliseconds
-	void setOffset(double offset_m_sec, double unit_scale = TimedObject::UnitScale::msecond);
+	void setOffset(double offset_m_sec, double unit_scale = TimedObject::Units::msecond);
 
 	/// Validates the object being realistic
 	virtual bool isValid() const;

@@ -46,7 +46,7 @@ void TimingPoint::setTimeSigDenominator(double time_sig_denominator) {
 
 double TimingPoint::getBeatDuration(double scale, double unit_scale) {
 	// Convert it to Minutes per Beat, then change Minutes to MSec
-	double beat_m_sec = (scale * TimedObject::UnitScale::minute) / getBpm();
+	double beat_m_sec = (scale * TimedObject::Units::minute) / getBpm();
 	return beat_m_sec / unit_scale;
 }
 double TimingPoint::getMeasureDuration(double scale, double unit_scale) {

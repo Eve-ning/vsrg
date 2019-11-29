@@ -31,25 +31,25 @@ namespace HitObject_
 			auto nn_0 = ho_nn_1;
 			
 			// Check setters
-			nn_0.setOffset(1.0, TimedObject::UnitScale::hour);
+			nn_0.setOffset(1.0, TimedObject::Units::hour);
 			Assert::AreEqual(3600000.0, nn_0.getOffset());
-			nn_0.setOffset(1.0, TimedObject::UnitScale::minute);
+			nn_0.setOffset(1.0, TimedObject::Units::minute);
 			Assert::AreEqual(60000.0, nn_0.getOffset());
-			nn_0.setOffset(1.0, TimedObject::UnitScale::second);
+			nn_0.setOffset(1.0, TimedObject::Units::second);
 			Assert::AreEqual(1000.0, nn_0.getOffset());
 			nn_0.setOffset(1.0);
 			Assert::AreEqual(1.0, nn_0.getOffset());
 
 			// Check getters
 
-			nn_0.setOffset(1.0, TimedObject::UnitScale::hour);
-			Assert::AreEqual(1.0, nn_0.getOffset(TimedObject::UnitScale::hour));
-			nn_0.setOffset(1.0, TimedObject::UnitScale::hour);
-			Assert::AreEqual(60.0, nn_0.getOffset(TimedObject::UnitScale::minute));
-			nn_0.setOffset(1.0, TimedObject::UnitScale::hour);
-			Assert::AreEqual(3600.0, nn_0.getOffset(TimedObject::UnitScale::second));
-			nn_0.setOffset(1.0, TimedObject::UnitScale::hour);
-			Assert::AreEqual(3600000.0, nn_0.getOffset(TimedObject::UnitScale::msecond));
+			nn_0.setOffset(1.0, TimedObject::Units::hour);
+			Assert::AreEqual(1.0, nn_0.getOffset(TimedObject::Units::hour));
+			nn_0.setOffset(1.0, TimedObject::Units::hour);
+			Assert::AreEqual(60.0, nn_0.getOffset(TimedObject::Units::minute));
+			nn_0.setOffset(1.0, TimedObject::Units::hour);
+			Assert::AreEqual(3600.0, nn_0.getOffset(TimedObject::Units::second));
+			nn_0.setOffset(1.0, TimedObject::Units::hour);
+			Assert::AreEqual(3600000.0, nn_0.getOffset(TimedObject::Units::msecond));
 
 			
 		}

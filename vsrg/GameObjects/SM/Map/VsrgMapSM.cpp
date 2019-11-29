@@ -57,7 +57,7 @@ void VsrgMapSM::loadFile(const std::string& file_path) {
 	//NULL								=			getValue("#BGCHANGES:")[0];
 	//NULL								=			getValue("#FGCHANGES:")[0];
 
-	std::vector<std::string> notes_str	=			getValue("#NOTES")	; // Move i	t to #NOTES	
+	std::vector<std::string> notes_str	=			getValue("#NOTES")	; // Move it to #NOTES	
 
 	params.chart_type_		=	notes_str[2]; params.chart_type_		.pop_back();
 	params.group_			=	notes_str[3]; params.group_				.pop_back();
@@ -281,17 +281,15 @@ VsrgMapSM::processBpms(const std::vector<std::string>::iterator& begin,
 		,9.000=115.470
 	*/
 
-	offset *= TimedObject::UnitScale::second; // offset is given as seconds;
+	offset *= TimedObject::Units::second; // offset is given as seconds;
 
 	auto split = [](const std::string& str) -> Bpm {
 		size_t sep_loc = str.find('=');
 		return Bpm(
 			// Refer to docstring comment
-			// Offset
-			std::stod(str.substr(
+			std::stod(str.substr( // Offset
 				str.find_first_of(',') == std::string::npos ? 0 : 1, sep_loc)),
-			// Bpm
-			std::stod(str.substr(sep_loc + 1)));
+			std::stod(str.substr(sep_loc + 1))); // Bpm
 	};
 
 	std::vector<Bpm> bpm_pair_v;
@@ -360,7 +358,7 @@ void VsrgMapSM::processObjs(
 	double bpm = bpm_pair_v[0].bpm; pushToEOV(offset, bpm);
 
 	auto bpmToBeat = [](const double& bpm) -> double {
-		return (1 / bpm) * TimedObject::UnitScale::minute;
+		return (1 / bpm) * TimedObject::Units::minute;
 	};
 
 	// Tries to update bpm based on current beat

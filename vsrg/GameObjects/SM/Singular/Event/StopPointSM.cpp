@@ -9,7 +9,7 @@ SPtrTimedObject StopPointSM::Clone() const {
 }
 
 std::string StopPointSM::asNative() const {
-	return "=" + std::to_string(length_m_sec_ * UnitScale::second);
+	return "=" + std::to_string(length_m_sec_ * Units::second);
 }
 
 double StopPointSM::getLength(double unit_scale) const {

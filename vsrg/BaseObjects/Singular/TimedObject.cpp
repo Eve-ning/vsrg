@@ -2,10 +2,13 @@
 #include "TimedObject.h"
 #include "Helpers/MiscHelper.h"
 
-const double TimedObject::UnitScale::hour = 3600000.0;
-const double TimedObject::UnitScale::minute = 60000.0;
-const double TimedObject::UnitScale::second = 1000.0;
-const double TimedObject::UnitScale::msecond = 1.0;
+const double TimedObject::Units::hour = 3600000.0;
+const double TimedObject::Units::minute = 60000.0;
+const double TimedObject::Units::second = 1000.0;
+const double TimedObject::Units::msecond = 1.0;
+inline double TimedObject::Units::bpmToMspb(const double& bpm) {
+	return 1.0 * minute / bpm;
+}
 
 double TimedObject::SNAP_ERROR_MARGIN = 0.1;
 

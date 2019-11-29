@@ -14,8 +14,8 @@ public:
 
 	SPtrHitObject getEarliestObject() const;
 	SPtrHitObject getLatestObject() const;
-	SPtrHitObject getLowerObject(double offset, double unit_scale = TimedObject::UnitScale::msecond);
-	SPtrHitObject getUpperObject(double offset, double unit_scale = TimedObject::UnitScale::msecond);
+	SPtrHitObject getLowerObject(double offset, double unit_scale = TimedObject::Units::msecond);
+	SPtrHitObject getUpperObject(double offset, double unit_scale = TimedObject::Units::msecond);
 };
 
 typedef std::shared_ptr<HitObjectVector> SPtrHitObjectVector;
