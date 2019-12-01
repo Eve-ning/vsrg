@@ -204,8 +204,7 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 					note_it->offset <= (offset + step_size) - SNAP_ERROR_MARGIN) {
 					measure[measure_row][note_it->index] = note_it->chr;
 					note_it++;
-					// If we find a note, we don't increment step
-					// As there may be multiple on the same step
+					// There may be multiple on the same step, we don't increment it
 				}
 				else {
 					moveOffset(step_size);
@@ -277,8 +276,6 @@ VsrgMapSM::processBpms(const std::vector<std::string>::iterator& begin,
 		,8.000=115.475
 		,9.000=115.470
 	*/
-
-
 	auto split = [](const std::string& str) -> Bpm {
 		size_t sep_loc = str.find('=');
 		return Bpm(
