@@ -13,6 +13,8 @@ public:
 	virtual void saveFile(const std::string& file_path, bool overwrite = false) override;
 
 	VsrgMapSMParams params;
+
+	static const double SNAP_ERROR_MARGIN;
 private:
 
 	struct Bpm {
@@ -34,8 +36,7 @@ private:
 
 	std::vector<Bpm>
 		 processBpms(const std::vector<std::string>::iterator & begin,
-					 const std::vector<std::string>::iterator & end,
-					 double offset);
+					 const std::vector<std::string>::iterator & end);
 	void processStops(const std::vector<std::string>::iterator & begin,
 					  const std::vector<std::string>::iterator & end);
 	void processObjs(std::vector<std::string>::iterator begin,

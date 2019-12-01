@@ -33,7 +33,7 @@ namespace VsrgMapSM_
 		TEST_METHOD(FileIO)
 		{
 			VsrgMapSM smmap = VsrgMapSM();
-			smmap.loadFile(sm_icf_ev);
+			smmap.loadFile(sm_grv_ev);
 
 			auto hn_v = smmap.getHitObjectVector()->getClassOnly<HoldNoteSM>();
 			auto mn_v = smmap.getHitObjectVector()->getClassOnly<MineNoteSM>();

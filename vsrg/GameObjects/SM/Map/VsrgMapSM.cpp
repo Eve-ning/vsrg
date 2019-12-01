@@ -9,6 +9,8 @@
 #include "GameObjects/SM/Singular/Hit/MineNoteSM.h"
 #include "GameObjects/SM/Singular/Hit/HoldNoteSM.h"
 
+const double VsrgMapSM::SNAP_ERROR_MARGIN = 0.3;
+
 VsrgMapSM::VsrgMapSM() : VsrgMap() {
 	auto eo = EventObjectVectorSM();
 	auto ho = HitObjectVectorSM();
@@ -50,7 +52,7 @@ void VsrgMapSM::loadFile(const std::string& file_path) {
 	params.preview_time_start_			= std::stod(getValue("#SAMPLESTART")[0]);
 	params.preview_time_end_			= std::stod(getValue("#SAMPLELENGTH")[0]) + params.preview_time_start_;
 	//NULL								=			getValue("#SELECTABLE")[0];
-	params.offset_						= std::stod(getValue("#OFFSET")[0]);
+	params.offset_	                    = std::stod(getValue("#OFFSET")[0]) * TimedObject::Units::second;
 	std::vector<std::string> bpm_str	=			getValue("#BPMS");
 	std::vector<std::string> stop_str	=			getValue("#STOPS");
 	params.display_bpm_					=			getValue("#DISPLAYBPM")[0];
@@ -64,7 +66,7 @@ void VsrgMapSM::loadFile(const std::string& file_path) {
 	params.difficulty_name_ =	notes_str[4]; params.difficulty_name_	.pop_back();
 	params.difficulty_val_	=	notes_str[5]; params.difficulty_val_	.pop_back();
 
-	auto bpm_pairs = processBpms(bpm_str.begin(), bpm_str.end(), params.offset_);
+	auto bpm_pairs = processBpms(bpm_str.begin(), bpm_str.end());
 	processStops(stop_str.begin(), stop_str.end());
 	processObjs(notes_str.begin() + 6, notes_str.end(), bpm_pairs, params.offset_);
 
@@ -121,13 +123,11 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 	}
 
 	std::sort(notes.begin(), notes.end(), [](Note i, Note j) { return i.offset < j.offset; });
-	std::sort(bpms.begin(), bpms.end(), [](Bpm i, Bpm j) { return i.offset < j.offset; });
+	std::sort(bpms.begin(), bpms.end(),   [](Bpm i, Bpm j)   { return i.offset < j.offset; });
 
-	/*
-	We will create a large 2D Vector filled with '0's
-	Then we will populate that
-	*/
-
+	// We will create a large 2D Vector filled with '0's
+	// Then we will populate that
+		
 	// Initialize a 3D Vector [frame_i][row][column]
 	std::vector<std::vector<std::vector<char>>> chart
 		(0, std::vector<std::vector<char>>(192, std::vector<char>(4)));
@@ -140,7 +140,7 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 	auto note_it = notes.begin();
 	auto offset = bpm_it->offset;
 	int measure_row = 0;
-	double step_size = 60000 / (bpm_it->bpm * 48); // 1/48 beat sensitivity
+	double step_size = 60000. / (bpm_it->bpm * 48.); // 1/48 beat sensitivity
 	auto moveOffset = [&offset, &measure_row](double step_size) {
 		offset += step_size;
 		measure_row++;
@@ -149,9 +149,9 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 		if (bpm_it + 1 == bpms.end()) {
 			bpm_it++;
 		}
-		else if (offset >= (bpm_it + 1)->offset) {
+		else if (offset >= (bpm_it + 1)->offset - SNAP_ERROR_MARGIN) {
 			bpm_it++;
-			step_size = 60000 / (bpm_it->bpm * 48);
+			step_size = 60000. / (bpm_it->bpm * 48.);
 			offset = bpm_it->offset; // Fixes offset
 		}
 		return;
@@ -162,7 +162,7 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 		auto measure_ = measure; // This holds the temp frame
 		bool optimize_flag = false;
 
-		// We repeatedly trim it by half until we encounter a non "Empty" row.
+		// 10 10 10 10 -> 1111
 		// We stop at 6ths (192 isn't just 2^x)
 		while (measure_.size() > 12 && !optimize_flag) {
 			for (int _ = measure.size() - 1; _ > 0; _ -= 2) {
@@ -175,9 +175,7 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 			measure = measure_;
 		}
 
-		// Attempt to trim by division of 3
-		// We trim by deleting 2, skipping 1, then repeat
-		// 100100100100 -> 1111 
+		// 100 100 100 100 -> 1111 
 		optimize_flag = false;
 		for (int _ = measure.size() - 1; _ > 0; _ -= 3) {
 			if (measure[_] == std::vector<char>(4, '0') &&
@@ -189,11 +187,11 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 				optimize_flag = true; break;
 			}
 		}
+
 		// If we break half way through we don't override
 		if (!optimize_flag) measure = measure_;
 
-
-		measure_row = 0; // Reset subframe index
+		measure_row = 0; // Reset measure index
 		chart.push_back(measure);
 		measure = std::vector<std::vector<char>>(192, std::vector<char>(4, '0'));
 	};
@@ -202,8 +200,8 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 		for (int beat = 0; beat < 4; beat++) {
 			for (int step = 0; step < 48;) {
 				if (note_it != notes.end() &&
-					note_it->offset >= offset - TimedObject::SNAP_ERROR_MARGIN &&
-					note_it->offset <= (offset + step_size) - TimedObject::SNAP_ERROR_MARGIN) {
+					note_it->offset >= offset - SNAP_ERROR_MARGIN &&
+					note_it->offset <= (offset + step_size) - SNAP_ERROR_MARGIN) {
 					measure[measure_row][note_it->index] = note_it->chr;
 					note_it++;
 					// If we find a note, we don't increment step
@@ -267,8 +265,7 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 
 std::vector<VsrgMapSM::Bpm>
 VsrgMapSM::processBpms(const std::vector<std::string>::iterator& begin,
-					   const std::vector<std::string>::iterator & end,
-					   double offset) {
+					   const std::vector<std::string>::iterator& end) {
 	/* StepMania uses measures instead of offsets, which makes it complicated
 	
 		Firstly, you have an offset, given as seconds, this is the audio offset.
@@ -281,7 +278,6 @@ VsrgMapSM::processBpms(const std::vector<std::string>::iterator& begin,
 		,9.000=115.470
 	*/
 
-	offset *= TimedObject::Units::second; // offset is given as seconds;
 
 	auto split = [](const std::string& str) -> Bpm {
 		size_t sep_loc = str.find('=');

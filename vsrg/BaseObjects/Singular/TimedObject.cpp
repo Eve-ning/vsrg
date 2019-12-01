@@ -10,7 +10,7 @@ double TimedObject::Units::bpmToMspb(const double& bpm) {
 	return 1.0 * minute / bpm;
 }
 
-double TimedObject::SNAP_ERROR_MARGIN = 0.1;
+//double TimedObject::SNAP_ERROR_MARGIN = 0.3; // will use local class declaration for now
 
 TimedObject::TimedObject() : offset_m_sec_(0) {}
 TimedObject::TimedObject(double offset_m_sec) : offset_m_sec_(offset_m_sec) {}
