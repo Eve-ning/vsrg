@@ -28,3 +28,14 @@ double TimingGridBase::length() const {
 	for (const auto& tgm : tgm_v_) sum += tgm.length();
 	return sum;
 }
+
+// Getting offset is slow when it's large
+// Will see which functions need a much faster access
+
+double TimingGridBase::getOffsetAt(const size_t measure_i, const size_t beat_i, const size_t snap_i) {
+	double offset = offset_ms_;
+	for (size_t i = 0; i < measure_i; i++) offset += tgm_v_[i].length();
+	for (size_t i = 0; i < beat_i; i++)    offset += tgm_v_[measure_i][i].length();
+	offset += tgm_v_[measure_i][beat_i].snapLength() * snap_i;
+	return offset;
+}
