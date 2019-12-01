@@ -1,7 +1,6 @@
 #pragma once
 #include "BaseObjects/Special/TimingGridSnap.h"
 
-
 class TimingGridBeat
 {
 public:
@@ -23,4 +22,14 @@ private:
 	double bpm_;
 	// We'll consider the lowest possible point where a BPM seems feasible
 };
+
+/* Footnote
+	This system doesn't support fractional beat cut:
+
+	That is, a beat cannot happen during a beat, if needed, the previous beat MUST
+	be intentionally sped up
+
+	Personally think it's not worth implementing since it's uncommon to have a 
+	reset during a beat
+*/
 
