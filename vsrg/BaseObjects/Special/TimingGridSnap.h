@@ -4,12 +4,16 @@
 class TimingGridSnap
 {
 public:
-	TimingGridSnap(const size_t columns);
+	TimingGridSnap();
 	~TimingGridSnap();
 
-	SPtrHitObject operator [](size_t i);
+	SPtrHitObject& operator [](size_t i);
 	std::vector<SPtrHitObject>& getHitObjectVector();
 	void setHitObjectVector(const std::vector<SPtrHitObject>& ho_v);
+
+	void push_back(SPtrHitObject ho);
+
+	bool isEmpty() const;
 
 	size_t size() const;
 

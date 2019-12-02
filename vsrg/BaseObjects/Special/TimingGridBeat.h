@@ -4,13 +4,15 @@
 class TimingGridBeat
 {
 public:
-	TimingGridBeat(const size_t snaps,
-				   const size_t columns);
+	TimingGridBeat(const size_t snaps);
 	~TimingGridBeat();
 
 	TimingGridSnap& operator [](size_t i);
 	double getBpm() const;
 	void setBpm(double bpm);
+
+	bool isEmpty() const;
+	bool divide(const size_t by);
 
 	size_t size() const;
 

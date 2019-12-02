@@ -1,9 +1,8 @@
 #include "stdafx.h"
 #include "TimingGridBase.h"
 
-
-TimingGridBase::TimingGridBase(const size_t measures, const size_t beats, const size_t snaps, const size_t columns) :
-	tgm_v_(measures, TimingGridMeasure(beats, snaps, columns)) {}
+TimingGridBase::TimingGridBase(const size_t measures, const size_t beats, const size_t snaps) :
+	tgm_v_(measures, TimingGridMeasure(beats, snaps)), offset_ms_(0.0) {}
 
 TimingGridBase::~TimingGridBase() {}
 
@@ -11,9 +10,16 @@ TimingGridMeasure& TimingGridBase::operator[](size_t i){
 	return tgm_v_[i];
 }
 
+bool TimingGridBase::isEmpty() const {
+	for (const auto& tgm : tgm_v_) {
+		if (!tgm.isEmpty()) return false;
+	}
+	return true;
+}
+
 size_t TimingGridBase::size() const { return tgm_v_.size(); }
 
-std::vector<double>& TimingGridBase::getBpmVector() const {
+std::vector<double> TimingGridBase::getBpmVector() const {
 	std::vector<double> bpm_v;
 	auto bpm_v_it = bpm_v.begin();
 	for (const auto& tgm : tgm_v_) {
