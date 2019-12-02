@@ -159,24 +159,10 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 	auto pushMeasure = [&measure, &chart, &measure_row]() {
 		// Optimize the 3D Vector before pushing
 
-		auto measure_ = measure; // This holds the temp frame
-		bool optimize_flag = false;
-
-		// 10 10 10 10 -> 1111
-		// We stop at 6ths (192 isn't just 2^x)
-		while (measure_.size() > 12 && !optimize_flag) {
-			for (int _ = measure.size() - 1; _ > 0; _ -= 2) {
-				if (measure[_] == std::vector<char>(4, '0'))
-					measure_.erase(measure_.begin() + _);
-				else {
-					optimize_flag = true; break;
-				}
-			}
-			measure = measure_;
-		}
+		auto measure_ = measure; // This holds the buffer
+		bool optimize_flag = true;
 
 		// 100 100 100 100 -> 1111 
-		optimize_flag = false;
 		for (int _ = measure.size() - 1; _ > 0; _ -= 3) {
 			if (measure[_] == std::vector<char>(4, '0') &&
 				measure[_ - 1] == std::vector<char>(4, '0')) {
@@ -184,12 +170,30 @@ void VsrgMapSM::saveFile(const std::string& file_path, bool overwrite) {
 				measure_.erase(measure_.begin() + _ - 1);
 			}
 			else {
-				optimize_flag = true; break;
+				optimize_flag = false; break;
 			}
 		}
 
-		// If we break half way through we don't override
-		if (!optimize_flag) measure = measure_;
+		// If we don't break half way through we save the buffer
+		if (optimize_flag) measure = measure_;
+		// Else we reset our buffer
+		else measure_ = measure;
+
+		// 10 10 10 10 -> 1111
+		optimize_flag = true;
+		while (measure_.size() > 4 && optimize_flag) {
+			for (int _ = measure.size() - 1; _ > 0; _ -= 2) {
+				if (measure[_] == std::vector<char>(4, '0'))
+					measure_.erase(measure_.begin() + _);
+				else {
+					optimize_flag = false; break;
+				}
+			}
+			measure = measure_;
+		}
+
+		// If we don't break half way through we save the buffer
+		if (optimize_flag) measure = measure_;
 
 		measure_row = 0; // Reset measure index
 		chart.push_back(measure);
