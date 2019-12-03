@@ -21,7 +21,7 @@ public:
 	double length() const;
 
 	std::vector<std::vector<double>> getBpm2DVector() const;
-	void setBpm2DVector(const std::vector<std::vector<double>> bpm_2v);
+	void setBpm2DVector(const std::vector<std::vector<double>>& bpm_2v);
 
 	// Getting offset is slow when it's large
 	// Will see which functions need a much faster access

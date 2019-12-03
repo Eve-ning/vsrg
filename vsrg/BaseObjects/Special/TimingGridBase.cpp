@@ -35,15 +35,15 @@ double TimingGridBase::length() const {
 	return sum;
 }
 
-inline std::vector<std::vector<double>> TimingGridBase::getBpm2DVector() const {
+std::vector<std::vector<double>> TimingGridBase::getBpm2DVector() const {
 	std::vector<std::vector<double>> bpm_2v;
 	for (const auto& tgm : tgm_v_) bpm_2v.push_back(tgm.getBpmVector());
 	return bpm_2v;
 }
 
-inline void TimingGridBase::setBpm2DVector(const std::vector<std::vector<double>> bpm_2v) {
+void TimingGridBase::setBpm2DVector(const std::vector<std::vector<double>>& bpm_2v) {
 	BOOST_ASSERT_MSG(bpm_2v.size() == size(), "Incorrect Size");
-	for (int i = 0; i < size(); i++) tgm_v_[i].setBpmVector(bpm_2v[i]);
+	for (size_t i = 0; i < size(); i++) tgm_v_[i].setBpmVector(bpm_2v[i]);
 }
 
 // Getting offset is slow when it's large
@@ -51,8 +51,12 @@ inline void TimingGridBase::setBpm2DVector(const std::vector<std::vector<double>
 
 double TimingGridBase::getOffsetAt(const size_t measure_i, const size_t beat_i, const size_t snap_i) {
 	double offset = offset_ms_;
-	for (size_t i = 0; i < measure_i; i++) offset += tgm_v_[i].length();
-	for (size_t i = 0; i < beat_i; i++)    offset += tgm_v_[measure_i][i].length();
+	for (size_t i = 0; i < measure_i; i++) { 
+		offset += tgm_v_[i].length(); 
+	}
+	for (size_t i = 0; i < beat_i; i++) {
+		offset += tgm_v_[measure_i][i].length();
+	}
 	offset += tgm_v_[measure_i][beat_i].snapLength() * snap_i;
 	return offset;
 }
