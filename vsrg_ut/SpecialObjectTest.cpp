@@ -14,17 +14,23 @@ namespace SpecialObject_
 		NormalNoteOsu ho_nn_1 = NormalNoteOsu(100.0, 3);
 		NormalNoteOsu ho_nn_2 = NormalNoteOsu(200.0, 4);
 
-		TimingGridBase tgb =
-			TimingGridBase(1, // Measures
-						   4, // Beats
-						   4); // Snaps
 				
 		TEST_METHOD(assignment)
 		{
+			TimingGridBase tgb = TimingGridBase(1, 4, 4); 
 			tgb[0][0][0].push_back(std::make_shared<NormalNoteOsu>(ho_nn_1));
 			Logger::WriteMessage(std::to_string(tgb[0][0][0][0]->getIndex()).c_str());
 		}
 
+		TEST_METHOD(offset)
+		{
+			TimingGridBase tgb = TimingGridBase(1, 4, 4); 
+
+			std::vector<std::vector<double>> bpm_2v(1, std::vector<double>(4, 120.0));
+			tgb.setBpm2DVector(bpm_2v);
+			Logger::WriteMessage(std::to_string(tgb.getOffsetAt(0,1,0)).c_str());
+			Logger::WriteMessage(std::to_string(tgb.getOffsetAt(0,1,1)).c_str());
+		}
 		TEST_METHOD(simplify_by1)
 		{
 			// 0000 0010 1000 0000
