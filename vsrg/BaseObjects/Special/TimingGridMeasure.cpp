@@ -27,7 +27,7 @@ std::vector<double> TimingGridMeasure::getBpmVector() const {
 
 void TimingGridMeasure::setBpmVector(const std::vector<double>& bpm_v) {
 	BOOST_ASSERT_MSG(bpm_v.size() == size(), "Incorrect Size");
-	for (int i = 0; i < size(); i++) tgb_v_[i].setBpm(bpm_v[i]);
+	for (size_t i = 0; i < size(); i++) tgb_v_[i].setBpm(bpm_v[i]);
 }
 
 double TimingGridMeasure::length(double unit_scale) const {
