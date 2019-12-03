@@ -45,6 +45,6 @@ bool TimingGridBeat::divide(const size_t by) {
 
 size_t TimingGridBeat::size() const { return tgs_v_.size(); }
 
-double TimingGridBeat::length(double unit_scale) const { return 1 * unit_scale / (bpm_ * TimedObject::Units::minute); }
+double TimingGridBeat::length(double unit_scale) const { return TimedObject::Units::minute / bpm_; }
 double TimingGridBeat::snapLength(double unit_scale) const { return length(unit_scale) / size(); }
 
