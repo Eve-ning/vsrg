@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "TimingGridBeat.h"
 
-TimingGridBeat::TimingGridBeat(const size_t snaps) :
+TimingGridBeat::TimingGridBeat(const size_t snaps, const double bpm) :
 	tgs_v_(std::vector<TimingGridSnap>(snaps, TimingGridSnap())),
-	bpm_(-1.0) {} // TODO: Make bpm_ API
+	bpm_(bpm) {}
 
 TimingGridBeat::~TimingGridBeat() {}
 

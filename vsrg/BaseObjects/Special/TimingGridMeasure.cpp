@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "TimingGridMeasure.h"
 
-TimingGridMeasure::TimingGridMeasure(const size_t beats, const size_t snaps) :
-	tgb_v_(beats, TimingGridBeat(snaps)) {}
+TimingGridMeasure::TimingGridMeasure(const size_t beats, const size_t snaps, const double bpm) :
+	tgb_v_(beats, TimingGridBeat(snaps, bpm)) {}
 
 TimingGridMeasure::~TimingGridMeasure() {}
 
@@ -23,6 +23,11 @@ std::vector<double> TimingGridMeasure::getBpmVector() const {
 	std::vector<double> bpm_v = {};
 	for (const auto& tgb : tgb_v_) bpm_v.push_back(tgb.getBpm());
 	return bpm_v;
+}
+
+void TimingGridMeasure::setBpmVector(const std::vector<double>& bpm_v) {
+	BOOST_ASSERT_MSG(bpm_v.size() == size(), "Incorrect Size");
+	for (int i = 0; i < size(); i++) tgb_v_[i].setBpm(bpm_v[i]);
 }
 
 double TimingGridMeasure::length(double unit_scale) const {

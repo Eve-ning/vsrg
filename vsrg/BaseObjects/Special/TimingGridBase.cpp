@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "TimingGridBase.h"
 
-TimingGridBase::TimingGridBase(const size_t measures, const size_t beats, const size_t snaps) :
-	tgm_v_(measures, TimingGridMeasure(beats, snaps)), offset_ms_(0.0) {}
+TimingGridBase::TimingGridBase(const size_t measures, const size_t beats, const size_t snaps, const double offset_ms, const double bpm) :
+	tgm_v_(measures, TimingGridMeasure(beats, snaps, bpm)), offset_ms_(offset_ms) {}
 
 TimingGridBase::~TimingGridBase() {}
 
@@ -33,6 +33,17 @@ double TimingGridBase::length() const {
 	double sum = 0.0;
 	for (const auto& tgm : tgm_v_) sum += tgm.length();
 	return sum;
+}
+
+inline std::vector<std::vector<double>> TimingGridBase::getBpm2DVector() const {
+	std::vector<std::vector<double>> bpm_2v;
+	for (const auto& tgm : tgm_v_) bpm_2v.push_back(tgm.getBpmVector());
+	return bpm_2v;
+}
+
+inline void TimingGridBase::setBpm2DVector(const std::vector<std::vector<double>> bpm_2v) {
+	BOOST_ASSERT_MSG(bpm_2v.size() == size(), "Incorrect Size");
+	for (int i = 0; i < size(); i++) tgm_v_[i].setBpmVector(bpm_2v[i]);
 }
 
 // Getting offset is slow when it's large
