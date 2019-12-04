@@ -15,8 +15,12 @@ public:
 	bool isEmpty() const;
 
 	size_t size() const;
-	std::vector<double> getBpmVector() const;
-	void setBpmVector(const std::vector<double>& bpm_v);
+	std::vector<double> getBpm1DVector() const;
+	void setBpm1DVector(const std::vector<double>& bpm_v);
+
+	std::vector<TimingGridBeat> getTimingGridBeatVector() const;
+	void setTimingGridBeatVector(const std::vector<TimingGridBeat>& tgb_v);
+
 	double length(double unit_scale = TimedObject::Units::msecond) const;
 
 	void simplify(size_t by);

@@ -19,16 +19,19 @@ bool TimingGridMeasure::isEmpty() const {
 
 size_t TimingGridMeasure::size() const { return tgb_v_.size(); }
 
-std::vector<double> TimingGridMeasure::getBpmVector() const {
+std::vector<double> TimingGridMeasure::getBpm1DVector() const {
 	std::vector<double> bpm_v = {};
 	for (const auto& tgb : tgb_v_) bpm_v.push_back(tgb.getBpm());
 	return bpm_v;
 }
 
-void TimingGridMeasure::setBpmVector(const std::vector<double>& bpm_v) {
+void TimingGridMeasure::setBpm1DVector(const std::vector<double>& bpm_v) {
 	BOOST_ASSERT_MSG(bpm_v.size() == size(), "Incorrect Size");
 	for (size_t i = 0; i < size(); i++) tgb_v_[i].setBpm(bpm_v[i]);
 }
+
+std::vector<TimingGridBeat> TimingGridMeasure::getTimingGridBeatVector() const { return tgb_v_; }
+void TimingGridMeasure::setTimingGridBeatVector(const std::vector<TimingGridBeat>& tgb_v) { tgb_v_ = tgb_v; }
 
 double TimingGridMeasure::length(double unit_scale) const {
 	double sum = 0.0;
