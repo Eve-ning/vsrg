@@ -39,12 +39,13 @@ std::vector<double> TimingGridBase::getBpm1DVector() const {
 
 void TimingGridBase::setBpm1DVector(const std::vector<double>& bpm_v) {
 	auto bpm_start = bpm_v.begin();
-	auto bpm_end = bpm_v.begin();
+	auto bpm_end = bpm_v.end();
 	std::vector<double> buffer;
 	for (auto& tgm : tgm_v_) {
 		bpm_end = bpm_start + tgm.size();
-		std::copy(bpm_start, bpm_end, buffer.begin());
+		std::copy(bpm_start, bpm_end, std::back_inserter(buffer));
 		tgm.setBpm1DVector(buffer);
+		buffer.clear();
 		bpm_start = bpm_end;
 	}
 }

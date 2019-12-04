@@ -5,8 +5,8 @@
 // To faciliate index API
 struct TimingGridIndex {
 	TimingGridIndex(size_t measure_ = 0,
-					size_t snap_ = 0,
-					size_t beat_ = 0) :
+					size_t beat_ = 0,
+					size_t snap_ = 0) :
 		snap(snap_), beat(beat_), measure(measure_) {}
 	size_t snap = 0, beat = 0, measure = 0;
 };
