@@ -20,6 +20,8 @@ public:
 	std::vector<double> getBpmVector() const;
 	double length() const;
 
+	std::vector<double> getBpm1DVector() const;
+	void setBpm1DVector(const std::vector<double>& bpm_v);
 	std::vector<std::vector<double>> getBpm2DVector() const;
 	void setBpm2DVector(const std::vector<std::vector<double>>& bpm_2v);
 

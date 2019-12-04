@@ -20,10 +20,11 @@ bool TimingGridBase::isEmpty() const {
 size_t TimingGridBase::size() const { return tgm_v_.size(); }
 
 std::vector<double> TimingGridBase::getBpmVector() const {
+std::vector<double> TimingGridBase::getBpm1DVector() const {
 	std::vector<double> bpm_v;
 	auto bpm_v_it = bpm_v.begin();
 	for (const auto& tgm : tgm_v_) {
-		std::vector<double> bpm_v_part = tgm.getBpmVector();
+		std::vector<double> bpm_v_part = tgm.getBpm1DVector();
 		bpm_v_it = std::copy(bpm_v_part.begin(), bpm_v_part.end(), bpm_v_it);
 	}
 	return bpm_v;
@@ -33,6 +34,16 @@ double TimingGridBase::length() const {
 	double sum = 0.0;
 	for (const auto& tgm : tgm_v_) sum += tgm.length();
 	return sum;
+void TimingGridBase::setBpm1DVector(const std::vector<double>& bpm_v) {
+	auto bpm_start = bpm_v.begin();
+	auto bpm_end = bpm_v.begin();
+	std::vector<double> buffer;
+	for (auto& tgm : tgm_v_) {
+		bpm_end = bpm_start + tgm.size();
+		std::copy(bpm_start, bpm_end, buffer.begin());
+		tgm.setBpm1DVector(buffer);
+		bpm_start = bpm_end;
+	}
 }
 
 std::vector<std::vector<double>> TimingGridBase::getBpm2DVector() const {
