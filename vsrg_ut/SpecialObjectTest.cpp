@@ -32,11 +32,11 @@ namespace SpecialObject_
 			// 2 M / 4 B / 4 S
 
 			// 500 (1 Beat)
-			Assert::AreEqual(500.0, tgb.getOffsetAt(0,1,0)); 
+			Assert::AreEqual(500.0, tgb.getOffset(0,1,0)); 
 			// 500 (1 Beat) + 125 (1 Snap)
-			Assert::AreEqual(500.0 + 125.0, tgb.getOffsetAt(0,1,1)); 
+			Assert::AreEqual(500.0 + 125.0, tgb.getOffset(0,1,1)); 
 			// 2000 (1 Measure) + 1000 (2 Beats) + 375 (3 Snaps)
-			Assert::AreEqual(2000.0 + 1000.0 + 375.0, tgb.getOffsetAt(1,2,3)); 
+			Assert::AreEqual(2000.0 + 1000.0 + 375.0, tgb.getOffset(1,2,3)); 
 		}
 		TEST_METHOD(offset_2v)
 		{
@@ -48,11 +48,11 @@ namespace SpecialObject_
 			// 2 M / 4 B / 4 S
 
 			// 500 (1 Beat)
-			Assert::AreEqual(500.0, tgb.getOffsetAt(0,1,0)); 
+			Assert::AreEqual(500.0, tgb.getOffset(0,1,0)); 
 			// 500 (1 Beat) + 125 (1 Snap)
-			Assert::AreEqual(500.0 + 125.0, tgb.getOffsetAt(0,1,1)); 
+			Assert::AreEqual(500.0 + 125.0, tgb.getOffset(0,1,1)); 
 			// 2000 (1 Measure) + 1000 (2 Beats) + 375 (3 Snaps)
-			Assert::AreEqual(2000.0 + 1000.0 + 375.0, tgb.getOffsetAt(1,2,3)); 
+			Assert::AreEqual(2000.0 + 1000.0 + 375.0, tgb.getOffset(1,2,3)); 
 		}
 		TEST_METHOD(simplify_by1)
 		{
