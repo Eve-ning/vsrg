@@ -8,7 +8,7 @@ SPtrHitObject& TimingGridSnap::operator[](size_t i){
 	return ho_v_[i]; 
 }
 
-std::vector<SPtrHitObject>& TimingGridSnap::getHitObjectVector() { return ho_v_; }
+std::vector<SPtrHitObject> TimingGridSnap::getHitObjectVector() const { return ho_v_; }
 void TimingGridSnap::setHitObjectVector(const std::vector<SPtrHitObject>& ho_v) { ho_v_ = ho_v; }
 
 void TimingGridSnap::push_back(SPtrHitObject ho) {
