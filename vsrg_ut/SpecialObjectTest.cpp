@@ -21,7 +21,24 @@ namespace SpecialObject_
 			tgb[0][0][0].push_back(std::make_shared<NormalNoteOsu>(ho_nn_1));
 			Assert::AreEqual(3, tgb[0][0][0][0]->getIndex());
 		}
-		TEST_METHOD(offset)
+
+		TEST_METHOD(offset_1v)
+		{
+			TimingGridBase tgb = TimingGridBase(2, 4, 4); 
+
+			std::vector<double> bpm_1v(8, 120.0);
+			tgb.setBpm1DVector(bpm_1v);
+
+			// 2 M / 4 B / 4 S
+
+			// 500 (1 Beat)
+			Assert::AreEqual(500.0, tgb.getOffsetAt(0,1,0)); 
+			// 500 (1 Beat) + 125 (1 Snap)
+			Assert::AreEqual(500.0 + 125.0, tgb.getOffsetAt(0,1,1)); 
+			// 2000 (1 Measure) + 1000 (2 Beats) + 375 (3 Snaps)
+			Assert::AreEqual(2000.0 + 1000.0 + 375.0, tgb.getOffsetAt(1,2,3)); 
+		}
+		TEST_METHOD(offset_2v)
 		{
 			TimingGridBase tgb = TimingGridBase(2, 4, 4); 
 
