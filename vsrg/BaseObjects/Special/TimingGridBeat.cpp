@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TimingGridBeat.h"
 
-TimingGridBeat::TimingGridBeat(const size_t snaps, const double bpm) :
+TimingGridBeat::TimingGridBeat(size_t snaps, double bpm) :
 	tgs_v_(std::vector<TimingGridSnap>(snaps, TimingGridSnap())),
 	bpm_(bpm) {}
 

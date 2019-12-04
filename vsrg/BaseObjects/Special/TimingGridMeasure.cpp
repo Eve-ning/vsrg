@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TimingGridMeasure.h"
 
-TimingGridMeasure::TimingGridMeasure(const size_t beats, const size_t snaps, const double bpm) :
+TimingGridMeasure::TimingGridMeasure(size_t beats, size_t snaps, double bpm) :
 	tgb_v_(beats, TimingGridBeat(snaps, bpm)) {}
 
 TimingGridMeasure::~TimingGridMeasure() {}

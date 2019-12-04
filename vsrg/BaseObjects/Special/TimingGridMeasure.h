@@ -5,9 +5,9 @@ class TimingGridMeasure
 {
 public:
 	// If beats always contain the same amount of snaps
-	TimingGridMeasure(const size_t beats,
-					  const size_t snaps,
-					  const double bpm = 0.0); 
+	TimingGridMeasure(size_t beats,
+					  size_t snaps,
+					  double bpm = 0.0); 
 	~TimingGridMeasure();
 
 	TimingGridBeat& operator [](size_t i);
