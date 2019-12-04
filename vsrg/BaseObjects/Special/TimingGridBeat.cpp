@@ -14,6 +14,9 @@ TimingGridSnap& TimingGridBeat::operator[](size_t i){
 double TimingGridBeat::getBpm() const { return bpm_; }
 void TimingGridBeat::setBpm(double bpm) { bpm_ = bpm; }
 
+std::vector<TimingGridSnap> TimingGridBeat::getTimingGridSnapVector() const { return tgs_v_; }
+void TimingGridBeat::setTimingGridSnapVector(const std::vector<TimingGridSnap>& tgs_v) { tgs_v_ = tgs_v; }
+
 bool TimingGridBeat::isEmpty() const {
 	for (const auto& tgs : tgs_v_) {
 		if (!tgs.isEmpty()) return false;

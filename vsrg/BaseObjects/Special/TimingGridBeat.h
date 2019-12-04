@@ -11,6 +11,9 @@ public:
 	double getBpm() const;
 	void setBpm(double bpm);
 
+	std::vector<TimingGridSnap> getTimingGridSnapVector() const;
+	void setTimingGridSnapVector(const std::vector<TimingGridSnap>& tgs_v);
+
 	bool isEmpty() const;
 	bool divide(const size_t by);
 
