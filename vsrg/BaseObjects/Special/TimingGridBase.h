@@ -11,9 +11,9 @@ class TimingGridBase
 {
 public:
 	// If measures always contain the same amount of beats
-	TimingGridBase(size_t measures,
-				   size_t beats,
-				   size_t snaps,
+	TimingGridBase(size_t measures = 0,
+				   size_t beats = 0,
+				   size_t snaps = 0,
 				   double offset_ms = 0.0,
 			       double bpm = 0.0);
 
