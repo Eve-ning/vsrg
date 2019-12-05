@@ -78,7 +78,7 @@ double TimingGridBase::getOffset(size_t measure, size_t beat, size_t snap) {
 	return getOffset(TimingGridIndex(measure, beat, snap));
 }
 
-TimingGridIndex TimingGridBase::getIndex(double offset_ms, double unit_scale = TimedObject::Units::msecond) {
+TimingGridIndex TimingGridBase::getIndex(double offset_ms, double unit_scale) {
 	offset_ms *= unit_scale;
 	// This is an offset search algorithm
 	double offset_i = 0.0;
@@ -140,7 +140,7 @@ TimingGridSnap& TimingGridBase::getSnap(const TimingGridIndex& index) {
 	return tgm_v_[index.measure][index.beat][index.snap];
 }
 
-TimingGridSnap& TimingGridBase::getSnap(double offset_ms, double unit_scale = TimedObject::Units::msecond) {
+TimingGridSnap& TimingGridBase::getSnap(double offset_ms, double unit_scale) {
 	return getSnap(getIndex(offset_ms * unit_scale));
 }
 
@@ -149,7 +149,7 @@ void TimingGridBase::setSnap(const TimingGridIndex& index, const std::vector<SPt
 }
 
 void TimingGridBase::setSnap(double offset_ms, const std::vector<SPtrHitObject>& ho_v,
-						     double unit_scale = TimedObject::Units::msecond) {
+						     double unit_scale) {
 	setSnap(getIndex(offset_ms * unit_scale), ho_v);
 }
 
@@ -158,7 +158,7 @@ void TimingGridBase::pushSnap(const TimingGridIndex& index, const SPtrHitObject&
 }
 
 void TimingGridBase::pushSnap(double offset_ms, const SPtrHitObject& ho,
-					          double unit_scale = TimedObject::Units::msecond) {
+					          double unit_scale) {
 	pushSnap(getIndex(offset_ms * unit_scale), ho);
 }
 
