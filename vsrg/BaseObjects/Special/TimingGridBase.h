@@ -74,7 +74,7 @@ public:
 	void pushSnap(double offset_ms,
 				  const SPtrHitObject& ho,
 				  double unit_scale = TimedObject::Units::msecond);
-
+	void pushMeasure(const TimingGridMeasure& tgm);
 
 private:
 

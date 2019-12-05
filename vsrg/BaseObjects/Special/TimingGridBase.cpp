@@ -171,3 +171,7 @@ void TimingGridBase::pushSnap(double offset_ms, const SPtrHitObject& ho,
 	pushSnap(getIndex(offset_ms * unit_scale), ho);
 }
 
+void TimingGridBase::pushMeasure(const TimingGridMeasure& tgm) {
+	tgm_v_.push_back(tgm);
+}
+
