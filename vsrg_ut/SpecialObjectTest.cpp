@@ -14,11 +14,17 @@ namespace SpecialObject_
 		NormalNoteOsu ho_nn_1 = NormalNoteOsu(100.0, 3);
 		NormalNoteOsu ho_nn_2 = NormalNoteOsu(200.0, 4);
 
-		TEST_METHOD(assignment)
+		TEST_METHOD(assignment_index)
 		{
 			TimingGridBase tgb = TimingGridBase(1, 4, 4);
-			tgb.pushSnap(TimingGridIndex(0,0,0), std::make_shared<NormalNoteOsu>(ho_nn_1));
-			Assert::AreEqual(3, tgb.getSnap(TimingGridIndex(0,0,0))[0]->getIndex());
+			tgb.pushSnap(TimingGridIndex(0,0,1), std::make_shared<NormalNoteOsu>(ho_nn_1));
+			Assert::AreEqual(3, tgb.getSnap(TimingGridIndex(0,0,1))[0]->getIndex());
+		}
+		TEST_METHOD(assignment_offset)
+		{
+			TimingGridBase tgb = TimingGridBase(1, 4, 4);
+			tgb.pushSnap(125.0, std::make_shared<NormalNoteOsu>(ho_nn_1));
+			Assert::AreEqual(3, tgb.getSnap(125.0)[0]->getIndex());
 		}
 
 		TEST_METHOD(offset_1v)
