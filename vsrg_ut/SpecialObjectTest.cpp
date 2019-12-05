@@ -76,7 +76,6 @@ namespace SpecialObject_
 			Assert::AreEqual(2, (int) index.beat);
 			Assert::AreEqual(3, (int) index.snap);
 		}
-
 		TEST_METHOD(getIndex_fuzzy)
 		{
 			TimingGridBase tgb = TimingGridBase(2, 4, 4);
@@ -105,6 +104,17 @@ namespace SpecialObject_
 			Assert::AreEqual(1, (int) index.measure);
 			Assert::AreEqual(0, (int) index.beat);
 			Assert::AreEqual(0, (int) index.snap);
+		}
+		TEST_METHOD(getIndex_bad)
+		{
+			TimingGridBase tgb = TimingGridBase(2, 4, 4);
+
+			std::vector<std::vector<double>> bpm_2v(2, std::vector<double>(4, 120.0));
+			tgb.setBpm2DVector(bpm_2v);
+			
+			// One snap is 125ms, the match is a fuzzy round match
+			Assert::ExpectException<std::out_of_range>([&](){tgb.getIndex(100000.0); });
+
 		}
 	};
 	TEST_CLASS(TimingGridMeasure_)
