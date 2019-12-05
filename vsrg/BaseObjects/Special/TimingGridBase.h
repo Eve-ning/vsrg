@@ -4,9 +4,6 @@
 #include "BaseObjects/Multiple/HitObjectVector.h"
 #include "BaseObjects/Singular/Event/TimingPoint.h"
 
-// Temp include for intellisense
-#include "GameObjects/SM/Singular/Event/TimingPointSM.h"
-
 class TimingGridBase
 {
 public:
@@ -17,18 +14,6 @@ public:
 				   double offset_ms = 0.0,
 			       double bpm = 0.0);
 
-	template<class TimingPointClass>
-	TimingGridBase(const SPtrEventObjectVector& eo_v,
-				   const SPtrHitObjectVector& ho_v) {
-		auto tp_v = eo_v->getClassOnly<TimingPointClass>();
-		
-		// Sorts the vector
-		std::sort(tp_v.begin(), tp_v.end()); 
-			//[](const TimingPointClass& i, const TimingPointClass& j) {
-			//	return i.getOffset() < j.getOffset();
-			//});
-		
-	}
 	~TimingGridBase();
 
 	TimingGridMeasure& operator [](size_t i);
