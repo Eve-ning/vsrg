@@ -6,6 +6,9 @@
 #include <GameObjects/SM/Singular/Hit/MineNoteSM.h>
 #include <GameObjects/SM/Singular/Hit/RollNoteSM.h>
 #include <GameObjects/SM/Singular/Event/TimingPointSM.h>
+#include <GameObjects/SM/Special/TimingGridBaseSM.h>
+#include <GameObjects/Osu/Map/VsrgMapOsu.h>
+#include <GameObjects/Osu/Singular/Event/TimingPointOsu.h>
 #include <iostream>
 #include <filesystem>
 #include <fstream>
@@ -44,6 +47,15 @@ namespace VsrgMapSM_
 
 			//osumap.saveAsVsrg("testing.vsrg", true);
 			//osumap.saveAsVsrg("test.vsrg", true);
+		}
+		TEST_METHOD(base)
+		{
+			auto tgb = TimingGridBaseSM();
+			VsrgMapOsu osu;
+			osu.loadFile("../test_files/Osu/Camellia - Newspapers for Magicians (Leniane) [Grimoire for Spells].osu");
+			tgb.loadFromMS<TimingPointOsu>(osu.getEventObjectVector(),
+								           osu.getHitObjectVector());
+			auto out = tgb.getBpm2DVector();
 		}
 	};
 }
