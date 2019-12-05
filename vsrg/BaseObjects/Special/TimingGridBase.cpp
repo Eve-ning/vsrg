@@ -138,10 +138,9 @@ TimingGridIndex TimingGridBase::getIndex(double offset_ms, double unit_scale) co
 	double error_s = abs(offset_ms - offset_s);
 	double error_b = abs(offset_ms - offset_b);
 	double error_m = abs(offset_ms - offset_m);
-	constexpr double epsilon = std::numeric_limits<double>::epsilon();
 
-	if (error_m - error_b < epsilon && error_m - error_s < epsilon) { return index_m; }
-	else if (error_b - error_s < epsilon) { return index_b;  }
+	if (error_m - error_b < DBL_EPSILON && error_m - error_s < DBL_EPSILON) { return index_m; }
+	else if (error_b - error_s < DBL_EPSILON) { return index_b;  }
 	else { return index_s; }
 }
 
