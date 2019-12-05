@@ -4,7 +4,7 @@
 class TimingGridBeat
 {
 public:
-	TimingGridBeat(size_t snaps, double bpm = 0.0);
+	TimingGridBeat(size_t snaps = 0, double bpm = 0.0);
 	~TimingGridBeat();
 
 	TimingGridSnap& operator [](size_t i);
