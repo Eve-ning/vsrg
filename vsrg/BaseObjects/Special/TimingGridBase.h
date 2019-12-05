@@ -53,12 +53,25 @@ public:
 					 size_t beat,
 				     size_t snap);
 
-	TimingGridIndex getIndex(const double& offset);
+	// Uses an offset to estimate the index
+	TimingGridIndex getIndex(double offset_ms,
+							 double unit_scale = TimedObject::Units::msecond);
+
+	// Grabs a snap by reference from index
 	TimingGridSnap& getSnap(const TimingGridIndex& index);
+	TimingGridSnap& getSnap(double offset_ms,
+						    double unit_scale = TimedObject::Units::msecond);
+
 	void setSnap(const TimingGridIndex& index,
 				 const std::vector<SPtrHitObject>& ho_v);
+	void setSnap(double offset_ms,
+				 const std::vector<SPtrHitObject>& ho_v,
+				 double unit_scale = TimedObject::Units::msecond);
 	void pushSnap(const TimingGridIndex& index,
 				  const SPtrHitObject& ho);
+	void pushSnap(double offset_ms,
+				  const SPtrHitObject& ho,
+				  double unit_scale = TimedObject::Units::msecond);
 
 
 private:

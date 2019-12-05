@@ -78,7 +78,8 @@ double TimingGridBase::getOffset(size_t measure, size_t beat, size_t snap) {
 	return getOffset(TimingGridIndex(measure, beat, snap));
 }
 
-TimingGridIndex TimingGridBase::getIndex(const double& offset) {
+TimingGridIndex TimingGridBase::getIndex(double offset_ms, double unit_scale = TimedObject::Units::msecond) {
+	offset_ms *= unit_scale;
 	// This is an offset search algorithm
 	double offset_i = 0.0;
 	TimingGridIndex index = TimingGridIndex(0, 0, 0);
@@ -90,7 +91,7 @@ TimingGridIndex TimingGridBase::getIndex(const double& offset) {
 
 	// By Measures
 	auto measure_i = tgm_v_.begin();
-	while (offset_i + measure_i->length() <= offset) { // If adding a measure length exceeds
+	while (offset_i + measure_i->length() <= offset_ms) { // If adding a measure length exceeds
 		offset_i += measure_i->length();
 		measure_i++;
 		index.measure++;
@@ -104,7 +105,7 @@ TimingGridIndex TimingGridBase::getIndex(const double& offset) {
 	// By Beats
 	auto tgb_v = measure_i->getTimingGridBeatVector();
 	auto beat_i = tgb_v.begin();
-	while (offset_i + beat_i->length() <= offset) { // If adding a beat length exceeds 
+	while (offset_i + beat_i->length() <= offset_ms) { // If adding a beat length exceeds 
 		offset_i += beat_i->length();
 		beat_i++;
 		index.beat++;
@@ -117,19 +118,17 @@ TimingGridIndex TimingGridBase::getIndex(const double& offset) {
 
 	// By Snaps
 	double snap_length = beat_i->snapLength();
-	index.snap = (size_t)(std::round((offset - offset_i) / snap_length));
+	index.snap = (size_t)(std::round((offset_ms - offset_i) / snap_length));
 
 	// Save snap
 	index_s = index;
 	offset_s = offset_i + beat_i->snapLength() * index.snap;
 
-	
 	// We compare all states to see which one works best.
 	// If there's a tie, we take the most optimized one.
-
-	double error_s = abs(offset - offset_s);
-	double error_b = abs(offset - offset_b);
-	double error_m = abs(offset - offset_m);
+	double error_s = abs(offset_ms - offset_s);
+	double error_b = abs(offset_ms - offset_b);
+	double error_m = abs(offset_ms - offset_m);
 	constexpr double epsilon = std::numeric_limits<double>::epsilon();
 
 	if (error_m - error_b < epsilon && error_m - error_s < epsilon) { return index_m; }
@@ -141,10 +140,25 @@ TimingGridSnap& TimingGridBase::getSnap(const TimingGridIndex& index) {
 	return tgm_v_[index.measure][index.beat][index.snap];
 }
 
+TimingGridSnap& TimingGridBase::getSnap(double offset_ms, double unit_scale = TimedObject::Units::msecond) {
+	return getSnap(getIndex(offset_ms * unit_scale));
+}
+
 void TimingGridBase::setSnap(const TimingGridIndex& index, const std::vector<SPtrHitObject>& ho_v) {
 	getSnap(index).setHitObjectVector(ho_v);
+}
+
+void TimingGridBase::setSnap(double offset_ms, const std::vector<SPtrHitObject>& ho_v,
+						     double unit_scale = TimedObject::Units::msecond) {
+	setSnap(getIndex(offset_ms * unit_scale), ho_v);
 }
 
 void TimingGridBase::pushSnap(const TimingGridIndex& index, const SPtrHitObject& ho) {
 	getSnap(index).push_back(ho);
 }
+
+void TimingGridBase::pushSnap(double offset_ms, const SPtrHitObject& ho,
+					          double unit_scale = TimedObject::Units::msecond) {
+	pushSnap(getIndex(offset_ms * unit_scale), ho);
+}
+
