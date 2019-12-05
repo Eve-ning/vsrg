@@ -39,8 +39,8 @@ namespace VsrgMapSM_
 			auto mn_v = smmap.getHitObjectVector()->getClassOnly<MineNoteSM>();
 			auto rn_v = smmap.getHitObjectVector()->getClassOnly<RollNoteSM>();
 			auto tp_v = smmap.getEventObjectVector()->getClassOnly<TimingPointSM>();
+			smmap.dumpFile("out.txt", true);
 			smmap.saveFile("t.sm", true);
-			//osumap.saveFile("test.osu", true);
 
 			//osumap.saveAsVsrg("testing.vsrg", true);
 			//osumap.saveAsVsrg("test.vsrg", true);

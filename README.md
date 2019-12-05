@@ -2,7 +2,9 @@
 I'm hoping this could be a universal vsrg library that other engines could extend from.
 
 ## Goal
-Extensibility on a rich library that covers new and old formats
+Cover all the most common format conversion, then act like a middle man for other VSRG related projects.
+
+Be it data analytics, conversion of maps, etc., it should be much easier with a package like this.
 
 ### Surface-level Convention Note
 While this is easily expandable, this library heavily focuses on efficient memory management. There will be a lot of functions requiring `shared_ptr` usage instead of relying deep copying of objects.
@@ -16,4 +18,4 @@ You can view how you can extend from this repository by looking at my [Examples]
 Everything is documented in [Road Map](roadmap.md). I will list everything that will be implemented and possibly more over time.
 
 ### Dependents
-- [**yaml_cpp**](https://github.com/jbeder/yaml-cpp) for YAML standard format exporting and importing
+- Boost

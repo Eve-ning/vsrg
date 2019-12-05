@@ -31,7 +31,7 @@ public:
 	size_t size() const;
 
 	std::vector<double> getOffsetVector(bool sort = false,
-		double unit_scale = TimedObject::UnitScale::msecond) const;
+		double unit_scale = TimedObject::Units::msecond) const;
 	
 	/// Runs a cast check on the vector and returns a vector of matches of class specified
 	template<class T>
@@ -50,12 +50,12 @@ public:
 	std::vector<SPtrTimedObject> getTimedObjectVector() const;	
 	void setTimedObjectVector(const std::vector<SPtrTimedObject> & to_v);
 
-	double getEarliestOffset(double unit_scale = TimedObject::UnitScale::msecond) const;
-	double getLatestOffset(double unit_scale = TimedObject::UnitScale::msecond) const;
+	double getEarliestOffset(double unit_scale = TimedObject::Units::msecond) const;
+	double getLatestOffset(double unit_scale = TimedObject::Units::msecond) const;
 	SPtrTimedObject getEarliestObject() const;
 	SPtrTimedObject getLatestObject() const;
-	SPtrTimedObject getLowerObject(double offset, double unit_scale = TimedObject::UnitScale::msecond) const;
-	SPtrTimedObject getUpperObject(double offset, double unit_scale = TimedObject::UnitScale::msecond) const;
+	SPtrTimedObject getLowerObject(double offset, double unit_scale = TimedObject::Units::msecond) const;
+	SPtrTimedObject getUpperObject(double offset, double unit_scale = TimedObject::Units::msecond) const;
 
 	/// Loops the vector and calls isValid for every element, returns the AND result
 	virtual bool isValid() const final;

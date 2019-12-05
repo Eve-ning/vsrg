@@ -4,7 +4,7 @@
 // This doesn't really follow ScrollPoint implementation, so we'll use EventObj
 class StopPointSM : public EventObject
 {
-	StopPointSM(double offset_m_sec, double length, double unit_scale = TimedObject::UnitScale::second);
+	StopPointSM(double offset_m_sec, double length, double unit_scale = TimedObject::Units::second);
 	
 	SPtrTimedObject Clone() const override;
 
@@ -13,10 +13,10 @@ class StopPointSM : public EventObject
 
 	StopPointSM(double offset_m_sec, double length_m_sec);
 
-	double getLength(double unit_scale = TimedObject::UnitScale::second) const;
-	void setLength(double length, double unit_scale = TimedObject::UnitScale::second);
-	double getEnd(double unit_scale = TimedObject::UnitScale::second) const;
-	void setEnd(double end, double unit_scale = TimedObject::UnitScale::second);
+	double getLength(double unit_scale = TimedObject::Units::second) const;
+	void setLength(double length, double unit_scale = TimedObject::Units::second);
+	double getEnd(double unit_scale = TimedObject::Units::second) const;
+	void setEnd(double end, double unit_scale = TimedObject::Units::second);
 
 	bool isValid() const override;
 

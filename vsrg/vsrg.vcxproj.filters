@@ -183,7 +183,16 @@
     <ClInclude Include="GameObjects\SM\Special\TimingPointMeasureSM.h">
       <Filter>Game Objects\SM\Special</Filter>
     </ClInclude>
-    <ClInclude Include="BaseObjects\Special\TimingPointMeasure.h">
+    <ClInclude Include="BaseObjects\Special\TimingGridMeasure.h">
+      <Filter>Base Objects\Special</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseObjects\Special\TimingGridSnap.h">
+      <Filter>Base Objects\Special</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseObjects\Special\TimingGridBase.h">
+      <Filter>Base Objects\Special</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseObjects\Special\TimingGridBeat.h">
       <Filter>Base Objects\Special</Filter>
     </ClInclude>
   </ItemGroup>
@@ -305,7 +314,16 @@
     <ClCompile Include="GameObjects\SM\Special\TimingPointMeasureSM.cpp">
       <Filter>Game Objects\SM\Special</Filter>
     </ClCompile>
-    <ClCompile Include="BaseObjects\Special\TimingPointMeasure.cpp">
+    <ClCompile Include="BaseObjects\Special\TimingGridSnap.cpp">
+      <Filter>Base Objects\Special</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseObjects\Special\TimingGridBase.cpp">
+      <Filter>Base Objects\Special</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseObjects\Special\TimingGridBeat.cpp">
+      <Filter>Base Objects\Special</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseObjects\Special\TimingGridMeasure.cpp">
       <Filter>Base Objects\Special</Filter>
     </ClCompile>
   </ItemGroup>

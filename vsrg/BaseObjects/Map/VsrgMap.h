@@ -14,6 +14,8 @@ public:
 	// Save in derived format
 	virtual void saveFile(const std::string & file_path, bool overwrite) = 0;
 
+	virtual void dumpFile(const std::string& file_path, bool overwrite);
+
 	virtual SPtrHitObjectVector getHitObjectVector() const final;
 	virtual SPtrEventObjectVector getEventObjectVector() const final;
 	virtual void setHitObjectVector(const SPtrHitObjectVector & ho_v) final;
