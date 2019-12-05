@@ -88,43 +88,41 @@ TimingGridIndex TimingGridBase::getIndex(const double& offset) {
 	TimingGridIndex index_m, index_b, index_s;
 	double offset_m, offset_b, offset_s;
 
-	try {
-		// By Measures
-		auto measure_i = tgm_v_.begin();
-		while (offset_i + measure_i->length() <= offset) { // If adding a measure length exceeds
-			offset_i += measure_i->length();
-			measure_i++;
-			index.measure++;
-		}
-		// Save measure on next state
-		index_m = index;
-		index_m.measure++;
-		offset_m = offset_i + measure_i->length();
-
-		// By Beats
-		auto tgb_v = measure_i->getTimingGridBeatVector();
-		auto beat_i = tgb_v.begin();
-		while (offset_i + beat_i->length() <= offset) { // If adding a beat length exceeds 
-			offset_i += beat_i->length();
-			beat_i++;
-			index.beat++;
-		}
-		// Save beat on next state
-		index_b = index;
-		index_b.beat++;
-		offset_b = offset_i + beat_i->length();
-
-		// By Snaps
-		double snap_length = beat_i->snapLength();
-		index.snap = (size_t)(std::round((offset - offset_i) / snap_length));
-
-		// Save snap
-		index_s = index;
-		offset_s = offset_i + beat_i->snapLength() * index.snap;
+	// By Measures
+	auto measure_i = tgm_v_.begin();
+	while (offset_i + measure_i->length() <= offset) { // If adding a measure length exceeds
+		offset_i += measure_i->length();
+		measure_i++;
+		index.measure++;
+		if (measure_i == tgm_v_.end()) throw std::out_of_range("Invalid Offset.");
 	}
-	catch ([[maybe_unused]] std::out_of_range & e) {
-		throw std::out_of_range("Offset doesn't exist.");
+	// Save measure on next state
+	index_m = index;
+	index_m.measure++;
+	offset_m = offset_i + measure_i->length();
+
+	// By Beats
+	auto tgb_v = measure_i->getTimingGridBeatVector();
+	auto beat_i = tgb_v.begin();
+	while (offset_i + beat_i->length() <= offset) { // If adding a beat length exceeds 
+		offset_i += beat_i->length();
+		beat_i++;
+		index.beat++;
+		if (beat_i == tgb_v.end()) throw std::out_of_range("Invalid Offset.");
 	}
+	// Save beat on next state
+	index_b = index;
+	index_b.beat++;
+	offset_b = offset_i + beat_i->length();
+
+	// By Snaps
+	double snap_length = beat_i->snapLength();
+	index.snap = (size_t)(std::round((offset - offset_i) / snap_length));
+
+	// Save snap
+	index_s = index;
+	offset_s = offset_i + beat_i->snapLength() * index.snap;
+
 	
 	// We compare all states to see which one works best.
 	// If there's a tie, we take the most optimized one.
@@ -139,14 +137,14 @@ TimingGridIndex TimingGridBase::getIndex(const double& offset) {
 	else { return index_s; }
 }
 
-inline TimingGridSnap& TimingGridBase::getSnap(const TimingGridIndex& index) {
+TimingGridSnap& TimingGridBase::getSnap(const TimingGridIndex& index) {
 	return tgm_v_[index.measure][index.beat][index.snap];
 }
 
-inline void TimingGridBase::setSnap(const TimingGridIndex& index, const std::vector<SPtrHitObject>& ho_v) {
+void TimingGridBase::setSnap(const TimingGridIndex& index, const std::vector<SPtrHitObject>& ho_v) {
 	getSnap(index).setHitObjectVector(ho_v);
 }
 
-inline void TimingGridBase::pushSnap(const TimingGridIndex& index, const SPtrHitObject& ho) {
+void TimingGridBase::pushSnap(const TimingGridIndex& index, const SPtrHitObject& ho) {
 	getSnap(index).push_back(ho);
 }
