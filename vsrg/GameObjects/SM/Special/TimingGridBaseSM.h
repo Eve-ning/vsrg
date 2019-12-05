@@ -52,11 +52,7 @@ private:
 		}
 	}
 
-	void setNotes(const SPtrHitObjectVector& ho_v) {
-		for (int i = 0; i < ho_v->size(); i ++) {
-			pushSnap(ho_v->operator[](i)->getOffset(), ho_v->operator[](i));
-		}
-	}
+	void setNotes(const SPtrHitObjectVector& ho_v);
 	
 };
 
