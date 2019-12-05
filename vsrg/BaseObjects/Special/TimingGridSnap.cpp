@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TimingGridSnap.h"
 
-TimingGridSnap::TimingGridSnap() : ho_v_() {}
+TimingGridSnap::TimingGridSnap() : ho_v_(std::vector<SPtrHitObject>({})) {}
 TimingGridSnap::~TimingGridSnap() {}
 
 SPtrHitObject& TimingGridSnap::operator[](size_t i){
@@ -14,7 +14,7 @@ SPtrHitObject TimingGridSnap::operator[](size_t i) const {
 std::vector<SPtrHitObject> TimingGridSnap::getHitObjectVector() const { return ho_v_; }
 void TimingGridSnap::setHitObjectVector(const std::vector<SPtrHitObject>& ho_v) { ho_v_ = ho_v; }
 
-void TimingGridSnap::push_back(SPtrHitObject ho) {
+void TimingGridSnap::push_back(const SPtrHitObject& ho) {
 	ho_v_.push_back(ho);
 }
 

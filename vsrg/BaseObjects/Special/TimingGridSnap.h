@@ -18,11 +18,11 @@ public:
 	~TimingGridSnap();
 
 	SPtrHitObject& operator [](size_t i);
-	SPtrHitObject operator [](size_t i) const ;
+	SPtrHitObject operator [](size_t i) const;
 	std::vector<SPtrHitObject> getHitObjectVector() const;
 	void setHitObjectVector(const std::vector<SPtrHitObject>& ho_v);
 
-	void push_back(SPtrHitObject ho);
+	void push_back(const SPtrHitObject& ho);
 
 	bool isEmpty() const;
 

@@ -22,8 +22,6 @@ bool TimingGridBase::isEmpty() const {
 
 size_t TimingGridBase::size() const { return tgm_v_.size(); }
 
-
-
 double TimingGridBase::length() const {
 	double sum = 0.0;
 	for (const auto& tgm : tgm_v_) sum += tgm.length();
@@ -147,8 +145,14 @@ TimingGridIndex TimingGridBase::getIndex(double offset_ms, double unit_scale) co
 TimingGridSnap& TimingGridBase::getSnap(const TimingGridIndex& index) const {
 	return tgm_v_[index.measure][index.beat][index.snap];
 }
+TimingGridSnap& TimingGridBase::getSnap(const TimingGridIndex& index) {
+	return tgm_v_[index.measure][index.beat][index.snap];
+}
 
 TimingGridSnap& TimingGridBase::getSnap(double offset_ms, double unit_scale) const {
+	return getSnap(getIndex(offset_ms * unit_scale));
+}
+TimingGridSnap& TimingGridBase::getSnap(double offset_ms, double unit_scale) {
 	return getSnap(getIndex(offset_ms * unit_scale));
 }
 

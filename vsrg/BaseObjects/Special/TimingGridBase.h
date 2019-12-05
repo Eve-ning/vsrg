@@ -46,8 +46,11 @@ public:
 
 	// Grabs a snap by reference from index
 	TimingGridSnap& getSnap(const TimingGridIndex& index) const;
+	TimingGridSnap& getSnap(const TimingGridIndex& index);
 	TimingGridSnap& getSnap(double offset_ms,
 						    double unit_scale = TimedObject::Units::msecond) const;
+	TimingGridSnap& getSnap(double offset_ms,
+						    double unit_scale = TimedObject::Units::msecond);
 
 	void setSnap(const TimingGridIndex& index,
 				 const std::vector<SPtrHitObject>& ho_v);
