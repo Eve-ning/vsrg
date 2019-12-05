@@ -8,6 +8,7 @@ public:
 	~TimingGridBeat();
 
 	TimingGridSnap& operator [](size_t i);
+	TimingGridSnap operator [](size_t i) const;
 	double getBpm() const;
 	void setBpm(double bpm);
 

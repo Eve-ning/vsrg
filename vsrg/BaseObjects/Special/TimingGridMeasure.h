@@ -11,6 +11,7 @@ public:
 	~TimingGridMeasure();
 
 	TimingGridBeat& operator [](size_t i);
+	TimingGridBeat operator [](size_t i) const;
 
 	bool isEmpty() const;
 

@@ -32,6 +32,7 @@ public:
 	~TimingGridBase();
 
 	TimingGridMeasure& operator [](size_t i);
+	TimingGridMeasure operator [](size_t i) const;
 
 	bool isEmpty() const;
 
@@ -46,21 +47,22 @@ public:
 	std::vector<TimingGridMeasure> getTimingGridMeasureVector() const;
 	void setTimingGridMeasureVector(const std::vector<TimingGridMeasure>& tgm_v);
 
-	// Getting offset is slow when it's large
-	// Will see which functions need a much faster access
-	double getOffset(const TimingGridIndex& index);
+	void setOffset(double offset_ms, double unit_scale = TimedObject::Units::msecond);
+
+	double getOffset() const;
+	double getOffset(const TimingGridIndex& index) const;// Getting offset is slow when it's large
 	double getOffset(size_t measure,
 					 size_t beat,
-				     size_t snap);
+				     size_t snap) const;
 
 	// Uses an offset to estimate the index
 	TimingGridIndex getIndex(double offset_ms,
-							 double unit_scale = TimedObject::Units::msecond);
+							 double unit_scale = TimedObject::Units::msecond) const;
 
 	// Grabs a snap by reference from index
-	TimingGridSnap& getSnap(const TimingGridIndex& index);
+	TimingGridSnap& getSnap(const TimingGridIndex& index) const;
 	TimingGridSnap& getSnap(double offset_ms,
-						    double unit_scale = TimedObject::Units::msecond);
+						    double unit_scale = TimedObject::Units::msecond) const;
 
 	void setSnap(const TimingGridIndex& index,
 				 const std::vector<SPtrHitObject>& ho_v);

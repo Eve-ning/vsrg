@@ -9,6 +9,9 @@ TimingGridMeasure::~TimingGridMeasure() {}
 TimingGridBeat& TimingGridMeasure::operator[](size_t i){
 	return tgb_v_[i];
 }
+TimingGridBeat TimingGridMeasure::operator[](size_t i) const {
+	return tgb_v_[i];
+}
 
 bool TimingGridMeasure::isEmpty() const {
 	for (const auto& tgb : tgb_v_) {

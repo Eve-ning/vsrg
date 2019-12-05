@@ -10,6 +10,9 @@ TimingGridBeat::~TimingGridBeat() {}
 TimingGridSnap& TimingGridBeat::operator[](size_t i){
 	return tgs_v_[i]; 
 }
+TimingGridSnap TimingGridBeat::operator[](size_t i) const {
+	return tgs_v_[i]; 
+}
 
 double TimingGridBeat::getBpm() const { return bpm_; }
 void TimingGridBeat::setBpm(double bpm) { bpm_ = bpm; }

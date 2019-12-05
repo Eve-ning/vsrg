@@ -9,6 +9,9 @@ TimingGridBase::~TimingGridBase() {}
 TimingGridMeasure& TimingGridBase::operator[](size_t i){
 	return tgm_v_[i];
 }
+TimingGridMeasure TimingGridBase::operator[](size_t i) const {
+	return tgm_v_[i];
+}
 
 bool TimingGridBase::isEmpty() const {
 	for (const auto& tgm : tgm_v_) {
@@ -64,9 +67,15 @@ void TimingGridBase::setBpm2DVector(const std::vector<std::vector<double>>& bpm_
 std::vector<TimingGridMeasure> TimingGridBase::getTimingGridMeasureVector() const { return tgm_v_; }
 void TimingGridBase::setTimingGridMeasureVector(const std::vector<TimingGridMeasure>& tgm_v) { tgm_v_ = tgm_v; }
 
-// Getting offset is slow when it's large
-// Will see which functions need a much faster access
-double TimingGridBase::getOffset(const TimingGridIndex& index) {
+void TimingGridBase::setOffset(double offset_ms, double unit_scale) {
+	offset_ms_ = offset_ms * unit_scale;
+}
+
+double TimingGridBase::getOffset() const {
+	return offset_ms_;
+}
+
+double TimingGridBase::getOffset(const TimingGridIndex& index) const {
 	double offset = offset_ms_;
 	for (size_t i = 0; i < index.measure; i++) offset += tgm_v_[i].length(); 
 	for (size_t i = 0; i < index.beat; i++)    offset += tgm_v_[index.measure][i].length();
@@ -74,11 +83,11 @@ double TimingGridBase::getOffset(const TimingGridIndex& index) {
 	return offset;
 }
 
-double TimingGridBase::getOffset(size_t measure, size_t beat, size_t snap) {
+double TimingGridBase::getOffset(size_t measure, size_t beat, size_t snap) const {
 	return getOffset(TimingGridIndex(measure, beat, snap));
 }
 
-TimingGridIndex TimingGridBase::getIndex(double offset_ms, double unit_scale) {
+TimingGridIndex TimingGridBase::getIndex(double offset_ms, double unit_scale) const {
 	offset_ms *= unit_scale;
 	// This is an offset search algorithm
 	double offset_i = 0.0;
@@ -136,11 +145,11 @@ TimingGridIndex TimingGridBase::getIndex(double offset_ms, double unit_scale) {
 	else { return index_s; }
 }
 
-TimingGridSnap& TimingGridBase::getSnap(const TimingGridIndex& index) {
+TimingGridSnap& TimingGridBase::getSnap(const TimingGridIndex& index) const {
 	return tgm_v_[index.measure][index.beat][index.snap];
 }
 
-TimingGridSnap& TimingGridBase::getSnap(double offset_ms, double unit_scale) {
+TimingGridSnap& TimingGridBase::getSnap(double offset_ms, double unit_scale) const {
 	return getSnap(getIndex(offset_ms * unit_scale));
 }
 
