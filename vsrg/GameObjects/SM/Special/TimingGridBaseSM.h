@@ -20,9 +20,11 @@ public:
 					const SPtrHitObjectVector& ho_v) {
 		auto tp_v = eo_v->getClassOnly<TimingPointClass>();
 		double ho_offset_last = ho_v->getLatestOffset();
+		setOffset(tp_v[0].getOffset());
 
 		// Sorts the vector
 		std::sort(tp_v.begin(), tp_v.end()); 
+
 		setBpm(tp_v, ho_offset_last);
 		setNotes(ho_v);
 	}
@@ -50,6 +52,7 @@ private:
 			offset += tgm.length();
 			if (abs(offset_next - offset) < DBL_EPSILON) tp_i++;
 		}
+		pushMeasure(tgm);
 	}
 
 	void setNotes(const SPtrHitObjectVector& ho_v);

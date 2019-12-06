@@ -88,7 +88,7 @@ double TimingGridBase::getOffset(size_t measure, size_t beat, size_t snap) const
 TimingGridIndex TimingGridBase::getIndex(double offset_ms, double unit_scale) const {
 	offset_ms *= unit_scale;
 	// This is an offset search algorithm
-	double offset_i = 0.0;
+	double offset_i = offset_ms_;
 	TimingGridIndex index = TimingGridIndex(0, 0, 0);
 
 	// These are save states, usually the most optimized would be
@@ -102,7 +102,9 @@ TimingGridIndex TimingGridBase::getIndex(double offset_ms, double unit_scale) co
 		offset_i += measure_i->length();
 		measure_i++;
 		index.measure++;
-		if (measure_i == tgm_v_.end()) throw std::out_of_range("Invalid Offset.");
+		if (measure_i == tgm_v_.end()) {
+			throw std::out_of_range("Invalid Offset.");
+		}
 	}
 	// Save measure on next state
 	index_m = index;
