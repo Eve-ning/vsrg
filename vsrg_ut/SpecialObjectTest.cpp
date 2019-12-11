@@ -17,8 +17,8 @@ namespace SpecialObject_
 		TEST_METHOD(assignment_index)
 		{
 			TimingGridBase tgb = TimingGridBase(1, 4, 4);
-			tgb.pushSnap(TimingGridIndex(0,0,1), std::make_shared<NormalNoteOsu>(ho_nn_1));
-			Assert::AreEqual(3, tgb.getSnap(TimingGridIndex(0,0,1))[0]->getIndex());
+			tgb.pushSnap(TimingGridIndex(0,0,0), std::make_shared<NormalNoteOsu>(ho_nn_1));
+			Assert::AreEqual(3, tgb.getSnap(TimingGridIndex(0,0,0))[0]->getIndex());
 		}
 		TEST_METHOD(assignment_offset)
 		{

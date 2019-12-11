@@ -14,6 +14,11 @@ public:
 
 	VsrgMapOsuParams params;
 
+	virtual SPtrHitObjectVector getHitObjectVector() const final;
+	virtual SPtrEventObjectVector getEventObjectVector() const final;
+	virtual void setHitObjectVector(const SPtrHitObjectVector& ho_v) final;
+	virtual void setEventObjectVector(const SPtrEventObjectVector& eo_v) final;
+
 private:
 
 	bool isNormalNoteOsu(const std::string & str);
@@ -30,5 +35,8 @@ private:
 		std::vector<std::string>::const_iterator & begin,
 		std::vector<std::string>::const_iterator end,
 		const std::string& starts_with);
+
+	SPtrHitObjectVector ho_v_;
+	SPtrEventObjectVector eo_v_;
 };
 

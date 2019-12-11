@@ -29,6 +29,8 @@ public:
 		setNotes(ho_v);
 	}
 
+
+
 private:
 
 	template<class TimingPointClass>

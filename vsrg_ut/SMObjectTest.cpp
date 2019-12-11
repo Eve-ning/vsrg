@@ -44,9 +44,6 @@ namespace VsrgMapSM_
 			auto tp_v = smmap.getEventObjectVector()->getClassOnly<TimingPointSM>();
 			smmap.dumpFile("out.txt", true);
 			smmap.saveFile("t.sm", true);
-
-			//osumap.saveAsVsrg("testing.vsrg", true);
-			//osumap.saveAsVsrg("test.vsrg", true);
 		}
 		TEST_METHOD(base)
 		{

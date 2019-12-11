@@ -35,40 +35,25 @@ void VsrgMap::writeFile(const std::vector<std::string> file_contents, const std:
 	BOOST_ASSERT_MSG(!file_out.is_open(), "File failed to close.");
 }
 
-void VsrgMap::dumpFile(const std::string& file_path, bool overwrite) {
-	if (!overwrite) {
-		BOOST_ASSERT_MSG(!std::filesystem::exists(file_path),
-			"File already exists.");
-	}
+//void VsrgMap::dumpFile(const std::string& file_path, bool overwrite) {
+//	if (!overwrite) {
+//		BOOST_ASSERT_MSG(!std::filesystem::exists(file_path),
+//			"File already exists.");
+//	}
+//
+//	std::ofstream file_out(file_path);
+//	BOOST_ASSERT_MSG(file_out.is_open(), "File failed to open.");
+//	for (auto ho : ho_v_->getHitObjectVector()) {
+//		file_out << ho->getOffset() << ':' << ho->getIndex() << '\n';
+//	}
+//
+//	file_out << "\n\n\n";
+//
+//	for (auto eo : eo_v_->getEventObjectVector()) {
+//		file_out << eo->getOffset() << ':' << '\n';
+//	}
+//
+//	file_out.close();
+//	BOOST_ASSERT_MSG(!file_out.is_open(), "File failed to close.");
+//}
 
-	std::ofstream file_out(file_path);
-	BOOST_ASSERT_MSG(file_out.is_open(), "File failed to open.");
-	for (auto ho : ho_v_->getHitObjectVector()) {
-		file_out << ho->getOffset() << ':' << ho->getIndex() << '\n';
-	}
-
-	file_out << "\n\n\n";
-
-	for (auto eo : eo_v_->getEventObjectVector()) {
-		file_out << eo->getOffset() << ':' << '\n';
-	}
-
-	file_out.close();
-	BOOST_ASSERT_MSG(!file_out.is_open(), "File failed to close.");
-}
-
-SPtrHitObjectVector VsrgMap::getHitObjectVector() const {
-	return ho_v_;
-}
-
-SPtrEventObjectVector VsrgMap::getEventObjectVector() const {
-	return eo_v_;
-}
-
-void VsrgMap::setHitObjectVector(const SPtrHitObjectVector & ho_v) {
-	ho_v_ = ho_v;
-}
-
-void VsrgMap::setEventObjectVector(const SPtrEventObjectVector & eo_v) {
-	eo_v_ = eo_v;
-}

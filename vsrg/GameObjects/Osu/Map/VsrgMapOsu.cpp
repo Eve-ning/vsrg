@@ -147,6 +147,19 @@ void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
 	writeFile(contents, file_path, overwrite);
 }
 
+SPtrHitObjectVector VsrgMapOsu::getHitObjectVector() const {
+	return ho_v_;
+}
+SPtrEventObjectVector VsrgMapOsu::getEventObjectVector() const {
+	return eo_v_;
+}
+void VsrgMapOsu::setHitObjectVector(const SPtrHitObjectVector& ho_v) {
+	ho_v_ = ho_v;
+}
+void VsrgMapOsu::setEventObjectVector(const SPtrEventObjectVector& eo_v) {
+	eo_v_ = eo_v;
+}
+
 void VsrgMapOsu::processHO(const std::vector<std::string>& str_v) {
 	for (const std::string & str : str_v) {
 		SPtrTimedObject sptr = nullptr;
