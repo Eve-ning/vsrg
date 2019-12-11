@@ -42,7 +42,8 @@ public:
 
 	// Uses an offset to estimate the index
 	TimingGridIndex getIndex(double offset_ms,
-							 double unit_scale = TimedObject::Units::msecond) const;
+							 double unit_scale = TimedObject::Units::msecond,
+							 bool extend = false);
 
 	// Grabs a snap by reference from index
 	TimingGridSnap& getSnap(const TimingGridIndex& index) const;

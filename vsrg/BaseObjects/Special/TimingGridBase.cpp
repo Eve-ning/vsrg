@@ -85,7 +85,7 @@ double TimingGridBase::getOffset(size_t measure, size_t beat, size_t snap) const
 	return getOffset(TimingGridIndex(measure, beat, snap));
 }
 
-TimingGridIndex TimingGridBase::getIndex(double offset_ms, double unit_scale) const {
+TimingGridIndex TimingGridBase::getIndex(double offset_ms, double unit_scale, bool extend) {
 	offset_ms *= unit_scale;
 	// This is an offset search algorithm
 	double offset_i = offset_ms_;
@@ -103,6 +103,13 @@ TimingGridIndex TimingGridBase::getIndex(double offset_ms, double unit_scale) co
 		measure_i++;
 		index.measure++;
 		if (measure_i == tgm_v_.end()) {
+			if (extend) { // Find out how many measures to extend
+				int extensions = ceil((offset_ms - offset_i) / (--tgm_v_.end())->length());
+				index.measure += extensions;
+				for (int _ = 0; _ < extensions; _++) {
+					pushMeasure(tgm_v_[tgm_v_.size() - 1]);
+				}
+			} else 
 			throw std::out_of_range("Invalid Offset.");
 		}
 	}

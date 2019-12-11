@@ -22,6 +22,8 @@ private:
 		std::vector<std::string>::const_iterator& begin,
 		std::vector<std::string>::const_iterator end);
 
+	void processBpms(const std::vector<std::string>& str_v);
+
 	TimingGridBase tgb;
 };
 
