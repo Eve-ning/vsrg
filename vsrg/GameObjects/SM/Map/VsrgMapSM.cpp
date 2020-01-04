@@ -66,9 +66,11 @@ void VsrgMapSM::loadFile(const std::string& file_path) {
 	params.difficulty_name_ =	notes_str[4]; params.difficulty_name_	.pop_back();
 	params.difficulty_val_	=	notes_str[5]; params.difficulty_val_	.pop_back();
 
+	tgb.setOffset(params.offset_);
+
 	auto bpm_pairs = processBpms(bpm_str.begin(), bpm_str.end());
 	processStops(stop_str.begin(), stop_str.end());
-	processObjs(notes_str.begin() + 6, notes_str.end(), bpm_pairs, params.offset_);
+	processObjs(notes_str.begin() + 6, notes_str.end(), bpm_pairs);
 
 }
 
@@ -307,8 +309,7 @@ void VsrgMapSM::processBpms(const std::vector<std::string>& str_v) {
 void VsrgMapSM::processObjs(
 	std::vector<std::string>::iterator begin,
 	const std::vector<std::string>::iterator& end,
-	const std::vector<Bpm>& bpm_pair_v,
-	double offset) {
+	const std::vector<Bpm>& bpm_pair_v) {
 
 	/* Processing HO and EO in parellel
 	
@@ -338,11 +339,7 @@ void VsrgMapSM::processObjs(
 	*/
 
 	// Pushes Timing Point to EOV
-	auto pushToEOV = [this](double offset, double bpm) {
-		TimingPointSM tp = TimingPointSM(offset, bpm, 4, 4);
-		SPtrTimedObject sptr = std::make_shared<TimingPointSM>(tp);
-		eo_v_->push_back(sptr);
-	};
+
 
 	std::vector<std::string> measure = {};
 
@@ -350,23 +347,6 @@ void VsrgMapSM::processObjs(
 	unsigned int size = 0;
 	unsigned int bpm_pair_i = 0;
 	double beat_length = 0;
-	double bpm = bpm_pair_v[0].bpm; pushToEOV(offset, bpm);
-
-	// Tries to update bpm based on current beat
-	auto updateBpm = [&bpm_pair_v, &bpm, &bpm_pair_i, &offset,
-					  pushToEOV, this](double beat){
-
-		// First if to prevent out of index
-		if (bpm_pair_i + 1 >= bpm_pair_v.size()) return;
-
-		auto next_beat = bpm_pair_v[bpm_pair_i + 1].offset;
-		if (beat >= next_beat) { // Check if we need to update bpm
-			bpm_pair_i++;
-			bpm = bpm_pair_v[bpm_pair_i].bpm;
-			pushToEOV(offset, bpm);
-		}
-		// Else means the beat is still on the same bpm
-	};
 
 	for (unsigned int index_row = 0; begin < end; begin++, index_row++) {
 		if (begin->back() == ',' || begin == (end - 1)) { // Found end of measure
@@ -379,24 +359,20 @@ void VsrgMapSM::processObjs(
 				0000		(8th, 2/2)
 				0000 Beat 4	(8th, 1/2)
 				0000		(8th, 2/2)
-			*/
+			*/	
 
 			size = measure.size(); // Size of chunk vector
 
 			// Each chunk has 4 beats, so we split them into 4 and loop
 			for (int _ = 0; _ < 4; _++) {
-				updateBpm(beat); // Tries to update bpm w.r.t. beat
 				
-				beat_length = TimedObject::Units::bpmToMspb(bpm); // How long the beat lasts in ms
-
 				processHOBeat(
 					measure.begin() + (int)  _      * size / 4, // Start Beat
 					measure.begin() + (int) (_ + 1) * size / 4, // End Beat
-					offset,	
 					beat_length * 4 / size); // Step Size
 
 				// Push offset to end of beat
-				offset += beat_length;
+
 				beat++;
 			}
 			measure.clear();
@@ -408,8 +384,7 @@ void VsrgMapSM::processObjs(
 
 void VsrgMapSM::processHOBeat(std::vector<std::string>::iterator begin, 
 							  const std::vector<std::string>::iterator& end,
-							  double offset,
-							  double step_size){
+							  size_t measure){
 	/*
 		Step Size: Determines the offset movement for 1 step
 
@@ -419,6 +394,8 @@ void VsrgMapSM::processHOBeat(std::vector<std::string>::iterator begin,
 		...
 	
 	*/	
+
+
 	auto createHO = [&begin, this](unsigned int index, char chr, double offset)
 	{
 		/* Function of sptr_buffer

@@ -23,6 +23,9 @@ private:
 		std::vector<std::string>::const_iterator end);
 
 	void processBpms(const std::vector<std::string>& str_v);
+	void processHOBeat(std::vector<std::string>::iterator begin, 
+					   const std::vector<std::string>::iterator& end,
+					   size_t measure);
 
 	TimingGridBase tgb;
 };
