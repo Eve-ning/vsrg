@@ -23,3 +23,11 @@ SPtrEventObject EventObjectVector::getEarliestObject() const {
 SPtrEventObject EventObjectVector::getLatestObject() const {
 	return EO_CAST(TimedObjectVector::getLatestObject());
 }
+
+SPtrEventObject EventObjectVector::getLowerObject(double offset, double unit_scale) {
+	return EO_CAST(TimedObjectVector::getLowerObject(offset, unit_scale));
+}
+
+SPtrEventObject EventObjectVector::getUpperObject(double offset, double unit_scale) {
+	return EO_CAST(TimedObjectVector::getUpperObject(offset, unit_scale));
+}

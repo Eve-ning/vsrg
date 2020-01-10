@@ -1,4 +1,4 @@
-#pragma once
+	#pragma once
 #include "BaseObjects/Map/VsrgMap.h"
 #include "VsrgMapOsuParams.h"
 
@@ -14,17 +14,29 @@ public:
 
 	VsrgMapOsuParams params;
 
-private:
+	virtual SPtrHitObjectVector getHitObjectVector() const final;
+	virtual SPtrEventObjectVector getEventObjectVector() const final;
+	virtual void setHitObjectVector(const SPtrHitObjectVector& ho_v) final;
+	virtual void setEventObjectVector(const SPtrEventObjectVector& eo_v) final;
 
-	void readHO(const std::vector<std::string> & str_v);
-	void readEO(const std::vector<std::string> & str_v);
+private:
 
 	bool isNormalNoteOsu(const std::string & str);
 	bool isTimingPointOsu(const std::string & str);
 
 	std::string processBackground(const std::string& str);
-
 	std::vector<unsigned int> processBookmarks(const std::string & str);
 	std::vector<std::string> processTags(const std::string & str);
+	void processHO(const std::vector<std::string> & str_v);
+	void processEO(const std::vector<std::string> & str_v);
+
+	// Gets the value left of the ':' op
+	std::string iterToTag(
+		std::vector<std::string>::const_iterator & begin,
+		std::vector<std::string>::const_iterator end,
+		const std::string& starts_with);
+
+	SPtrHitObjectVector ho_v_;
+	SPtrEventObjectVector eo_v_;
 };
 

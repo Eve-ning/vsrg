@@ -35,10 +35,10 @@ public:
 
 	/// Get the Beat Duration in Milliseconds scale defines the multiplier on the return value. 
 	double getBeatDuration(double scale = 1.0,
-		double unit_scale = TimedObject::UnitScale::msecond);
+		double unit_scale = TimedObject::Units::msecond);
 	/// Get the Measure Duration in Milliseconds scale defines the multiplier on the return value. 
 	double getMeasureDuration(double scale = 1.0,
-		double unit_scale = TimedObject::UnitScale::msecond);
+		double unit_scale = TimedObject::Units::msecond);
 
 	/// Checks if Time Signature is a valid fraction or if it equates to 0
 	virtual bool isTimeSigValid() const;

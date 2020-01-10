@@ -30,9 +30,9 @@ public:
 	virtual void setArtist(const std::string & artist, bool set_unicode = false) final;
 	virtual void setCreator(const std::string & creator, bool set_unicode = false) final;
 	virtual void setVersion(const std::string & version, bool set_unicode = false) final;
-	virtual void setAudioFileName(const std::string & audio_file_name) final;
+	virtual void setAudioFileName(const std::string & audio_path) final;
 
-	std::string audio_file_name_;
+	std::string audio_path_;
 	std::string title_u_;
 	std::string title_;
 	std::string artist_u_;

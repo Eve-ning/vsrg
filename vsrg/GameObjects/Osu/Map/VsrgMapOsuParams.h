@@ -20,7 +20,7 @@ public:
 
 	VsrgMapOsuParams(
 		double hp, double od, unsigned int preview_time, unsigned int keys,
-		const std::string & bg_file_name,
+		const std::string & bg_path,
 		const std::string & source,
 		const std::vector<std::string> & tags,
 		const std::vector<unsigned int> & bookmarks,
@@ -30,7 +30,7 @@ public:
 	/// Custom unicode string setting, use other constructor for lazy
 	VsrgMapOsuParams(
 		double hp, double od, unsigned int preview_time, unsigned int keys,
-		const std::string & bg_file_name,
+		const std::string & bg_path,
 		const std::string & source,
 		const std::vector<std::string> & tags,
 		const std::vector<unsigned int> & bookmarks,
@@ -41,7 +41,9 @@ public:
 		const std::string & creator_u, const std::string & version_u);
 
 	/// Lazy unicode string setting, they are copied from non-wide if set_unicode == true
-	VsrgMapOsuParams(double hp, double od, unsigned int keys,
+	VsrgMapOsuParams(double hp, double od, unsigned int preview_time, unsigned int keys,
+		const std::string & bg_path,
+		const std::string & source,
 		const std::string & title, const std::string & artist,
 		const std::string & creator, const std::string & version,
 		bool set_unicode = true);
@@ -53,7 +55,7 @@ public:
 	double od_;
 	unsigned int preview_time_;
 	unsigned int keys_;
-	std::string bg_file_name_;
+	std::string bg_path_;
 	std::string source_;
 	std::vector<std::string> tags_;
 	std::vector<unsigned int> bookmarks_;

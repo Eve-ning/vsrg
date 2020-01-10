@@ -23,7 +23,6 @@ VsrgMapOsu::~VsrgMapOsu()
 }
 
 void VsrgMapOsu::loadFile(const std::string & file_path) {
-	using namespace IterHelper;
 	std::vector<std::string> file_contents = readFile(file_path);
 
 	// To convert to using boost::qi when im not lazy
@@ -31,34 +30,59 @@ void VsrgMapOsu::loadFile(const std::string & file_path) {
 	std::vector<std::string>::const_iterator it = file_contents.cbegin();
 	std::vector<std::string>::const_iterator ite = file_contents.cend();
 
-	params.audio_file_name_ =				   matchTag(it, ite, "AudioFilename:");
-	params.preview_time_	=		 std::stoi(matchTag(it, ite, "PreviewTime:"));
-	params.bookmarks_		= processBookmarks(matchTag(it, ite, "Bookmarks:"));
-	params.title_			=				   matchTag(it, ite, "Title:");
-	params.title_u_			=				   matchTag(it, ite, "TitleUnicode:");
-	params.artist_			=				   matchTag(it, ite, "Artist:");
-	params.artist_u_		=				   matchTag(it, ite, "ArtistUnicode:");
-	params.creator_			=				   matchTag(it, ite, "Creator:");
-	params.version_			=				   matchTag(it, ite, "Version:");
-	params.source_			=				   matchTag(it, ite, "Source:");
-	params.tags_			=	   processTags(matchTag(it, ite, "Tags:"));
-	params.beatmap_id_		=		 std::stoi(matchTag(it, ite, "BeatmapID:"));
-	params.beatmap_set_id_	=		 std::stoi(matchTag(it, ite, "BeatmapSetID:"));
-	params.hp_				=		 std::stod(matchTag(it, ite, "HPDrainRate:"));
-	params.keys_			=		 std::stoi(matchTag(it, ite, "CircleSize:"));
-	params.od_				=		 std::stod(matchTag(it, ite, "OverallDifficulty:"));
-	
-	// Move to background
-	matchTag(it, ite, "//Background and Video events");
-	processBackground(*(++it));
+	// Moves iter to tag
+	auto iterToTag = []( 
+		std::vector<std::string>::const_iterator& begin,
+		std::vector<std::string>::const_iterator end,
+		const std::string& starts_with) -> std::string {
+			auto begin_input = begin;
+			for (; begin != end; begin++) {
+				if (boost::algorithm::starts_with(*begin, starts_with))
+					return *begin;
+			}
 
-	matchTag(it, ite, "[TimingPoints]"); // Move it to [TimingPoints]
+			begin = begin_input; // Condition was never true
+			return "";
+	};
+
+	// Extracts value from iter w.r.t. colon
+	auto iterExtract = [](const std::string& str) -> std::string {
+		std::string _ = str.substr(str.find(':') + 1); boost::trim(_);
+		return _;
+	};
+
+	#define MATCH(str) iterExtract(iterToTag(it, ite, str))
+
+	params.audio_path_      =				   MATCH("AudioFilename:");
+	params.preview_time_	=		 std::stoi(MATCH("PreviewTime:"));
+	params.bookmarks_		= processBookmarks(MATCH("Bookmarks:"));
+	params.title_			=				   MATCH("Title:");
+	params.title_u_			=				   MATCH("TitleUnicode:");
+	params.artist_			=				   MATCH("Artist:");
+	params.artist_u_		=				   MATCH("ArtistUnicode:");
+	params.creator_			=				   MATCH("Creator:");
+	params.version_			=				   MATCH("Version:");
+	params.source_			=				   MATCH("Source:");
+	params.tags_			=	   processTags(MATCH("Tags:"));
+	params.beatmap_id_		=		 std::stoi(MATCH("BeatmapID:"));
+	params.beatmap_set_id_	=		 std::stoi(MATCH("BeatmapSetID:"));
+	params.hp_				=		 std::stod(MATCH("HPDrainRate:"));
+	params.keys_			=		 std::stoi(MATCH("CircleSize:"));
+	params.od_				=		 std::stod(MATCH("OverallDifficulty:"));
+	
+	#undef MATCH
+
+	// Move to background
+	iterToTag(it, ite, "//Background and Video events");
+	params.bg_path_ = processBackground(*(++it));
+
+	iterToTag(it, ite, "[TimingPoints]"); // Move it to [TimingPoints]
 	auto it_tp = it;
-	matchTag(it, ite, "[HitObjects]"); // Move it to [TimingPoints]
+	iterToTag(it, ite, "[HitObjects]"); // Move it to [TimingPoints]
 	auto it_ho = it;
 
-	readEO(getBetween(++it_tp, it_ho)); // Reads between the iters
-	readHO(getBetween(++it_ho, ite));
+	processEO(IterHelper::getBetween(++it_tp, it_ho)); // Reads between the iters
+	processHO(IterHelper::getBetween(++it_ho, ite));
 }
 
 void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
@@ -68,7 +92,7 @@ void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
 	_("osu file format v14");
 
 	_("[General]");
-	_("AudioFilename: " + params.audio_file_name_);
+	_("AudioFilename: " + params.audio_path_);
 	_("AudioLeadIn : 0");
 	_("PreviewTime : " + std::to_string(params.preview_time_));
 	_("Countdown : 0");
@@ -112,7 +136,7 @@ void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
 	_("SliderTickRate : 1");
 
 	_("[Events]");
-	_("0, 0, " + params.bg_file_name_ + ", 0, 0");
+	_("0, 0, " + params.bg_path_ + ", 0, 0");
 
 	_("[TimingPoints]");
 	for (const auto& eo : eo_v_->getEventObjectVector()) _(eo->asNative());
@@ -123,7 +147,20 @@ void VsrgMapOsu::saveFile(const std::string & file_path, bool overwrite) {
 	writeFile(contents, file_path, overwrite);
 }
 
-void VsrgMapOsu::readHO(const std::vector<std::string>& str_v) {
+SPtrHitObjectVector VsrgMapOsu::getHitObjectVector() const {
+	return ho_v_;
+}
+SPtrEventObjectVector VsrgMapOsu::getEventObjectVector() const {
+	return eo_v_;
+}
+void VsrgMapOsu::setHitObjectVector(const SPtrHitObjectVector& ho_v) {
+	ho_v_ = ho_v;
+}
+void VsrgMapOsu::setEventObjectVector(const SPtrEventObjectVector& eo_v) {
+	eo_v_ = eo_v;
+}
+
+void VsrgMapOsu::processHO(const std::vector<std::string>& str_v) {
 	for (const std::string & str : str_v) {
 		SPtrTimedObject sptr = nullptr;
 		if (isNormalNoteOsu(str)) {
@@ -138,7 +175,7 @@ void VsrgMapOsu::readHO(const std::vector<std::string>& str_v) {
 	}
 }
 
-void VsrgMapOsu::readEO(const std::vector<std::string>& str_v) {
+void VsrgMapOsu::processEO(const std::vector<std::string>& str_v) {
 	for (const std::string & str : str_v) {
 		SPtrTimedObject sptr = nullptr;
 		if (isTimingPointOsu(str)) {
@@ -183,6 +220,19 @@ std::vector<unsigned int> VsrgMapOsu::processBookmarks(const std::string & str) 
 
 std::vector<std::string> VsrgMapOsu::processTags(const std::string & str) {
 	std::vector<std::string> out = {};
-	boost::split(out, str, boost::is_any_of(" "));
+	boost::split(out, str, boost::is_any_of(" "));	
 	return std::move(out);
+}
+
+// Gets the value left of the ':' op
+
+std::string VsrgMapOsu::iterToTag(std::vector<std::string>::const_iterator& begin, std::vector<std::string>::const_iterator end, const std::string& starts_with) {
+
+	auto begin_input = begin;
+	while (begin != end) {
+		if (boost::algorithm::starts_with(*begin, starts_with)) return *begin;
+	}
+
+	begin = begin_input; // Condition was never true
+	return "";
 }

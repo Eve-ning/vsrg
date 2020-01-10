@@ -47,5 +47,11 @@
     <ClCompile Include="OsuObjectTest.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="SMObjectTest.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialObjectTest.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

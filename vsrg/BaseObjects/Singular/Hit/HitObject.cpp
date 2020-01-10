@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "HitObject.h"
 
-
 /**
 * @brief Construct a new Hit Object
 *
@@ -9,7 +8,7 @@
 * @param index Index of the object
 */
 
-HitObject::HitObject() {}
+HitObject::HitObject() : index_(-1) {}
 
 HitObject::HitObject(const double & offset_m_sec,
 					 const int & index) :
